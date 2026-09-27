@@ -193,7 +193,7 @@ $$
 
 ## 4. Cohort Ratio Trace Table
 
-| Contest ID | Users Registered | Registered Count $|\mathcal{U}_c|$ | Total Platform Users $N_{\mathcal{U}}$ | Computed Percentage | Rounded Percentage | Output Rank |
+| Contest ID | Users Registered | Registered Count $\lvert \mathcal{U}_c \rvert$ | Total Platform Users $N_{\mathcal{U}}$ | Computed Percentage | Rounded Percentage | Output Rank |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | **$208$** | $\{2, 6, 7\}$ | $3$ | $3$ | $100.00\%$ | **$100.00$** | **$1$ (Tie win: $208 < 209$)** |
 | **$209$** | $\{2, 6, 7\}$ | $3$ | $3$ | $100.00\%$ | **$100.00$** | **$2$** |
@@ -219,7 +219,7 @@ Every contest recorded in `Register` forms an independent aggregation group. All
 | Tie in Percentages | Contests $208$ and $209$ both have $100\%$ | Sorted by `contest_id ASC` $\implies 208$ precedes $209$. | Non-deterministic ordering. |
 | Single Registered User | $1$ user in contest out of $3$ | $1 / 3 = 33.33\%$. | Truncating instead of rounding ($33.33$ vs $33.333$). |
 | Duplicate Rows in Register | Not possible due to primary key `(contest_id, user_id)` | Single count per user guaranteed. | Double-counting users in contests. |
-| Zero Denominator | Disallowed by problem constraints ($|\text{Users}| \ge 1$) | Division is always mathematically well-defined. | Division by zero runtime crash. |
+| Zero Denominator | Disallowed by problem constraints ($\lvert \text{Users} \rvert \ge 1$) | Division is always mathematically well-defined. | Division by zero runtime crash. |
 
 ---
 

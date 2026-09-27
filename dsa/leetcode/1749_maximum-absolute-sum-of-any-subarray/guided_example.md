@@ -29,7 +29,7 @@ Alternatively, in prefix sum space, any subarray sum is the difference of two pr
 |---|---|---|
 | Positive Kadane State $f_k$ | $\max(f_{k-1}, 0) + \text{nums}[k]$ | Maximum subarray sum ending at index $k$ |
 | Negative Kadane State $g_k$ | $\min(g_{k-1}, 0) + \text{nums}[k]$ | Minimum subarray sum ending at index $k$ |
-| Running Max Absolute Sum $M$ | $\max(M, f_k, |g_k|)$ | Global best absolute sum observed |
+| Running Max Absolute Sum $M$ | $\max(M, f_k, \lvert g_k \rvert)$ | Global best absolute sum observed |
 
 ### Mathematical Invariants
 
@@ -137,9 +137,9 @@ Final Result: $5$.
 | Scenario | Input Example | Expected Output | Strategic Handling |
 |---|---|---|---|
 | All Positive Elements | `[2, 3, 5]` | $10$ | $f$ accumulates sum of all elements; $g$ stays positive/neutral; returns sum. |
-| All Negative Elements | `[-2, -5, -3]` | $10$ | Subarray $[-2, -5, -3] = -10 \implies |-10| = 10$; $g$ reaches $-10$. |
+| All Negative Elements | `[-2, -5, -3]` | $10$ | Subarray $[-2, -5, -3] = -10 \implies \lvert -10 \rvert = 10$; $g$ reaches $-10$. |
 | Array of Zeros | `[0, 0, 0]` | $0$ | $f = g = 0$; returns $0$. |
-| Mixed Extremes | `[2, -5, 1, -4, 3, -2]` | $8$ | Subarray $[-5, 1, -4] = -8 \implies 8$; correctly captured by $|g|$. |
+| Mixed Extremes | `[2, -5, 1, -4, 3, -2]` | $8$ | Subarray $[-5, 1, -4] = -8 \implies 8$; correctly captured by $\lvert g \rvert$. |
 
 ### Invariant Maintenance & Why It Works
 

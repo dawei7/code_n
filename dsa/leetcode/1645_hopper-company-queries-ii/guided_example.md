@@ -160,7 +160,7 @@ Join `Rides` and `AcceptedRides`:
 
 ### The Full 12-Month Operational Report
 
-| Month $m$ | Month Name | Active Drivers $|\mathcal{A}_m|$ | Working Drivers $|\mathcal{W}_m|$ | Formula Calculation | Output `working_percentage` |
+| Month $m$ | Month Name | Active Drivers $\lvert \mathcal{A}_m \rvert$ | Working Drivers $\lvert \mathcal{W}_m \rvert$ | Formula Calculation | Output `working_percentage` |
 |---|---|---|---|---|---|
 | $1$ | January | $1$ (Driver 1) | $1$ (Driver 1) | $1 \times 100 / 1$ | **`100.0`** |
 | $2$ | February | $1$ (Driver 1) | $0$ | $0 \times 100 / 1$ | **`0.0`** |

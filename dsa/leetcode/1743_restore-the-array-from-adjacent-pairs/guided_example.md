@@ -29,7 +29,7 @@ By interpreting each adjacent pair as an undirected edge in a graph:
 | Component | Definition | Property |
 |---|---|---|
 | Adjacency Graph $G$ | Mapping $u \mapsto \text{neighbors}(u)$ | Degrees: $\deg(u) \in \{1, 2\}$ |
-| Array Length $n$ | Total vertices: $|E| + 1 = \text{len}(\text{adjacentPairs}) + 1$ | Target output size |
+| Array Length $n$ | Total vertices: $\lvert E \rvert + 1 = \text{len}(\text{adjacentPairs}) + 1$ | Target output size |
 | Reconstructed Array $A$ | Output sequence of vertices $[A_0, A_1, \dots, A_{n-1}]$ | Simple path traversal |
 
 ### Mathematical Invariants

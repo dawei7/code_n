@@ -60,7 +60,7 @@ We specify the state parameters tracked throughout recursion:
 | Parameter | Domain / Type | Operational Responsibility | Initial State |
 |---|---|---|---|
 | Current Node $u$ | Original `Node` or `null` | Active tree node being explored | Root $1$ |
-| Sibling Cursor | Integer $\in [0, |\text{children}|-1]$ | Iteration position across children list | $0$ |
+| Sibling Cursor | Integer $\in [0, \lvert \text{children} \rvert-1]$ | Iteration position across children list | $0$ |
 | Cloned Subtree List | Dynamic List of `Node` | Accumulates cloned child roots in exact original order | Empty `[]` |
 | Cloned Node $u'$ | Newly instantiated `Node` | Returned deep copy representing the subtree at $u$ | Unallocated |
 

@@ -90,7 +90,7 @@ We establish tracking parameters across the algorithm:
 | Parameter | Type & Domain | Role in Algorithm |
 |---|---|---|
 | Active Pointer ($curr$) | Integer $0 \le curr \le last$ | Index of currently viewed URL |
-| Forward Bound ($last$) | Integer $curr \le last < |history|$ | Rightmost reachable forward index |
+| Forward Bound ($last$) | Integer $curr \le last < \lvert history \rvert$ | Rightmost reachable forward index |
 | History Storage ($history$) | Dynamic list of strings | Sequential chronological log of visited URLs |
 | Requested Steps ($steps$) | Integer $1 \le steps \le 100$ | Number of navigation steps requested |
 

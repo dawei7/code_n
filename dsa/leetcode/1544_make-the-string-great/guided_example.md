@@ -70,7 +70,7 @@ We establish the running state variables:
 | $i$ | Index of incoming character in stream | $0$ |
 | $c$ | Current character $s[i]$ | $s[0] = \text{'l'}$ |
 | $\text{stk}$ | Array stack maintaining the irreducible clean prefix | `[]` |
-| $\Delta$ | Absolute ASCII distance: $|\text{ord}(\text{top}) - \text{ord}(c)|$ | Computed per step |
+| $\Delta$ | Absolute ASCII distance: $\lvert \text{ord}(\text{top}) - \text{ord}(c) \rvert$ | Computed per step |
 
 > **Irreducible Prefix Invariant.** At every step, the stack $\text{stk}$ contains an irreducible "good" string: no two adjacent characters in $\text{stk}$ represent the same letter in opposite cases. When an incoming character $c$ collides with $\text{top}$, popping $\text{top}$ and discarding $c$ preserves the irreducibility of the remaining prefix.
 
@@ -151,7 +151,7 @@ Reconstructed string: **`"leetcode"`**.
 
 The complete character ingestion and transition table is summarized below:
 
-| Stream Index $i$ | Input Character $s[i]$ | Stack Top Before Step | $|\text{ord}(\text{top}) - \text{ord}(c)|$ | Operation | Stack Content After Step | Current String Form |
+| Stream Index $i$ | Input Character $s[i]$ | Stack Top Before Step | $\lvert \text{ord}(\text{top}) - \text{ord}(c) \rvert$ | Operation | Stack Content After Step | Current String Form |
 |---|---|---|---|---|---|---|
 | 0 | 'l' | - | - | Push | `['l']` | `"l"` |
 | 1 | 'e' | 'l' | 7 | Push | `['l', 'e']` | `"le"` |

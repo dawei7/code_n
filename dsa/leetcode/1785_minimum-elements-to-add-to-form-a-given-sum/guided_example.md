@@ -37,7 +37,7 @@ $$k = \left\lceil \frac{d}{\text{limit}} \right\rceil = \left\lfloor \frac{d + \
 |---|---|---|
 | Initial Array Sum $S$ | $\sum_{i=0}^{n-1} \text{nums}[i]$ | Current total sum |
 | Target Goal | $\text{goal} \in \mathbb{Z}$ | Desired total sum |
-| Absolute Deficit $d$ | $|S - \text{goal}|$ | Net magnitude required to reach goal |
+| Absolute Deficit $d$ | $\lvert S - \text{goal} \rvert$ | Net magnitude required to reach goal |
 | Step Capacity $L$ | $\text{limit}$ | Maximum contribution per single added element |
 | Minimum Additions $k$ | $\lceil d / L \rceil$ | Optimal number of elements required |
 
@@ -114,7 +114,7 @@ Both added elements satisfy $|x| \le \text{limit} = 3$.
 | Initial Sum $S$ | $1$ | $1 - 1 + 1 = 1$ |
 | Target `goal` | $-4$ | Desired total |
 | Signed Deficit $\Delta$ | $-5$ | Goal minus sum: $-4 - 1$ |
-| Absolute Deficit $d$ | $5$ | Magnitude to close: $|-5|$ |
+| Absolute Deficit $d$ | $5$ | Magnitude to close: $\lvert -5 \rvert$ |
 | Step Capacity `limit` | $3$ | Maximum change per element |
 | Ceiling Quotient $\lceil d / \text{limit} \rceil$ | $\lceil 5 / 3 \rceil$ | Smallest integer $\ge 1.666\dots$ |
 | Final Output | **$2$** | Minimum elements needed |
@@ -134,7 +134,7 @@ Both added elements satisfy $|x| \le \text{limit} = 3$.
 
 | Scenario | Input | Expected Output | Strategic Handling |
 |---|---|---|---|
-| Sum Already Equals Goal | `nums = [2, 2]`, `goal = 4` | $0$ | $d = |4 - 4| = 0 \implies (0 + L - 1)//L = 0$. |
+| Sum Already Equals Goal | `nums = [2, 2]`, `goal = 4` | $0$ | $d = \lvert 4 - 4 \rvert = 0 \implies (0 + L - 1)//L = 0$. |
 | Exact Multiple of Limit | $d = 6, \text{limit} = 3$ | $2$ | $(6 + 2)//3 = 2$; divides evenly with no remainder. |
 | Deficit Smaller than Limit | $d = 2, \text{limit} = 5$ | $1$ | $(2 + 4)//5 = 1$; single addition suffices. |
 | Large Goal ($10^9$) | $d = 10^9, \text{limit} = 10^6$ | $1000$ | Standard integer arithmetic handles large values without overflow. |

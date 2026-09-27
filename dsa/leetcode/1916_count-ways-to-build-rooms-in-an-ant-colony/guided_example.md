@@ -105,7 +105,7 @@ Taking $6 \pmod{10^9 + 7}$ yields **6**.
 
 ## 4. Complete Execution Trace
 
-| Node $u$ | Parent `prevRoom[u]` | Children | Subtree Size $|T_u|$ | Modular Inverse $|T_u|^{-1} \pmod M$ | Running Product Modulo $M$ |
+| Node $u$ | Parent `prevRoom[u]` | Children | Subtree Size $\lvert T_u \rvert$ | Modular Inverse $\lvert T_u \rvert^{-1} \pmod M$ | Running Product Modulo $M$ |
 |:---:|:---:|:---:|:---:|:---:|:---:|
 | - | - | - | - | Initial: $n! = 5! = 120$ | $120$ |
 | 0 | -1 | $\{1, 2\}$ | $5$ | $5^{-1} \equiv 400000003$ | $120 \times 5^{-1} \equiv 24$ |

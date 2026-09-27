@@ -70,7 +70,7 @@ We establish tracking parameters across the algorithm:
 | Parameter | Type & Domain | Role in Algorithm |
 |---|---|---|
 | Target Count ($2^k$) | Integer $2 \le 2^k \le 2^{20}$ | Number of distinct patterns required |
-| Active Window End ($i$) | Integer $k - 1 \le i < |s|$ | Scan pointer over binary string |
+| Active Window End ($i$) | Integer $k - 1 \le i < \lvert s \rvert$ | Scan pointer over binary string |
 | Rolling Value ($val$) | Integer $0 \le val < 2^k$ | Integer representation of the current $k$-bit window |
 | Distinct Seen Codes | Set / Boolean array | Tracks observed pattern identifiers |
 

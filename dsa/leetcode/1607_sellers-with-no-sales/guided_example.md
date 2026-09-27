@@ -61,10 +61,10 @@ Our teaching goal is to model this query as an anti-semijoin ($\rhd$) operating 
 
 | Relational Expression | Algebraic Role | Output Cardinality Bound |
 |---|---|---|
-| $\sigma_{\text{YEAR}(\text{sale\_date}) = 2020}(\text{Orders})$ | Filters transactions restricted to year 2020 | $\le |R|$ |
-| $\Pi_{\text{seller\_id}}(\dots)$ | Distinct active vendor identifiers | $\le \min(|S|, |R|)$ |
-| $\text{Seller} \rhd S_{\text{active}}$ | Retains sellers absent from the active 2020 set | $\le |S|$ |
-| $\tau_{\text{seller\_name} \uparrow}(\dots)$ | Orders final vendor names alphabetically | Equivalent to $|S_{\text{clean}}|$ |
+| $\sigma_{\text{YEAR}(\text{sale\_date}) = 2020}(\text{Orders})$ | Filters transactions restricted to year 2020 | $\le \lvert R \rvert$ |
+| $\Pi_{\text{seller\_id}}(\dots)$ | Distinct active vendor identifiers | $\le \min(\lvert S \rvert, \lvert R \rvert)$ |
+| $\text{Seller} \rhd S_{\text{active}}$ | Retains sellers absent from the active 2020 set | $\le \lvert S \rvert$ |
+| $\tau_{\text{seller\_name} \uparrow}(\dots)$ | Orders final vendor names alphabetically | Equivalent to $\lvert S_{\text{clean}} \rvert$ |
 
 > **Anti-Join Completeness Invariant.** A seller record $s \in \text{Seller}$ is retained in $\text{Seller} \rhd S_{\text{active}}$ if and only if $\nexists o \in \text{Orders}$ such that $o.\text{seller\_id} = s.\text{seller\_id} \land \text{YEAR}(o.\text{sale\_date}) = 2020$. Sellers with sales in 2019 (such as Frank) produce $0$ matching records in $O_{2020}$ and therefore remain in the anti-semijoin result.
 

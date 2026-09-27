@@ -131,7 +131,7 @@ Output: **18**.
 
 We enumerate the 6 valid column states for $m = 2$ and their transition neighborhoods:
 
-| State ID $x$ | Ternary Tuple $(c_0, c_1)$ | Row 0 Color | Row 1 Color | Compatible Neighbor States $\mathcal{N}(x)$ | Degree $|\mathcal{N}(x)|$ |
+| State ID $x$ | Ternary Tuple $(c_0, c_1)$ | Row 0 Color | Row 1 Color | Compatible Neighbor States $\mathcal{N}(x)$ | Degree $\lvert \mathcal{N}(x) \rvert$ |
 |---|---|---|---|---|---|
 | 1 | $(1, 0)_3$ | Green ($1$) | Red ($0$) | $\{3, 5, 6\} \equiv \{(0, 1), (2, 1), (0, 2)\}$ | 3 |
 | 2 | $(2, 0)_3$ | Blue ($2$) | Red ($0$) | $\{3, 5, 7\} \equiv \{(0, 1), (2, 1), (1, 2)\}$ | 3 |
@@ -142,7 +142,7 @@ We enumerate the 6 valid column states for $m = 2$ and their transition neighbor
 
 We trace DP vector progression across grid dimensions:
 
-| Grid Dimensions $(m \times n)$ | Valid Column States $|\mathcal{V}|$ | Column 1 Ways | Column 2 Ways | Column 3 Ways | Total Colorings $\pmod{10^9 + 7}$ |
+| Grid Dimensions $(m \times n)$ | Valid Column States $\lvert \mathcal{V} \rvert$ | Column 1 Ways | Column 2 Ways | Column 3 Ways | Total Colorings $\pmod{10^9 + 7}$ |
 |---|---|---|---|---|---|
 | $1 \times 1$ | 3 | 3 | — | — | **3** |
 | $1 \times 2$ | 3 | 3 | $3 \times 2 = 6$ | — | **6** |

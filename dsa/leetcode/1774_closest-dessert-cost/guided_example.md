@@ -34,7 +34,7 @@ We explore this space using backtracking or subset enumeration, maintaining the 
 | Active Base Cost $b$ | $b \in \text{baseCosts}$ | Chosen starting base |
 | Topping Vector $\mathbf{c}$ | $(c_0, c_1, \dots, c_{m-1}) \in \{0, 1, 2\}^m$ | Multiplicity of each topping |
 | Candidate Total Cost $C$ | $b + \sum_{j=0}^{m-1} c_j \cdot \text{toppingCosts}[j]$ | Evaluated dessert price |
-| Best Cost So Far $C^*$ | $\arg\min_C (|C - \text{target}|, C)$ | Global optimal dessert cost |
+| Best Cost So Far $C^*$ | $\arg\min_C (\lvert C - \text{target} \rvert, C)$ | Global optimal dessert cost |
 
 ### Mathematical Invariants
 
@@ -142,7 +142,7 @@ Current state entering Base $10$: $C^* = 8, \delta^* = 1$.
 
 ## 4. Complete Execution Trace
 
-| Base $b$ | Topping $0$ ($2$) | Topping $1$ ($5$) | Total Cost $C$ | Distance $|C - 9|$ | Best Before Step $(C^*, \delta^*)$ | Comparison / Action | Resulting $(C^*, \delta^*)$ |
+| Base $b$ | Topping $0$ ($2$) | Topping $1$ ($5$) | Total Cost $C$ | Distance $\lvert C - 9 \rvert$ | Best Before Step $(C^*, \delta^*)$ | Comparison / Action | Resulting $(C^*, \delta^*)$ |
 |---|---|---|---|---|---|---|---|
 | $3$ | $0$ | $0$ | $3$ | $6$ | $(\infty, \infty)$ | $6 < \infty \implies$ Update | $(3, 6)$ |
 | $3$ | $1$ | $0$ | $5$ | $4$ | $(3, 6)$ | $4 < 6 \implies$ Update | $(5, 4)$ |

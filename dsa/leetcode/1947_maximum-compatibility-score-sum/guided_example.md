@@ -120,7 +120,7 @@ Terminal mask $111_2$ (Mentors 0, 1, 2) has 3 candidate transitions for Student 
 
 The table below catalogs each mask evaluated in topological order of set cardinality:
 
-| Step | Mask Binary | Mentors Assigned | $|S|$ | Student Matched | Candidate Predecessor States | Optimal Value | Running Best |
+| Step | Mask Binary | Mentors Assigned | $\lvert S \rvert$ | Student Matched | Candidate Predecessor States | Optimal Value | Running Best |
 |---|---|---|---|---|---|---|---|
 | 0 | $000_2$ | None | 0 | None | Base initialization | 0 | 0 |
 | 1 | $001_2$ | {0} | 1 | Student 0 | $DP[000] + C[0][0] = 0 + 2 = 2$ | 2 | 2 |

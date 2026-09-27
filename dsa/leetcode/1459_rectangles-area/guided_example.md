@@ -70,8 +70,8 @@ We establish tracking parameters across the relational pipeline:
 |---|---|---|
 | Primary Point ($P_1$) | Relation row $(id_1, x_1, y_1)$ | First corner of potential rectangle |
 | Secondary Point ($P_2$) | Relation row $(id_2, x_2, y_2)$ | Opposite diagonal corner with $id_1 < id_2$ |
-| Horizontal Span ($\Delta x$) | Integer $> 0$ | Distance $|x_1 - x_2|$ |
-| Vertical Span ($\Delta y$) | Integer $> 0$ | Distance $|y_1 - y_2|$ |
+| Horizontal Span ($\Delta x$) | Integer $> 0$ | Distance $\lvert x_1 - x_2 \rvert$ |
+| Vertical Span ($\Delta y$) | Integer $> 0$ | Distance $\lvert y_1 - y_2 \rvert$ |
 | Rectangle Area | Integer $> 0$ | Product $\Delta x \cdot \Delta y$ |
 
 > **Invariant.** A point pair $(P_1, P_2)$ produces an output row if and only if $P_1.id < P_2.id$, $P_1.x\_value \ne P_2.x\_value$, and $P_1.y\_value \ne P_2.y\_value$, ensuring that every reported area is strictly positive.
@@ -137,7 +137,7 @@ Applying sorting criteria ($\text{area} \downarrow, \, p_1 \uparrow, \, p_2 \upa
 - Area $4 > 2$, so tuple $(2, 3, 4)$ appears first.
 - Tuple $(1, 2, 2)$ appears second.
 
-| Pair $(P_1, P_2)$ | Corner Coordinates | $\Delta x = |x_1 - x_2|$ | $\Delta y = |y_1 - y_2|$ | Computed Area | Valid Non-zero Area? | Emitted Tuple |
+| Pair $(P_1, P_2)$ | Corner Coordinates | $\Delta x = \lvert x_1 - x_2 \rvert$ | $\Delta y = \lvert y_1 - y_2 \rvert$ | Computed Area | Valid Non-zero Area? | Emitted Tuple |
 |---|---|---|---|---|---|---|
 | $(1, 2)$ | $(2,7), (4,8)$ | 2 | 1 | 2 | Yes | $(1, 2, 2)$ |
 | $(1, 3)$ | $(2,7), (2,10)$ | 0 | 3 | 0 | **No (Degenerate)** | *Discarded* |

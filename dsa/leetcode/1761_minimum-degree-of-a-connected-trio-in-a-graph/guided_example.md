@@ -31,7 +31,7 @@ Instead of explicitly counting external neighbors for every detected triangle, t
 | Component | Mathematical Definition | Dimensions / Bounds |
 |---|---|---|
 | Adjacency Matrix $G$ | $G[u][v] = \text{True} \iff (u, v) \in E$ | $n \times n$ boolean matrix |
-| Vertex Degree Vector | $\deg(u) = |\{v : G[u][v] = \text{True}\}|$ | Array of size $n$ |
+| Vertex Degree Vector | $\deg(u) = \lvert \{v : G[u][v] = \text{True}\} \rvert$ | Array of size $n$ |
 | Candidate Triangle | Triplet $(i, j, k)$ with $0 \le i < j < k < n$ and $G[i][j] \land G[j][k] \land G[i][k]$ | Unordered 3-clique |
 | Minimal Trio Degree | $\min_{\text{trios}} (\deg(i) + \deg(j) + \deg(k) - 6)$ | Running minimum (initialized to $\infty$) |
 

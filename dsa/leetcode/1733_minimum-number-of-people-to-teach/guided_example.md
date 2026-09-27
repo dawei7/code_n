@@ -136,7 +136,7 @@ Both options yield cost $1$. The minimum number of people to teach is $\mathbf{1
 | Tally | Person 1 languages | Knows $\{1\}$ | $C_S[1] = 1$ |
 | Tally | Person 2 languages | Knows $\{2\}$ | $C_S[2] = 1$ |
 | Optimization | $\max C_S[\ell]$ | $\max(C_S[1], C_S[2]) = 1$ | Peak overlap = 1 |
-| Conclusion | Subtract from $\|S\|$ | $|S| - \max C_S = 2 - 1 = 1$ | Result: 1 |
+| Conclusion | Subtract from $\|S\|$ | $\lvert S \rvert - \max C_S = 2 - 1 = 1$ | Result: 1 |
 
 ---
 
@@ -146,8 +146,8 @@ Both options yield cost $1$. The minimum number of people to teach is $\mathbf{1
 
 | Scenario | Input Characteristic | Expected Result | Strategic Handling |
 |---|---|---|---|
-| All Friends Communicate Initially | Every pair shares $\ge 1$ language | `0` | $S = \emptyset$; $|S| = 0$, immediately returns $0$. |
-| No Friends Communicate | Disjoint languages across all pairs | $|S| - \text{max\_freq}$ | All connected endpoints collected; selects globally most frequent language. |
+| All Friends Communicate Initially | Every pair shares $\ge 1$ language | `0` | $S = \emptyset$; $\lvert S \rvert = 0$, immediately returns $0$. |
+| No Friends Communicate | Disjoint languages across all pairs | $\lvert S \rvert - \text{max\_freq}$ | All connected endpoints collected; selects globally most frequent language. |
 | Single Friendship | One pair with no common language | `1` | Pair has size $2$; each person knows $\ge 1$ language, max frequency is at least $1 \implies 2 - 1 = 1$. |
 | Completely Isolated Component | People with no friendships | Not in $S$ | Isolated people never participate in failing friendships and are never taught. |
 

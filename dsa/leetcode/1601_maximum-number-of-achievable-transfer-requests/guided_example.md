@@ -62,7 +62,7 @@ Our teaching goal is to trace bitmask subset exploration, size pruning, and net-
 |---|---|---|
 | Request Pool | $\mathcal{R} = \{e_0, \dots, e_{M-1}\}$ | Candidate directed edges $u \to v$ |
 | Candidate Mask | $S \subseteq \mathcal{R}$ | Subgraph of selected transfer requests |
-| Divergence Vector $\Delta$ | $\Delta[b] = |\{e \in S : \text{to}(e) = b\}| - |\{e \in S : \text{from}(e) = b\}|$ | Net employee change per building |
+| Divergence Vector $\Delta$ | $\Delta[b] = \lvert \{e \in S : \text{to}(e) = b\} \rvert - \lvert \{e \in S : \text{from}(e) = b\} \rvert$ | Net employee change per building |
 | Zero-Net Constraint | $\Delta[b] = 0 \quad \forall b \in \{0, \dots, n-1\}$ | Mandatory condition for request achievability |
 
 > **Zero-Divergence Conservation Invariant.** A request subset $S$ is achievable if and only if $\sum_{e \in S} (\mathbf{e}_{\text{to}(e)} - \mathbf{e}_{\text{from}(e)}) = \mathbf{0}$, where $\mathbf{e}_b$ is the standard basis vector for building $b$. Summing divergences across all buildings is always identically zero ($\sum \Delta[b] = 0$), but feasibility strictly requires that every individual coordinate satisfies $\Delta[b] = 0$.

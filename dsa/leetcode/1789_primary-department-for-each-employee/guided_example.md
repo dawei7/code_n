@@ -106,7 +106,7 @@ $$R_Y = \{ (2, 1), (4, 3) \}$$
 
 Group all records by `employee_id` and compute the group cardinality $|D(e)|$:
 
-| `employee_id` | Associated Departments | Membership Count $|D(e)|$ | Condition: $|D(e)| = 1$? | Output Tuple $(e, d)$ |
+| `employee_id` | Associated Departments | Membership Count $\lvert D(e) \rvert$ | Condition: $\lvert D(e) \rvert = 1$? | Output Tuple $(e, d)$ |
 |:---:|:---:|:---:|:---:|:---:|
 | $1$ | $\{1\}$ | $1$ | True | **$(1, 1)$** |
 | $2$ | $\{1, 2\}$ | $2$ | False | — |
@@ -137,10 +137,10 @@ The combined relation matches the target output exactly.
 
 | Employee $e$ | Raw Records in Table | Classification | Active Branch | Primary Department Assigned |
 |:---:|:---:|:---:|:---:|:---:|
-| $1$ | $(1, 1, \text{N})$ | Single ($|D(1)| = 1$) | Branch 2 (`COUNT = 1`) | Department $1$ |
-| $2$ | $(2, 1, \text{Y}), (2, 2, \text{N})$ | Multiple ($|D(2)| = 2$) | Branch 1 (`flag = 'Y'`) | Department $1$ |
-| $3$ | $(3, 3, \text{N})$ | Single ($|D(3)| = 1$) | Branch 2 (`COUNT = 1`) | Department $3$ |
-| $4$ | $(4, 2, \text{N}), (4, 3, \text{Y}), (4, 4, \text{N})$ | Multiple ($|D(4)| = 3$) | Branch 1 (`flag = 'Y'`) | Department $3$ |
+| $1$ | $(1, 1, \text{N})$ | Single ($\lvert D(1) \rvert = 1$) | Branch 2 (`COUNT = 1`) | Department $1$ |
+| $2$ | $(2, 1, \text{Y}), (2, 2, \text{N})$ | Multiple ($\lvert D(2) \rvert = 2$) | Branch 1 (`flag = 'Y'`) | Department $1$ |
+| $3$ | $(3, 3, \text{N})$ | Single ($\lvert D(3) \rvert = 1$) | Branch 2 (`COUNT = 1`) | Department $3$ |
+| $4$ | $(4, 2, \text{N}), (4, 3, \text{Y}), (4, 4, \text{N})$ | Multiple ($\lvert D(4) \rvert = 3$) | Branch 1 (`flag = 'Y'`) | Department $3$ |
 
 ---
 

@@ -66,7 +66,7 @@ Let $DP(u, f)$ denote the number of valid routes starting from city $u$ with rem
 |---|---|---|---|
 | $u$ | Integer Index | $[0, N-1]$ | Current active city index |
 | $f$ | Integer | $[0, \text{fuel}]$ | Remaining fuel budget |
-| $\text{cost}(u, v)$ | Integer | $\ge 1$ | Absolute distance $|\text{locations}[u] - \text{locations}[v]|$ |
+| $\text{cost}(u, v)$ | Integer | $\ge 1$ | Absolute distance $\lvert \text{locations}[u] - \text{locations}[v] \rvert$ |
 | $[u == \text{finish}]$ | Indicator | $\{0, 1\}$ | Immediate route completion option at destination |
 | $DP(u, f)$ | Integer | Non-negative | Total number of valid routes concluding at $\text{finish}$ from $(u, f)$ |
 

@@ -51,7 +51,7 @@ The algorithm maintains the following state variables:
 | `prefix_set` | Set of characters | $\emptyset$ | Unique characters present in $s[0 \dots i]$. |
 | `suffix_counts` | Frequency map | Full histogram of $s$ | Frequency of each character in $s[i+1 \dots n-1]$. |
 | `split_index` | Integer $\in [0, n-2]$ | $0$ | Boundary after which the string is sliced. |
-| `good_splits` | Integer $\ge 0$ | $0$ | Running count of valid partitions where $|\text{prefix\_set}| = |\text{suffix\_counts}|$. |
+| `good_splits` | Integer $\ge 0$ | $0$ | Running count of valid partitions where $\lvert \text{prefix\_set} \rvert = \lvert \text{suffix\_counts} \rvert$. |
 
 > [!IMPORTANT]
 > **Partition Completeness Invariant**: Both substrings must be strictly non-empty ($s_{\text{left}} \ne \emptyset$ and $s_{\text{right}} \ne \emptyset$). Slicing before index $0$ or after index $n-1$ is strictly forbidden.

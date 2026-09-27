@@ -129,7 +129,7 @@ For contrast, trace `nums = [2, 3, 1, 2]` ($n = 4$):
 |:---:|:---:|:---:|:---:|:---:|:---:|
 | `[1, 2, 10, 5, 7]` | $(1, 2), (2, 10), (10, 5)^*, (5, 7)$ | $\{3\}$ | $nums[1] < nums[3] \implies 2 < 5$ (**Valid**) | $nums[2] < nums[4] \implies 10 < 7$ (Invalid) | **`true`** |
 | `[2, 3, 1, 2]` | $(2, 3), (3, 1)^*, (1, 2)$ | $\{2\}$ | $nums[0] < nums[2] \implies 2 < 1$ (Invalid) | $nums[1] < nums[3] \implies 3 < 2$ (Invalid) | **`false`** |
-| `[1, 1, 1]` | $(1, 1)^*, (1, 1)^*$ | $\{1, 2\}$ | Multiple inversions ($|V| = 2 > 1$) | Multiple inversions | **`false`** |
+| `[1, 1, 1]` | $(1, 1)^*, (1, 1)^*$ | $\{1, 2\}$ | Multiple inversions ($\lvert V \rvert = 2 > 1$) | Multiple inversions | **`false`** |
 | `[1, 2, 3]` | $(1, 2), (2, 3)$ | $\emptyset$ | Already strictly increasing | Already strictly increasing | **`true`** |
 
 ---

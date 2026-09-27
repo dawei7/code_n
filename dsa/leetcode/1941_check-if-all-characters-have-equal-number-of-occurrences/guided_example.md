@@ -112,7 +112,7 @@ We trace character occurrences for `s = "abacbc"`:
 
 We compare set cardinality across sample test strings:
 
-| Input String $s$ | Distinct Characters | Histogram Map $\mathcal{H}$ | Value Multiset | Projected Set $\mathcal{S}$ | $|\mathcal{S}| == 1$? | Result |
+| Input String $s$ | Distinct Characters | Histogram Map $\mathcal{H}$ | Value Multiset | Projected Set $\mathcal{S}$ | $\lvert \mathcal{S} \rvert == 1$? | Result |
 |---|---|---|---|---|---|---|
 | `"abacbc"` | `{'a', 'b', 'c'}` | `{'a': 2, 'b': 2, 'c': 2}` | $[2, 2, 2]$ | $\{2\}$ | **Yes** | **true** |
 | `"aaabb"` | `{'a', 'b'}` | `{'a': 3, 'b': 2}` | $[3, 2]$ | $\{3, 2\}$ | **No** | **false** |

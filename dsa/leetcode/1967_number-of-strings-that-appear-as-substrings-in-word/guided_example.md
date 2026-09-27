@@ -112,7 +112,7 @@ We trace `patterns = ["a", "abc", "bc", "d"]` against `word = "abc"` ($M = 3$):
 
 ### Primary Trace: `patterns = ["a", "abc", "bc", "d"]`, `word = "abc"`
 
-| Entry Index $j$ | Pattern $p_j$ | Length $|p_j|$ | Feasible Offsets | Matching Offset Found | Substring Slice | Indicator $\chi(p_j, W)$ | Running Total |
+| Entry Index $j$ | Pattern $p_j$ | Length $\lvert p_j \rvert$ | Feasible Offsets | Matching Offset Found | Substring Slice | Indicator $\chi(p_j, W)$ | Running Total |
 |---|---|---|---|---|---|---|---|
 | 0 | `"a"` | 1 | $\{0, 1, 2\}$ | $k = 0$ | $word[0 \dots 0] = \texttt{"a"}$ | 1 | 1 |
 | 1 | `"abc"` | 3 | $\{0\}$ | $k = 0$ | $word[0 \dots 2] = \texttt{"abc"}$ | 1 | 2 |

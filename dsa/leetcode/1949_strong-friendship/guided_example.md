@@ -139,7 +139,7 @@ We evaluate each canonical edge $(u, v) \in E_{canon}$:
 
 ## 4. Execution Trace Table
 
-| Edge Evaluated $(u, v)$ | $|N(u)|$ | $|N(v)|$ | Common Neighbors $N(u) \cap N(v)$ | Total Count $c(u, v)$ | Threshold Check ($c \ge 3$) | Emitted Tuple |
+| Edge Evaluated $(u, v)$ | $\lvert N(u) \rvert$ | $\lvert N(v) \rvert$ | Common Neighbors $N(u) \cap N(v)$ | Total Count $c(u, v)$ | Threshold Check ($c \ge 3$) | Emitted Tuple |
 |---|---|---|---|---|---|---|
 | $(1, 2)$ | 6 | 5 | $\{3, 4, 5, 6\}$ | 4 | Pass ($4 \ge 3$) | `(1, 2, 4)` |
 | $(1, 3)$ | 6 | 4 | $\{2, 6, 7\}$ | 3 | Pass ($3 \ge 3$) | `(1, 3, 3)` |

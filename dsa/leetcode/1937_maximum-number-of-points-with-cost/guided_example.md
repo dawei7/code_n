@@ -151,10 +151,10 @@ We contrast optimal versus suboptimal cell selections across the grid:
 
 | Candidate Trajectory $(c_0, c_1, c_2)$ | Points Collected | Shift Costs Paid | Formula | Total Score | Evaluation |
 |---|---|---|---|---|---|
-| $(2, 1, 0)$ | $3 + 5 + 3 = 11$ | $|2-1| + |1-0| = 2$ | $11 - 2$ | **9** | **Optimal** |
-| $(1, 1, 0)$ | $2 + 5 + 3 = 10$ | $|1-1| + |1-0| = 1$ | $10 - 1$ | 9 | Also Optimal |
-| $(1, 1, 1)$ | $2 + 5 + 1 = 8$ | $|1-1| + |1-1| = 0$ | $8 - 0$ | 8 | Suboptimal |
-| $(0, 1, 2)$ | $1 + 5 + 1 = 7$ | $|0-1| + |1-2| = 2$ | $7 - 2$ | 5 | Suboptimal |
+| $(2, 1, 0)$ | $3 + 5 + 3 = 11$ | $\lvert 2-1 \rvert + \lvert 1-0 \rvert = 2$ | $11 - 2$ | **9** | **Optimal** |
+| $(1, 1, 0)$ | $2 + 5 + 3 = 10$ | $\lvert 1-1 \rvert + \lvert 1-0 \rvert = 1$ | $10 - 1$ | 9 | Also Optimal |
+| $(1, 1, 1)$ | $2 + 5 + 1 = 8$ | $\lvert 1-1 \rvert + \lvert 1-1 \rvert = 0$ | $8 - 0$ | 8 | Suboptimal |
+| $(0, 1, 2)$ | $1 + 5 + 1 = 7$ | $\lvert 0-1 \rvert + \lvert 1-2 \rvert = 2$ | $7 - 2$ | 5 | Suboptimal |
 
 ---
 

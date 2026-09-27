@@ -140,11 +140,11 @@ Let $p_0 < p_1 < \dots < p_{k-1}$ be the sorted indices of $k$ ones in `nums`. W
 Ones at $p = [0, 6, 7]$. Only one window of size $3$ exists: $p = [0, 6, 7]$.
 Offset coordinates: $q = [0, 5, 5]$.
 
-| Element $r$ | Original Position $p_r$ | Offset $q_r = p_r - r$ | Median $t' = q_1$ | Target Coordinate in $p$ ($t' + r$) | Individual Swaps $|p_r - (t' + r)|$ |
+| Element $r$ | Original Position $p_r$ | Offset $q_r = p_r - r$ | Median $t' = q_1$ | Target Coordinate in $p$ ($t' + r$) | Individual Swaps $\lvert p_r - (t' + r) \rvert$ |
 |---|---|---|---|---|---|
-| $0$ | $0$ | $0$ | $5$ | $5 + 0 = 5$ | $|0 - 5| = \mathbf{5}$ |
-| $1$ | $6$ | $5$ | $5$ | $5 + 1 = 6$ | $|6 - 6| = \mathbf{0}$ |
-| $2$ | $7$ | $5$ | $5$ | $5 + 2 = 7$ | $|7 - 7| = \mathbf{0}$ |
+| $0$ | $0$ | $0$ | $5$ | $5 + 0 = 5$ | $\lvert 0 - 5 \rvert = \mathbf{5}$ |
+| $1$ | $6$ | $5$ | $5$ | $5 + 1 = 6$ | $\lvert 6 - 6 \rvert = \mathbf{0}$ |
+| $2$ | $7$ | $5$ | $5$ | $5 + 2 = 7$ | $\lvert 7 - 7 \rvert = \mathbf{0}$ |
 | **Total** | — | — | — | Target block: $[5, 6, 7]$ | **Sum = `5` moves** |
 
 ---

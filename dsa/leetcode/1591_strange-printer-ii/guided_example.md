@@ -68,7 +68,7 @@ Our teaching goal is to trace:
 | Color Set $\mathcal{C}$ | $\{ \text{grid}[r][c] : (r, c) \in R \times C \}$ | Set of active printer operations |
 | Bounding Box $B(c)$ | $[r_{\min}(c), r_{\max}(c)] \times [c_{\min}(c), c_{\max}(c)]$ | Minimal unavoidable region painted when applying color $c$ |
 | Directed Edge $u \to v$ | $\exists (r, c) \in B(u) \text{ s.t. } \text{grid}[r][c] = v$ | Enforces temporal order: print $u$ strictly before $v$ |
-| In-degree $d_{\text{in}}(v)$ | $|\{ u \in \mathcal{C} : u \to v \}|$ | Count of prerequisite colors that must precede $v$ |
+| In-degree $d_{\text{in}}(v)$ | $\lvert \{ u \in \mathcal{C} : u \to v \} \rvert$ | Count of prerequisite colors that must precede $v$ |
 
 > **Acyclicity Equivalence Invariant.** A target grid is printable if and only if the color precedence graph contains zero directed cycles. An edge $u \to v$ mandates that $u$ precedes $v$. A directed cycle $c_1 \to c_2 \to \dots \to c_k \to c_1$ demands that $c_1$ precede itself, which is impossible under single-use printing.
 

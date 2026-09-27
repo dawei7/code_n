@@ -82,8 +82,8 @@ We establish tracking parameters across the algorithm:
 | Median Element ($m$) | Integer | Reference center $A[\lfloor(n-1)/2\rfloor]$ |
 | Left Pointer ($L$) | Integer $0 \le L \le \text{mid}$ | Points to smallest unselected candidate |
 | Right Pointer ($R$) | Integer $\text{mid} \le R < n$ | Points to largest unselected candidate |
-| Left Deviation | Integer $\ge 0$ | $|A[L] - m|$ |
-| Right Deviation | Integer $\ge 0$ | $|A[R] - m|$ |
+| Left Deviation | Integer $\ge 0$ | $\lvert A[L] - m \rvert$ |
+| Right Deviation | Integer $\ge 0$ | $\lvert A[R] - m \rvert$ |
 | Selected List | List of integers | Accumulated $k$ strongest elements |
 
 > **Invariant.** At each step of two-pointer selection, the element chosen from $\{A[L], A[R]\}$ is strictly stronger than or equal in strength to all other remaining elements in $A[L \dots R]$.
@@ -135,7 +135,7 @@ We walk through the representative instance $arr = [1, 2, 3, 4, 5]$ with $k = 2$
    - Selected count equals $k = 2$.
    - Stop and return $[5, 1]$.
 
-| Selection Step | Left Pointer ($L$) | Right Pointer ($R$) | $|A[L] - 3|$ | $|A[R] - 3|$ | Decision Criterion | Picked Element | Output Buffer |
+| Selection Step | Left Pointer ($L$) | Right Pointer ($R$) | $\lvert A[L] - 3 \rvert$ | $\lvert A[R] - 3 \rvert$ | Decision Criterion | Picked Element | Output Buffer |
 |---|---|---|---|---|---|---|---|
 | Step 1 | 0 ($A[0]=1$) | 4 ($A[4]=5$) | 2 | 2 | $2 \ge 2 \implies 5 > 1$ | 5 | $[5]$ |
 | Step 2 | 0 ($A[0]=1$) | 3 ($A[3]=4$) | 2 | 1 | $1 < 2 \implies$ Pick $L$ | 1 | $[5, 1]$ |
@@ -154,7 +154,7 @@ Rank 5: 3 (diff = 0, val = 3)
 Top k=2 Strongest Output: [5, 1]
 ```
 
-| Array Index | Value | Distance $|val - 3|$ | Global Strength Rank | Included in Top $k=2$? |
+| Array Index | Value | Distance $\lvert val - 3 \rvert$ | Global Strength Rank | Included in Top $k=2$? |
 |---|---|---|---|---|
 | 4 | 5 | 2 | 1st | **Yes** |
 | 0 | 1 | 2 | 2nd | **Yes** |

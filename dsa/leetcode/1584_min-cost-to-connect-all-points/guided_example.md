@@ -161,10 +161,10 @@ The table below catalogs every round of Prim's expansion, showing candidate dist
 
 | Edge | Endpoint 1 | Endpoint 2 | Manhattan Distance Calculation | Edge Weight |
 |---|---|---|---|---|
-| Edge 1 | $P_0(0, 0)$ | $P_1(2, 2)$ | $|0 - 2| + |0 - 2| = 2 + 2$ | 4 |
-| Edge 2 | $P_1(2, 2)$ | $P_3(5, 2)$ | $|2 - 5| + |2 - 2| = 3 + 0$ | 3 |
-| Edge 3 | $P_3(5, 2)$ | $P_4(7, 0)$ | $|5 - 7| + |2 - 0| = 2 + 2$ | 4 |
-| Edge 4 | $P_1(2, 2)$ | $P_2(3, 10)$ | $|2 - 3| + |2 - 10| = 1 + 8$ | 9 |
+| Edge 1 | $P_0(0, 0)$ | $P_1(2, 2)$ | $\lvert 0 - 2 \rvert + \lvert 0 - 2 \rvert = 2 + 2$ | 4 |
+| Edge 2 | $P_1(2, 2)$ | $P_3(5, 2)$ | $\lvert 2 - 5 \rvert + \lvert 2 - 2 \rvert = 3 + 0$ | 3 |
+| Edge 3 | $P_3(5, 2)$ | $P_4(7, 0)$ | $\lvert 5 - 7 \rvert + \lvert 2 - 0 \rvert = 2 + 2$ | 4 |
+| Edge 4 | $P_1(2, 2)$ | $P_2(3, 10)$ | $\lvert 2 - 3 \rvert + \lvert 2 - 10 \rvert = 1 + 8$ | 9 |
 | **Sum** | - | - | Total Manhattan Distance | **20** |
 
 ## 5. Algorithmic Correctness

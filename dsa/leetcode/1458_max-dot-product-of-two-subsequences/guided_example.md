@@ -66,7 +66,7 @@ We establish tracking parameters across the algorithm:
 
 | Parameter | Type & Domain | Role in Algorithm |
 |---|---|---|
-| Prefix Indices ($i, j$) | $1 \le i \le |nums1|, \, 1 \le j \le |nums2|$ | Current lengths of prefixes evaluated |
+| Prefix Indices ($i, j$) | $1 \le i \le \lvert nums1 \rvert, \, 1 \le j \le \lvert nums2 \rvert$ | Current lengths of prefixes evaluated |
 | Element Product ($P$) | Integer $[-10^6, 10^6]$ | Direct product $nums1[i-1] \times nums2[j-1]$ |
 | Diagonal State ($dp[i-1][j-1]$) | Integer | Optimal dot product prior to pairing $i-1$ and $j-1$ |
 | Cell Value ($dp[i][j]$) | Integer | Global maximum dot product for prefixes $i$ and $j$ |

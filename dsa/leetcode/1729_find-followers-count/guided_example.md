@@ -93,9 +93,9 @@ We compute the aggregate count for each group partition:
 
 | Partition Group | Elements in Partition | Count Calculation | Derived Attribute `followers_count` |
 |---|---|---|---|
-| $\text{user\_id} = 0$ | $\{(0, 1)\}$ | $|G_0| = 1$ | $1$ |
-| $\text{user\_id} = 1$ | $\{(1, 0)\}$ | $|G_1| = 1$ | $1$ |
-| $\text{user\_id} = 2$ | $\{(2, 0), (2, 1)\}$ | $|G_2| = 2$ | $2$ |
+| $\text{user\_id} = 0$ | $\{(0, 1)\}$ | $\lvert G_0 \rvert = 1$ | $1$ |
+| $\text{user\_id} = 1$ | $\{(1, 0)\}$ | $\lvert G_1 \rvert = 1$ | $1$ |
+| $\text{user\_id} = 2$ | $\{(2, 0), (2, 1)\}$ | $\lvert G_2 \rvert = 2$ | $2$ |
 
 ### Step 3: Order by `user_id` Ascending
 

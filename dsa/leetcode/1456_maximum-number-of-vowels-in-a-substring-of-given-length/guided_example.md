@@ -58,7 +58,7 @@ We establish tracking parameters across the algorithm:
 
 | Parameter | Type & Domain | Role in Algorithm |
 |---|---|---|
-| Window End ($i$) | Integer $k - 1 \le i < |s|$ | Right boundary of sliding window |
+| Window End ($i$) | Integer $k - 1 \le i < \lvert s \rvert$ | Right boundary of sliding window |
 | Incoming Character ($s[i]$) | Character `a`-`z` | Character entering the window at right |
 | Outgoing Character ($s[i - k]$) | Character `a`-`z` | Character leaving the window at left |
 | Current Vowels ($current$) | Integer $0 \le current \le k$ | Exact vowel count inside active window |

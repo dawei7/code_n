@@ -85,7 +85,7 @@ The evaluation maintains the following relational state attributes:
 | Relational Operator Stage | Input Relations | Output Attributes | Invariant Property |
 |---|---|---|---|
 | Scalar Aggregation | $\text{Calls}$ | $\mu_{\text{global}}$ | Computes the arithmetic mean over all raw call durations. |
-| Multiset Union ($\cup_{\text{all}}$) | $\text{Calls}$ | $\text{person\_id}, duration$ | Cardinality is exactly $2 \times |\text{Calls}|$, duplicating domestic calls. |
+| Multiset Union ($\cup_{\text{all}}$) | $\text{Calls}$ | $\text{person\_id}, duration$ | Cardinality is exactly $2 \times \lvert \text{Calls} \rvert$, duplicating domestic calls. |
 | Equi-Join Composite | $E, \text{Person}, \text{Country}$ | $\text{country\_name}, duration$ | Associates every participating endpoint with its sovereign name. |
 | Territorial Grouping | Composite stream | $\text{country\_name}, \mu_c$ | Computes local arithmetic mean per distinct nation. |
 | Predicate Filter | Grouped stream | $\text{country}$ | Retains only nations satisfying $\mu_c > \mu_{\text{global}}$. |

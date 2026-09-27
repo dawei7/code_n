@@ -116,10 +116,10 @@ Final fancy string is `"aabaa"`.
 
 ### Primary Trace: `s = "aaabaaaa"`
 
-| Index $i$ | Character $s[i]$ | Buffer $|R|$ | Last Two Characters in $R$ | Triplet Conflict? | Action Taken | Current Result $R$ | Cumulative Deletions |
+| Index $i$ | Character $s[i]$ | Buffer $\lvert R \rvert$ | Last Two Characters in $R$ | Triplet Conflict? | Action Taken | Current Result $R$ | Cumulative Deletions |
 |---|---|---|---|---|---|---|---|
-| 0 | `a` | 0 | None | No ($|R| < 2$) | Append `a` | `"a"` | 0 |
-| 1 | `a` | 1 | `a` | No ($|R| < 2$) | Append `a` | `"aa"` | 0 |
+| 0 | `a` | 0 | None | No ($\lvert R \rvert < 2$) | Append `a` | `"a"` | 0 |
+| 1 | `a` | 1 | `a` | No ($\lvert R \rvert < 2$) | Append `a` | `"aa"` | 0 |
 | 2 | `a` | 2 | `a`, `a` | **Yes (`a` == `a` == `a`)** | Discard `a` | `"aa"` | 1 |
 | 3 | `b` | 2 | `a`, `a` | No (`b` != `a`) | Append `b` | `"aab"` | 1 |
 | 4 | `a` | 3 | `a`, `b` | No (`a` != `b`) | Append `a` | `"aaba"` | 1 |

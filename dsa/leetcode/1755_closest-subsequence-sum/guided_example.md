@@ -31,8 +31,8 @@ The **Meet-in-the-Middle** technique partitions the problem:
 |---|---|---|
 | Left Array $A_L$ | First half: $\text{nums}[0 \dots \lfloor n/2 \rfloor - 1]$ | $n_1 \le 20$ |
 | Right Array $A_R$ | Second half: $\text{nums}[\lfloor n/2 \rfloor \dots n - 1]$ | $n_2 \le 20$ |
-| Left Sums $\mathcal{L}$ | All subset sums of $A_L$: $\{\sum_{i \in S} A_L[i] : S \subseteq A_L\}$ | $|\mathcal{L}| = 2^{n_1} \le 10^6$ |
-| Right Sums $\mathcal{R}$ | Sorted list of all subset sums of $A_R$ | $|\mathcal{R}| = 2^{n_2} \le 10^6$ |
+| Left Sums $\mathcal{L}$ | All subset sums of $A_L$: $\{\sum_{i \in S} A_L[i] : S \subseteq A_L\}$ | $\lvert \mathcal{L} \rvert = 2^{n_1} \le 10^6$ |
+| Right Sums $\mathcal{R}$ | Sorted list of all subset sums of $A_R$ | $\lvert \mathcal{R} \rvert = 2^{n_2} \le 10^6$ |
 | Target Complement | $\text{target}(l) = \text{goal} - l$ for each $l \in \mathcal{L}$ | Search probe |
 
 ### Mathematical Invariants
@@ -155,7 +155,7 @@ Output: `0`.
 | Scenario | Input Feature | Expected Output | Strategic Handling |
 |---|---|---|---|
 | Empty Subsequence Optimal | `nums = [100, 200], goal = 0` | `0` | Empty subset from both halves gives $0 + 0 = 0$, achieving difference $0$. |
-| Goal Exceeds Total Sum | `nums = [1, 2], goal = 10` | $7$ | Max sum is $3$; difference $|3 - 10| = 7$. |
+| Goal Exceeds Total Sum | `nums = [1, 2], goal = 10` | $7$ | Max sum is $3$; difference $\lvert 3 - 10 \rvert = 7$. |
 | Extreme Negative Goal | `goal = -10^9` | Smallest sum difference | Clamps to lower bisection boundary. |
 | Maximal Input ($n = 40$) | $n = 40$ | $\approx 10^6$ entries per half | $2^{20} \approx 10^6$ operations; binary searches take $\mathcal{O}(20 \cdot 10^6)$ operations, executing in under $0.5$s. |
 

@@ -148,7 +148,7 @@ We iterate through each tuple of the table and route it into the accumulator cor
 
 ## 4. Complete Execution Trace
 
-| Composite Group `(date_id, make_name)` | Raw Lead Multiset | Distinct Lead Set | `unique_leads` ($|L|$) | Raw Partner Multiset | Distinct Partner Set | `unique_partners` ($|P|$) |
+| Composite Group `(date_id, make_name)` | Raw Lead Multiset | Distinct Lead Set | `unique_leads` ($\lvert L \rvert$) | Raw Partner Multiset | Distinct Partner Set | `unique_partners` ($\lvert P \rvert$) |
 |---|---|---|---|---|---|---|
 | `(2020-12-8, toyota)` | $\{0, 1, 1\}$ | $\{0, 1\}$ | **`2`** | $\{1, 0, 2\}$ | $\{0, 1, 2\}$ | **`3`** |
 | `(2020-12-7, toyota)` | $\{0, 0\}$ | $\{0\}$ | **`1`** | $\{2, 1\}$ | $\{1, 2\}$ | **`2`** |

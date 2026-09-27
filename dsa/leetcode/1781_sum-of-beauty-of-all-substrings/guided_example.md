@@ -33,7 +33,7 @@ By fixing the starting index $i$ and expanding the ending index $j$ from $i$ to 
 |---|---|---|
 | Window Start $i$ | $0 \le i < n$ | Anchor of the active substring |
 | Window End $j$ | $i \le j < n$ | Current expansion boundary |
-| Frequency Vector $\text{cnt}$ | $\text{cnt}[c] = |\{k \in [i, j] \mid s[k] = c\}|$ | Multiplicity of each letter in $s[i \dots j]$ |
+| Frequency Vector $\text{cnt}$ | $\text{cnt}[c] = \lvert \{k \in [i, j] \mid s[k] = c\} \rvert$ | Multiplicity of each letter in $s[i \dots j]$ |
 | Substring Beauty $B(i, j)$ | $\max_{c: \text{cnt}[c] > 0} \text{cnt}[c] - \min_{c: \text{cnt}[c] > 0} \text{cnt}[c]$ | Beauty value for slice $s[i \dots j]$ |
 | Global Sum Accumulator | $\sum_{0 \le i \le j < n} B(i, j)$ | Cumulative beauty of all substrings |
 

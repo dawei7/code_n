@@ -59,7 +59,7 @@ We establish tracking parameters across the algorithm:
 |---|---|---|
 | Word Position ($k$) | Integer $1 \le k \le m$ | 1-based index of current word in sentence |
 | Active Word ($w_k$) | String | Word token under prefix evaluation |
-| Target Prefix ($searchWord$) | String of length $L$ | Reference string of length $L = |searchWord|$ |
+| Target Prefix ($searchWord$) | String of length $L$ | Reference string of length $L = \lvert searchWord \rvert$ |
 | Leading Substring | String of length $L$ | Slice $w_k[0 \dots L-1]$ tested for equality |
 
 > **Invariant.** If the algorithm reaches word $w_k$ without returning, no word $w_j$ with $1 \le j < k$ has $searchWord$ as a prefix. Thus, the first word that matches is guaranteed to have the minimum 1-based index.
@@ -109,7 +109,7 @@ Splitting $sentence$ by space yields:
 
 Words $3, 4, 5, 6$ are not evaluated.
 
-| Word Index $k$ | Word Token $w_k$ | Token Length $|w_k|$ | Slice $w_k[0 \dots 2]$ | Target Prefix | Match? | Control Flow |
+| Word Index $k$ | Word Token $w_k$ | Token Length $\lvert w_k \rvert$ | Slice $w_k[0 \dots 2]$ | Target Prefix | Match? | Control Flow |
 |---|---|---|---|---|---|---|
 | 1 | `"this"` | 4 | `"thi"` | `"pro"` | No | Advance to $k = 2$ |
 | 2 | `"problem"` | 7 | `"pro"` | `"pro"` | **Yes** | **Early Exit: Return 2** |

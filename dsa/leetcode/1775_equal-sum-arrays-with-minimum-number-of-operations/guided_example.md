@@ -36,7 +36,7 @@ To minimize the total number of operations, we must greedily select the modifica
 
 | Component | Mathematical Definition | Role |
 |---|---|---|
-| Initial Gap $\Delta$ | $|S_1 - S_2|$ | Net difference between the two array sums |
+| Initial Gap $\Delta$ | $\lvert S_1 - S_2 \rvert$ | Net difference between the two array sums |
 | Available Gain Pool $\mathcal{G}$ | $\{6 - x \mid x \in \text{smaller}\} \cup \{y - 1 \mid y \in \text{larger}\}$ | Multiset of maximum per-element contributions |
 | Remaining Gap $d$ | $\Delta - \sum_{k=1}^i g_k$ | Uncovered difference after $i$ operations |
 | Operation Counter $i$ | Integer $0 \le i \le n_1 + n_2$ | Number of elements modified so far |

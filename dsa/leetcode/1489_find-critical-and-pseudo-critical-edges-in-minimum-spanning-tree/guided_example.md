@@ -56,7 +56,7 @@ We specify the state parameters tracked throughout the classification pipeline:
 
 | Parameter | Domain | Role & Definition | Initial State |
 |---|---|---|---|
-| Original Index Tag | Integer $\in [0, |E|-1]$ | Preserves original identity after sorting edges by weight | Tagged on each edge |
+| Original Index Tag | Integer $\in [0, \lvert E \rvert-1]$ | Preserves original identity after sorting edges by weight | Tagged on each edge |
 | Base MST Weight $V$ | Integer $\ge 0$ | Global baseline weight achieved by standard Kruskal's algorithm | Computed as $7$ |
 | Excluded Weight $W_{\text{ex}}$ | Integer $\cup \{\infty\}$ | Minimum spanning weight without edge $e$ | Tested per edge |
 | Forced Weight $W_{\text{force}}$ | Integer $\ge 0$ | Spanning tree weight when edge $e$ is forced first | Tested per edge |

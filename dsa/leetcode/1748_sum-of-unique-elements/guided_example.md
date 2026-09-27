@@ -25,7 +25,7 @@ A naive approach might greedily add an element to a running sum upon first encou
 
 | Component | Definition | Mathematical Invariant |
 |---|---|---|
-| Multiplicity Map $C$ | $x \mapsto |\{i : \text{nums}[i] = x\}|$ | Frequency of each integer in `nums` |
+| Multiplicity Map $C$ | $x \mapsto \lvert \{i : \text{nums}[i] = x\} \rvert$ | Frequency of each integer in `nums` |
 | Unique Element Subset $\mathcal{U}$ | $\{x \in \text{nums} : C[x] = 1\}$ | Elements appearing with unit multiplicity |
 | Unique Sum $S$ | $\sum_{x \in \mathcal{U}} x$ | Target scalar sum |
 

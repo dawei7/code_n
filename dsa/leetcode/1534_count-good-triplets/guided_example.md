@@ -67,7 +67,7 @@ We establish the tracking state parameters:
 | $j$ | Intermediate pivot index satisfying $j > i$ | $1$ |
 | $k$ | Rightmost index satisfying $k > j$ | $2$ |
 | $\text{count}$ | Total number of verified good triplets | $0$ |
-| $\Delta_{ij}, \Delta_{jk}, \Delta_{ik}$ | Pairwise absolute differences $|\text{arr}[i] - \text{arr}[j]|$, etc. | Computed per candidate |
+| $\Delta_{ij}, \Delta_{jk}, \Delta_{ik}$ | Pairwise absolute differences $\lvert \text{arr}[i] - \text{arr}[j] \rvert$, etc. | Computed per candidate |
 
 > **Monotonic Index Ordering Invariant.** Every evaluated triplet satisfies $0 \le i < j < k < N$ by loop construction. Any pair $(i, j)$ violating $|\text{arr}[i] - \text{arr}[j]| \le a$ immediately bypasses all $k > j$, because no choice of $k$ can repair a failing $(i, j)$ constraint.
 
@@ -127,7 +127,7 @@ Total possible index triples is $\binom{6}{3} = 20$. We trace through candidate 
     - $\Delta_{4,5} = |9 - 7| = 2 \le 2$ (holds).
     - $\Delta_{0,5} = |3 - 7| = 4 > 3$ (fails Condition 3). Rejected.
 
-| Candidate $(i, j, k)$ | Values | $|arr[i] - arr[j]| \le 7$ | $|arr[j] - arr[k]| \le 2$ | $|arr[i] - arr[k]| \le 3$ | Status | Running Count |
+| Candidate $(i, j, k)$ | Values | $\lvert arr[i] - arr[j] \rvert \le 7$ | $\lvert arr[j] - arr[k] \rvert \le 2$ | $\lvert arr[i] - arr[k] \rvert \le 3$ | Status | Running Count |
 |---|---|---|---|---|---|---|
 | $(0, 1, 2)$ | $(3, 0, 1)$ | $3 \le 7$ (True) | $1 \le 2$ (True) | $2 \le 3$ (True) | Valid | 1 |
 | $(0, 1, 3)$ | $(3, 0, 1)$ | $3 \le 7$ (True) | $1 \le 2$ (True) | $2 \le 3$ (True) | Valid | 2 |

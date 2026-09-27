@@ -49,8 +49,8 @@ $$\vec{u} \cdot \vec{v} = \sum_{i \in \text{supp}(\vec{u}) \cap \text{supp}(\vec
 | Parameter | Type | Domain | Significance in Sparse Dot Product |
 |---|---|---|---|
 | $N$ | Integer | Dimension | Total length of the dense vectors |
-| $K_1$ | Integer | $[0, N]$ | Count of non-zero entries in $\text{nums1}$ ($|\text{supp}(\vec{u})|$) |
-| $K_2$ | Integer | $[0, N]$ | Count of non-zero entries in $\text{nums2}$ ($|\text{supp}(\vec{v})|$) |
+| $K_1$ | Integer | $[0, N]$ | Count of non-zero entries in $\text{nums1}$ ($\lvert \text{supp}(\vec{u}) \rvert$) |
+| $K_2$ | Integer | $[0, N]$ | Count of non-zero entries in $\text{nums2}$ ($\lvert \text{supp}(\vec{v}) \rvert$) |
 | $D_1$ | Hash Map | $\text{Index} \to \text{Value}$ | Sparse mapping of non-zero entries for $\vec{u}$ |
 | $D_2$ | Hash Map | $\text{Index} \to \text{Value}$ | Sparse mapping of non-zero entries for $\vec{v}$ |
 | $A, B$ | Pointers to Maps | References | $A$ references the smaller map ($\min(K_1, K_2)$), $B$ the larger |

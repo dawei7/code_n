@@ -43,7 +43,7 @@ where:
 | State Array | Purpose | Values |
 |---|---|---|
 | $\text{status}[m][c][t]$ | Evaluated game outcome | $0 = \text{Unknown/Draw}$, $1 = \text{Mouse Win}$, $2 = \text{Cat Win}$ |
-| $\text{degree}[m][c][t]$ | Remaining unrefuted moves available to the active player | Initialized to out-degree $|\text{Moves}(m, c, t)|$ |
+| $\text{degree}[m][c][t]$ | Remaining unrefuted moves available to the active player | Initialized to out-degree $\lvert \text{Moves}(m, c, t) \rvert$ |
 
 ### Mathematical Invariants
 

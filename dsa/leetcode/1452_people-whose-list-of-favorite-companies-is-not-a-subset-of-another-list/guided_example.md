@@ -143,7 +143,7 @@ We walk through the representative instance $favoriteCompanies$ with $n = 5$.
 
 Final retained indices: $[0, 1, 4]$.
 
-| Index $i$ | Set $S_i$ | Size $|S_i|$ | Potential Supersets ($|S_j| > |S_i|$) | Containment Outcome | Status |
+| Index $i$ | Set $S_i$ | Size $\lvert S_i \rvert$ | Potential Supersets ($\lvert S_j \rvert > \lvert S_i \rvert$) | Containment Outcome | Status |
 |---|---|---|---|---|---|
 | 0 | `{"leetcode", "google", "facebook"}` | 3 | None | Cannot be subset | **Retained** |
 | 1 | `{"google", "microsoft"}` | 2 | $j=0$ | `"microsoft"` missing from $S_0$ | **Retained** |

@@ -52,7 +52,7 @@ The algorithm maintains the following state variables:
 | `right_ptr` | Integer $\in [0, n-1]$ | $0$ | Scanning cursor traversing array from left to right. |
 | `active_val` | Integer $\ge 0$ | $A[\text{right\_ptr}]$ | Element value at the active right boundary. |
 | `active_set` | Set of integers of size $\le 21$ | $\{A[0]\}$ | Set of all distinct bitwise AND values of subarrays ending at `right_ptr`. |
-| `min_diff` | Integer $\ge 0$ | $|A[0] - \text{target}|$ | Running global minimum of absolute deviations $|y - \text{target}|$. |
+| `min_diff` | Integer $\ge 0$ | $\lvert A[0] - \text{target} \rvert$ | Running global minimum of absolute deviations $\lvert y - \text{target} \rvert$. |
 
 > [!IMPORTANT]
 > **Cardinality Invariant**: For any array element $x \le 10^6$, the set $\mathcal{S}_r$ contains at most $21$ distinct values. Each additional bitwise AND can only extinguish at least one set bit or leave the value unchanged.
@@ -148,7 +148,7 @@ Traversal complete. Minimal deviation: $2$.
 
 We record the active bitwise sets and minimum deviation tracking across all index steps.
 
-| Step $r$ | Current Value $A[r]$ | Binary Form | Set Transition Evaluations | Updated Set $\mathcal{S}_r$ | Cardinality $|\mathcal{S}_r|$ | Set Errors $\{|y - 5|\}$ | Running Best Error |
+| Step $r$ | Current Value $A[r]$ | Binary Form | Set Transition Evaluations | Updated Set $\mathcal{S}_r$ | Cardinality $\lvert \mathcal{S}_r \rvert$ | Set Errors $\{\lvert y - 5 \rvert\}$ | Running Best Error |
 |---|---|---|---|---|---|---|---|
 | Init | $9$ | `1001` | Seed initial set | $\{9\}$ | $1$ | $\{4\}$ | $4$ |
 | $1$ | $12$ | `1100` | $12 \& 9 = 8$ | $\{8, 12\}$ | $2$ | $\{3, 7\}$ | $3$ |

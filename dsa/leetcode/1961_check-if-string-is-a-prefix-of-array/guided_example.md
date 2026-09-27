@@ -118,7 +118,7 @@ flowchart TD
 
 ### Primary Trace Evaluation
 
-| Word Index $j$ | Word $w_j$ | Length $|w_j|$ | Starting Offset $p$ | Target Slice $s[p \dots p+|w_j|-1]$ | Slice Concordance | New Offset $p'$ | Boundary Hit ($p' == 13$)? | Action |
+| Word Index $j$ | Word $w_j$ | Length $\lvert w_j \rvert$ | Starting Offset $p$ | Target Slice $s[p \dots p+\lvert w_j \rvert-1]$ | Slice Concordance | New Offset $p'$ | Boundary Hit ($p' == 13$)? | Action |
 |---|---|---|---|---|---|---|---|---|
 | 0 | `"i"` | 1 | 0 | `"i"` | Match | 1 | No ($1 \ne 13$) | Advance |
 | 1 | `"love"` | 4 | 1 | `"love"` | Match | 5 | No ($5 \ne 13$) | Advance |

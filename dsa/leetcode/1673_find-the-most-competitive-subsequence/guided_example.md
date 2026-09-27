@@ -166,7 +166,7 @@ Initialize: $stk = []$.
 
 ### Stack State Progression Table for Representative Instance 1
 
-| Index $i$ | Element $v$ | Remaining $n - i$ | Pre-Action Stack | Pop Check ($top > v \land |stk| + n - i > k$) | Stack After Pops | Push Check ($|stk| < k$) | Final Stack Step |
+| Index $i$ | Element $v$ | Remaining $n - i$ | Pre-Action Stack | Pop Check ($top > v \land \lvert stk \rvert + n - i > k$) | Stack After Pops | Push Check ($\lvert stk \rvert < k$) | Final Stack Step |
 |---|---|---|---|---|---|---|---|
 | $0$ | $3$ | $4$ | `[]` | Empty | `[]` | Yes ($0 < 2$) | `[3]` |
 | $1$ | $5$ | $3$ | `[3]` | $3 \not> 5$ | `[3]` | Yes ($1 < 2$) | `[3, 5]` |

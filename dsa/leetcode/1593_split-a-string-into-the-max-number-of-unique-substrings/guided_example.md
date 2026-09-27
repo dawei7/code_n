@@ -49,8 +49,8 @@ Our teaching goal is to trace how recursive backtracking explores cut positions 
 | Active Prefix Boundary ($i$) | $0 \le i \le N$ | Starting index of remaining suffix $s[i..N-1]$ |
 | Substring Pool ($st$) | $\{w_1, \dots, w_m\}$ | Multiset of distinct tokens committed so far |
 | Remaining Length | $N - i$ | Maximum additional singletons theoretically possible |
-| Upper Bound | $|st| + (N - i)$ | Theoretical ceiling on total unique parts for current path |
-| Global Maximum ($ans$) | $\max |st|$ at $i = N$ | Best verified partition size discovered |
+| Upper Bound | $\lvert st \rvert + (N - i)$ | Theoretical ceiling on total unique parts for current path |
+| Global Maximum ($ans$) | $\max \lvert st \rvert$ at $i = N$ | Best verified partition size discovered |
 
 > **Pruning Invariant.** At any search node $(i, st)$, the maximum number of additional non-empty substrings that can be formed from suffix $s[i..N-1]$ is strictly bounded by the number of remaining characters $N - i$. If $|st| + (N - i) \le ans$, no continuation can exceed the established best $ans$, so terminating the branch preserves global optimality.
 
@@ -124,7 +124,7 @@ Suppose the search backtracks to explore alternative initial cut $s[0..2] = \tex
 
 ## 4. Complete Execution Trace
 
-| Step | Prefix Index $i$ | Candidate Slice $s[i:j]$ | Membership in $st$ | Action Taken | Active $st$ Size | Upper Bound $|st| + N - i$ | Global Best $ans$ |
+| Step | Prefix Index $i$ | Candidate Slice $s[i:j]$ | Membership in $st$ | Action Taken | Active $st$ Size | Upper Bound $\lvert st \rvert + N - i$ | Global Best $ans$ |
 |---|---|---|---|---|---|---|---|
 | 1 | $0$ | `"a"` ($j=1$) | Absent | Push `"a"`, recurse $i=1$ | $1$ | $1 + 6 = 7$ | $0$ |
 | 2 | $1$ | `"b"` ($j=2$) | Absent | Push `"b"`, recurse $i=2$ | $2$ | $2 + 5 = 7$ | $0$ |
