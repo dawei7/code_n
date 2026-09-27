@@ -94,4 +94,7 @@ dsa/leetcode/_reports/leetcode_submission_results.jsonl
 /output/
 /tmp/
 
+# Harness-managed agent session state (rollback snapshots, per-session ids).
+.dsh/
+
 # Stray main.js in electron/ from asar extraction (electron/main.js is not a real source file)
