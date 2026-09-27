@@ -138,6 +138,21 @@ Gaps Evaluated:
 | **5** | **50** | **75** | **25** | **True** | **$[50+1, 75-1]$** | **`[51, 74]`** |
 | **6** | **75** | **100** | **25** | **True** | **$[75+1, 100-1]$** | **`[76, 99]`** |
 
+### Every Authored Instance in One Ledger
+
+The third column pair is the same identity in every row and a useful cross-check on the emitted ranges: the number of integers covered by the emitted ranges always equals $(\text{upper} - \text{lower} + 1) - \lvert \text{nums} \rvert$, the size of the bounded domain minus the values that are present.
+
+| Authored instance | `nums` | $[\text{lower}, \text{upper}]$ | Adjacent pairs evaluated | Ranges emitted | Missing integers covered | Integers a domain scan would test |
+|:---|:---|:---:|:---:|:---:|:---:|:---:|
+| Several gaps | `[0, 1, 3, 50, 75]` | $[0, 99]$ | 6 | 4 | 95 | 100 |
+| Sole bounded value present | `[-1]` | $[-1, -1]$ | 2 | 0 | 0 | 1 |
+| Empty input, one bounded value | `[]` | $[1, 1]$ | 1 | 1 | 1 | 1 |
+| Missing values touch both boundaries | `[2, 3]` | $[0, 5]$ | 3 | 2 | 4 | 6 |
+| Ranges crossing zero | `[-3, -1, 2]` | $[-4, 3]$ | 4 | 4 | 5 | 8 |
+| Empty input, full domain | `[]` | $[-10^9, 10^9]$ | 1 | 1 | 2000000001 | 2000000001 |
+| 100 consecutive present values | `-50` through `49` | $[-50, 49]$ | 101 | 0 | 0 | 100 |
+| Extreme endpoints present | `[-1000000000, 1000000000]` | $[-10^9, 10^9]$ | 3 | 1 | 1999999999 | 2000000001 |
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -154,9 +169,33 @@ Gaps Evaluated:
 - **Singleton Missing Ranges:** When only one number is missing (e.g. between 1 and 3, missing 2), the schema requires returning `[2, 2]`, not a scalar `2` or string `"2"`.
 - **Empty Array Handling:** When `nums` is empty, the entire interval $[\text{lower}, \text{upper}]$ is missing, which the sentinel pair $(\text{lower}-1, \text{upper}+1)$ correctly evaluates to `[[lower, upper]]`.
 
+Each positional case below is decided by the same comparison, so the table is really a checklist of which pair each authored instance contributes:
+
+| Positional case | Authored instance | Pair $(u, v)$ that decides it | $v - u$ | Emitted range |
+|:---|:---|:---|:---:|:---|
+| Leading gap, array starts above `lower` | `nums = [2, 3]`, $[0, 5]$ | $(-1, 2)$: the lower sentinel against $\text{nums}[0]$ | 3 | `[0, 1]` |
+| Leading position already covered | `nums = [0, 1, 3, 50, 75]`, $[0, 99]$ | $(-1, 0)$ | 1 | none, because `nums[0]` equals `lower` |
+| Singleton interior gap | the same sample instance | $(1, 3)$ | 2 | `[2, 2]` |
+| Trailing gap, array ends below `upper` | the same sample instance | $(75, 100)$ with $100 = \text{upper} + 1$ | 25 | `[76, 99]` |
+| Trailing position already covered | `nums = [-1]`, $[-1, -1]$ | $(-1, 0)$ | 1 | none, because `nums[-1]` equals `upper` |
+| Both ends missing | `nums = [2, 3]`, $[0, 5]$ | $(-1, 2)$ and $(3, 6)$ | 3 and 3 | `[0, 1]`, then `[4, 5]` |
+| Empty array with one bounded value | `nums = []`, $[1, 1]$ | $(0, 2)$: two sentinels and no interior element | 2 | `[1, 1]` |
+| Empty array across the whole domain | `nums = []`, $[-10^9, 10^9]$ | $(-1000000001, 1000000001)$ | 2000000002 | `[-1000000000, 1000000000]` |
+| Interior gap spanning almost the whole domain | `nums = [-1000000000, 1000000000]`, same bounds | $(-10^9, 10^9)$ | 2000000000 | `[-999999999, 999999999]` |
+
 ---
 
 ## 7. Complexity Derivation
+
+The comparison table makes the cost difference concrete: the pairwise method inspects one pair per present value, while the domain-driven methods pay for every integer in $[\text{lower}, \text{upper}]$, which the two extreme instances push past two billion.
+
+| Candidate method | Mechanism | Cost | Failure mode or tradeoff |
+|:---|:---|:---|:---|
+| Test every integer in the domain | walk `lower` through `upper` and check each value against `nums` | $O(\text{upper} - \text{lower} + 1)$ time | the full-domain instances would perform 2,000,000,001 tests, and a linear membership search multiplies that by $N$ |
+| Set membership over the domain | build a set of `nums`, then walk the domain and group consecutive absences | $O(\text{upper} - \text{lower} + 1)$ time, $O(N)$ space | the cost is still driven by the domain rather than by the input; the two empty-array instances gain nothing from the set |
+| Literal sentinel insertion | prepend $\text{lower} - 1$ and append $\text{upper} + 1$ to a copy of `nums`, then walk consecutive pairs | $O(N)$ time, $O(N)$ auxiliary space | correct, but the copy is avoidable: treating both sentinels as boundary comparisons is what keeps the auxiliary space constant |
+| Running cursor of the next expected value | keep `expect`, emit `[expect, v - 1]` whenever a present value exceeds it, then set `expect = v + 1` | $O(N)$ time, $O(1)$ space | the final check `expect <= upper` is required after the loop; without it every trailing range disappears, and setting `expect = v` instead of `v + 1` re-emits values that are present |
+| Sentinel arithmetic in fixed-width 32-bit integers | compute $\text{lower} - 1$ and $\text{upper} + 1$ as ordinary machine integers | $O(N)$ time | overflows at the domain ends: at $\text{upper} = 2^{31} - 1$ the upper sentinel wraps to a negative value, so the trailing comparison fabricates a range |
 
 - **Time Complexity:** $O(N)$, where $N$ is the number of elements in `nums`. We iterate over $N + 1$ adjacent pairs, performing $O(1)$ arithmetic operations per pair.
 - **Auxiliary Space Complexity:** $O(1)$ constant memory (excluding the output list), requiring only two pointers $u$ and $v$.

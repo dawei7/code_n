@@ -72,12 +72,12 @@ Each row below is one decision by the simulation. The clock column shows the tim
 | 1 | 0 | both workers idle on the left; 3 boxes unassigned; nobody ready on the right | send worker 1, the least efficient; crossing occupies 0 to 10 | 10 | 2 |
 | 2 | 10 | worker 1 is picking until 20; worker 0 idle; 2 boxes unassigned | nobody ready on the right, so send worker 0; crossing occupies 10 to 11 | 11 | 1 |
 | 3 | 11 | worker 0 begins picking until 16; worker 1 still picking until 20 | no one is idle and no one is ready, so the clock jumps to the earliest completion, 16 | 16 | 1 |
-| 4 | 16 | worker 0 holds a box and is ready on the right | right side has priority: worker 0 crosses left, 16 to 17 | 17 | 1 |
+| 4 | 16 | worker 0 holds a box and is ready on the right | a worker is ready on the right, so branch 1 applies: worker 0 crosses left, 16 to 17 | 17 | 1 |
 | 5 | 17 | box 1 has arrived; worker 0 begins putting, 17 to 25 | 1 box is still unassigned but nobody is idle on the left, so the clock jumps to 20 | 20 | 1 |
-| 6 | 20 | worker 1 holds a box and is ready on the right | right side has priority: worker 1 crosses left, 20 to 30 | 30 | 1 |
+| 6 | 20 | worker 1 holds a box and is ready on the right | a worker is ready on the right, so branch 1 applies: worker 1 crosses left, 20 to 30 | 30 | 1 |
 | 7 | 30 | box 2 has arrived; worker 1 begins putting, 30 to 40; worker 0 has been idle since 25 | 1 box is unassigned and worker 0 is idle, so send worker 0 right, 30 to 31 | 31 | 0 |
 | 8 | 31 | worker 0 begins picking until 36 | $n = 0$, so no left dispatch is possible; the clock jumps to 36 | 36 | 0 |
-| 9 | 36 | worker 0 holds the last box, ready on the right | right side has priority: worker 0 crosses left, 36 to 37 | 37 | 0 |
+| 9 | 36 | worker 0 holds the last box, ready on the right | a worker is ready on the right, so branch 1 applies: worker 0 crosses left, 36 to 37 | 37 | 0 |
 
 At 37 the third box reaches the left side, $n$ is already 0, and the right bank holds no worker in any state. The simulation stops and returns 37; worker 0's put-down (37 to 45) is deliberately never charged, because the boxes are already on the left.
 
@@ -150,12 +150,12 @@ Several tempting mistakes are visible in these rows.
 
 - **Charging the final put-down.** The answer for the one-worker, one-box case would become 17 instead of 10, and the traced instance would become 45 instead of 37. The return happens on the completion of the crossing, not after the box is stored.
 - **Sending the most efficient worker first.** In the `n = 1, k = 3` case, worker 0 would deliver at $1 + 1 + 2 = 4$; the rule prescribes the least efficient, giving $1 + 1 + 4 = 6$.
-- **Breaking ties toward the smaller index.** The three workers of the `n = 2, k = 3` case all have bridge cost 4, so the second clause of the definition sends worker 2 first and the answer is 8; sending worker 0 first instead produces 6.
-- **Ignoring the box counter.** The condition $n > 0$ is what stops workers from being sent once every remaining box already has an owner. Removing it makes the simulation dispatch workers for boxes that do not exist, so crossings and deliveries continue after all $n$ boxes have arrived, and the returned time belongs to a delivery that never happened.
-- **Releasing a carrier before his put-down ends.** In the `n = 3, k = 1` case the put-down of 7 minutes keeps the worker off the bridge between deliveries; treating him as free the instant he arrives would return 30 instead of 44.
+- **Ranking by the wrong quantity.** Bridge cost is $\text{right}_i + \text{left}_i$ alone. The three workers of the `n = 2, k = 3` case all have bridge cost 4 while their components differ widely — $\text{left} + \text{pick}$ is 5, 3, and 2 for workers 0, 1, and 2 — so ranking by any other quantity, such as $\text{pick} + \text{put}$, would send a different worker first.
+- **Ignoring the larger-index tie-break.** When bridge costs are equal the definition makes the larger index *less* efficient, so the `n = 2, k = 3` case dispatches worker 2 before worker 1 even though both need 4 minutes of bridge time in total. Treating the tie as a free choice changes which worker claims which box.
+- **Ignoring the box counter.** The condition $n > 0$ is what stops workers from being sent once every remaining box already has an owner. Removing it makes the simulation dispatch workers for boxes that do not exist, so crossings and deliveries continue after all $n$ boxes have arrived, and the returned time then belongs to a delivery that never happened.
 - **Letting two workers share the bridge.** The clock must advance by the whole crossing before the next decision; overlapping intervals would produce times that no physical schedule can realise.
-- **Ranking by the wrong quantity.** Bridge cost is $\text{right}_i + \text{left}_i$ alone. The three workers of the `n = 2, k = 3` case all have bridge cost 4, while their $\text{left} + \text{pick}$ values are 5, 3, and 2: ranking by that quantity would send worker 0 first, and the answer would change from 8 to 6.
-- **Confusing the two crossings.** $\text{right}_i$ and $\text{left}_i$ are distinct durations; in the `n = 1, k = 3` case the chosen worker needs 1 minute outbound and 4 minutes home, and swapping them changes the answer.
+- **Charging one crossing duration twice.** $\text{right}_i$ and $\text{left}_i$ are separate parameters, and each crossing must be charged with its own value. In the `n = 3, k = 1` case, charging both crossings at the outbound time of 2 instead of $2$ outbound and $5$ home returns 35 rather than 44.
+- **Releasing a carrier before his put-down ends.** In the `n = 3, k = 1` case the put-down of 7 minutes keeps the worker off the bridge between deliveries; treating him as free the instant he arrives would return 30 instead of 44.
 
 ## 9. Time and auxiliary space
 

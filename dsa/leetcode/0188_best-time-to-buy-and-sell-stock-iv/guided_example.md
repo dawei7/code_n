@@ -66,6 +66,20 @@ $$
 
 > **Invariant.** At the end of day $i$, $\text{sell}[j]$ represents the global maximum profit achievable using at most $j$ completed buy-sell transactions within the prefix $\text{prices}[0 \dots i]$.
 
+### What Each State Stores and Why Its Maximum Is Safe
+
+The recurrence is short enough to hide its reasoning. Read as a table, each state declares exactly one decision — open a position, close a position, or do nothing — and the maximum keeps whichever choice dominates:
+
+| State | Meaning at the end of day $i$ | Sources it is built from | Transition | Why the maximum preserves the optimum |
+|:---|:---|:---|:---|:---|
+| $\text{sell}[0]$ | starting capital with no completed trade | nothing | fixed at $0$ | every plan begins with no stock and no accumulated profit |
+| $\text{buy}[j]$ | best balance while the $j$-th stock is held | yesterday's $\text{buy}[j]$ and today's $\text{sell}[j-1]$ | $\max(\text{buy}[j], \text{sell}[j-1] - P)$ | paying $P$ out of the proceeds of $j-1$ finished trades is the only legal way to open trade $j$; the retained value means not buying today |
+| $\text{sell}[j]$ | best balance with at most $j$ trades completed | yesterday's $\text{sell}[j]$ and today's $\text{buy}[j]$ | $\max(\text{sell}[j], \text{buy}[j] + P)$ | selling today adds $P$ to an open position; the retained value means staying in cash |
+| $\text{buy}[j]$ initialized | no stock is held before any trading | - | $-\infty$ | an unreachable state must lose every maximum; initializing it to $0$ would claim the stock was free |
+| $\text{sell}[j]$ initialized | no profit has been realized | - | $0$ | doing nothing is always available and yields exactly nothing |
+
+Two details of the table matter for correctness. First, the states are updated in increasing $j$ within one day, so $\text{sell}[j-1]$ already reflects today's sale when $\text{buy}[j]$ is computed — a same-day close-then-reopen, which earns $0$ and therefore never changes a maximum. Second, $\text{buy}[j]$ is read by $\text{sell}[j]$ in the same day, so a buy and a sell at the identical price $P$ is permitted and is worth exactly $0$, again harmless.
+
 ---
 
 ## 3. Step-by-Step Worked Execution
@@ -146,6 +160,17 @@ Final Output: 7
 | 3 | 5 | -2 | 4 | -1 | 4 | Hold cash from trade 1 |
 | 4 | 0 | 0 | 4 | **4** | 4 | Buy trade 2 at $0$ with profit $4$ |
 | **5** | **3** | **0** | **4** | **4** | **7** | **Sell trade 2 at $3$ $\implies$ Total $7$** |
+
+### Reading the Final States Back into Actual Trades
+
+A DP value is only meaningful once it can be expanded into a concrete plan. On the last day the two cash states encode two different, fully specified schedules, and the gap between them is precisely the value of the second transaction:
+
+| Final state | Value | The schedule it encodes | Why nothing better with that many trades exists |
+|:---|:---:|:---|:---|
+| $\text{sell}[1]$ | 4 | buy at $2$ on day 1, sell at $6$ on day 2 | the largest single rise anywhere in the series is $6 - 2 = 4$; the runner-up rise, $0 \to 3$, is worth only $3$ |
+| $\text{sell}[2]$ | 7 | the same trade, then buy at $0$ on day 4 and sell at $3$ on day 5 | after the first trade the best rise that does not reuse days 1-2 is $3 - 0 = 3$, so $4 + 3$ is the only pairing that reaches $7$ |
+
+The intermediate states explain why the second trade could not start earlier. On day 3 the price is $5$ and $\text{buy}[2]$ rises to $-1$, which is the balance of reinvesting the $4$ already earned against a $5$ purchase; holding that position into day 4 would have been worse than waiting, because the price falls to $0$ and the *same* $4$ then buys the stock outright, giving $\text{buy}[2] = 4$. Only a state that remembers the best balance can express that "wait for the cheaper entry" decision, and the price drop from $5$ to $0$ is exactly the trap a greedy second transaction would fall into.
 
 ---
 
