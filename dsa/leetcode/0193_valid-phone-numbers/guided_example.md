@@ -124,6 +124,18 @@ We trace the regex engine across the lines of `file.txt`:
 - Full line matches pattern!
 - Emitted: `(123) 456-7890`.
 
+### Prefix Branch Decision Table
+
+Both branches of the alternation are attempted at the same position, index $0$. The table records which branch actually consumes the prefix for each candidate and what remains for the suffix to match.
+
+| Candidate line | Character at index 0 | Option A branch `[0-9]{3}-` | Option B branch `\([0-9]{3}\)` plus its trailing space | Branch that fires | Remaining text handed to the suffix |
+|:---|:---:|:---|:---|:---:|:---|
+| `987-123-4567` | `9` | Three digits `987` then the literal `-` | Fails immediately: a literal `(` was required | Option A | `123-4567` |
+| `123 456 7890` | `1` | Three digits `123` are consumed, but index 3 holds a space instead of `-` | Fails immediately: a literal `(` was required | Neither | None; the line is rejected before the suffix is consulted |
+| `(123) 456-7890` | `(` | Fails immediately: a digit was required | `(`, `123`, `)`, and the single space are all consumed | Option B | `456-7890` |
+
+Two structural facts are visible here. First, the branches cannot both fire, because one demands a digit at index $0$ and the other demands a literal `(`, so alternation costs no ambiguity. Second, Option B's trailing space is part of the branch itself rather than part of the suffix; that is why the suffix expression can be shared verbatim by both formats.
+
 ---
 
 ## 4. Complete Execution Trace
@@ -160,6 +172,30 @@ Output Stream:
 - **Missing Parenthesis Space:** A candidate like `(123)456-7890` lacks the mandatory space after the closing parenthesis. The pattern requires a literal space after `\)`.
 - **Missing Boundary Anchors:** Omitting `^` or `$` causes grep to perform substring matching, erroneously accepting strings like `call 987-123-4567 now` or `987-123-45678`.
 - **Unescaped Parentheses in ERE:** In Extended Regular Expressions, unescaped `(` and `)` denote capture groups. Failing to escape them as `\(` and `\)` prevents matching literal parenthesis characters.
+
+### Rejection Boundary Table
+
+Every row below is a line that some weaker check would accept. The middle column names the single segment of the pattern that refuses it, which is what makes each row a boundary rather than a restatement.
+
+| Candidate line | Deciding segment | Verdict | Rule the line exposes |
+|:---|:---|:---|:---|
+| `(555) 000-1234` | Option B prefix consumes `(555) `, the suffix consumes `000-1234`, then the end anchor holds | Printed | The area code is never validated as a value: `000` is ordinary digits. Inside the parenthesized form the only accepted separator is the single space after `)`. |
+| `555.000.1234` | Option A needs `-` at index 3 and finds `.`; Option B needs `(` at index 0 and finds `5` | Dropped | The separator alphabet is closed. Dots are not interchangeable with hyphens even though the digit grouping is otherwise correct. |
+| `55-5000-1234` | Option A's `[0-9]{3}` meets `-` after only two digits; Option B needs `(` at index 0 | Dropped | The pattern constrains the grouping, not the number of digits. This line still contains ten digits, so a digit-count check would accept it wrongly. |
+| `x123-456-7890` | The start anchor `^` | Dropped | Anchoring is what turns "contains a valid number" into "is a valid number". An unanchored search prints this line. |
+| `123-456-7890x` | The end anchor `$` | Dropped | The suffix's `[0-9]{4}` could end at index 11 while the line continues, so the match cannot be extended to the end of the line. |
+| `123-456-7890` | No segment refuses it: Option A, the suffix, and both anchors hold | Printed | Accepted lines are emitted verbatim and in file order; the filter neither normalizes nor reorders them. |
+
+### Implementations Compared
+
+The three shell formulations in section 2 share one predicate but differ in default behaviour, which is where the practical traps live.
+
+| Implementation | Matching engine | What it emits | Streaming cost | Tradeoff or failure mode |
+|:---|:---|:---|:---|:---|
+| `grep -E` with the pattern | POSIX ERE, compiled to an automaton | Every line the automaton accepts, printed verbatim | $O(C)$ time, one line of working memory | No print statement is needed because printing is the default action; but dropping `-E` switches to basic regular expressions, where `{3}` is literal text and `(` is an ordinary character, so the pattern silently matches nothing. |
+| `awk` with the pattern as its condition | ERE evaluated once per record | The whole record `$0` when the condition is true | $O(C)$ | Convenient when more logic must be attached later; but the record is also split into whitespace-delimited fields, so an action that prints a field rather than the record emits a fragment: `(123) 456-7890` would leave as `(123)`, silently violating the line contract. |
+| `sed -n -E` with an explicit print command | ERE evaluated once per line | Only the lines selected by the print command | $O(C)$ | The `-n` flag carries the whole contract: without it the editor auto-prints every line, and invalid lines appear in the output alongside the valid ones. |
+| Manual field validation | No regex engine: split on the literal separators and test each field's characters | The lines whose fields all pass | $O(C)$ with a larger constant, since each line is traversed field by field | Portable to an environment without an ERE engine, but it rebuilds grouping and anchoring by hand, which is precisely where boundary errors appear: a missing end check accepts `123-456-7890x`. |
 
 ---
 

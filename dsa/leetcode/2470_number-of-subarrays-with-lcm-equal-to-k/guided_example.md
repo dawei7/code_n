@@ -41,7 +41,7 @@ what one more element does to the current window LCM.
 | $6$ | $6$ | $6$ | $6$ | $6$ | $42$ | $6$ is stable under divisors of $k$, broken by $7$ |
 | $7$ | $7$ | $14$ | $21$ | $42$ | $7$ | an element that misses $k$ can never be repaired |
 
-Every entry in the last two rows is outside the divisor set of $6$; the state
+Every entry in the last row is outside the divisor set of $6$; the state
 $L = 7$ is therefore a **dead state** for the target $6$.
 
 ## 2. Three structural lemmas that fully determine the algorithm

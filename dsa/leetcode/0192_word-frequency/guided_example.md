@@ -188,6 +188,20 @@ day 1
 | 4 | `sort -nr` | Rank descending by numerical count | `"4 the\n3 is..."` |
 | **5** | **`awk '{print $2, $1}'`** | **Format `<word> <count>`** | **`"the 4\nis 3..."` (Final)** |
 
+### Per-Word Tally Trace
+
+The stage table shows the shape of the stream; the tally table shows where each final record comes from. For every distinct word $w$, the two source lines are counted separately first, and only their sum $f(w)$ survives into the `uniq -c` record.
+
+| Word $w$ | Line 1 occurrences | Line 2 occurrences | Total $f(w)$ | Record after `uniq -c` | Rank after `sort -nr` | Final output line |
+|:---|:---:|:---:|:---:|:---|:---:|:---|
+| `the` | 3 | 1 | 4 | `4 the` | 1 | `the 4` |
+| `is` | 1 | 2 | 3 | `3 is` | 2 | `is 3` |
+| `sunny` | 1 | 1 | 2 | `2 sunny` | 3 | `sunny 2` |
+| `day` | 1 | 0 | 1 | `1 day` | 4 | `day 1` |
+| **Token totals** | **6** | **4** | **10** | 4 blocks | — | 4 lines emitted |
+
+The two column sums confirm the correctness of the tokenization itself: line 1 holds 6 words and line 2 holds 4, and $6 + 4 = 10$ matches the ten tokens produced by stage 1. Because each word is counted once per line and then added, a word that appears on only one line (here `day`) still reaches `uniq -c` as a complete block, so the pipeline never needs a separate branch for words confined to a single line.
+
 ---
 
 ## 5. Algorithmic Correctness

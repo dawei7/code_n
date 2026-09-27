@@ -164,6 +164,20 @@ Loop ends (n == 0). Total 1-bits: 3
 - $128 \ \& \ 127 = 00000000_2 = 0$.
 - Count increments to **1** and loop terminates immediately!
 
+### Boundary Behaviour Across Instance Families
+
+The trace generalises because the loop body never inspects bit positions individually; it only ever asks whether $n$ is still nonzero. The table records what that means for every instance family this lesson names, including both extremes of the legal 32-bit range.
+
+| Instance $n$ | 32-bit binary shape | Set bits $k$ | Loop iterations | Final $\text{count}$ | Reason the trace stops where it does |
+|:---|:---|:---:|:---:|:---:|:---|
+| $0$ | `00000000000000000000000000000000` | 0 | 0 | 0 | The guard $n > 0$ is false before the first iteration, so there is no set bit to clear. |
+| $11$ | `00000000000000000000000000001011` | 3 | 3 | 3 | Bits 0, 1 and 3 are isolated; each iteration clears exactly the lowest surviving one. |
+| $128$ | `00000000000000000000000010000000` | 1 | 1 | 1 | The borrow in $128 - 1$ runs through seven trailing zeroes, so one AND erases bit 7 and every lower bit at once. |
+| $2147483645$ | `01111111111111111111111111111101` | 30 | 30 | 30 | Only bit 1 is clear, so each of the 30 set bits costs its own iteration. |
+| $4294967295$ | `11111111111111111111111111111111` | 32 | 32 | 32 | Worst case for the 32-bit contract: no zero bit exists to be skipped, so $k$ reaches the full word width. |
+
+Two facts follow directly. First, the iteration count is a function of the Hamming weight and not of magnitude: $128$ is an order of magnitude larger than $11$, yet the sparser number finishes in one round instead of three. Second, the worst case is bounded by the contract rather than by the value, because $k \le 32$ for every legal input; the $O(k)$ bound therefore never exceeds a constant number of rounds on a fixed-width machine word.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -179,6 +193,18 @@ Loop ends (n == 0). Total 1-bits: 3
 - **Unnecessary 32-Bit Scans:** Scanning all 32 bits with `n & 1` and `n >>= 1` always takes 32 iterations, whereas Brian Kernighan takes only $k$ iterations (where $k \ll 32$ for sparse numbers).
 - **Signed Integer Underflow:** In languages with signed integers, bit 31 set to 1 can represent negative values. In Python, integers have arbitrary precision, but for 32-bit contracts, inputs are treated as unsigned integers in $[0, 2^{32} - 1]$.
 - **Built-in `bin(n).count('1')`:** While correct and $O(1)$, string conversion allocates memory and hides bitwise principles in interviews.
+
+### Why the Other Formulations Are Eliminated
+
+Each rejected formulation is correct; it is dominated for this contract. What separates them is a single decisive quantity — how many times the machine must touch the word — so the table reports that count directly for the sparse instance and the dense one.
+
+| Formulation | Unit of work | Rounds for $n = 11$ | Rounds for $n = 128$ | Complexity | Tradeoff or failure mode |
+|:---|:---|:---:|:---:|:---|:---|
+| Test-and-shift loop | One bit test plus one shift | 32 | 32 | $O(w)$ in the word width $w$ | Correct but ignores sparsity: it spends all 32 rounds even though $n = 128$ holds a single set bit. |
+| Brian Kernighan cancellation | One subtraction and one AND | 3 | 1 | $O(k)$ | Rounds equal the answer exactly, with no wasted iteration and no auxiliary structure. |
+| Mask folding | Five rounds of mask, shift and add | 5 | 5 | $O(\log w)$ | Branch-free and parallelisable, but a constant five rounds exceeds $k$ whenever $k < 5$. |
+| Byte lookup table | One table probe per byte | 4 | 4 | $O(w / 8)$ | Fast and branch-free, but it moves a fixed 256-entry table through memory even though the asymptotics stay constant. |
+| Built-in population count | One library or string call | 1 | 1 | $O(1)$ in library form | Shortest to write, yet it conceals the bit-clearing identity, and the string form allocates.
 
 ---
 

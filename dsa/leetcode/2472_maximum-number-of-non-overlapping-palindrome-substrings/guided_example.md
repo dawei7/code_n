@@ -183,8 +183,8 @@ depend on the argument, but the argument explains why the greedy is safe.
 
 Three traps deserve explicit statement. First, **`k` is a lower bound, not an
 exact length**: `"aabbaa"` and `"ababa"` show that the decisive interval can be
-much longer than $k$, so testing only windows of length exactly $k$ (or $k$ and
-$k+1$) misses answers. Second, **nesting counts as overlapping** even when one
+much longer than $k$, so testing only windows of length exactly $k$ misses
+answers. Second, **nesting counts as overlapping** even when one
 interval strictly contains the other, which is why `"aabbaa"` returns $1$ rather
 than $2$. Third, **the earliest admissible interval is not always the best
 first move**: in `"abxbaaa"` the interval with the smallest start is the wrong
