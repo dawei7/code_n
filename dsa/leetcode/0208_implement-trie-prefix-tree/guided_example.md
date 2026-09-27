@@ -235,7 +235,7 @@ The authored operation sequences cover the four situations in which the two quer
 | `insert "car"`, `insert "cat"`, `search "can"`, `startsWith "ca"` | `false, true` | `"car"` and `"cat"` share the path `c -> a` and branch at the third character, where `'n'` has no slot |
 | `insert "testing"`, `search "test"`, `insert "test"`, `search "test"`, `startsWith "tester"` | `false, true, false` | a long word can contain a shorter non-word, which later becomes a word; extending past either word still fails |
 
-The third and fourth rows show that `search` and `startsWith` differ only at the very last node: `search("can")` and `startsWith("ca")` walk the same two slots, and only the terminal flag at the destination separates them.
+The third and fourth rows show that `search` and `startsWith` differ only in what they demand of the node they reach: `startsWith("ca")` is satisfied by the shared path $c \to a$, whereas `search("can")` must also find an occupied slot for `'n'` and then find the terminal flag set there.
 
 ---
 

@@ -118,6 +118,18 @@ We trace the sliding window across $\text{nums} = [2, 3, 1, 2, 4, 3]$ with $\tex
 
 Search completes. The global minimal length is $\mathbf{2}$.
 
+Every contraction iteration tests one candidate window, and recording them individually shows that only two of the five ever improve the answer:
+
+| Contraction iteration | $R$ | $L$ when tested | Candidate window | Its sum | Its length | `min_len` after the comparison |
+|:---:|:---:|:---:|:---|:---:|:---:|:---:|
+| 1 | $3$ | $0$ | `nums[0..3]` $= [2, 3, 1, 2]$ | $8$ | $4$ | $4$ (first record) |
+| 2 | $4$ | $1$ | `nums[1..4]` $= [3, 1, 2, 4]$ | $10$ | $4$ | $4$ (no improvement) |
+| 3 | $4$ | $2$ | `nums[2..4]` $= [1, 2, 4]$ | $7$ | $3$ | $3$ |
+| 4 | $5$ | $3$ | `nums[3..5]` $= [2, 4, 3]$ | $9$ | $3$ | $3$ (no improvement) |
+| 5 | $5$ | $4$ | `nums[4..5]` $= [4, 3]$ | $7$ | $2$ | $2$ |
+
+The loop leaves a smaller window behind each time it exits: after iteration 1 the live window is `nums[1..3]` $= [3, 1, 2]$ with sum $6$, after iteration 3 it is `nums[3..4]` $= [2, 4]$ with sum $6$, and after iteration 5 it is `nums[5..5]` $= [3]$ with sum $3$. Each exit happens exactly when subtracting one more element would drop the sum below the target, so the window that was just recorded is the shortest one that can end at that $R$.
+
 ---
 
 ## 4. Complete Execution Trace
@@ -160,9 +172,30 @@ Final Minimal Length: 2
 - **Target Never Reached:** If $\sum \text{nums} < \text{target}$, $\text{min\_len}$ remains $\infty$. The algorithm must return $0$, not $\infty$.
 - **Off-by-One in Window Length:** Window length spanning indices $[L, R]$ is $R - L + 1$, not $R - L$.
 
+The authored inputs isolate the four ways the answer can be decided, including the sentinel that must become $0$ rather than stay infinite:
+
+| `target` | `nums` | $\sum \text{nums}$ | Minimal length | Which rule the case isolates |
+|:---:|:---|:---:|:---:|:---|
+| $7$ | `[2, 3, 1, 2, 4, 3]` | $15$ | $2$ | several windows qualify, and the shortest is the last one found |
+| $4$ | `[1, 4, 4]` | $9$ | $1$ | a single element already reaches the target, and the contraction loop runs twice for one $R$ |
+| $15$ | `[1, 2, 3, 4, 5]` | $15$ | $5$ | the total equals the target exactly, so only the whole array qualifies |
+| $11$ | `[1, 1, 1, 1, 1, 1, 1, 1]` | $8$ | $0$ | the total falls short, so no window ever reaches the target |
+| $20$ | `[1, 2, 3]` | $6$ | $0$ | the same unreachable outcome on a mixed array |
+
+The middle row pins down the comparison: the condition is $\ge$ and not $>$, because the shortest qualifying window in the representative input has sum exactly $7$ as well. The two failing rows are the reason the sentinel must be tested before returning — an unreachable target leaves the running minimum unset, and $0$ is the required report for that state.
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(N)$, where $N$ is the length of `nums`. The right pointer $R$ moves from $0$ to $N - 1$. The left pointer $L$ only moves forward and advances at most $N$ times across the entire algorithm. Total pointer operations are bounded by $2N = O(N)$.
 - **Auxiliary Space Complexity:** $O(1)$ constant memory, storing only the scalar variables $L, R, \text{current\_sum}$, and $\text{min\_len}$.
+
+The same predicate has several implementations, and the trade-off is always the same one: the linear-time versions buy their speed with a structural assumption about the input.
+
+| Approach | Mechanism | Time | Space | Cost or failure mode |
+|:---|:---|:---:|:---:|:---|
+| Sliding window (used here) | Grow $R$; while the sum reaches the target, record the length and drop $\text{nums}[L]$ | $O(N)$ | $O(1)$ | depends on positivity: a zero or negative element breaks the monotonicity of the sum in $R$ |
+| Prefix sums with binary search | Precompute running prefix sums; for each left end, binary-search the first prefix reaching $\text{prefix}[L] + \text{target}$ | $O(N \log N)$ | $O(N)$ | pays a logarithm at every index and stores $N + 1$ prefix values; it also needs a strictly increasing prefix array, which positivity guarantees |
+| Brute force over all pairs | Enumerate every pair $(L, R)$ and total the window | $O(N^2)$ | $O(1)$ | correct for any input, but it fails the time limit long before the largest allowed array |
+| Prefix sums with a monotonic deque | Keep the candidate left ends in a deque and discard the dominated ones | $O(N)$ | $O(N)$ | the only listed method that also survives negative values; it maintains more state than a single scalar accumulator |
