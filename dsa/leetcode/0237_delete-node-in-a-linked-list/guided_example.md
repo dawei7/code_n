@@ -99,6 +99,15 @@ Target: $\text{node} = N_1$.
 
 Deletion complete in 2 operations!
 
+Only two of the four references in play are allowed to move. The predecessor is never touched — that is the whole point of the technique — and the successor's own `next` link is left exactly as it was, which is why the nodes after the target stay attached in order.
+
+| Reference | Before | After | Written by this algorithm? | Consequence |
+|:---|:---|:---|:---:|:---|
+| $N_0\text{.next}$ (predecessor) | $N_1(5)$ | $N_1(1)$ | no | The predecessor still points at the same object, so the list head never needs to know |
+| $N_1\text{.val}$ (target payload) | $5$ | $1$ | yes, first assignment | The old value $5$ no longer exists anywhere in the chain |
+| $N_1\text{.next}$ (target link) | $N_2(1)$ | $N_3(9)$ | yes, second assignment | $N_2$ falls out of the chain and the remaining order is untouched |
+| $N_2\text{.next}$ (successor link) | $N_3(9)$ | $N_3(9)$ | no | The orphaned successor still points into the live list, so freeing it must not free $N_3$ |
+
 ---
 
 ## 4. Complete Execution Trace
@@ -141,6 +150,26 @@ Final Traversal: 4 -> 1 -> 9 -> None
 - **Attempting to Delete the Tail Node:** If `node` were the tail node, `node.next` would be `None`. There would be no successor to copy from, and this technique cannot work without a pointer to the predecessor! The problem explicitly guarantees that `node` is not the last node.
 - **Dangling References in Memory:** In garbage-collected languages (like Python and Java), disconnected node $N_2$ is automatically collected. In C/C++, `ListNode* temp = node->next; ... delete temp;` must be called to prevent memory leaks.
 - **Reference Equality:** If other external pointers held references to $N_2$, those references are now detached from the main list. Since the problem only evaluates list traversal from `head`, the solution is completely valid.
+
+The same two assignments must cover every position the contract allows, and the rows below trace them on the authored cases. Read the fourth column as the *only* place the algorithm ever looks past the target, and the fifth column as what an observer traversing from the target node sees afterwards.
+
+| Scenario | Sublist seen from `node` | Payload copied into the target | `node.next` after the bypass | Sequence read from `node` afterwards | What the invariant guarantees |
+|:---|:---|:---:|:---|:---|:---|
+| Interior node, short suffix | $[5, 1, 9]$ | $1$ | Node $(9)$ | $[1, 9]$ | The erased value $5$ is absent and the tail order is preserved |
+| Node immediately before the tail | $[1, 9]$ | $9$ | `None` | $[9]$ | The target object becomes the new tail, so the bypass writes the null terminator; this is the only case where the successor's own link is `None` |
+| Interior node, longer suffix | $[3, 4, 5, 6]$ | $4$ | Node $(5)$ | $[4, 5, 6]$ | Only one node disappears; every later node keeps its payload and its relative order |
+| Successor payload equals the target payload | $[2, 2, 3, 2]$ | $2$ (no visible change) | Node $(3)$ | $[2, 3, 2]$ | A length check, not the value sequence, is what proves the deletion happened |
+| Target is the tail (excluded by the contract) | $[9]$ | nothing to copy | undefined | not produced | No successor exists, so this technique has no legal move and a predecessor reference would be required |
+
+Because no head or predecessor pointer is available, every design that deletes by relinking is off the table, and the remaining alternatives each pay somewhere else.
+
+| Approach | Mechanism | Time | Auxiliary space | Why it is unavailable or worse here |
+|:---|:---|:---:|:---:|:---|
+| Predecessor walk from the head | Traverse to the node before the target, then point it past the target | $O(N)$ | $O(1)$ | Correct but unusable: the contract hands over only the target node, never `head` |
+| Copy-and-bypass (this lesson) | Move the successor's payload into the target and unlink the successor | $O(1)$ | $O(1)$ | Depends on a non-null successor, so the tail node cannot be deleted this way |
+| Store a predecessor link in every node | Deleting means pointing the predecessor and the successor at each other | $O(1)$ | $O(N)$ for the extra link per node | Changes the given data structure and its memory footprint before any deletion can be attempted |
+| Rebuild the chain skipping the target | Walk from the head and relink only the kept nodes | $O(N)$ | $O(1)$ extra, or $O(N)$ for copied nodes | Needs a traversal from the head and re-creates most links to remove one value |
+| Mark the node as deleted for external readers | Keep the node in the chain and set a flag that consumers honor | $O(1)$ to mark | $O(1)$ per node for the flag | Raw list length and payload sequence stay unchanged, so any consumer that ignores the flag sees a stale list |
 
 ---
 

@@ -176,6 +176,16 @@ Only three of the four pairs are ever measured, and the pair that is skipped is 
 - **Sentinel Initialization:** Initializing $\text{idx}_1 = -1$ and $\text{idx}_2 = -1$ ensures that meaningless differences like $|-1 - 3|$ are never evaluated before both words have appeared.
 - **Short-Circuit on Distance 1:** Because words are distinct and cannot share an index, the minimum possible distance is $1$. If $\text{min\_dist} == 1$, an implementation can return $1$ immediately.
 
+### Boundary Behaviour of the Protocol
+
+| Boundary scenario | Input condition | Required result | Why the streaming invariant still returns it |
+|:---|:---|:---:|:---|
+| Smallest non-trivial dictionary | $\text{wordsDict} = [\text{"a"}, \text{"b"}]$, $\text{word1} = \text{"a"}$, $\text{word2} = \text{"b"}$ | $1$ | Each target is seen once, in that order; the pair becomes live at the final position and is scored there |
+| Best pair appears late | $\text{wordsDict} = [\text{"x"}, \text{"a"}, \text{"x"}, \text{"b"}, \text{"a"}, \text{"b"}]$ | $1$ | The first live pair at position $3$ measures $2$, and the true optimum of $1$ is found one position later; stopping at the first live pair would report $2$ |
+| Targets pinned to the two ends | $30000$ words with `"aaaaaaaaaa"` at index $0$ and `"bbbbbbbbbb"` at index $29999$ | $29999 = N - 1$ | The expectation equals the full span, so each target occurs exactly once; the single pair is live only at the last position, and the sentinels prevent any earlier scoring |
+| Query roles reversed | `"practice"` appears at index $0$ and is $\text{word2}$, while `"coding"` appears at index $3$ and is $\text{word1}$ | $3$ | Which cursor fills first depends only on the left-to-right order of the dictionary, and $\lvert \text{idx}_1 - \text{idx}_2 \rvert$ is symmetric, so the roles of the two targets are interchangeable |
+| A target repeats | $\text{word1} = \text{"makes"}$ at indices $1$ and $4$ with $\text{word2} = \text{"coding"}$ at index $3$ | $1$ | The later occurrence overwrites the earlier cursor, replacing the candidate $2$ with the candidate $1$; overwriting is safe exactly because the discarded endpoint is farther away |
+
 ---
 
 ## 7. Complexity Derivation
