@@ -135,7 +135,23 @@ source markers. Run:
 
 ```powershell
 .\.venv\Scripts\python.exe -m pytest server\tests\test_guided_examples.py -q
+.\.venv\Scripts\python.exe tools\audit_guided_examples.py
+.\.venv\Scripts\python.exe tools\audit_guided_tables.py
 npm.cmd run typecheck --prefix web
 npm.cmd run build --prefix web
 git diff --check
 ```
+
+`tools/audit_guided_examples.py` checks the corpus-wide contract: a code-free
+`# Guided Example:` lesson with numbered sections, at least two real tables, no
+template filler, and no leaked solution source. Pass one or more package-name
+substrings to scope it to a single lesson.
+
+`tools/audit_guided_tables.py` checks that every table actually renders: each
+table's delimiter row and body rows must declare the same number of cells as its
+header. A literal `|` inside a cell is always a cell boundary, even inside a code
+span or inside mathematics, so absolute value and cardinality must be written
+`$\lvert x \rvert$`, a divisibility separator as `$a \mid b$`, a pipe inside a
+code span as `` `\|` ``, and a pipe inside `\text{...}` as `\textbar`. A table
+whose delimiter row disagrees with its header is not recognised as a table at
+all, so this check runs before the body-row comparison.

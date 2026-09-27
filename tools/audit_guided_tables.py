@@ -47,6 +47,16 @@ def table_problems(text: str) -> list[str]:
         if len(run) < 2 or not DELIMITER_ROW.match(run[1][1]):
             return
         width = count_cells(run[0][1])
+        delimiter_width = count_cells(run[1][1])
+        if delimiter_width != width:
+            # A delimiter row that disagrees with its header means GFM does not
+            # recognise the table at all, so this is a real rendering failure and
+            # it is checked before the body rows.
+            problems.append(
+                f"line {run[1][0]}: header declares {width} cells, "
+                f"delimiter row has {delimiter_width}"
+            )
+            return
         for line_number, raw in run[2:]:
             actual = count_cells(raw)
             if actual != width:
