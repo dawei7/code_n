@@ -52,9 +52,9 @@ Summing the boolean verdicts across all $w \in \text{words}$ yields the exact co
 
 | Component / Variable | Mathematical Representation | Operational Meaning |
 |---|---|---|
-| Target Prefix `pref` | String of length $L = |\text{pref}|$ | Fixed template string |
-| Candidate Word $w$ | String of length $|w|$ | Element being verified |
-| Length Gate | $|w| \ge L$ | Necessary condition before character checks |
+| Target Prefix `pref` | String of length $L = \lvert \text{pref} \rvert$ | Fixed template string |
+| Candidate Word $w$ | String of length $\lvert w \rvert$ | Element being verified |
+| Length Gate | $\lvert w \rvert \ge L$ | Necessary condition before character checks |
 | Character Match | $w[k] == \text{pref}[k]$ | Pointwise character equivalence |
 | Accumulator | $\sum_{w \in \text{words}} \mathbf{1}_{\{\text{pref} \sqsubseteq w\}}$ | Cumulative count of verified matches |
 
@@ -115,7 +115,7 @@ Initialize `ans = 0`.
 
 The evaluation of each candidate word against the target prefix is detailed below:
 
-| Index | Candidate Word $w$ | Length $|w|$ | Length Check ($|w| \ge 2$) | Character $0$ ($w[0]$ vs `'a'`) | Character $1$ ($w[1]$ vs `'t'`) | Prefix Match? | Cumulative `ans` |
+| Index | Candidate Word $w$ | Length $\lvert w \rvert$ | Length Check ($\lvert w \rvert \ge 2$) | Character $0$ ($w[0]$ vs `'a'`) | Character $1$ ($w[1]$ vs `'t'`) | Prefix Match? | Cumulative `ans` |
 |---|---|---|---|---|---|---|---|
 | 0 | `"pay"` | 3 | Pass | `'p'` vs `'a'` (Mismatch) | Skipped (Short-circuit) | False | 0 |
 | 1 | `"attention"` | 9 | Pass | `'a'` vs `'a'` (Match) | `'t'` vs `'t'` (Match) | **True** | 1 |

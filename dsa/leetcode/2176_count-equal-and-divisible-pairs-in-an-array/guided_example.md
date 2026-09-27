@@ -142,7 +142,7 @@ The full evaluation table for all pairs sharing identical values is recorded bel
 
 ### Equivalence Bucket Distribution
 
-| Distinct Value | List of Indices $\mathcal{I}_v$ | Total Candidate Pairs $\binom{|\mathcal{I}_v|}{2}$ | Qualifying Pairs |
+| Distinct Value | List of Indices $\mathcal{I}_v$ | Total Candidate Pairs $\binom{\lvert \mathcal{I}_v \rvert}{2}$ | Qualifying Pairs |
 |---|---|---|---|
 | 3 | $\{0, 6\}$ | 1 | 1 (Pair $(0, 6)$) |
 | 1 | $\{1, 5\}$ | 1 | 0 |

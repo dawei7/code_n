@@ -113,7 +113,7 @@ $$matrix = \begin{pmatrix} 1 & 2 & 3 \\ -1 & -2 & -3 \\ 1 & 2 & 3 \end{pmatrix}$
 
 ### Cell-by-Cell Statistics for Primary Matrix
 
-| Cell $(r, c)$ | Original Value $A_{r, c}$ | Absolute Value $|A_{r, c}|$ | Sign Parity | Running Absolute Sum $S_{\text{abs}}$ | Running Negatives $\mathcal{N}$ | Running Minimum $\mu$ |
+| Cell $(r, c)$ | Original Value $A_{r, c}$ | Absolute Value $\lvert A_{r, c} \rvert$ | Sign Parity | Running Absolute Sum $S_{\text{abs}}$ | Running Negatives $\mathcal{N}$ | Running Minimum $\mu$ |
 |---|---|---|---|---|---|---|
 | $(0, 0)$ | 1 | 1 | Positive | 1 | 0 | 1 |
 | $(0, 1)$ | 2 | 2 | Positive | 3 | 0 | 1 |

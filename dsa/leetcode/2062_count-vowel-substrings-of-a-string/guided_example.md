@@ -69,7 +69,7 @@ $$T_j = T_{j-1} \cup \{\text{word}[j]\}$$
 
 We iterate over each starting index $i \in [0, 9]$ and expand $j$:
 
-| Start $i$ | End $j$ | Character $c = \text{word}[j]$ | Is Vowel? | Accumulated Vowel Set $T$ | Set Size $|T|$ | Valid Substring? ($|T| = 5$) | Action / Running Count |
+| Start $i$ | End $j$ | Character $c = \text{word}[j]$ | Is Vowel? | Accumulated Vowel Set $T$ | Set Size $\lvert T \rvert$ | Valid Substring? ($\lvert T \rvert = 5$) | Action / Running Count |
 |---|---|---|---|---|---|---|---|
 | $0$ | $0$ | `'c'` | No | $\emptyset$ | $0$ | No | Consonant! Break immediately. (Count = 0) |
 | $1$ | $1$ | `'u'` | Yes | $\{u\}$ | $1$ | No | Continue |

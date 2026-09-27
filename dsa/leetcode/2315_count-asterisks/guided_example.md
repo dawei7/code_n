@@ -44,7 +44,7 @@ Because the total number of bars is guaranteed to be even, the machine always fi
 
 | Encountered Symbol | State Variable $ok$ Effect | Accumulator Action |
 |---|---|---|
-| Vertical Bar (`'|'`) | Flips state ($1 \to 0$ or $0 \to 1$) | No addition |
+| Vertical Bar (`'\|'`) | Flips state ($1 \to 0$ or $0 \to 1$) | No addition |
 | Asterisk (`'*'`) | Unchanged | Adds $ok$ (adds 1 if outside, 0 if inside) |
 | Letter (`'a'`–`'z'`) | Unchanged | No addition |
 
@@ -83,22 +83,22 @@ The full sequence of state evaluations across all characters is documented below
 | Step Index | Character | Current State ($ok$) | Character Classification | Action Taken | Updated Asterisk Count |
 |---|---|---|---|---|---|
 | 0 | `'l'` | 1 (Active) | Lowercase letter | No change | 0 |
-| 1 | `'|'` | 1 $\to$ 0 | Bar (1st, Entry) | Toggle $ok \to 0$ | 0 |
+| 1 | `'\|'` | 1 $\to$ 0 | Bar (1st, Entry) | Toggle $ok \to 0$ | 0 |
 | 2 | `'*'` | 0 (Suppressed) | Asterisk | Ignored ($ok = 0$) | 0 |
 | 3 | `'e'` | 0 (Suppressed) | Lowercase letter | No change | 0 |
 | 4 | `'*'` | 0 (Suppressed) | Asterisk | Ignored ($ok = 0$) | 0 |
 | 5 | `'e'` | 0 (Suppressed) | Lowercase letter | No change | 0 |
 | 6 | `'t'` | 0 (Suppressed) | Lowercase letter | No change | 0 |
-| 7 | `'|'` | 0 $\to$ 1 | Bar (2nd, Exit) | Toggle $ok \to 1$ | 0 |
+| 7 | `'\|'` | 0 $\to$ 1 | Bar (2nd, Exit) | Toggle $ok \to 1$ | 0 |
 | 8 | `'c'` | 1 (Active) | Lowercase letter | No change | 0 |
 | 9 | `'*'` | 1 (Active) | Asterisk | Increment count | 1 |
 | 10 | `'*'` | 1 (Active) | Asterisk | Increment count | 2 |
 | 11 | `'o'` | 1 (Active) | Lowercase letter | No change | 0 + 2 = 2 |
-| 12 | `'|'` | 1 $\to$ 0 | Bar (3rd, Entry) | Toggle $ok \to 0$ | 2 |
+| 12 | `'\|'` | 1 $\to$ 0 | Bar (3rd, Entry) | Toggle $ok \to 0$ | 2 |
 | 13 | `'*'` | 0 (Suppressed) | Asterisk | Ignored ($ok = 0$) | 2 |
 | 14 | `'d'` | 0 (Suppressed) | Lowercase letter | No change | 2 |
 | 15 | `'e'` | 0 (Suppressed) | Lowercase letter | No change | 2 |
-| 16 | `'|'` | 0 $\to$ 1 | Bar (4th, Exit) | Toggle $ok \to 1$ | 2 |
+| 16 | `'\|'` | 0 $\to$ 1 | Bar (4th, Exit) | Toggle $ok \to 1$ | 2 |
 
 ## 5. Algorithmic Correctness & Soundness
 

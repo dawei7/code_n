@@ -76,7 +76,7 @@ The common prefix of length $k$ encodes the path from $r$ to $\text{LCA}(s, d)$.
 | Root to Start ($P_s$) | `"LL"` | $5 \xrightarrow{\text{'L'}} 1 \xrightarrow{\text{'L'}} 3$ |
 | Root to Dest ($P_d$) | `"RL"` | $5 \xrightarrow{\text{'R'}} 2 \xrightarrow{\text{'L'}} 6$ |
 | Common Prefix ($k$) | $\varepsilon$ (empty, length $0$) | $\text{LCA}(3, 6) = 5$ (diverge at root) |
-| Ascent Suffix | `"UU"` ($|P_s| - 0 = 2$ steps) | $3 \xrightarrow{\text{'U'}} 1 \xrightarrow{\text{'U'}} 5$ |
+| Ascent Suffix | `"UU"` ($\lvert P_s \rvert - 0 = 2$ steps) | $3 \xrightarrow{\text{'U'}} 1 \xrightarrow{\text{'U'}} 5$ |
 | Descent Suffix | `"RL"` ($P_d[0:]$) | $5 \xrightarrow{\text{'R'}} 2 \xrightarrow{\text{'L'}} 6$ |
 | Concatenated Result | `"UURL"` | Shortest simple path from node `3` to node `6` |
 
@@ -129,7 +129,7 @@ We compare strings $P_s$ and $P_d$ index by index:
 | DFS $1$ (Start) | `5` $\to$ `1` $\to$ `3` | `['L', 'L']` | Target `3` identified at depth 2 | $P_s = \text{"LL"}$ |
 | DFS $2$ (Dest) | `5` $\to$ `2` $\to$ `6` | `['R', 'L']` | Target `6` identified at depth 2 | $P_d = \text{"RL"}$ |
 | Prefix Scan | Index $0$ | Compare $P_s[0]$ vs $P_d[0]$ | `'L'` vs `'R'` (Mismatch) | $k = 0$ |
-| Upward Synthesis | $s \to \text{LCA}$ | Repeats `'U'` $|P_s| - k$ times | $2 - 0 = 2$ | `"UU"` |
+| Upward Synthesis | $s \to \text{LCA}$ | Repeats `'U'` $\lvert P_s \rvert - k$ times | $2 - 0 = 2$ | `"UU"` |
 | Downward Suffix | $\text{LCA} \to d$ | Slices $P_d$ from index $k$ | $P_d[0:]$ | `"RL"` |
 | Final Output | Synthesis | String concatenation | `"UU" + "RL"` | `"UURL"` |
 

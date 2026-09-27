@@ -127,7 +127,7 @@ Final Result: **2**.
 
 ### Primary Instance Trace Table
 
-| Step | Tagger Index $i$ | Target Index $j$ | Distance $|i - j|$ | Window $[i - dist, i + dist]$ | Condition Satisfied? | Action | Total Caught |
+| Step | Tagger Index $i$ | Target Index $j$ | Distance $\lvert i - j \rvert$ | Window $[i - dist, i + dist]$ | Condition Satisfied? | Action | Total Caught |
 |---|---|---|---|---|---|---|---|
 | 1 | 1 | 0 | 1 | $[-2, 4]$ | Yes ($1 \le 3$) | Match $(1, 0)$; $i \leftarrow 3, j \leftarrow 2$ | 1 |
 | 2 | 3 | 2 | 1 | $[0, 6]$ | Yes ($1 \le 3$) | Match $(3, 2)$; $i \leftarrow \text{end}, j \leftarrow 4$ | 2 |
@@ -135,7 +135,7 @@ Final Result: **2**.
 
 ### Secondary Instance Trace Table
 
-| Step | Tagger Index $i$ | Target Index $j$ | Distance $|i - j|$ | Window $[i - dist, i + dist]$ | Condition Satisfied? | Action | Total Caught |
+| Step | Tagger Index $i$ | Target Index $j$ | Distance $\lvert i - j \rvert$ | Window $[i - dist, i + dist]$ | Condition Satisfied? | Action | Total Caught |
 |---|---|---|---|---|---|---|---|
 | 1 | 0 | 1 | 1 | $[-1, 1]$ | Yes ($1 \le 1$) | Match $(0, 1)$; $i \leftarrow 4, j \leftarrow 2$ | 1 |
 | 2 | 4 | 2 | 2 | $[3, 5]$ | No ($j < i - dist$) | Discard Target 2; $j \leftarrow 3$ | 1 |

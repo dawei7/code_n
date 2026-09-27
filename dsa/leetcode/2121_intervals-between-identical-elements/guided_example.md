@@ -54,7 +54,7 @@ This single algebraic relation evaluates each subsequent distance sum in $\mathc
 | Metric | Definition | Role in Computation |
 |---|---|---|
 | $p_k$ | Sorted index of $k$-th occurrence of value $v$ | Physical location in `arr` |
-| $m$ | Total count of occurrences $|\mathcal{C}_v|$ | Class cardinality |
+| $m$ | Total count of occurrences $\lvert \mathcal{C}_v \rvert$ | Class cardinality |
 | $\Delta$ | $p_k - p_{k-1}$ | Coordinate displacement between neighbors |
 | Left Count ($k$) | Elements with index $< p_k$ | Number of elements whose distance expands by $\Delta$ |
 | Right Count ($m - k$) | Elements with index $\ge p_k$ | Number of elements whose distance contracts by $\Delta$ |

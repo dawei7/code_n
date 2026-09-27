@@ -164,5 +164,5 @@ The complexity parameters are governed by the string length $n$ and the alphabet
 | Dimension | Bound | Justification |
 |---|---|---|
 | Time Complexity | $O(n)$ | The algorithm processes each character of $s$ exactly once. Each character inspection involves $O(1)$ array lookups and arithmetic operations. |
-| Space Complexity | $O(|\Sigma|)$ | Auxiliary memory is confined to the fixed-size array $\text{pos}$ tracking the $26$ lowercase English characters, requiring $O(1)$ additional space relative to $n$. |
+| Space Complexity | $O(\lvert \Sigma \rvert)$ | Auxiliary memory is confined to the fixed-size array $\text{pos}$ tracking the $26$ lowercase English characters, requiring $O(1)$ additional space relative to $n$. |
 | Overflow Protection | $O(1)$ Words | Accumulator $\text{ans}$ requires a standard $64$-bit integer to hold values up to $\approx \frac{n^3}{6} \approx 1.67 \times 10^{14}$ when $n = 10^5$. |

@@ -72,7 +72,7 @@ If any $|\delta[c]| \ge 4$, the evaluation can terminate early and report $\text
 
 We trace the construction of the difference vector $\delta$ for $\text{word1} = \text{"abcdeef"}$ and $\text{word2} = \text{"abaaacc"}$:
 
-| Letter $c$ | Frequency in $\text{word1}$ | Frequency in $\text{word2}$ | Signed Disparity $\delta[c] = f_1 - f_2$ | Absolute Gap $|\delta[c]|$ | Threshold Limit ($\le 3$) | Status |
+| Letter $c$ | Frequency in $\text{word1}$ | Frequency in $\text{word2}$ | Signed Disparity $\delta[c] = f_1 - f_2$ | Absolute Gap $\lvert \delta[c] \rvert$ | Threshold Limit ($\le 3$) | Status |
 |---|---|---|---|---|---|---|
 | `'a'` | $1$ | $4$ | $1 - 4 = -3$ | $3$ | $3 \le 3$ | Valid |
 | `'b'` | $1$ | $1$ | $1 - 1 = 0$ | $0$ | $0 \le 3$ | Valid |
@@ -90,11 +90,11 @@ All $26$ entries satisfy $|\delta[c]| \le 3$. Return $\text{true}$.
 
 We contrast this with $\text{word1} = \text{"aaaa"}$ and $\text{word2} = \text{"bccb"}$:
 
-| Letter $c$ | Count in $\text{word1}$ | Count in $\text{word2}$ | Absolute Gap $|\delta[c]|$ | Threshold Test ($\le 3$) | Decision |
+| Letter $c$ | Count in $\text{word1}$ | Count in $\text{word2}$ | Absolute Gap $\lvert \delta[c] \rvert$ | Threshold Test ($\le 3$) | Decision |
 |---|---|---|---|---|---|
-| `'a'` | $4$ | $0$ | $|4 - 0| = 4$ | $4 \le 3$ (**False**) | **Violation detected! Halt and return $\text{false}$** |
-| `'b'` | $0$ | $2$ | $|0 - 2| = 2$ | $2 \le 3$ | Skipped by early exit |
-| `'c'` | $0$ | $2$ | $|0 - 2| = 2$ | $2 \le 3$ | Skipped by early exit |
+| `'a'` | $4$ | $0$ | $\lvert 4 - 0 \rvert = 4$ | $4 \le 3$ (**False**) | **Violation detected! Halt and return $\text{false}$** |
+| `'b'` | $0$ | $2$ | $\lvert 0 - 2 \rvert = 2$ | $2 \le 3$ | Skipped by early exit |
+| `'c'` | $0$ | $2$ | $\lvert 0 - 2 \rvert = 2$ | $2 \le 3$ | Skipped by early exit |
 
 The very first character checked (`'a'`) produces an absolute difference of $4 > 3$, proving non-equivalence instantly.
 

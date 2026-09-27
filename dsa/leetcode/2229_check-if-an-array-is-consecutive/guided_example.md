@@ -110,7 +110,7 @@ Final return value: `true`.
 
 ### Step-by-Step Extremal and Set Ingestion
 
-| Step $i$ | Element $\text{nums}[i]$ | Running Minimum $mi$ | Running Maximum $mx$ | Distinct Set Elements $\text{seen}$ | Set Size $|\text{seen}|$ |
+| Step $i$ | Element $\text{nums}[i]$ | Running Minimum $mi$ | Running Maximum $mx$ | Distinct Set Elements $\text{seen}$ | Set Size $\lvert \text{seen} \rvert$ |
 |---|---|---|---|---|---|
 | Initial | - | $\infty$ | $-\infty$ | $\emptyset$ | 0 |
 | 0 | 1 | 1 | 1 | $\{1\}$ | 1 |
@@ -120,7 +120,7 @@ Final return value: `true`.
 
 ### Comparative Verification Across Characteristic Scenarios
 
-| Test Array `nums` | Length $n$ | $mi$ | $mx$ | Span $mx - mi + 1$ | Set Size $|\text{seen}|$ | Predicate Conjunction | Evaluation |
+| Test Array `nums` | Length $n$ | $mi$ | $mx$ | Span $mx - mi + 1$ | Set Size $\lvert \text{seen} \rvert$ | Predicate Conjunction | Evaluation |
 |---|---|---|---|---|---|---|---|
 | `[1, 3, 4, 2]` | 4 | 1 | 4 | $4 - 1 + 1 = 4$ | 4 | $4 == 4 == 4$ | **True** (Valid consecutive) |
 | `[1, 2, 2, 4]` | 4 | 1 | 4 | $4 - 1 + 1 = 4$ | 3 | $3 \ne 4$ | **False** (Duplicate masks gap) |

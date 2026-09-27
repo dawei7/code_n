@@ -118,7 +118,7 @@ $$M + 1 = 2 + 1 = 3$$
 
 The state of the streaming partition algorithm across all indices is tabulated below.
 
-| Index $t$ | Roll $rolls[t]$ | Active Set $S$ Before | Updated Set $S$ | Set Size $|S|$ | Threshold Met ($|S| = k$)? | Completed Blocks $M$ |
+| Index $t$ | Roll $rolls[t]$ | Active Set $S$ Before | Updated Set $S$ | Set Size $\lvert S \rvert$ | Threshold Met ($\lvert S \rvert = k$)? | Completed Blocks $M$ |
 |---|---|---|---|---|---|---|
 | $0$ | $4$ | $\emptyset$ | $\{4\}$ | $1$ | No | $0$ |
 | $1$ | $2$ | $\{4\}$ | $\{2, 4\}$ | $2$ | No | $0$ |

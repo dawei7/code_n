@@ -72,8 +72,8 @@ Thus, the minimum operations required is exactly the **$L_1$ norm** $\|\vec{f}(s
 | Frequency $\vec{f}(s)_c$ | Count of letter $c$ in string $s$ | Initial supply in first string |
 | Frequency $\vec{f}(t)_c$ | Count of letter $c$ in string $t$ | Initial supply in second string |
 | Net Difference $\Delta[c]$ | $\vec{f}(s)_c - \vec{f}(t)_c$ | Signed surplus / deficit for character $c$ |
-| Absolute Cost $|\Delta[c]|$ | $|\vec{f}(s)_c - \vec{f}(t)_c|$ | Individual character appends needed |
-| Total Steps | $\sum_{c \in \Sigma} |\Delta[c]|$ | Global minimum append operations |
+| Absolute Cost $\lvert \Delta[c] \rvert$ | $\lvert \vec{f}(s)_c - \vec{f}(t)_c \rvert$ | Individual character appends needed |
+| Total Steps | $\sum_{c \in \Sigma} \lvert \Delta[c] \rvert$ | Global minimum append operations |
 
 ```mermaid
 flowchart TD
@@ -130,7 +130,7 @@ We trace `s = "leetcode"` and `t = "coats"`.
 
 The character-by-character frequency breakdown and append allocation is detailed below:
 
-| Character $c$ | Frequency in $s$ | Frequency in $t$ | Signed Delta $\text{freq}_s - \text{freq}_t$ | Absolute Difference $|\Delta|$ | Required Action |
+| Character $c$ | Frequency in $s$ | Frequency in $t$ | Signed Delta $\text{freq}_s - \text{freq}_t$ | Absolute Difference $\lvert \Delta \rvert$ | Required Action |
 |---|---|---|---|---|---|
 | `'a'` | 0 | 1 | -1 | **1** | Append $1$ copy of `'a'` to $s$ |
 | `'c'` | 1 | 1 | 0 | **0** | No action needed |

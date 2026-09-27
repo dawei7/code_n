@@ -139,21 +139,21 @@ The table below catalogs every step of the single-pass sweep:
 
 | Split Index $i$ | Current Value $x$ | Prefix Sum | Prefix Length | Prefix Floor Avg | Suffix Sum | Suffix Length | Suffix Floor Avg | Absolute Delta $\Delta(i)$ | Running Minimum | Best Index $i^*$ |
 |---|---|---|---|---|---|---|---|---|---|---|
-| **$0$** | $2$ | $2$ | $1$ | $2$ | $25$ | $5$ | $5$ | $|2 - 5| = 3$ | $3$ | $0$ |
-| **$1$** | $5$ | $7$ | $2$ | $3$ | $20$ | $4$ | $5$ | $|3 - 5| = 2$ | $2$ | $1$ |
-| **$2$** | $3$ | $10$ | $3$ | $3$ | $17$ | $3$ | $5$ | $|3 - 5| = 2$ | $2$ | $1$ (Tie kept) |
-| **$3$** | $9$ | $19$ | $4$ | $4$ | $8$ | $2$ | $4$ | $|4 - 4| = 0$ | **$0$** | **$3$** |
-| **$4$** | $5$ | $24$ | $5$ | $4$ | $3$ | $1$ | $3$ | $|4 - 3| = 1$ | $0$ | $3$ |
-| **$5$** | $3$ | $27$ | $6$ | $4$ | $0$ | $0$ | $0$ | $|4 - 0| = 4$ | $0$ | $3$ |
+| **$0$** | $2$ | $2$ | $1$ | $2$ | $25$ | $5$ | $5$ | $\lvert 2 - 5 \rvert = 3$ | $3$ | $0$ |
+| **$1$** | $5$ | $7$ | $2$ | $3$ | $20$ | $4$ | $5$ | $\lvert 3 - 5 \rvert = 2$ | $2$ | $1$ |
+| **$2$** | $3$ | $10$ | $3$ | $3$ | $17$ | $3$ | $5$ | $\lvert 3 - 5 \rvert = 2$ | $2$ | $1$ (Tie kept) |
+| **$3$** | $9$ | $19$ | $4$ | $4$ | $8$ | $2$ | $4$ | $\lvert 4 - 4 \rvert = 0$ | **$0$** | **$3$** |
+| **$4$** | $5$ | $24$ | $5$ | $4$ | $3$ | $1$ | $3$ | $\lvert 4 - 3 \rvert = 1$ | $0$ | $3$ |
+| **$5$** | $3$ | $27$ | $6$ | $4$ | $0$ | $0$ | $0$ | $\lvert 4 - 0 \rvert = 4$ | $0$ | $3$ |
 
 ### Behavior Across Canonical Edge Cases
 
 | Scenario | Input Array $\text{nums}$ | Evaluated Deltas $[\Delta(0), \Delta(1), \dots]$ | Minimum Delta | Result Index $i^*$ |
 |---|---|---|---|---|
-| **Single Element** | $[0]$ | $[|0 - 0|] = [0]$ | $0$ | $0$ |
+| **Single Element** | $[0]$ | $[\lvert 0 - 0 \rvert] = [0]$ | $0$ | $0$ |
 | **All Identical Values** | $[1, 1, 1, 1]$ | $[0, 0, 0, 1]$ | $0$ | $0$ (First position on tie) |
-| **Monotonic Spike at End** | $[0, 100]$ | $[|0 - 100| = 100, \; |50 - 0| = 50]$ | $50$ | $1$ (Terminal split optimal) |
-| **Integer Floor Rounding** | $[5, 1, 1]$ | $[|5 - 1| = 4, \; |3 - 1| = 2, \; |2 - 0| = 2]$ | $2$ | $1$ (Tie between $1$ and $2$, picks $1$) |
+| **Monotonic Spike at End** | $[0, 100]$ | $[\lvert 0 - 100 \rvert = 100, \; \lvert 50 - 0 \rvert = 50]$ | $50$ | $1$ (Terminal split optimal) |
+| **Integer Floor Rounding** | $[5, 1, 1]$ | $[\lvert 5 - 1 \rvert = 4, \; \lvert 3 - 1 \rvert = 2, \; \lvert 2 - 0 \rvert = 2]$ | $2$ | $1$ (Tie between $1$ and $2$, picks $1$) |
 
 ---
 

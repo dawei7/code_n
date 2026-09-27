@@ -127,7 +127,7 @@ All candidates processed. Final output: $3$.
 
 The table below catalogs the detailed verification of each candidate string in the representative instance:
 
-| Candidate Index | Word $w$ | Length $|w|$ | Target Prefix $s[0 : |w|]$ | String Match Comparison | Prefix Criterion Met? | Running Prefix Count |
+| Candidate Index | Word $w$ | Length $\lvert w \rvert$ | Target Prefix $s[0 : \lvert w \rvert]$ | String Match Comparison | Prefix Criterion Met? | Running Prefix Count |
 |---|---|---|---|---|---|---|
 | **0** | $\text{"a"}$ | $1$ | $\text{"a"}$ | $\text{"a"} == \text{"a"}$ | **Yes** | $1$ |
 | **1** | $\text{"b"}$ | $1$ | $\text{"a"}$ | $\text{"a"} \ne \text{"b"}$ | No | $1$ |
@@ -141,7 +141,7 @@ The table below catalogs the detailed verification of each candidate string in t
 | Test Scenario | Word List $\text{words}$ | Target $s$ | Prefix Validations | Output Count | Key Takeaway |
 |---|---|---|---|---|---|
 | **Duplicate Words** | $[\text{"a"}, \text{"a"}]$ | $\text{"aa"}$ | Both copies match $s[0:1]$ | $2$ | Duplicates are counted independently |
-| **Word Longer Than Target** | $[\text{"abcd"}, \text{"ab"}]$ | $\text{"abc"}$ | $\text{"abcd"}$ fails length; $\text{"ab"}$ passes | $1$ | $|w| > |s|$ automatically invalidates |
+| **Word Longer Than Target** | $[\text{"abcd"}, \text{"ab"}]$ | $\text{"abc"}$ | $\text{"abcd"}$ fails length; $\text{"ab"}$ passes | $1$ | $\lvert w \rvert > \lvert s \rvert$ automatically invalidates |
 | **Complete Match** | $[\text{"target"}]$ | $\text{"target"}$ | Full string is its own prefix | $1$ | Identical string is a valid prefix |
 | **Interior Substring Only** | $[\text{"bcd"}]$ | $\text{"abcde"}$ | Occurs at index $1$, not $0$ | $0$ | Non-zero starting offsets are rejected |
 

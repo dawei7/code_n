@@ -61,7 +61,7 @@ Using monotonic bisection:
 
 | Data Structure Component | Purpose | Mathematical Guarantee |
 |---|---|---|
-| Inverted Map $g$ | Maps each value $v$ to list $I(v)$ | Space bounded by $\sum |I(v)| = n$ |
+| Inverted Map $g$ | Maps each value $v$ to list $I(v)$ | Space bounded by $\sum \lvert I(v) \rvert = n$ |
 | Sorted List $I(v)$ | Array indices where $v$ appears | Strictly ascending: $p_i < p_{i+1}$ |
 | Bisection Pointer $l$ | Lower insertion index | Smallest index with $I(v)[l] \ge left$ |
 | Bisection Pointer $r$ | Upper insertion index | Smallest index with $I(v)[r] > right$ |

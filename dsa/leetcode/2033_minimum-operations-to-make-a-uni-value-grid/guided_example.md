@@ -79,12 +79,12 @@ $$\text{nums} = [2, 4, 6, 8]$$
 Median index: $\lfloor 4 / 2 \rfloor = 2$.
 Median target value: $v_{\text{mid}} = \text{nums}[2] = 6$.
 
-| Cell Value $v$ | Absolute Difference $|v - v_{\text{mid}}|$ | Step Calculation $\frac{|v - 6|}{2}$ | Operations Contributed | Transformation Path |
+| Cell Value $v$ | Absolute Difference $\lvert v - v_{\text{mid}} \rvert$ | Step Calculation $\frac{\lvert v - 6 \rvert}{2}$ | Operations Contributed | Transformation Path |
 |---|---|---|---|---|
-| $2$ | $|2 - 6| = 4$ | $4 / 2 = 2$ | $2$ | $2 \xrightarrow{+2} 4 \xrightarrow{+2} 6$ |
-| $4$ | $|4 - 6| = 2$ | $2 / 2 = 1$ | $1$ | $4 \xrightarrow{+2} 6$ |
-| $6$ | $|6 - 6| = 0$ | $0 / 2 = 0$ | $0$ | Already at target |
-| $8$ | $|8 - 6| = 2$ | $2 / 2 = 1$ | $1$ | $8 \xrightarrow{-2} 6$ |
+| $2$ | $\lvert 2 - 6 \rvert = 4$ | $4 / 2 = 2$ | $2$ | $2 \xrightarrow{+2} 4 \xrightarrow{+2} 6$ |
+| $4$ | $\lvert 4 - 6 \rvert = 2$ | $2 / 2 = 1$ | $1$ | $4 \xrightarrow{+2} 6$ |
+| $6$ | $\lvert 6 - 6 \rvert = 0$ | $0 / 2 = 0$ | $0$ | Already at target |
+| $8$ | $\lvert 8 - 6 \rvert = 2$ | $2 / 2 = 1$ | $1$ | $8 \xrightarrow{-2} 6$ |
 
 Total minimum operations required:
 $$2 + 1 + 0 + 1 = 4$$
@@ -109,7 +109,7 @@ Analyzing boundary conditions and alternative target choices highlights the uniq
 | Grid Data | Step $x$ | Sorted Values | Feasibility Check | Median Choice | Calculated Minimum Moves |
 |---|---|---|---|---|---|
 | `[[2, 4], [6, 8]]` | $2$ | $[2, 4, 6, 8]$ | All even (mod $2 = 0$) | $6$ | $4$ moves |
-| `[[1, 5], [2, 3]]` | $1$ | $[1, 2, 3, 5]$ | All mod $1 = 0$ | $3$ | $|1-3| + |2-3| + |3-3| + |5-3| = 5$ moves |
+| `[[1, 5], [2, 3]]` | $1$ | $[1, 2, 3, 5]$ | All mod $1 = 0$ | $3$ | $\lvert 1-3 \rvert + \lvert 2-3 \rvert + \lvert 3-3 \rvert + \lvert 5-3 \rvert = 5$ moves |
 | `[[1, 2], [3, 4]]` | $2$ | $[1, 2, 3, 4]$ | $1 \bmod 2 \neq 2 \bmod 2$ | N/A | Return $-1$ (Impossible) |
 | `[[9]]` | $5$ | $[9]$ | Single element | $9$ | $0$ moves |
 

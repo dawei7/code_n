@@ -94,7 +94,7 @@ Given an equation $A / B = v$, let $pa = \text{find}(A)$ and $pb = \text{find}(B
 | Node Scale Factor $w[x]$ | $w[x] = R / x$ | Multiplier converting node value $x$ to root value $R$ |
 | Path Compression | $w[x] \leftarrow w[x] \cdot w[p[x]]$ | Collapses multi-hop tree branches into direct root links |
 | Component Merge | $w[pb] \leftarrow v \cdot w[A] / w[B]$ | Calibrates relative scale factor between distinct root nodes |
-| Consistency Test | $|v \cdot w[A] - w[B]| < \epsilon$ | Validates that implied ratio matches given assertion |
+| Consistency Test | $\lvert v \cdot w[A] - w[B] \rvert < \epsilon$ | Validates that implied ratio matches given assertion |
 
 ---
 
@@ -149,7 +149,7 @@ All equations processed with zero contradictions. Return `false`.
 | Init | - | - | - | All disjoint | $p=[0, 1, 2], w=[1, 1, 1]$ | - | - |
 | $1$ | $a / b = 3.0$ | $0$ ($w=1.0$) | $1$ ($w=1.0$) | Disjoint | Union $p[1]=0$ | $w[1] = 3.0 \times 1 / 1 = 3.0$ | N/A (new edge) |
 | $2$ | $b / c = 0.5$ | $0$ ($w=3.0$) | $2$ ($w=1.0$) | Disjoint | Union $p[2]=0$ | $w[2] = 0.5 \times 3 / 1 = 1.5$ | N/A (new edge) |
-| $3$ | $a / c = 1.5$ | $0$ ($w=1.0$) | $0$ ($w=1.5$) | Shared Root | Consistency Test | Retained ($w[2]=1.5$) | $|1.5 \times 1 - 1.5| = 0.0$ |
+| $3$ | $a / c = 1.5$ | $0$ ($w=1.0$) | $0$ ($w=1.5$) | Shared Root | Consistency Test | Retained ($w[2]=1.5$) | $\lvert 1.5 \times 1 - 1.5 \rvert = 0.0$ |
 
 ---
 

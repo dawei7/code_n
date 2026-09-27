@@ -123,7 +123,7 @@ The table below catalogs every group evaluated during each round of transformati
 
 ### Round-by-Round Evolution
 
-| Round | Input String to Round | Input Length | Number of Chunks | Chunk Sums Produced | Concatenated Output | Termination Check ($|s| \le k$) |
+| Round | Input String to Round | Input Length | Number of Chunks | Chunk Sums Produced | Concatenated Output | Termination Check ($\lvert s \rvert \le k$) |
 |---|---|---|---|---|---|---|
 | **Start** | $\text{"11111222223"}$ | $11$ | — | — | — | $11 > 3 \implies \text{Continue}$ |
 | **Round 1** | $\text{"11111222223"}$ | $11$ | $4$ | $[3, 4, 6, 5]$ | $\text{"3465"}$ | $4 > 3 \implies \text{Continue}$ |

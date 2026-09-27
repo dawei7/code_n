@@ -85,7 +85,7 @@ Alice wins. Output: `True`.
 Residue counts: $c_0 = 0$, $c_1 = 0$, $c_2 = 1$.
 
 | Turn | Player | Action | Running Sum $S$ | Residue $S \pmod 3$ | Remaining Pool | Consequence |
-|---|---|---|---|---|---|
+|---|---|---|---|---|---|---|
 | $1$ | Alice | Picks $2$ (Type 2) | $2$ | $2$ | $(0, 0, 0)$ | Safe move |
 | End | Game Over | Pool Exhausted | $2$ | $2$ | $(0, 0, 0)$ | **Exhaustion rule: Bob wins!** |
 
@@ -121,12 +121,12 @@ The transition dynamics reveal the power of Type $0$ stones and non-zero imbalan
 3. **Symmetric Branching**:
    - If Alice cannot win by opening with $1$, she can explore opening with $2$. Because the game rules are completely symmetric under swapping $1 \leftrightarrow 2$, evaluating both branches is captured concisely by $|c_1 - c_2|$.
 
-| Stone Multiplicities $(c_0, c_1, c_2)$ | $c_0$ Parity | Difference $|c_1 - c_2|$ | Branch Tested | Winning Player | Game-Theoretic Reason |
+| Stone Multiplicities $(c_0, c_1, c_2)$ | $c_0$ Parity | Difference $\lvert c_1 - c_2 \rvert$ | Branch Tested | Winning Player | Game-Theoretic Reason |
 |---|---|---|---|---|---|
 | $(0, 1, 1)$ | Even | $0$ | Open with $1$ or $2$ | **Alice** | Both types exist; opponent trapped on move 2 |
 | $(0, 3, 0)$ | Even | $3$ | Open with $1$ | **Bob** | $c_2 = 0$; Alice exhausts stones, Bob wins by rule 3 |
 | $(1, 2, 2)$ | Odd | $0$ | Open with $1$ or $2$ | **Bob** | Odd pass reverses parity; Alice trapped |
-| $(1, 4, 1)$ | Odd | $3$ | Open with $1$ | **Alice** | $|4 - 1| = 3 \ge 3$; surplus overcomes odd pass |
+| $(1, 4, 1)$ | Odd | $3$ | Open with $1$ | **Alice** | $\lvert 4 - 1 \rvert = 3 \ge 3$; surplus overcomes odd pass |
 | $(2, 2, 1)$ | Even | $1$ | Open with $1$ | **Alice** | $c_1 \ge 1, c_2 \ge 1$ with even $c_0$ |
 
 ---

@@ -43,8 +43,8 @@ Words can be transformed in place or accumulated via a streaming string builder,
 
 | Word Length Rule | Condition | Case Rule for Character at Index $0$ | Case Rule for Characters at Indices $\ge 1$ |
 |---|---|---|---|
-| Short Token | $|w| \le 2$ | Lowercase | Lowercase |
-| Standard Token | $|w| \ge 3$ | Uppercase | Lowercase |
+| Short Token | $\lvert w \rvert \le 2$ | Lowercase | Lowercase |
+| Standard Token | $\lvert w \rvert \ge 3$ | Uppercase | Lowercase |
 
 ---
 
@@ -100,11 +100,11 @@ The transformation results for all tokens are detailed below:
 
 | Token Index | Original Token Text | Measured Length | Applicable Rule | Head Transform | Tail Transform | Output Token |
 |---|---|---|---|---|---|---|
-| $0$ | `"First"` | $5$ | Standard ($|w| \ge 3$) | `'F' \to \text{'F'}` | `"irst" \to \text{"irst"}` | `"First"` |
-| $1$ | `"leTTeR"` | $6$ | Standard ($|w| \ge 3$) | `'l' \to \text{'L'}` | `"eTTeR" \to \text{"etter"}` | `"Letter"` |
-| $2$ | `"of"` | $2$ | Short ($|w| \le 2$) | `'o' \to \text{'o'}` | `'f' \to \text{'f'}` | `"of"` |
-| $3$ | `"EACH"` | $4$ | Standard ($|w| \ge 3$) | `'E' \to \text{'E'}` | `"ACH" \to \text{"ach"}` | `"Each"` |
-| $4$ | `"Word"` | $4$ | Standard ($|w| \ge 3$) | `'W' \to \text{'W'}` | `"ord" \to \text{"ord"}` | `"Word"` |
+| $0$ | `"First"` | $5$ | Standard ($\lvert w \rvert \ge 3$) | `'F' \to \text{'F'}` | `"irst" \to \text{"irst"}` | `"First"` |
+| $1$ | `"leTTeR"` | $6$ | Standard ($\lvert w \rvert \ge 3$) | `'l' \to \text{'L'}` | `"eTTeR" \to \text{"etter"}` | `"Letter"` |
+| $2$ | `"of"` | $2$ | Short ($\lvert w \rvert \le 2$) | `'o' \to \text{'o'}` | `'f' \to \text{'f'}` | `"of"` |
+| $3$ | `"EACH"` | $4$ | Standard ($\lvert w \rvert \ge 3$) | `'E' \to \text{'E'}` | `"ACH" \to \text{"ach"}` | `"Each"` |
+| $4$ | `"Word"` | $4$ | Standard ($\lvert w \rvert \ge 3$) | `'W' \to \text{'W'}` | `"ord" \to \text{"ord"}` | `"Word"` |
 
 Concatenated result: `"First Letter of Each Word"`.
 

@@ -144,9 +144,9 @@ The correctness of the dual-state Kadane formulation is proven through induction
 
 The operational parameters depend on the string length $N = |s|$ and the lowercase alphabet size $|\Sigma| \le 26$.
 
-| Complexity Dimension | Theoretical Bound | Practical Magnitude ($N \le 10^4, |\Sigma| \le 26$) |
+| Complexity Dimension | Theoretical Bound | Practical Magnitude ($N \le 10^4, \lvert \Sigma \rvert \le 26$) |
 |---|---|---|
-| Character Pair Enumeration | $|\Sigma| \times (|\Sigma| - 1)$ | At most $26 \times 25 = 650$ pairs (or fewer if filtering by distinct characters present in $s$). |
+| Character Pair Enumeration | $\lvert \Sigma \rvert \times (\lvert \Sigma \rvert - 1)$ | At most $26 \times 25 = 650$ pairs (or fewer if filtering by distinct characters present in $s$). |
 | Per-Pair Scan Time | $O(N)$ | A single linear pass through $s$ evaluating simple $O(1)$ conditional updates. |
-| Total Time Complexity | $O(|\Sigma|^2 \cdot N)$ | $\le 650 \times 10^4 = 6.5 \times 10^6$ basic operations, executing in $\approx 25\text{ ms}$. |
+| Total Time Complexity | $O(\lvert \Sigma \rvert^2 \cdot N)$ | $\le 650 \times 10^4 = 6.5 \times 10^6$ basic operations, executing in $\approx 25\text{ ms}$. |
 | Auxiliary Space Complexity | $O(1)$ | Memory is confined to two scalar DP variables ($f_0, f_1$) and loop registers. No dynamic data structures are allocated. |

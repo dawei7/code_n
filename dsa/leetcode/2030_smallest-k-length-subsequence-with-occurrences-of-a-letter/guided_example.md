@@ -74,7 +74,7 @@ Initial state: $\text{stack} = []$, $\text{selected} = 0$, $\text{remaining} = 3
 
 | Index $i$ | Char $c$ | Remaining `'e'` | Popping Checks & Actions | Admission Decision | Stack State | Selected `'e'` | Updated Remaining `'e'` |
 |---|---|---|---|---|---|---|---|
-| $0$ | `'l'` | $3$ | Stack empty | $|\text{stack}| < 4$ and $4 - 0 > 2 - 0 \implies$ Append `'l'` | `['l']` | $0$ | $3$ |
+| $0$ | `'l'` | $3$ | Stack empty | $\lvert \text{stack} \rvert < 4$ and $4 - 0 > 2 - 0 \implies$ Append `'l'` | `['l']` | $0$ | $3$ |
 | $1$ | `'e'` | $3$ | `'e' < 'l'`. Length: $0 + 7 \ge 4$. Top $\neq \text{'e'}$.<br>**Pop `'l'`** | $c == \text{'e'} \implies$ Append `'e'` | `['e']` | $1$ | $2$ |
 | $2$ | `'e'` | $2$ | `'e' \not< 'e'`. No pop. | $c == \text{'e'} \implies$ Append `'e'` | `['e', 'e']` | $2$ | $1$ |
 | $3$ | `'t'` | $1$ | `'t' \not< 'e'`. No pop. | $4 - 2 > 2 - 2 \implies 2 > 0$. Append `'t'` | `['e', 'e', 't']` | $2$ | $1$ |

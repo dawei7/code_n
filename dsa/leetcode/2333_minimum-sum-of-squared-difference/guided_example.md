@@ -103,7 +103,7 @@ $$\sum d_i'^2 = 3^2 + 3^2 + 4^2 + 3^2 = 9 + 9 + 16 + 9 = 43$$
 
 The progression from original differences through binary search capping and residual adjustment is recorded below.
 
-| Index $i$ | Initial $|nums1[i] - nums2[i]|$ | After Cap $T = 4$ | After Remainder Decrements | Final Difference ($d_i'$) | Final Contribution ($d_i'^2$) |
+| Index $i$ | Initial $\lvert nums1[i] - nums2[i] \rvert$ | After Cap $T = 4$ | After Remainder Decrements | Final Difference ($d_i'$) | Final Contribution ($d_i'^2$) |
 |---|---|---|---|---|---|
 | 0 | 4 | 4 | Decremented ($-1$) | 3 | 9 |
 | 1 | 4 | 4 | Decremented ($-1$) | 3 | 9 |

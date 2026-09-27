@@ -131,7 +131,7 @@ We trace `words = ["abc", "car", "ada", "racecar", "cool"]`.
 | Single-Character Word | `["z", "abc"]` | $L = 1 \implies l = 0 \ge r = 0$; loops $0$ times | `"z"` |
 | Even-Length Palindrome | `["noon", "racecar"]` | Pairs $(0, 3)$ and $(1, 2)$ match; $l$ crosses $r$ | `"noon"` |
 | No Palindromes Present | `["def", "ghi", "jkl"]` | Scans all $3$ words; generator exhausts | `""` (empty string) |
-| First Word is Palindrome | `["racecar", "ada"]` | Index $0$ matches; executes in $\mathcal{O}(|w_0|)$ | `"racecar"` |
+| First Word is Palindrome | `["racecar", "ada"]` | Index $0$ matches; executes in $\mathcal{O}(\lvert w_0 \rvert)$ | `"racecar"` |
 
 ---
 

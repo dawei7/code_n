@@ -120,7 +120,7 @@ All elements processed. Return $\text{ans} = 1$.
 
 ### Complete Linear Scan Step Trace
 
-| Step $i$ | Element $x$ | Magnitude $y = |x|$ | Current Best $\text{ans}$ | Current Min Distance $d$ | Condition $y < d$ | Tie Check $(y == d \land x > \text{ans})$ | Updated State $(\text{ans}, d)$ |
+| Step $i$ | Element $x$ | Magnitude $y = \lvert x \rvert$ | Current Best $\text{ans}$ | Current Min Distance $d$ | Condition $y < d$ | Tie Check $(y == d \land x > \text{ans})$ | Updated State $(\text{ans}, d)$ |
 |---|---|---|---|---|---|---|---|
 | Initial | - | - | 0 | $\infty$ | - | - | $(0, \infty)$ |
 | 0 | -4 | 4 | 0 | $\infty$ | **True** ($4 < \infty$) | - | $(-4, 4)$ |

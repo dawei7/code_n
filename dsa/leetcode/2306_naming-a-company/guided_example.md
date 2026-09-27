@@ -93,8 +93,8 @@ Because the alphabet size $|\Sigma| = 26$, there are only $\binom{26}{2} = 325$ 
 | Character Set Entity | Mathematical Definition | Role in Company Naming |
 |---|---|---|
 | Suffix Bucket $S_c$ | $\{ w[1:] : w \in ideas \land w[0] = c \}$ | Pool of suffixes accessible to initial letter $c$ |
-| Common Overlap $m(c_1, c_2)$ | $|S_{c_1} \cap S_{c_2}|$ | Suffixes that would create collisions if swapped |
-| Exclusive Suffixes | $|S_c| - m(c_1, c_2)$ | Suffixes guaranteed to generate brand-new names |
+| Common Overlap $m(c_1, c_2)$ | $\lvert S_{c_1} \cap S_{c_2} \rvert$ | Suffixes that would create collisions if swapped |
+| Exclusive Suffixes | $\lvert S_c \rvert - m(c_1, c_2)$ | Suffixes guaranteed to generate brand-new names |
 
 ---
 
@@ -138,8 +138,8 @@ All pairs evaluated. Final answer: $6$.
 
 ## 4. Comprehensive State Trace
 
-| Letter Pair $(c_1, c_2)$ | Pool Size $|S_{c_1}|$ | Pool Size $|S_{c_2}|$ | Overlapping Suffixes $m$ | Exclusive to $c_1$ | Exclusive to $c_2$ | Combinations $2 \times \text{Diff}_1 \times \text{Diff}_2$ | Cumulative $ans$ |
-|---|---|---|---|---|---|---|---|---|
+| Letter Pair $(c_1, c_2)$ | Pool Size $\lvert S_{c_1} \rvert$ | Pool Size $\lvert S_{c_2} \rvert$ | Overlapping Suffixes $m$ | Exclusive to $c_1$ | Exclusive to $c_2$ | Combinations $2 \times \text{Diff}_1 \times \text{Diff}_2$ | Cumulative $ans$ |
+|---|---|---|---|---|---|---|---|
 | $(\text{'c'}, \text{'d'})$ | $1$ | $1$ | $0$ | $1$ | $1$ | $2 \times 1 \times 1 = 2$ | $2$ |
 | $(\text{'c'}, \text{'t'})$ | $1$ | $2$ | $1$ (`"offee"`) | $0$ | $1$ | $2 \times 0 \times 1 = 0$ | $2$ |
 | $(\text{'d'}, \text{'t'})$ | $1$ | $2$ | $0$ | $1$ | $2$ | $2 \times 1 \times 2 = 4$ | $6$ |

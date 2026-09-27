@@ -136,7 +136,7 @@ We trace the representative instance on $n = 2$, `artifacts = [[0, 0, 0, 0], [0,
 
 The table below summarizes the coordinates, constituent cells, membership queries, and excavation status for all artifacts.
 
-| Artifact ID | Coordinates $[r_1, c_1, r_2, c_2]$ | Constituent Cell Set $\mathcal{C}(A)$ | Size $|\mathcal{C}(A)|$ | Cells Excavated in $\mathcal{D}$ | Cells Missing | Fully Excavated? | Running Count |
+| Artifact ID | Coordinates $[r_1, c_1, r_2, c_2]$ | Constituent Cell Set $\mathcal{C}(A)$ | Size $\lvert \mathcal{C}(A) \rvert$ | Cells Excavated in $\mathcal{D}$ | Cells Missing | Fully Excavated? | Running Count |
 |---|---|---|---|---|---|---|---|
 | $A_1$ | $[0, 0, 0, 0]$ | $\{(0, 0)\}$ | $1$ | $(0, 0)$ | None | **Yes** | $1$ |
 | $A_2$ | $[0, 1, 1, 1]$ | $\{(0, 1), (1, 1)\}$ | $2$ | $(0, 1)$ | $(1, 1)$ | **No** | $1$ |

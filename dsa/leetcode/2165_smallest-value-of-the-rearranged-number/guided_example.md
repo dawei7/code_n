@@ -41,7 +41,7 @@ Let $D$ be the multiset of decimal digits of $|num|$:
 3. **Zero Case ($num = 0$):**
    Zero contains only the digit `'0'`; return $0$ immediately.
 
-| Sign Regime | Target Objective on Magnitude $|num|$ | Sorting Order | Leading Zero Policy |
+| Sign Regime | Target Objective on Magnitude $\lvert num \rvert$ | Sorting Order | Leading Zero Policy |
 |---|---|---|---|
 | Positive ($num > 0$) | Minimize magnitude | Ascending | Swap first non-zero digit to index $0$ |
 | Negative ($num < 0$) | Maximize magnitude | Descending | Inherently non-zero leading digit |

@@ -131,7 +131,7 @@ The operational parameters depend on the length of the string $n = |num|$.
 
 | Phase | Time Complexity | Auxiliary Space Complexity | Details |
 |---|---|---|---|
-| Frequency Histogram Pass | $O(n)$ | $O(|\Sigma|) = O(1)$ | Single pass over $n$ characters, updating fixed array of size $10$. |
+| Frequency Histogram Pass | $O(n)$ | $O(\lvert \Sigma \rvert) = O(1)$ | Single pass over $n$ characters, updating fixed array of size $10$. |
 | Consistency Validation Pass | $O(n)$ | $O(1)$ | Single pass over $n$ indices with $O(1)$ comparisons. |
 | Total Time Complexity | $O(n)$ | $O(1)$ | With $n \le 10$, executes in fewer than $50$ instructions ($< 1\text{ }\mu\text{s}$). |
 | Total Space Complexity | $O(1)$ | $O(1)$ | Fixed array of $10$ integers. |

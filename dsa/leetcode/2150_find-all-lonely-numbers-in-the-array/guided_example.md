@@ -61,7 +61,7 @@ The relation $|a - b| = 1$ is symmetric. If $a = b + 1$, then $b$ invalidates $a
 | Frequency Count | $\text{freq}[x]$ | Verifies uniqueness ($\text{freq}[x] = 1$) |
 | Left Neighbor Check | $\text{freq}[x - 1] = 0$ | Ensures no predecessor exists in `nums` |
 | Right Neighbor Check | $\text{freq}[x + 1] = 0$ | Ensures no successor exists in `nums` |
-| Mutual Disqualification | $|a - b| = 1 \implies \text{freq}[a] > 0 \land \text{freq}[b] > 0$ | Eliminates both $5$ and $6$ from contention |
+| Mutual Disqualification | $\lvert a - b \rvert = 1 \implies \text{freq}[a] > 0 \land \text{freq}[b] > 0$ | Eliminates both $5$ and $6$ from contention |
 
 ---
 

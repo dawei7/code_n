@@ -117,7 +117,7 @@ Assembled answers: $[2, 1]$.
 
 The table below catalogs the state of the height buckets after preprocessing the representative rectangles:
 
-| Height Layer $h$ | Associated Rectangles | Unsorted Width List | Sorted Bucket $\mathcal{D}[h]$ | Bucket Size $|\mathcal{D}[h]|$ |
+| Height Layer $h$ | Associated Rectangles | Unsorted Width List | Sorted Bucket $\mathcal{D}[h]$ | Bucket Size $\lvert \mathcal{D}[h] \rvert$ |
 |---|---|---|---|---|
 | **$h = 2$** | $[1, 2]$ | $[1]$ | $[1]$ | $1$ |
 | **$h = 3$** | $[2, 3]$ | $[2]$ | $[2]$ | $1$ |
@@ -128,7 +128,7 @@ The table below catalogs the state of the height buckets after preprocessing the
 
 The table below traces binary search evaluations across active height layers for both query points:
 
-| Query Point $(x, y)$ | Active Height Layer $h$ | Bucket Contents $\mathcal{D}[h]$ | Lower Bound Index $\text{bisect\_left}(\mathcal{D}[h], x)$ | Matching Rectangles $|\mathcal{D}[h]| - \text{idx}$ | Running Subtotal | Cumulative Query Result |
+| Query Point $(x, y)$ | Active Height Layer $h$ | Bucket Contents $\mathcal{D}[h]$ | Lower Bound Index $\text{bisect\_left}(\mathcal{D}[h], x)$ | Matching Rectangles $\lvert \mathcal{D}[h] \rvert - \text{idx}$ | Running Subtotal | Cumulative Query Result |
 |---|---|---|---|---|---|---|
 | **$(2, 1)$** | $h = 2$ | $[1]$ | $1$ | $1 - 1 = 0$ | $0$ | — |
 | **$(2, 1)$** | $h = 3$ | $[2]$ | $0$ | $1 - 0 = 1$ | $1$ | — |

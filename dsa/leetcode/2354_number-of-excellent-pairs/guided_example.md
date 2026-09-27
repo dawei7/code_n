@@ -85,9 +85,9 @@ Because bit counts range only from $0$ to $30$ for 32-bit integers, the inner su
 
 | Bit Structure | Set Theory Dual | Property Value | Contribution to Sum |
 |---|---|---|---|
-| Bitwise OR $a \mid b$ | Set Union $\text{bitset}(a) \cup \text{bitset}(b)$ | $|\text{bitset}(a) \cup \text{bitset}(b)|$ | Adds union size |
-| Bitwise AND $a \mathbin{\&} b$ | Set Intersection $\text{bitset}(a) \cap \text{bitset}(b)$ | $|\text{bitset}(a) \cap \text{bitset}(b)|$ | Adds intersection size |
-| Decoupled Form | Sum of Cardinals $|A| + |B|$ | $\text{popcount}(a) + \text{popcount}(b)$ | Linearizes pair test |
+| Bitwise OR $a \mid b$ | Set Union $\text{bitset}(a) \cup \text{bitset}(b)$ | $\lvert \text{bitset}(a) \cup \text{bitset}(b) \rvert$ | Adds union size |
+| Bitwise AND $a \mathbin{\&} b$ | Set Intersection $\text{bitset}(a) \cap \text{bitset}(b)$ | $\lvert \text{bitset}(a) \cap \text{bitset}(b) \rvert$ | Adds intersection size |
+| Decoupled Form | Sum of Cardinals $\lvert A \rvert + \lvert B \rvert$ | $\text{popcount}(a) + \text{popcount}(b)$ | Linearizes pair test |
 
 ## 3. Step-by-Step Walkthrough with Intermediate State
 

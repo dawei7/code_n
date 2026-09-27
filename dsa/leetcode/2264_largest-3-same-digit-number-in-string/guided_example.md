@@ -167,6 +167,6 @@ The operational demands are parameterized by the length $n$ of the string $num$.
 | Metric | Bound | Analysis |
 |---|---|---|
 | Time Complexity (Linear Scan) | $O(n)$ | Inspects $n - 2$ windows of length $3$, performing $2$ character equality checks per window. Total operations: $2n - 4 \in O(n)$. |
-| Time Complexity (Descending Probe) | $O(|\Sigma| \cdot n)$ | At most $10$ substring searches across a string of length $n$. Since $|\Sigma| = 10$ is a fixed constant, runtime is strictly $O(n)$. |
+| Time Complexity (Descending Probe) | $O(\lvert \Sigma \rvert \cdot n)$ | At most $10$ substring searches across a string of length $n$. Since $\lvert \Sigma \rvert = 10$ is a fixed constant, runtime is strictly $O(n)$. |
 | Space Complexity | $O(1)$ | Only a few scalar variables or fixed three-character constant probe strings are used. No dynamic allocations scale with $n$. |
 | Character Comparisons | $\le 2n$ | In the sliding window pass, at most two equality checks are made per index offset. |

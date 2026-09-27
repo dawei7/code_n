@@ -84,7 +84,7 @@ If Teacher $1$ teaches Subject $2$ in five departments, standard `COUNT` would e
 |---|---|---|
 | Group Partitioning | $\{r \in T \mid r.\text{teacher\_id} = t\}$ | Isolates records belonging to a single instructor |
 | Distinct Projection | $\pi_{\text{subject\_id}}(\text{Group}_t)$ | Eliminates departmental duplicates of the same course |
-| Cardinality Count | $|S(t)|$ | Produces the scalar metric `cnt` |
+| Cardinality Count | $\lvert S(t) \rvert$ | Produces the scalar metric `cnt` |
 
 ## 3. Step-by-Step Walkthrough with Intermediate State
 
@@ -127,7 +127,7 @@ Output rows formed:
 
 The row-by-row state updates and intermediate distinct subject sets are detailed below.
 
-| Row Number | Tuple $(t, s, d)$ | Target Group $t$ | Subject Inserted $s$ | Active Distinct Set $S(t)$ | Running Set Size $|S(t)|$ |
+| Row Number | Tuple $(t, s, d)$ | Target Group $t$ | Subject Inserted $s$ | Active Distinct Set $S(t)$ | Running Set Size $\lvert S(t) \rvert$ |
 |---|---|---|---|---|---|
 | $1$ | $(1, 2, 3)$ | Teacher 1 | $2$ | $\{2\}$ | $1$ |
 | $2$ | $(1, 2, 4)$ | Teacher 1 | $2$ (Duplicate) | $\{2\}$ | $1$ |

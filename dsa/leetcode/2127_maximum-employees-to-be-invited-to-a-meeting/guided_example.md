@@ -60,7 +60,7 @@ $$\text{Max Employees} = \max(M_{\ge 3}, M_{= 2})$$
 
 | Component Topology | Seating Modality | Reusability Across Components | Total Capacity Metric |
 |---|---|---|---|
-| Cycle of length $L \ge 3$ | Closed loop $v_1 \dots v_L$ | Mutually exclusive (Pick single largest) | $\max |C|$ |
+| Cycle of length $L \ge 3$ | Closed loop $v_1 \dots v_L$ | Mutually exclusive (Pick single largest) | $\max \lvert C \rvert$ |
 | Mutual pair ($L = 2$) | Extended bidirectional chain | Globally additive (Sum all pairs) | $\sum (2 + d_u + d_v)$ |
 
 ---

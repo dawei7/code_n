@@ -104,7 +104,7 @@ All $4$ groups have been generated with length $3$:
 
 The extraction and padding transitions across all groups are tabulated below:
 
-| Chunk Index ($m$) | Start Boundary ($i$) | End Boundary ($\min(n, i+k)$) | Raw Substring | Length Deficit ($k - |T|$) | Padded String | Accumulator State |
+| Chunk Index ($m$) | Start Boundary ($i$) | End Boundary ($\min(n, i+k)$) | Raw Substring | Length Deficit ($k - \lvert T \rvert$) | Padded String | Accumulator State |
 |---|---|---|---|---|---|---|
 | $0$ | $0$ | $3$ | `"abc"` | $0$ | `"abc"` | `["abc"]` |
 | $1$ | $3$ | $6$ | `"def"` | $0$ | `"def"` | `["abc", "def"]` |

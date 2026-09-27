@@ -136,7 +136,7 @@ The complexity parameters are defined by the number of words $N = |words|$ and t
 
 | Dimension | Bound | Justification |
 |---|---|---|
-| Frequency Counting / Comparison | $O(L)$ | Comparing two words of length $L$ requires tallying character counts across an alphabet of size $|\Sigma| = 26$. |
+| Frequency Counting / Comparison | $O(L)$ | Comparing two words of length $L$ requires tallying character counts across an alphabet of size $\lvert \Sigma \rvert = 26$. |
 | Total Time Complexity | $O(N \cdot L)$ | There are $N - 1$ pairwise comparisons, each taking $O(L)$ time. Total operations $\approx 100 \times 10 = 1000$. |
 | Space Complexity | $O(N \cdot L)$ | Storing the output array of strings requires $O(N \cdot L)$ memory. |
-| Auxiliary Memory | $O(|\Sigma|) = O(1)$ | Frequency counting uses a fixed $26$-element array or hash map. |
+| Auxiliary Memory | $O(\lvert \Sigma \rvert) = O(1)$ | Frequency counting uses a fixed $26$-element array or hash map. |

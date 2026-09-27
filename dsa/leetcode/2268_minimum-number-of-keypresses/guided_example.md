@@ -168,7 +168,7 @@ The complexity parameters are governed by the length of the string $N = |s|$ and
 
 | Operation Phase | Time Complexity | Space Complexity | Details |
 |---|---|---|---|
-| Frequency Counting | $O(N)$ | $O(|\Sigma|)$ | Single linear scan over the string of length $N$ to tally character counts into an array of size $26$. |
-| Frequency Sorting | $O(|\Sigma| \log |\Sigma|)$ | $O(|\Sigma|)$ | Sorting at most $26$ integer counts takes negligible time ($\le 26 \log_2 26 \approx 122$ comparisons). |
-| Dot Product Accumulation | $O(|\Sigma|)$ | $O(1)$ | Single pass over at most $26$ values with integer multiplication and addition. |
-| Total Complexity | $O(N)$ | $O(|\Sigma|) = O(1)$ | Strictly linear in input size $N$ with constant auxiliary memory. |
+| Frequency Counting | $O(N)$ | $O(\lvert \Sigma \rvert)$ | Single linear scan over the string of length $N$ to tally character counts into an array of size $26$. |
+| Frequency Sorting | $O(\lvert \Sigma \rvert \log \lvert \Sigma \rvert)$ | $O(\lvert \Sigma \rvert)$ | Sorting at most $26$ integer counts takes negligible time ($\le 26 \log_2 26 \approx 122$ comparisons). |
+| Dot Product Accumulation | $O(\lvert \Sigma \rvert)$ | $O(1)$ | Single pass over at most $26$ values with integer multiplication and addition. |
+| Total Complexity | $O(N)$ | $O(\lvert \Sigma \rvert) = O(1)$ | Strictly linear in input size $N$ with constant auxiliary memory. |

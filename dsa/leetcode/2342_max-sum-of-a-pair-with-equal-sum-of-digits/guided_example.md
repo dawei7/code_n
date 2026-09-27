@@ -72,7 +72,7 @@ $$1 \le S(nums[i]) \le 9 \times 9 = 81$$
 
 The number of distinct classes is bounded by $82$, meaning bucket storage operates in $\mathcal{O}(1)$ space.
 
-| Digit Sum Class $s$ | Member Property | Size Requirement $|E_s|$ | Max Pairwise Contribution |
+| Digit Sum Class $s$ | Member Property | Size Requirement $\lvert E_s \rvert$ | Max Pairwise Contribution |
 |---|---|---|---|
 | Active Class | $S(nums[i]) = s$ | $\ge 2$ | $m_1(s) + m_2(s)$ |
 | Singleton Class | $S(nums[i]) = s$ | $1$ | Cannot form pair |

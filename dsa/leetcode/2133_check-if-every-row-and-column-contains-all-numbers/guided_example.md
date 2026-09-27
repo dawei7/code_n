@@ -48,8 +48,8 @@ If all $2n$ sets achieve size $n$, the matrix is unconditionally valid.
 
 | Line Type | Index Range | Target Sequence | Distinct Target Condition |
 |---|---|---|---|
-| Rows | $i \in \{0, \dots, n-1\}$ | $\text{matrix}[i][0 \dots n-1]$ | $|\text{set}(\text{row}_i)| = n$ |
-| Columns | $j \in \{0, \dots, n-1\}$ | $\text{matrix}[0 \dots n-1][j]$ | $|\text{set}(\text{col}_j)| = n$ |
+| Rows | $i \in \{0, \dots, n-1\}$ | $\text{matrix}[i][0 \dots n-1]$ | $\lvert \text{set}(\text{row}_i) \rvert = n$ |
+| Columns | $j \in \{0, \dots, n-1\}$ | $\text{matrix}[0 \dots n-1][j]$ | $\lvert \text{set}(\text{col}_j) \rvert = n$ |
 
 ---
 

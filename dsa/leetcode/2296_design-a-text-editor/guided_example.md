@@ -78,7 +78,7 @@ Instead, we represent the text as two independent LIFO stacks partitioned at the
 
 | Operation | Array / String Naive | Doubly Linked List | Dual-Stack (Zipper) |
 |---|---|---|---|
-| `addText(text)` | $O(N + |text|)$ | $O(|text|)$ | $O(|text|)$ |
+| `addText(text)` | $O(N + \lvert text \rvert)$ | $O(\lvert text \rvert)$ | $O(\lvert text \rvert)$ |
 | `deleteText(k)` | $O(N)$ | $O(k)$ | $O(k)$ |
 | `cursorLeft(k)` | $O(1)$ | $O(k)$ | $O(k)$ |
 | `cursorRight(k)` | $O(1)$ | $O(k)$ | $O(k)$ |

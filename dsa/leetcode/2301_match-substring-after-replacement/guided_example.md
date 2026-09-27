@@ -55,7 +55,7 @@ Testing each of the $n - m + 1$ starting positions takes at most $m$ constant-ti
 
 | Data Structure | Lookup Mechanism | Query Cost | Memory Overhead |
 |---|---|---|---|
-| 2D Boolean Array / Hash Sets | Direct matrix indexing $\mathcal{M}[\text{ord}(b)][\text{ord}(a)]$ | $O(1)$ | $O(|\Sigma|^2)$ bounded table |
+| 2D Boolean Array / Hash Sets | Direct matrix indexing $\mathcal{M}[\text{ord}(b)][\text{ord}(a)]$ | $O(1)$ | $O(\lvert \Sigma \rvert^2)$ bounded table |
 | Sliding Window Cursor | Linear window increment $i \in [0, n - m]$ | $O(1)$ per step | $O(1)$ index scalar |
 | Component-wise Verifier | Short-circuit boolean conjunction $\bigwedge_j$ | $O(1)$ to $O(m)$ | $O(1)$ loop counter |
 

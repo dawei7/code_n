@@ -108,7 +108,7 @@ We trace the successful execution path for $s_1 = \text{"l123e"}$ and $s_2 = \te
 | 4 | $(3, 1, 0)$ | `'3'` (digit) | `'4'` | $s_2[1]$ is digit: parse value $4$ | $(3, 2, 0 - 4 = -4)$ |
 | 5 | $(3, 2, -4)$ | `'3'` (digit) | End of $s_2$ | $s_1[3]$ is digit: parse value $3$ | $(4, 2, -4 + 3 = -1)$ |
 | 6 | $(4, 2, -1)$ | `'e'` | End of $s_2$ | $\Delta < 0$ and $s_1[4]$ is letter `'e'`: absorb `'e'` | $(5, 2, -1 + 1 = 0)$ |
-| 7 | $(5, 2, 0)$ | End of $s_1$ | End of $s_2$ | $i = 5 = |s_1|$, $j = 2 = |s_2|$, $\Delta = 0$ | **Success! Return $\text{true}$** |
+| 7 | $(5, 2, 0)$ | End of $s_1$ | End of $s_2$ | $i = 5 = \lvert s_1 \rvert$, $j = 2 = \lvert s_2 \rvert$, $\Delta = 0$ | **Success! Return $\text{true}$** |
 
 Every character and wildcard block aligns with net balance zero, confirming compatibility.
 

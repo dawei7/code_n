@@ -73,7 +73,7 @@ By maintaining a frequency map of seen GCD values:
 | Current GCD $g$ | $\gcd(\text{nums}[j], k)$ | Prime factor contribution of current element |
 | Previous Divisor $d$ | Divisor of $k$ | GCD of an already-processed element |
 | Compatibility Test | $(g \cdot d) \bmod k == 0$ | Verifies if pair product is a multiple of $k$ |
-| Divisor Count $d(k)$ | $|\{d \in \mathbb{N} : d \mid k\}| \le 128$ | Upper bound on active hash map keys |
+| Divisor Count $d(k)$ | $\lvert \{d \in \mathbb{N} : d \mid k\} \rvert \le 128$ | Upper bound on active hash map keys |
 
 ```mermaid
 flowchart TD

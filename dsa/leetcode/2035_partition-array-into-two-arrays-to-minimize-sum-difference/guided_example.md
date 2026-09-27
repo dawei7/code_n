@@ -84,12 +84,12 @@ Right half: $\text{nums}[2 \dots 3] = [7, 3]$.
 
 ### Step C: Matching Complements with $k + m = 2$
 
-| Bucket $k$ | Complement $m = 2 - k$ | Left Sum $a \in \mathcal{F}[k]$ | Target $-a$ | Sorted Right Bucket $\mathcal{G}[m]$ | Closest Match $b \in \mathcal{G}[m]$ | Combined Sum $a + b$ | Absolute Difference $|a + b|$ | Running Minimum |
+| Bucket $k$ | Complement $m = 2 - k$ | Left Sum $a \in \mathcal{F}[k]$ | Target $-a$ | Sorted Right Bucket $\mathcal{G}[m]$ | Closest Match $b \in \mathcal{G}[m]$ | Combined Sum $a + b$ | Absolute Difference $\lvert a + b \rvert$ | Running Minimum |
 |---|---|---|---|---|---|---|---|---|
-| $k = 0$ | $m = 2$ | $-12$ | $+12$ | $[10]$ | $10$ | $-12 + 10 = -2$ | $|-2| = 2$ | $2$ |
-| $k = 1$ | $m = 1$ | $-6$ | $+6$ | $[-4, 4]$ | $4$ | $-6 + 4 = -2$ | $|-2| = 2$ | $2$ |
-| $k = 1$ | $m = 1$ | $+6$ | $-6$ | $[-4, 4]$ | $-4$ | $6 + (-4) = +2$ | $|+2| = 2$ | $2$ |
-| $k = 2$ | $m = 0$ | $+12$ | $-12$ | $[-10]$ | $-10$ | $12 + (-10) = +2$ | $|+2| = 2$ | $2$ |
+| $k = 0$ | $m = 2$ | $-12$ | $+12$ | $[10]$ | $10$ | $-12 + 10 = -2$ | $\lvert -2 \rvert = 2$ | $2$ |
+| $k = 1$ | $m = 1$ | $-6$ | $+6$ | $[-4, 4]$ | $4$ | $-6 + 4 = -2$ | $\lvert -2 \rvert = 2$ | $2$ |
+| $k = 1$ | $m = 1$ | $+6$ | $-6$ | $[-4, 4]$ | $-4$ | $6 + (-4) = +2$ | $\lvert +2 \rvert = 2$ | $2$ |
+| $k = 2$ | $m = 0$ | $+12$ | $-12$ | $[-10]$ | $-10$ | $12 + (-10) = +2$ | $\lvert +2 \rvert = 2$ | $2$ |
 
 The minimum possible absolute difference is $2$.
 (Achieved by partition $\mathcal{A} = [3, 9]$ with sum $12$, and $\mathcal{B} = [7, 3]$ with sum $10$, difference $|12 - 10| = 2$).
@@ -111,8 +111,8 @@ The bisection matching exhibits several structural properties:
 | Array Instance | $n$ | Total Permutations $\binom{2n}{n}$ | Meet-in-the-Middle States $2 \times 2^n$ | Optimal Partition | Minimum Absolute Difference |
 |---|---|---|---|---|---|
 | `[3, 9, 7, 3]` | $2$ | $\binom{4}{2} = 6$ | $2 \times 4 = 8$ | `[3, 9]` ($12$) vs `[7, 3]` ($10$) | $2$ |
-| `[-36, 36]` | $1$ | $\binom{2}{1} = 2$ | $2 \times 2 = 4$ | `[-36]` vs `[36]` | $|(-36) - 36| = 72$ |
-| `[2, -1, 0, 4, -2, -9]` | $3$ | $\binom{6}{3} = 20$ | $2 \times 8 = 16$ | `[2, 4, -9]` ($-3$) vs `[-1, 0, -2]` ($-3$) | $|(-3) - (-3)| = 0$ |
+| `[-36, 36]` | $1$ | $\binom{2}{1} = 2$ | $2 \times 2 = 4$ | `[-36]` vs `[36]` | $\lvert (-36) - 36 \rvert = 72$ |
+| `[2, -1, 0, 4, -2, -9]` | $3$ | $\binom{6}{3} = 20$ | $2 \times 8 = 16$ | `[2, 4, -9]` ($-3$) vs `[-1, 0, -2]` ($-3$) | $\lvert (-3) - (-3) \rvert = 0$ |
 
 ---
 

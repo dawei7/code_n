@@ -121,7 +121,7 @@ We trace the primary instance with $target = 13$:
 
 ### Layer-by-Layer Reachability Matrix
 
-| Row Index $r$ | Row Values $mat[r]$ | Deduplicated $U_r$ | Reachable Sum Range $[\min, \max]$ | Complete Reachable Sum Set $\mathcal{S}_r$ | Cardinality $|\mathcal{S}_r|$ |
+| Row Index $r$ | Row Values $mat[r]$ | Deduplicated $U_r$ | Reachable Sum Range $[\min, \max]$ | Complete Reachable Sum Set $\mathcal{S}_r$ | Cardinality $\lvert \mathcal{S}_r \rvert$ |
 |---|---|---|---|---|---|
 | 0 | `[1, 2, 3]` | $\{1, 2, 3\}$ | $[1, 3]$ | $\{1, 2, 3\}$ | 3 |
 | 1 | `[4, 5, 6]` | $\{4, 5, 6\}$ | $[1+4, 3+6] = [5, 9]$ | $\{5, 6, 7, 8, 9\}$ | 5 |
@@ -129,7 +129,7 @@ We trace the primary instance with $target = 13$:
 
 ### Proximity Analysis Against Target 13
 
-| Candidate Sum $s \in \mathcal{S}_2$ | Absolute Distance $|s - 13|$ | Sample Decomposition ($r_0 + r_1 + r_2$) | Optimal Status |
+| Candidate Sum $s \in \mathcal{S}_2$ | Absolute Distance $\lvert s - 13 \rvert$ | Sample Decomposition ($r_0 + r_1 + r_2$) | Optimal Status |
 |---|---|---|---|
 | 12 | 1 | $1 + 4 + 7$ | Suboptimal |
 | **13** | **0** | **$1 + 5 + 7$ or $2 + 4 + 7$ or $1 + 4 + 8$** | **Globally Optimal** |

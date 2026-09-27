@@ -64,7 +64,7 @@ Let us trace the execution over $s = \text{"foobar"}$ and $letter = \text{'o'}$.
 
 | Processing Stage | Target Variable | Value | Description |
 |---|---|---|---|
-| Step 1: Length Measurement | $n = |s|$ | $6$ | Total characters in string $s$ |
+| Step 1: Length Measurement | $n = \lvert s \rvert$ | $6$ | Total characters in string $s$ |
 | Step 2: Linear Scan | $\text{count}$ | $2$ | Incremented at indices $1$ and $2$ |
 | Step 3: Numerator Scaling | $\text{num} = \text{count} \times 100$ | $200$ | Integer scaling before division |
 | Step 4: Floor Division | $\text{result} = \text{num} \mathbin{/\!\!/} n$ | $33$ | $200 \mathbin{/\!\!/} 6 = 33$ remainder $2$ |
