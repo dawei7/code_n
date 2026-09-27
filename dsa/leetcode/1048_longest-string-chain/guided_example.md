@@ -174,7 +174,7 @@ Output: `4`.
 
 ## 4. Topologically Sorted DP Trace Table
 
-| Word Index $i$ | Word $words[i]$ | Length $|w|$ | Valid Predecessors Found | Predecessor $dp$ Values | Calculated $dp[i]$ | Running Best $res$ |
+| Word Index $i$ | Word $words[i]$ | Length $\lvert w \rvert$ | Valid Predecessors Found | Predecessor $dp$ Values | Calculated $dp[i]$ | Running Best $res$ |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | $0$ | `"a"` | $1$ | None | None | **$1$** | $1$ |
 | $1$ | `"b"` | $1$ | None | None | **$1$** | $1$ |

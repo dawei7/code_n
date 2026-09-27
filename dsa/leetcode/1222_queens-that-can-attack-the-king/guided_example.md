@@ -120,8 +120,8 @@ Notice how:
 | **Perspective** | Inward from all queens $\mathcal{Q} \to K$ | $8 \times 8$ 2D matrix allocation | Outward from king along 8 unit vectors |
 | **Collinearity Verification** | Slope calculation $\Delta r / \Delta c \in \{0, \pm 1, \infty\}$ | Iterative ray traversal on matrix | Simple coordinate increments $(r + \Delta r, c + \Delta c)$ |
 | **Obstruction Handling** | Sort queens by distance, find closest per ray | Natural collision on first non-zero cell | Immediate loop break upon first set hit |
-| **Time Complexity** | $\mathcal{O}(|\mathcal{Q}| \log |\mathcal{Q}|)$ sorting or hash grouping | $\mathcal{O}(B^2 + 8 B)$ where $B = 8$ | $\mathcal{O}(|\mathcal{Q}| + 8 B)$ set build + 56 lookups |
-| **Auxiliary Space** | $\mathcal{O}(|\mathcal{Q}|)$ for grouped lists | $\mathcal{O}(B^2) = 64$ integers | $\mathcal{O}(|\mathcal{Q}|)$ hash set of pairs |
+| **Time Complexity** | $\mathcal{O}(\lvert \mathcal{Q} \rvert \log \lvert \mathcal{Q} \rvert)$ sorting or hash grouping | $\mathcal{O}(B^2 + 8 B)$ where $B = 8$ | $\mathcal{O}(\lvert \mathcal{Q} \rvert + 8 B)$ set build + 56 lookups |
+| **Auxiliary Space** | $\mathcal{O}(\lvert \mathcal{Q} \rvert)$ for grouped lists | $\mathcal{O}(B^2) = 64$ integers | $\mathcal{O}(\lvert \mathcal{Q} \rvert)$ hash set of pairs |
 
 ```
 Execution Efficiency Comparison:

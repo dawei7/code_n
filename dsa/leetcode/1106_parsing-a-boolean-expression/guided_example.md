@@ -185,9 +185,9 @@ $expression = \text{"\&(|(f))"}$.
 | Char Index | Character Processed | Action Taken | Literals Popped | Operator Popped | Evaluation Rule | Stack Contents After Step |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | $0$ | `'&'` | Push operator | — | — | — | `['&']` |
-| $2$ | `'|'` | Push operator | — | — | — | `['&', '|']` |
-| $4$ | `'f'` | Push literal | — | — | — | `['&', '|', 'f']` |
-| **$5$** | **`')'`** | **Reduce group** | **$T=0, F=1$** | **`'|'`** | **$T=0 \implies \text{'f'}$** | **`['&', 'f']`** |
+| $2$ | `'\|'` | Push operator | — | — | — | `['&', '\|']` |
+| $4$ | `'f'` | Push literal | — | — | — | `['&', '\|', 'f']` |
+| **$5$** | **`')'`** | **Reduce group** | **$T=0, F=1$** | **`'\|'`** | **$T=0 \implies \text{'f'}$** | **`['&', 'f']`** |
 | **$6$** | **`')'`** | **Reduce group** | **$T=0, F=1$** | **`'&'`** | **$F=1 \implies \text{'f'}$** | **`['f']`** |
 | Final | — | Extract root | — | — | `'f' == 't' \implies \text{false}` | `['f']` |
 
@@ -208,7 +208,7 @@ $expression = \text{"\&(|(f))"}$.
 | Scenario | Input Pattern | Behavior | Trapped Risk |
 |---|---|---|---|
 | Single Literal | $expression = \text{"t"}$ | Never encounters `)`; leaves `['t']`; returns `true`. | Attempting to pop on single-character inputs. |
-| Wide OR Expression | $expression = \text{"|(f,f,f,t)"}$ | Pops multiple `f`s and one `t`; $T=1 > 0 \implies$ `true`. | Premature loop break on first operand. |
+| Wide OR Expression | $expression = \text{"\textbar(f,f,f,t)"}$ | Pops multiple `f`s and one `t`; $T=1 > 0 \implies$ `true`. | Premature loop break on first operand. |
 | Negation of Conjunction | $expression = \text{"!(\&(f,t))"}$ | Reduces `&` to `f`, then `!` flips to `t`. | Misaligned operator stack popping. |
 | Formatting Punctuation | Commas and `(` | Deliberately ignored by token check. | Pushing useless delimiters onto stack. |
 

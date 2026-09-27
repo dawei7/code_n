@@ -142,6 +142,23 @@ Step 1:   ptr1 -> [2], ptr2 -> [2]
 | 2 | Reset | $\text{Node}(3)$ (from head) | $\text{Node}(-4)$ (from collision) | No | Advance both $\times 1$ |
 | **2** | **1** | **$\text{Node}(2)$** | **$\text{Node}(2)$** | **Yes** | **Cycle Entrance! Return $\text{Node}(2)$** |
 
+### Quantity Ledger for This Instance
+
+Every symbol in the identity $L + d = k \cdot C$ takes a concrete value on
+`[3, 2, 0, -4]` with the tail linked to index $1$. The ledger below shows how
+each number is obtained and checks the algebra numerically.
+
+| Symbol | Meaning | Value here | How this instance fixes it |
+|:---:|:---|:---:|:---|
+| $N$ | total number of nodes | $4$ | the list `[3, 2, 0, -4]` has four nodes |
+| $L$ | non-cyclic prefix length | $1$ | only node $3$ precedes the entrance node $2$ |
+| $C$ | cycle circumference | $3$ | the loop is $2 \to 0 \to -4 \to 2$, three edges |
+| $d$ | edges from the entrance to the Phase 1 collision point | $2$ | $2 \to 0 \to -4$ traverses two edges |
+| $L + d$ | total displacement of `slow` when it is caught | $3$ | $1 + 2 = 3$, matching the $3$ Phase 1 ticks that were executed |
+| $k$ | full extra laps `fast` completes before being caught | $1$ | $L + d = k \cdot C \Rightarrow 3 = k \cdot 3$ |
+| $D_{\text{fast}}$ | total displacement of `fast` at collision | $6$ | $2 \cdot (L + d) = 6$ and $L + d + k \cdot C = 3 + 3 = 6$ |
+| $C - d$ | edges from the collision point forward to the entrance | $1$ | $-4 \to 2$ is one edge, which is exactly why Phase 2 closes after a single tick |
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -157,6 +174,20 @@ Step 1:   ptr1 -> [2], ptr2 -> [2]
 - **Acyclic List Check in Phase 1:** If the while loop terminates without collision (`not fast or not fast.next`), immediately return `null`.
 - **Modifying Node Values:** Altering node values or injecting sentinel markers (like `node.val = 100001`) modifies user data and is strictly forbidden by the problem statement.
 - **Head is the Cycle Entrance ($L = 0$):** If the tail links directly back to `head` (e.g. $[1, 2]$ with $2 \to 1$), Phase 1 collision occurs, and Phase 2 immediately detects `ptr1 == ptr2 == head` at Step 0, correctly returning `head`.
+
+### Boundary Inputs and Where Each Phase Ends
+
+| Input (values, $\text{pos}$) | $L$ | $C$ | Phase 1 iterations | Phase 1 collision node | Phase 2 steps | Returned node |
+|:---|:---:|:---:|:---:|:---:|:---:|:---|
+| `[3, 2, 0, -4]`, $\text{pos} = 1$ | $1$ | $3$ | $3$ | $\text{Node}(-4)$ | $1$ | $\text{Node}(2)$, the entrance |
+| `[1, 2]`, $\text{pos} = 0$ (tail links to head) | $0$ | $2$ | $2$ | $\text{Node}(1)$, which is `head` itself | $0$ | `head` = $\text{Node}(1)$, since `ptr1` and `ptr2` already coincide |
+| `[7]`, $\text{pos} = 0$ (self-loop) | $0$ | $1$ | $1$ | $\text{Node}(7)$, the only node | $0$ | $\text{Node}(7)$; a one-node cycle has its entrance at that node |
+| `[1]`, $\text{pos} = -1$ | — | — | $0$ | none — `fast.next` is null | not reached | `null`, because Phase 1 exhausts the list |
+| `[]`, $\text{pos} = -1$ | — | — | $0$ | none — `head` is already null | not reached | `null`, decided by the Phase 1 guard alone |
+
+The pattern in the middle rows is the one worth remembering: when the cycle
+starts at `head`, $L = 0$, so the Phase 2 walk has nothing left to travel and the
+answer is returned at the reset itself rather than after any advance.
 
 ---
 

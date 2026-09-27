@@ -72,7 +72,7 @@ For each size bucket $I_S$:
    $$
 3. Append each chunk $G_m$ to the final result list.
 
-| Bucket Key $S$ | People Collected $I_S$ | Total Count $|I_S|$ | Number of Groups $k = |I_S| / S$ | Generated Chunks |
+| Bucket Key $S$ | People Collected $I_S$ | Total Count $\lvert I_S \rvert$ | Number of Groups $k = \lvert I_S \rvert / S$ | Generated Chunks |
 |---|---|---|---|---|
 | $S = 1$ | `[5]` | $1$ | $1 / 1 = 1$ | `[5]` |
 | $S = 3$ | `[0, 1, 2, 3, 4, 6]` | $6$ | $6 / 3 = 2$ | `[0, 1, 2]`, `[3, 4, 6]` |

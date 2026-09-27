@@ -131,7 +131,7 @@ We process the operations in $shift = [[0, 1], [1, 2]]$:
 
 | Metric | Calculation | Result |
 |---|---|---|
-| String Length ($n$) | $|s| = |\text{"abc"}|$ | $3$ |
+| String Length ($n$) | $\lvert s \rvert = \lvert \text{"abc"} \rvert$ | $3$ |
 | Net Shift ($\Delta$) | $-1 + 2$ | $1$ |
 | Canonical Right Shift ($K$) | $(1 \pmod 3 + 3) \pmod 3$ | $1$ |
 | Suffix Boundary ($n - K$) | $3 - 1$ | $2$ |

@@ -106,7 +106,7 @@ After evaluating all candidate pairs, exactly two valid combinations exist. Both
 | Metric / Dimension | All-Pairs String Concatenation ($N^2$) | Inverted Head-Word Index Hash Map (Optimal) | Trie Over Prefix/Suffix Trees |
 |---|---|---|---|
 | **Matching Strategy** | Nested loop checking $i \neq j$ | Group indices by $\text{head}$, lookup by $\text{tail}$ | Walk Trie for common prefix |
-| **Comparisons Required**| $N(N-1)$ pair inspections | $\sum_i |\text{bucket}(\text{tail}(i))|$ direct matches | Character-by-character trie descent |
+| **Comparisons Required**| $N(N-1)$ pair inspections | $\sum_i \lvert \text{bucket}(\text{tail}(i)) \rvert$ direct matches | Character-by-character trie descent |
 | **Time Complexity** | $\mathcal{O}(N^2 \cdot L + K \log K)$ | $\mathcal{O}(N \cdot L + M \cdot L + K \log K)$ | $\mathcal{O}(N \cdot L + K \log K)$ |
 | **Auxiliary Memory** | $\mathcal{O}(K \cdot L)$ for results | $\mathcal{O}(N)$ hash table storage | High pointer node overhead |
 | **Practical Scaling** | Fast for $N \le 100$ | Scales gracefully to $N \ge 10^5$ | Unnecessary complexity for word boundary matching |

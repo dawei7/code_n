@@ -57,7 +57,7 @@ We track state using the following geometric parameters:
 | Normalized Hour ($h'$) | Hour mapped to the interval $[0, 11]$ | $h' = \text{hour} \pmod{12}$ | $12 \pmod{12} = 0$ |
 | Minute Angle ($\theta_m$) | Angular position of minute hand from 12 o'clock | $\theta_m = 6 \times \text{minutes}$ | $6 \times 30 = 180^\circ$ |
 | Hour Angle ($\theta_h$) | Angular position of hour hand from 12 o'clock | $\theta_h = 30 \times h' + 0.5 \times \text{minutes}$ | $30 \times 0 + 15 = 15^\circ$ |
-| Angular Difference ($\Delta$) | Absolute angular gap between both hands | $\Delta = |\theta_h - \theta_m|$ | $|15 - 180| = 165^\circ$ |
+| Angular Difference ($\Delta$) | Absolute angular gap between both hands | $\Delta = \lvert \theta_h - \theta_m \rvert$ | $\lvert 15 - 180 \rvert = 165^\circ$ |
 
 > **Invariant.** The angular positions $\theta_m$ and $\theta_h$ represent exact continuous orientations on the circle measured clockwise from the vertical $12$ o'clock axis ($0^\circ$). The smaller angle between two vectors on a $360^\circ$ circle is always given by $\min(\Delta, 360^\circ - \Delta)$, which is strictly bounded in $[0^\circ, 180^\circ]$.
 
@@ -111,7 +111,7 @@ $$
 | Parameter | Before Step | Applied Operation | After Step |
 |---|---|---|---|
 | $\theta_h$ | $15^\circ$ | Subtract $\theta_m$ | $-165^\circ$ |
-| $\theta_m$ | $180^\circ$ | Absolute value: $|-165^\circ|$ | $165^\circ$ |
+| $\theta_m$ | $180^\circ$ | Absolute value: $\lvert -165^\circ \rvert$ | $165^\circ$ |
 | Separation ($\Delta$) | Uncomputed | Verified positive difference | $165^\circ$ |
 
 ---

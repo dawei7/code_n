@@ -215,8 +215,8 @@ $str1 = \text{"abac"}, \quad str2 = \text{"cab"}$.
 
 | Scenario | Input Pattern | Behavior | Trapped Risk |
 |---|---|---|---|
-| Identical Strings | $str1 = str2$ | $L = n \implies |SCS| = n$; outputs the string itself. | Duplicating all characters. |
-| Completely Disjoint Strings | No shared letters | $L = 0 \implies |SCS| = m + n$; concatenates both strings. | Index out of bounds in traceback. |
+| Identical Strings | $str1 = str2$ | $L = n \implies \lvert SCS \rvert = n$; outputs the string itself. | Duplicating all characters. |
+| Completely Disjoint Strings | No shared letters | $L = 0 \implies \lvert SCS \rvert = m + n$; concatenates both strings. | Index out of bounds in traceback. |
 | Empty Suffix During Traceback | $i = 0$ or $j = 0$ | Emits all remaining characters of the non-empty string. | Dropping leading characters of one string. |
 | Tie Between Transitions | $f[i-1][j] == f[i][j-1]$ | Either choice is valid; both lead to an equally short supersequence. | Arbitrary preference corrupting length. |
 

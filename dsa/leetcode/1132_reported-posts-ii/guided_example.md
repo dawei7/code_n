@@ -164,7 +164,7 @@ Rounded to 2 decimal places: **`75.00`**.
 
 ### Table 2: Daily Rate Aggregation & Macro Mean
 
-| Action Date | Distinct Reported Posts $|S_d|$ | Distinct Removed Posts $|R_d|$ | Daily Removal Rate $P(d)$ | Date Weight in Final Mean |
+| Action Date | Distinct Reported Posts $\lvert S_d \rvert$ | Distinct Removed Posts $\lvert R_d \rvert$ | Daily Removal Rate $P(d)$ | Date Weight in Final Mean |
 |:---:|:---:|:---:|:---:|:---:|
 | `'2019-07-02'` | $1$ (Post 3) | $1$ (Post 3) | $\frac{1}{1} \times 100 = \mathbf{100.00\%}$ | $0.5$ |
 | `'2019-07-04'` | $2$ (Posts 2, 4) | $1$ (Post 2) | $\frac{1}{2} \times 100 = \mathbf{50.00\%}$ | $0.5$ |

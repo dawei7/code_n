@@ -169,6 +169,21 @@ clones = { N1: C1, N2: C2, N3: C3, N4: C4 }
 | 2.2.2.2 | Node 3 | **Yes** | Return existing $C_3$ | - | - |
 | Returns | All unwound | - | Full cycle connected | - | $C_1$ links $[C_2, C_4]$ |
 
+The same eight directed adjacency entries are resolved in this order. No row ever looks up a vertex that is absent from `clones` except the three that instantiate a new clone, and the last four rows are closure work performed while the stack unwinds:
+
+| # | Directed entry $(u, v)$ | `clones` at the lookup | $v$ found? | Role of the entry | Clone neighbor list afterwards |
+|:---:|:---|:---|:---:|:---|:---|
+| 1 | $(N_2, N_1)$ | `{N1: C1, N2: C2}` | yes, $C_1$ | back edge to the parent while $N_2$ is still open | `C2.neighbors = [C1]` |
+| 2 | $(N_3, N_2)$ | `{N1: C1, N2: C2, N3: C3}` | yes, $C_2$ | back edge to the parent while $N_3$ is still open | `C3.neighbors = [C2]` |
+| 3 | $(N_4, N_1)$ | `{N1: C1, N2: C2, N3: C3, N4: C4}` | yes, $C_1$ | back edge to the root, three frames deep | `C4.neighbors = [C1]` |
+| 4 | $(N_4, N_3)$ | unchanged | yes, $C_3$ | back edge to the parent | `C4.neighbors = [C1, C3]` |
+| 5 | $(N_3, N_4)$ | unchanged | yes, $C_4$ | tree edge closed as $N_4$ returns | `C3.neighbors = [C2, C4]` |
+| 6 | $(N_2, N_3)$ | unchanged | yes, $C_3$ | tree edge closed as $N_3$ returns | `C2.neighbors = [C1, C3]` |
+| 7 | $(N_1, N_2)$ | unchanged | yes, $C_2$ | tree edge closed as $N_2$ returns | `C1.neighbors = [C2]` |
+| 8 | $(N_1, N_4)$ | unchanged | yes, $C_4$ | cycle-closing back edge, never a new descent | `C1.neighbors = [C2, C4]` |
+
+Row 3 is the row that proves the protocol. $C_4$ exists in `clones` with an empty neighbor list at that moment, so the lookup succeeds even though $N_4$'s own recursion is still in progress; the entry $(N_4, N_1)$ therefore closes a path back to the root without allocating anything. Had registration been deferred until after the neighbor loop, rows 1 and 3 would both miss and the descent would restart instead of stopping.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -185,9 +200,32 @@ clones = { N1: C1, N2: C2, N3: C3, N4: C4 }
 - **Empty Graph / Null Input:** If `node is None`, the graph is empty. Returning `None` upfront prevents AttributeError on `node.val`.
 - **Single Node Without Neighbors:** A graph with one node `adjList = [[]]` has $N_1$ with `neighbors = []`. The algorithm creates $C_1$ with an empty neighbor list and returns it directly.
 
+Every authored case of this package is one of these boundaries, and the counts below are what the protocol must reproduce exactly:
+
+| Authored case | `adjList` | Vertices | Undirected edges | Directed entries | Clone returned |
+|:---|:---|:---:|:---:|:---:|:---|
+| `sample-null` | `[]` | 0 | 0 | 0 | null reference, with `clones` still empty |
+| `sample-single` | `[[]]` | 1 | 0 | 0 | $C_1$ whose neighbor list is empty, not missing |
+| `trial-edge` | `[[2], [1]]` | 2 | 1 | 2 | $C_1 \leftrightarrow C_2$ after two registrations and one hit |
+| `trial-triangle` | `[[2, 3], [1, 3], [1, 2]]` | 3 | 3 | 6 | $C_1, C_2, C_3$ mutually adjacent after three registrations and three hits |
+| `sample-square` | `[[2, 4], [1, 3], [2, 4], [1, 3]]` | 4 | 4 | 8 | $C_1, C_2, C_3, C_4$ on a cycle after four registrations and four hits |
+
+The instantiations equal the vertex count in every row, which is the quantitative form of the invariant: the map is written once per vertex and read once per directed entry. The deferred-registration bug would not merely slow `sample-square` down; it would make even `trial-edge` non-terminating, because the lookup at $(N_2, N_1)$ would miss while $N_1$ is unregistered and restart the descent on a two-vertex cycle forever.
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(V + E)$, where $V$ is the number of vertices and $E$ is the number of edges. Each vertex is cloned once, and each edge is traversed twice (once from each endpoint).
 - **Auxiliary Space Complexity:** $O(V)$ to store the hash map mapping all $V$ nodes and $O(V)$ recursion stack depth (or BFS queue size).
+
+The $O(V + E)$ bound is shared by every correct variant, so the choice between them is decided by stack depth and by when the map is written:
+
+| Strategy | When `clones[u]` is written | Time | Auxiliary space | Behavior on this 4-cycle |
+|:---|:---|:---:|:---:|:---|
+| Recursive DFS with pre-registration | Before $u$'s neighbor loop runs | $O(V + E)$ | $O(V)$ map plus $O(V)$ call stack | All four lookups that hit do so while their target frame is still open |
+| Iterative BFS with an explicit queue | When $u$ is first enqueued | $O(V + E)$ | $O(V)$ map plus $O(V)$ queue | Same clone; a deep path graph cannot exhaust the interpreter stack |
+| Allocate-then-link in two passes | In the allocation pass, before any neighbor is copied | $O(V + E)$ | $O(V)$ map | Still needs one traversal to enumerate the reachable vertices, so the map is required in both passes |
+| Recursive copy with no map | Never | unbounded | unbounded | Entry $(N_2, N_1)$ re-enters $N_1$, which has no clone to return, and the cycle never closes |
+
+The first two rows are the practical choices; the third merely reorders the same work, and the fourth is the failure the map exists to prevent.

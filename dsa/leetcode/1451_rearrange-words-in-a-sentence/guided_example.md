@@ -76,7 +76,7 @@ We establish tracking parameters across the algorithm:
 | Original Index ($i$) | Integer $0 \le i < m$ | Tie-breaking secondary key guaranteeing stability |
 | Word Token ($w_i$) | String | Textual word extracted from sentence |
 | Normalized Token ($w_i'$) | String (lowercase) | Case-standardized word representation |
-| Word Length ($|w_i'|$) | Integer $\ge 1$ | Primary sorting criterion |
+| Word Length ($\lvert w_i' \rvert$) | Integer $\ge 1$ | Primary sorting criterion |
 | Rearranged Sentence | String | Final joined text with sentence capitalization |
 
 > **Invariant.** For any two words $w_a'$ and $w_b'$ with equal length ($|w_a'| = |w_b'|$), $w_a'$ appears before $w_b'$ in the final sequence if and only if $a < b$.

@@ -165,7 +165,7 @@ Partition the 8 rows into composite buckets:
 
 ### Table 1: Composite Group Evaluation Trace
 
-| Composite Group $(viewer\_id, view\_date)$ | Raw Rows Associated | Set of Distinct Articles $\mathcal{A}(v, d)$ | Cardinality $|\mathcal{A}|$ | Predicate $|\mathcal{A}| > 1$ | Group Status |
+| Composite Group $(viewer\_id, view\_date)$ | Raw Rows Associated | Set of Distinct Articles $\mathcal{A}(v, d)$ | Cardinality $\lvert \mathcal{A} \rvert$ | Predicate $\lvert \mathcal{A} \rvert > 1$ | Group Status |
 |:---:|:---|:---:|:---:|:---:|:---|
 | **$(5, \text{'2019-08-01'})$** | Articles $1, 3$ | $\{1, 3\}$ | **$2$** | **True** | **Qualifies (Viewer 5)** |
 | **$(6, \text{'2019-08-02'})$** | Articles $1, 2$ | $\{1, 2\}$ | **$2$** | **True** | **Qualifies (Viewer 6)** |

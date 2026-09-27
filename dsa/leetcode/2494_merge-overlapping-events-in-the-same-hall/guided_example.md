@@ -1,125 +1,216 @@
 # Guided Example: Merge Overlapping Events in the Same Hall
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. The instance and the exact overlap rule
 
-- **Input:** `{"tables": {"HallEvents": [{"hall_id": 1, "start_day": "2023-01-13", "end_day": "2023-01-14"}, {"hall_id": 1, "start_day": "2023-01-14", "end_day": "2023-01-17"}, {"hall_id": 1, "start_day": "2023-01-18", "end_day": "2023-01-25"}, {"hall_id": 2, "start_day": "2022-12-09", "end_day": "2022-12-23"}, {"hall_id": 2, "start_day": "2022-12-13", "end_day": "2022-12-17"}, {"hall_id": 3, "start_day": "2022-12-01", "end_day": "2023-01-30"}]}}`
-- **Required output:** `{"columns": ["hall_id", "start_day", "end_day"], "rows": [[1, "2023-01-13", "2023-01-17"], [1, "2023-01-18", "2023-01-25"], [2, "2022-12-09", "2022-12-23"], [3, "2022-12-01", "2023-01-30"]]}`
+The table `HallEvents` records one row per scheduled event, with a `hall_id`, a
+`start_day`, and an `end_day`. Duplicate rows are allowed, and a hall may hold any
+number of events. Two events **overlap** when they share at least one calendar day,
+and both `start_day` and `end_day` are inclusive endpoints, so an event running from
+day $s$ to day $e$ occupies every day in the closed interval $[s, e]$. Events held
+in different halls never overlap, no matter how their dates line up: merging is
+performed *inside* each hall independently.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+The task is to replace, for each hall, every maximal chain of overlapping events by
+a single event spanning from the earliest start to the latest end in that chain. The
+output has one row per resulting event, with the same three columns, in any order.
 
----
+We trace the official instance:
 
-## 1. Instance & Teaching Goal
+| `hall_id` | `start_day` | `end_day` |
+|:---|:---|:---|
+| 1 | `2023-01-13` | `2023-01-14` |
+| 1 | `2023-01-14` | `2023-01-17` |
+| 1 | `2023-01-18` | `2023-01-25` |
+| 2 | `2022-12-09` | `2022-12-23` |
+| 2 | `2022-12-13` | `2022-12-17` |
+| 3 | `2022-12-01` | `2023-01-30` |
 
-Table: `HallEvents`
+The expected result collapses this to four rows:
 
-The objective is to compute `{"columns": ["hall_id", "start_day", "end_day"], "rows": [[1, "2023-01-13", "2023-01-17"], [1, "2023-01-18", "2023-01-25"], [2, "2022-12-09", "2022-12-23"], [3, "2022-12-01", "2023-01-30"]]}` from `{"tables": {"HallEvents": [{"hall_id": 1, "start_day": "2023-01-13", "end_day": "2023-01-14"}, {"hall_id": 1, "start_day": "2023-01-14", "end_day": "2023-01-17"}, {"hall_id": 1, "start_day": "2023-01-18", "end_day": "2023-01-25"}, {"hall_id": 2, "start_day": "2022-12-09", "end_day": "2022-12-23"}, {"hall_id": 2, "start_day": "2022-12-13", "end_day": "2022-12-17"}, {"hall_id": 3, "start_day": "2022-12-01", "end_day": "2023-01-30"}]}}` while avoiding redundant calculations and unnecessary overhead.
+| `hall_id` | `start_day` | `end_day` |
+|:---|:---|:---|
+| 1 | `2023-01-13` | `2023-01-17` |
+| 1 | `2023-01-18` | `2023-01-25` |
+| 2 | `2022-12-09` | `2022-12-23` |
+| 3 | `2022-12-01` | `2023-01-30` |
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+This instance is a good representative because it contains, in one table, an exact
+endpoint touch (`2023-01-14`), a nested event (`2022-12-13`–`2022-12-17` lies inside
+`2022-12-09`–`2022-12-23`), a genuine one-day gap (`2023-01-17` to `2023-01-18`),
+and a hall with a single event. Those four situations are precisely where naive
+merging goes wrong.
 
----
+## 2. Overlap is a fact about parity of coverage, not about adjacency of rows
 
-## 2. Conceptual Foundation & Invariants
+The relation "shares at least one day" is a relation on day sets, not on row order.
+Two consequences drive the whole method.
 
-We maintain the core conceptual parameters and state variables:
+**First, overlap is not transitive, but chains are what we must report.** If event
+$A$ overlaps $B$ and $B$ overlaps $C$, $A$ need not overlap $C$ directly: in hall 4
+of the authored trials, `2024-06-01`–`2024-06-20` and `2024-06-15`–`2024-06-25`
+overlap, and so do `2024-06-15`–`2024-06-25` and `2024-06-02`–`2024-06-03`, yet the
+last two share no day. The required output is still a single span, because the
+merged day set of a connected chain is the union of its intervals, and that union is
+again one interval.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+**Second, the union of overlapping intervals is an interval.** For any family of
+intervals whose union is connected, the union equals the closed span from the
+smallest start to the largest end. Merging therefore never needs to remember the
+individual events of a chain; it needs only two numbers per chain: the minimum start
+seen so far and the maximum end seen so far. That is the reduction that makes a
+single ordered sweep sufficient.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+## 3. Sorting inside a hall turns merging into one sweep
 
----
+Order the rows of one hall by `start_day` ascending. Process them left to right and
+keep a running maximum
 
-## 3. Step-by-Step Worked Execution
+$$
+M_i = \max\{\, \text{end\_day}_j : j \le i \,\},
+$$
 
-### Step 1: Intervals must be merged independently per hall
+the latest end day seen among the first $i$ rows of that hall's ordering. The row at
+position $i$ (with $i \ge 2$) continues the current chain exactly when
 
-Two events interact only when their `hall_id` values match. Within one hall, events are ordered by `start_day`. Once ordered, overlapping events form consecutive islands: a new island begins only when the next start lies after every end date seen in the current island.
+$$
+\text{start\_day}_i \le M_{i-1}.
+$$
 
-Comparing a row only with the immediately previous row's `end_day` is insufficient. For intervals `[1,10]`, `[2,3]`, and `[9,12]`, the third interval overlaps the first even though it does not overlap the second. The solution therefore carries the maximum end date reached so far.
+The reasoning is a one-line exchange. Because rows are sorted by start, the current
+chain occupies at least the day interval $[\text{start of the chain}, M_{i-1}]$; by
+definition of the running maximum, no earlier row of the chain reaches beyond
+$M_{i-1}$, and every earlier row starts no later than the chain's first start. So the
+chain's coverage is exactly that interval, and asking whether row $i$ touches it is
+the same as asking whether $\text{start\_day}_i \le M_{i-1}$. Equality counts as an
+overlap, because day $M_{i-1}$ itself is shared.
 
-The query implements the standard gaps-and-islands pattern with three common table expressions.
+Choosing $i = 1$ always opens a chain: it has no predecessor, so it starts the first
+island of its hall. Every later row either joins the open island or opens the next
+one, and the island identifier of a row is simply the number of openings up to and
+including that row.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"tables": {"HallEvents": [{"hall_id": 1, "start_day": "2023-01-13", "end_day": "2023-01-14"}, {"hall_id": 1, "start_day": "2023-01-14", "end_day": "2023-01-17"}, {"hall_id": 1, "start_day": "2023-01-18", "end_day": "2023-01-25"}, {"hall_id": 2, "start_day": "2022-12-09", "end_day": "2022-12-23"}, {"hall_id": 2, "start_day": "2022-12-13", "end_day": "2022-12-17"}, {"hall_id": 3, "start_day": "2022-12-01", "end_day": "2023-01-30"}]}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+## 4. Worked trace on the official instance
 
----
+Rows are grouped by hall first, then sorted by `start_day` inside the hall. The
+column $M_{i-1}$ is the running maximum *before* the row is considered; the last
+column is the running maximum *after* it. A row with no predecessor in its hall has
+nothing to compare against and must open an island.
 
-### Step 2: CTE `S` computes the running reach
+| `hall_id` | row in hall order | `start_day` | `end_day` | $M_{i-1}$ | `start_day` $\le M_{i-1}$? | island id | $M_i$ |
+|:---|:---|:---|:---|:---|:---|:---|:---|
+| 1 | 1 | `2023-01-13` | `2023-01-14` | none | opens the first island | 1 | `2023-01-14` |
+| 1 | 2 | `2023-01-14` | `2023-01-17` | `2023-01-14` | yes, shares `2023-01-14` | 1 | `2023-01-17` |
+| 1 | 3 | `2023-01-18` | `2023-01-25` | `2023-01-17` | no, one-day gap | 2 | `2023-01-25` |
+| 2 | 1 | `2022-12-09` | `2022-12-23` | none | opens the first island | 1 | `2022-12-23` |
+| 2 | 2 | `2022-12-13` | `2022-12-17` | `2022-12-23` | yes, nested inside the island | 1 | `2022-12-23` |
+| 3 | 1 | `2022-12-01` | `2023-01-30` | none | opens the first island | 1 | `2023-01-30` |
 
-For every event, `cur_max_end_day` is calculated with
+Two rows deserve attention. Hall 1 row 3 starts on `2023-01-18`, exactly one day
+after the running maximum `2023-01-17`; the strict gap breaks the chain, and because
+rows are sorted by start, every later row of hall 1 would also start after
+`2023-01-17`, so nothing can repair the split afterwards. Hall 2 row 2 is nested:
+its `end_day` is smaller than the running maximum, so $M_i$ does not change, which
+is exactly why the running maximum must be a maximum and not merely the previous
+row's `end_day`.
 
-`MAX(end_day) OVER (PARTITION BY hall_id ORDER BY start_day)`.
+Projecting each island to its span gives the answer rows:
 
-Partitioning restarts the calculation for each hall. Ordering by `start_day` processes that hall's events chronologically. The running maximum represents the farthest end date covered by the current or any earlier interval in the ordered partition.
+| `hall_id` | island id | rows folded in | minimum `start_day` | maximum `end_day` | output row |
+|:---|:---|:---|:---|:---|:---|
+| 1 | 1 | rows 1 and 2 | `2023-01-13` | `2023-01-17` | `1, 2023-01-13, 2023-01-17` |
+| 1 | 2 | row 3 | `2023-01-18` | `2023-01-25` | `1, 2023-01-18, 2023-01-25` |
+| 2 | 1 | rows 1 and 2 | `2022-12-09` | `2022-12-23` | `2, 2022-12-09, 2022-12-23` |
+| 3 | 1 | row 1 | `2022-12-01` | `2023-01-30` | `3, 2022-12-01, 2023-01-30` |
 
-This running reach captures chained overlap. Even if an intermediate short interval ends early, an earlier long interval keeps `cur_max_end_day` extended far enough for later overlapping intervals to remain in the same island.
+The result matches the expected four rows exactly. An island is identified by the
+pair (hall, island id), so identical island numbers in different halls never mix:
+island 1 of hall 1 and island 1 of hall 3 are separate output rows.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+## 5. Invariant and correctness of the sweep
 
----
+**Invariant (per hall, after processing the first $i$ rows).** The completed islands
+are exactly the maximal overlapping chains of those $i$ rows, each represented by
+its span $[\min \text{start}, \max \text{end}]$; the open island is represented by
+the pair (first start of the island, $M_i$); and $M_i$ is the maximum `end_day` over
+all $i$ processed rows.
 
-### Step 3: CTE `T` marks where islands begin
+**Maintenance.** Sorting guarantees $\text{start\_day}_i \ge \text{start\_day}_{i-1}$,
+so row $i$ cannot start before the open island and cannot extend the island's
+minimum start. If $\text{start\_day}_i \le M_{i-1}$, the interval
+$[\text{start\_day}_i, M_{i-1}]$ is non-empty and lies inside both row $i$ and the
+open island, so the two share at least one day: row $i$ joins the open island, and
+the new maximum is $\max(M_{i-1}, \text{end\_day}_i)$. If instead
+$\text{start\_day}_i > M_{i-1}$, row $i$ is disjoint from the open island's interval.
 
-`LAG(cur_max_end_day)` obtains the running reach associated with the preceding ordered row in the same hall. The current interval overlaps the existing island when
+**Maximality (no chain is split).** Suppose the sweep closes an island at row $i$.
+Then $\text{start\_day}_i > M_{i-1}$, and every row $j \ge i$ has
+$\text{start\_day}_j \ge \text{start\_day}_i > M_{i-1}$, so no later row overlaps any
+day of the closed island. Closing it is therefore forced, not a heuristic.
 
-`start_day <= previous_cur_max_end_day`.
+**Completeness (no chain is over-extended).** Rows are joined only after the
+inequality proves a shared day, so no island contains two rows that fail to overlap
+the island's interval. Since the union of overlapping intervals in a chain is a
+single interval, reporting the span loses nothing: every day between the minimum
+start and the maximum end is covered by some merged event.
 
-Equality is included because events sharing at least one day overlap. For example, an event ending January 14 and another starting January 14 must merge.
+Together these two directions show the output is exactly one row per maximal chain,
+which is the required result. Only the two aggregates $\min \text{start}$ and
+$\max \text{end}$ are needed per island, so the running maximum is sufficient state
+and no pairwise overlap test between non-adjacent rows is ever required.
 
-The `IF` expression emits zero for an overlap and one for a gap. On the first row of a hall, `LAG` is `NULL`. The comparison with `NULL` is not true, so MySQL's `IF` takes the final branch and marks that row with one, correctly starting the hall's first island.
+## 6. Boundaries and traps
 
-It is important that `LAG` is applied to the running maximum, not directly to the preceding event's raw end date. That is what preserves transitive overlap.
+Each trial case in the package isolates one boundary behaviour. The table states the
+dates involved, the verdict under the rule $\text{start\_day}_i \le M_{i-1}$, and
+the output.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"columns": ["hall_id", "start_day", "end_day"], "rows": [[1, "2023-01-13", "2023-01-17"], [1, "2023-01-18", "2023-01-25"], [2, "2022-12-09", "2022-12-23"], [3, "2022-12-01", "2023-01-30"]]}` |
+| Situation | Dates involved | Verdict | Output |
+|:---|:---|:---|:---|
+| Exact endpoint touch | `2024-04-01`–`2024-04-03` then `2024-04-03`–`2024-04-09` | overlap, day `2024-04-03` is shared | one row `2024-04-01`–`2024-04-09` |
+| Consecutive calendar days | `2024-05-01`–`2024-05-02` then `2024-05-03`–`2024-05-04` | no shared day | two rows, unchanged |
+| Duplicate identical rows | `2024-03-10`–`2024-03-12` twice | overlap on every day | one row `2024-03-10`–`2024-03-12` |
+| Nested short event | `2024-06-01`–`2024-06-20`, `2024-06-02`–`2024-06-03`, `2024-06-15`–`2024-06-25`, `2024-06-30`–`2024-07-01` | the middle rows do not lower the running maximum | rows `2024-06-01`–`2024-06-25` and `2024-06-30`–`2024-07-01` |
+| Equal `start_day`, different `end_day` | `2024-07-01`–`2024-07-02`, `2024-07-01`–`2024-07-10`, `2024-07-09`–`2024-07-12` | ties order arbitrarily but all join | one row `2024-07-01`–`2024-07-12` |
+| Same dates, different halls | hall 8 `2024-08-01`–`2024-08-05` with `2024-08-04`–`2024-08-07`; hall 9 `2024-08-02`–`2024-08-03` and `2024-08-10`–`2024-08-11` | hall 8 merges, hall 9 does not | `8, 2024-08-01, 2024-08-07` plus two hall-9 rows |
+| Single-event hall | `2022-12-01`–`2023-01-30` | trivially one island | the row is returned unchanged |
 
----
+The comparison table below contrasts the correct rule with the plausible shortcuts
+that the boundary rows above are designed to catch.
 
-## 4. Complete Execution Trace
+| Alternative strategy | Behaviour on this package's cases | Why it fails or is unnecessary |
+|:---|:---|:---|
+| Carry the previous row's `end_day` instead of the running maximum | splits `2024-06-15` away from `2024-06-01`–`2024-06-20` | a nested event lowers the remembered end, so a later genuine overlap looks like a gap |
+| Use strict `<` for the overlap test | splits the touching pair `2024-04-03` | an inclusive `end_day` means the boundary day is shared, so equality is overlap |
+| Ignore `hall_id` while ordering | merges hall 8 dates with hall 9 dates | events in different halls can never overlap |
+| Self-join every overlapping pair, then group transitively | correct but quadratic in the row count | overlap is not transitive, so the union span must be computed, and the join cost is far larger than one ordered sweep |
+| One output row per hall using global min and max | turns hall 1 into `2023-01-13`–`2023-01-25` | it bridges the real `2023-01-17` to `2023-01-18` gap and loses an island |
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"tables": {"HallEvents": [{"hall_id": 1, "start_day": "2023-01-13", "end_day": "2023-01-14"}, {"hall_id": 1, "start_day": "2023-01-14", "end_day": "2023-01-17"}, {"hall_id": 1, "start_day": "2023-01-18", "end_day": "2023-01-25"}, {"hall_id": 2, "start_day": "2022-12-09", "end_day": "2022-12-23"}, {"hall_id": 2, "start_day": "2022-12-13", "end_day": "2022-12-17"}, {"hall_id": 3, "start_day": "2022-12-01", "end_day": "2023-01-30"}]}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"columns": ["hall_id", "start_day", "end_day"], "rows": [[1, "2023-01-13", "2023-01-17"], [1, "2023-01-18", "2023-01-25"], [2, "2022-12-09", "2022-12-23"], [3, "2022-12-01", "2023-01-30"]]}` | Verified |
+## 7. Complexity: time and auxiliary space
 
----
+Let $N$ be the number of rows in `HallEvents`. Each phase of the method has a
+distinct cost, and the sort dominates everything else.
 
-## 5. Algorithmic Correctness
+| Phase | Work | Cost |
+|:---|:---|:---|
+| Ordering rows by `hall_id` then `start_day` | comparison sort of $N$ rows | $O(N \log N)$ |
+| Running maximum of `end_day` per hall | one ordered pass over the sorted rows | $O(N)$ |
+| Island-opening test and island numbering | one ordered pass, constant work per row | $O(N)$ |
+| Grouping islands into `min start` and `max end` | one pass, aggregation keyed by (hall, island) | $O(N)$ amortised |
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+Total time is therefore
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+$$
+O(N \log N),
+$$
 
----
+with the window passes contributing only linear work. Date comparisons are constant
+time, so they do not affect the bound. No cross join, recursion, or repeated
+pairwise overlap test is used, which is what keeps the method near-linear even when
+a hall holds thousands of events.
 
-## 6. Traps This Instance Exposes
-
-- **Immediate previous end only:** This fails when a long earlier interval bridges over a short nested interval; use the previous running maximum.
-- **Recursive interval expansion:** It can merge chains but is more complicated and less natural than window-based gaps and islands.
-- **Touching dates:** `start_day == prior maximum end` is overlap because the shared date counts.
-- **One-day event:** Its start equals its end and it merges with any same-hall interval containing that date.
-- **Different halls:** They never merge even when date ranges are identical.
-- **Nested intervals:** The running maximum remains the outer interval's end.
-- **Duplicate rows:** Aggregation collapses them without requiring `DISTINCT`.
-- **First row per hall:** A `NULL` lag causes the start marker to be one.
-- **Transitive overlap:** A chain of pairwise overlaps belongs to one island.
-- **Output order:** No ordering clause is required.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(r log r)$. Let $r$ be the number of event rows. Window functions generally require ordering each hall's rows by `start_day`. Across all partitions, sorting dominates at $O(r\log r)$ worst-case time. The window passes and final aggregation are linear after ordering.
-- **Auxiliary Space Complexity:** $O(r)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+Auxiliary space is $O(N)$: the sorted copy of the table carries every input row once,
+and each row needs only a constant number of derived values (the running maximum,
+the opening flag, and the island identifier). The final aggregation keeps at most one
+accumulator per island, which is again bounded by $N$. If the ordering is provided
+by an index, the explicit copy can be avoided, but the asymptotic auxiliary space
+remains $O(N)$ in the worst case.

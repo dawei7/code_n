@@ -140,10 +140,10 @@ We examine candidate half-lengths $L \in \{1, 2, 3, 4\}$.
 
 | Start $i$ | Half-Len $L$ | Substring S | Left Half $T_1$ | Right Half $T_2$ | $T_1 == T_2$? | Action on Set $V$ |
 |---|---|---|---|---|---|---|
-| $0$ | $3$ | `"abcabc"` | `"abc"` | `"abc"` | **Match** | Insert `"abcabc"` ($|V|=1$) |
-| $1$ | $3$ | `"bcabca"` | `"bca"` | `"bca"` | **Match** | Insert `"bcabca"` ($|V|=2$) |
-| $2$ | $3$ | `"cabcab"` | `"cab"` | `"cab"` | **Match** | Insert `"cabcab"` ($|V|=3$) |
-| $3$ | $3$ | `"abcabc"` | `"abc"` | `"abc"` | **Match** | Duplicate (ignored, $|V|=3$) |
+| $0$ | $3$ | `"abcabc"` | `"abc"` | `"abc"` | **Match** | Insert `"abcabc"` ($\lvert V \rvert=1$) |
+| $1$ | $3$ | `"bcabca"` | `"bca"` | `"bca"` | **Match** | Insert `"bcabca"` ($\lvert V \rvert=2$) |
+| $2$ | $3$ | `"cabcab"` | `"cab"` | `"cab"` | **Match** | Insert `"cabcab"` ($\lvert V \rvert=3$) |
+| $3$ | $3$ | `"abcabc"` | `"abc"` | `"abc"` | **Match** | Duplicate (ignored, $\lvert V \rvert=3$) |
 | All other | $1, 2, 4$ | Various | - | - | Mismatch | Skip |
 
 ---

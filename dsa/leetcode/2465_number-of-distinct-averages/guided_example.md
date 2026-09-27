@@ -79,7 +79,7 @@ and that the distinct counts agree even when the averages are half-integers.
 | `[4, 1, 4, 0, 3, 5]` | `[0, 1, 3, 4, 4, 5]` | $5, 5, 7$ | $2.5, 2.5, 3.5$ | 2 |
 | `[1, 100]` | `[1, 100]` | $101$ | $50.5$ | 1 |
 | `[0, 2, 3, 7]` | `[0, 2, 3, 7]` | $7, 5$ | $3.5, 2.5$ | 2 |
-| `[0, 1, 2, 3, 9, 20]` | `[0, 1, 2, 3, 9, 20]` | $20, 11, 5$ | $10, 5.5, 2.5$ | 3 |
+| `[0, 1, 2, 3, 9, 20]` | `[0, 1, 2, 3, 9, 20]` | $20, 10, 5$ | $10, 5, 2.5$ | 3 |
 | `[1, 2, 3, 4]` | `[1, 2, 3, 4]` | $5, 5$ | $2.5, 2.5$ | 1 |
 | `[1, 1, 0, 0]` | `[0, 0, 1, 1]` | $1, 1$ | $0.5, 0.5$ | 1 |
 | `[5, 5, 5, 5, 5, 5]` | `[5, 5, 5, 5, 5, 5]` | $10, 10, 10$ | $5, 5, 5$ | 1 |
@@ -121,7 +121,7 @@ sums $s_{i+1} + s_{n-i}$ gives the same number.
 | Duplicates at both extremes | `[1, 1, 0, 0]` | think the two `0`s and two `1`s give two different pairs | the pairs are $(0,1)$ and $(0,1)$; the sum $1$ repeats | `1` |
 | All values equal | `[5, 5, 5, 5, 5, 5]` | expect many distinct averages | every pair sums to $10$ | `1` |
 | Non-constant but symmetric | `[1, 2, 3, 4]` | expect at least two averages because the values differ | every extreme pair sums to $5$ | `1` |
-| All pair sums different | `[0, 1, 2, 3, 9, 20]` | expect the third pair to repeat the second's average | sums are $20, 11, 5$; three distinct averages | `3` |
+| All pair sums different | `[0, 1, 2, 3, 9, 20]` | expect the third pair to repeat the second's average | sums are $20, 10, 5$; three distinct averages | `3` |
 | Half-integer averages | `[0, 2, 3, 7]` | assume averages must be integers to be counted | the values $2.5$ and $3.5$ are perfectly legal averages | `2` |
 | Boundary values $0$ and $100$ | `[0, 0, 50, 75, 100, 100]` | treat a repeated extreme value as a new average | the extreme pair contributes the same sum twice; only $125$ is new | `2` |
 

@@ -56,7 +56,7 @@ We establish tracking parameters across the algorithm:
 
 | Parameter | Type & Domain | Role in Algorithm |
 |---|---|---|
-| Scan Index ($i$) | Integer $0 \le i < |s|$ | Active position in single linear traversal |
+| Scan Index ($i$) | Integer $0 \le i < \lvert s \rvert$ | Active position in single linear traversal |
 | Current Character ($s[i]$) | Character `a`-`z` | Character evaluated against predecessor $s[i-1]$ |
 | Current Streak ($current\_power$) | Integer $\ge 1$ | Length of active contiguous run of identical characters |
 | Maximum Streak ($max\_power$) | Integer $\ge 1$ | Largest uniform run length encountered so far |

@@ -1,136 +1,163 @@
 # Guided Example: Maximum Value of a String in an Array
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. The instance we will solve
 
-- **Input:** `{"strs": ["alic3", "bob", "3", "4", "00000"]}`
-- **Required output:** `5`
+Each string in an alphanumeric array has a **value** determined by a two-branch rule:
+if the string consists of digits only, its value is the number it represents in base
+`10`; otherwise its value is the number of characters in it. The task is to report the
+largest value appearing anywhere in the array.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+We trace the first official instance:
 
----
+- `strs = ["alic3", "bob", "3", "4", "00000"]`
+- required output: `5`
 
-## 1. Instance & Teaching Goal
+The instance is deliberately unbalanced: two strings are mixed, two are single digits,
+and one is a run of five zeroes. The run of zeroes is the interesting row, because it
+is the case where the *numeric* branch produces a value far smaller than the string's
+own length.
 
-The **value** of an alphanumeric string can be defined as:
+## 2. The value rule is a two-branch case split
 
-The objective is to compute `5` from `{"strs": ["alic3", "bob", "3", "4", "00000"]}` while avoiding redundant calculations and unnecessary overhead.
+Write $\lvert s \rvert$ for the length of a string $s$ and let $\text{digits}(s)$ mean
+"every character of $s$ is one of `0` through `9`". The rule is then
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+$$
+\text{value}(s) =
+\begin{cases}
+\displaystyle\sum_{i=0}^{\lvert s \rvert - 1} d_i \cdot 10^{\lvert s \rvert - 1 - i}, & \text{if } \text{digits}(s), \\[2mm]
+\lvert s \rvert, & \text{otherwise,}
+\end{cases}
+$$
 
----
+where $d_0 d_1 \dots d_{\lvert s \rvert - 1}$ are the characters of $s$ read as decimal
+digits. Three facts about this rule drive the whole method.
 
-## 2. Conceptual Foundation & Invariants
+1. **The branch test is a single scan.** Because the alphabet is exactly lowercase
+   letters and digits, "not digits only" is the same as "contains at least one
+   letter". One pass over the characters decides the branch; no parsing or conversion
+   is needed to decide it.
+2. **The two branches have different scales.** Since the constraint caps every string
+   at $9$ characters, a text-branch value is at most $9$, while a numeric-branch value
+   can be as large as $999999999$. A long digit string is therefore an extremely
+   strong candidate, but a long digit string full of leading zeroes is not.
+3. **Leading zeroes are value-bearing, not length-bearing.** The numeric branch reads
+   the digits; `"00000"` denotes the integer $0$, not the integer $5$ or the length
+   $5$. This is the trap the traced instance exposes.
 
-We maintain the core conceptual parameters and state variables:
+## 3. Classifying and evaluating the five strings
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Applying the branch test to each string, then evaluating the chosen branch, gives the
+following per-string values.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+| String $s$ | Contains a letter? | Branch taken | Computation | `value(s)` |
+|:---|:---|:---|:---|:---|
+| `"alic3"` | yes (`a`, `l`, `i`, `c`) | length | five characters | 5 |
+| `"bob"` | yes | length | three characters | 3 |
+| `"3"` | no | numeric | single digit `3` | 3 |
+| `"4"` | no | numeric | single digit `4` | 4 |
+| `"00000"` | no | numeric | five zero digits, value $0$ | 0 |
 
----
+The largest value in the column is $5$, produced by `"alic3"`, and no other string
+reaches it: `"bob"` gives $3$, the single digits give $3$ and $4$, and the zero run
+gives $0$. The expected output is `5`.
 
-## 3. Step-by-Step Worked Execution
+## 4. Invariant: a running maximum over a total order
 
-### Step 1: Each string has one of two definitions of value
+The values are integers, so they are totally ordered and a single pass suffices.
+Maintain the invariant
 
-The rule is conditional:
+$$
+M_t = \max\{\, \text{value}(s_0), \dots, \text{value}(s_t) \,\}
+$$
 
-- if every character is a digit, interpret the complete string as a base-ten integer;
-- otherwise, use the number of characters in the string.
+after examining the first $t+1$ strings, and update it with
+$M_t = \max(M_{t-1}, \text{value}(s_t))$.
 
-These cases must be kept separate. A mixed string such as `"alic3"` is not partially parsed as a number and does not receive the value of its digit characters. The presence of even one letter makes its value the full string length.
+| Step $t$ | String $s_t$ | `value(s_t)` | $M_{t-1}$ before | $M_t$ after | Did the maximum change? |
+|:---|:---|:---|:---|:---|:---|
+| 0 | `"alic3"` | 5 | none | 5 | first string, maximum established |
+| 1 | `"bob"` | 3 | 5 | 5 | no |
+| 2 | `"3"` | 3 | 5 | 5 | no |
+| 3 | `"4"` | 4 | 5 | 5 | no |
+| 4 | `"00000"` | 0 | 5 | 5 | no |
 
-The helper `f(s)` implements this definition directly:
+**Correctness.** The invariant is trivially true after step 0. Each later step keeps
+it true, because the maximum over a longer prefix is either the previous maximum or
+the newly added value. At termination, $M$ is the maximum over every string in the
+array, which is the required answer. No value is skipped, so the result is complete;
+no string outside the array is ever considered, so the result is attainable. Note
+that the maximum is taken over the *values*, not over the strings, and the two
+branches are compared on the same integer scale, which is what makes a text string of
+length $9$ comparable with a numeric string such as `"999999999"`.
 
-`int(s) if all(c.isdigit() for c in s) else len(s)`.
+## 5. Boundaries and traps
 
-After evaluating each string, the outer `max` returns the greatest value.
+The leading-zero family of cases is the sharpest trap in this problem, because a
+digit-only string's length is *not* its value. The table below contrasts the two
+readings for the second official instance.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"strs": ["alic3", "bob", "3", "4", "00000"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| String $s$ | Length $\lvert s \rvert$ | Numeric value | Correct `value(s)` | If length were used instead |
+|:---|:---|:---|:---|:---|
+| `"1"` | 1 | 1 | 1 | 1 |
+| `"01"` | 2 | 1 | 1 | 2 |
+| `"001"` | 3 | 1 | 1 | 3 |
+| `"0001"` | 4 | 1 | 1 | 4 |
+| `"00000"` | 5 | 0 | 0 | 5 |
 
----
+For $strs = ["1","01","001","0001"]$ the correct answer is `1` — every string has
+value $1$ — whereas the length reading would wrongly report `4`. The zero run in the
+traced array is the same defect in a different costume: `"00000"` has value $0$, and
+any method that reports its length instead would answer `5` for the wrong reason.
 
-### Step 2: Recognize a digits-only string
+| Boundary or trap | Instance | Correct reading | Answer |
+|:---|:---|:---|:---|
+| Digit string with leading zeroes | `["1", "01", "001", "0001"]` | the numeric branch ignores the zeroes | 1 |
+| A single digit | `["0"]` | digits only, value $0$ | 0 |
+| Several zero-only strings | `["000000000", "000", "00"]` | all have numeric value $0$ | 0 |
+| Large numeric string | `["999999999", "abcdefgh", "12345678x"]` | numeric value beats every text length | 999999999 |
+| Letter anywhere in the string | `["1a2345678", "1234567b", "c123456"]` | one letter switches the whole string to the length branch | 9 |
+| Single letter | `["a"]` | length branch, one character | 1 |
+| Numeric value larger than any length | `["abcde", "999", "12x"]` | $999 > 5$, and `"12x"` is a text string of length 3 | 999 |
+| Text length larger than some numeric values | `["000", "abcdefghi", "7z"]` | $9$ beats the numeric $0$ | 9 |
 
-The generator `c.isdigit() for c in s` produces one Boolean per character. `all` returns true only if every Boolean is true. Therefore, the numeric branch is selected precisely when every character is a digit.
+## 6. Alternative formulations
 
-The input guarantees non-empty strings containing lowercase English letters and digits. Consequently:
+| Method | Idea | Cost | Assessment |
+|:---|:---|:---|:---|
+| Single pass with a running maximum | classify, evaluate, keep the larger value | $O(S)$ | the method traced above; optimal and simplest |
+| Compute all values, then sort | build the value list and read its last element | $O(m \log m)$ for $m$ strings | correct but pays a sort for information a maximum gives for free |
+| Parse every string as an integer and fall back on failure | attempt numeric conversion, use the length when it fails | $O(S)$ | works only if the conversion of a digit-only string never overflows and if the fallback is applied exactly on failure, which is a subtler branch test |
+| Compare lengths only | take the longest string | $O(S)$ | wrong: `"999999999"` has length 9 but value 999999999, and `"0001"` has length 4 but value 1 |
+| Compare numeric values only | parse the digit strings and ignore the rest | $O(S)$ | wrong: a mixed string such as `"alic3"` has value 5 even though it has no numeric value |
 
-- `all` always examines at least one character;
-- the true branch always gives `int` a valid non-empty decimal representation;
-- no sign, decimal point, whitespace, or other punctuation needs special handling.
+## 7. Complexity: time and auxiliary space
 
-Python's `isdigit` recognizes some Unicode digits beyond `0` through `9`, but that broader behavior is irrelevant under the ASCII-like challenge alphabet.
+Let $m$ be the number of strings and let
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+$$
+S = \sum_{s \in \texttt{strs}} \lvert s \rvert
+$$
 
----
+be the total number of characters. Each string is scanned once to decide its branch,
+and each character of a numeric string is consumed once while accumulating its value,
+so the total time is
 
-### Step 3: Why leading zeroes do not change numeric value
+$$
+O(S),
+$$
 
-`int` performs numeric conversion, so leading zeroes contribute no place value. For example:
+which is at most $O(9 \cdot 100)$ under the stated constraints: at most 100 strings of
+at most 9 characters each. The running maximum adds one comparison per string, which
+is absorbed by the term above.
 
-`int("00000") == 0`
+Auxiliary space is
 
-and
+$$
+O(1).
+$$
 
-`int("001") == 1`.
-
-The string length must not be used merely because a numeric string is long. In the second sample, `"1"`, `"01"`, `"001"`, and `"0001"` all have numeric value one even though their lengths differ.
-
-This is one reason that comparing the strings lexicographically or by length would be incorrect.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `5` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"strs": ["alic3", "bob", "3", "4", "00000"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `5` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **`str.isdigit()` directly:** `s.isdigit()` expresses the same classification more compactly for non-empty valid strings.
-- **Exception-based parsing:** Trying `int(s)` and catching `ValueError` works but uses exceptions for normal control flow.
-- **Manual decimal accumulation:** Build the integer digit by digit; it avoids `int` but adds unnecessary code.
-- **Leading zeroes:** They are ignored by numeric conversion rather than counted as length.
-- **All letters:** The value is the full string length.
-- **Mixed letters and digits:** Even one letter selects the length rule for the whole string.
-- **Equal maximum values:** Returning the shared numeric maximum is sufficient.
-- **One input string:** Its evaluated value is necessarily the answer.
-- **Non-empty guarantee:** It makes both `all` behavior and `max` safe without special defaults.
-- **Input alphabet:** No signs or decimal separators need to be parsed.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(S)$. Let
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+Only two scalars are kept — the current value and the running maximum — and no copy
+of the array or of any string is created. If a string is converted to an integer, the
+converted value is a machine-sized integer bounded by $999999999$ (nine digits), so
+that conversion costs constant space and cannot overflow a 32-bit signed integer.

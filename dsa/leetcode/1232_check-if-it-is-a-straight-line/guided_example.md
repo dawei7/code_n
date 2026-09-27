@@ -141,7 +141,7 @@ Cross-Product:           (dx_k * dy) == (dy_k * dx)      -> 2 CPU multiplication
 | **Horizontal Line ($\Delta y = 0$)** | `[[1, 0], [2, 0], [10, 0]]` | `true` | $\Delta y = 0$. $(x_k - x_1) \times 0 == 0 \times \Delta x \implies 0 == 0$. Handled uniformly. |
 | **Minimal Points ($n = 2$)** | `[[1, 1], [2, 2]]` | `true` | Any two distinct points define a line. Loop over `coordinates[2:]` executes 0 times; returns `true`. |
 | **Negative Coordinates** | `[[-2, -2], [-1, -1], [1, 1]]` | `true` | Signed integer multiplication handles negative differences and coordinate signs without distortion. |
-| **Large Coordinates ($|x|, |y| \le 10^4$)** | Extreme values | Exact boolean | Maximum coordinate difference $\le 2 \times 10^4$. Product $\le 4 \times 10^8$, safely within standard 32-bit/64-bit integer limits. |
+| **Large Coordinates ($\lvert x \rvert, \lvert y \rvert \le 10^4$)** | Extreme values | Exact boolean | Maximum coordinate difference $\le 2 \times 10^4$. Product $\le 4 \times 10^8$, safely within standard 32-bit/64-bit integer limits. |
 
 ---
 

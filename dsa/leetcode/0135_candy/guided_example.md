@@ -137,6 +137,21 @@ Total:            2   +   1   +   2   = 5
 - Pass 2 (Right $\to$ Left): $[1, 2, 3, 1, 3, 2, 1]$ (Right slope $87 > 2 > 1$ elevates 4th index to $3$).
 - Sum $= 1 + 2 + 3 + 1 + 3 + 2 + 1 = \mathbf{13}$.
 
+The two prose arrays above hide where each value comes from, so the same instance is expanded row by row. The binding column is the pass that actually sets the final value, and the last row shows why neither pass may be used alone:
+
+| Child $i$ | $R[i]$ | Forward rule applied | $\text{left}[i]$ | Backward rule applied | $\text{right}[i]$ | $C[i] = \max(\text{left}[i], \text{right}[i])$ | Binding pass |
+|:---:|:---:|:---|:---:|:---|:---:|:---:|:---|
+| 0 | 1 | left boundary, no comparison | 1 | $R[0] = 1 \le R[1] = 2$, nothing forced | 1 | 1 | neither |
+| 1 | 2 | $R[1] = 2 > R[0] = 1 \implies 1 + 1$ | 2 | $2 \le 87$ | 1 | 2 | forward |
+| 2 | 87 | $87 > 2 \implies 2 + 1$ | 3 | $87 \le 87$, a plateau forces nothing | 1 | 3 | forward |
+| 3 | 87 | $87 \le 87$, plateau restarts at the baseline | 1 | $87 \le 87$ | 1 | 1 | neither |
+| 4 | 87 | $87 \le 87$ | 1 | $87 > 2 \implies 2 + 1$ | 3 | 3 | backward |
+| 5 | 2 | $2 \le 87$ | 1 | $2 > 1 \implies 1 + 1$ | 2 | 2 | backward |
+| 6 | 1 | $1 \le 2$ | 1 | right boundary, no comparison | 1 | 1 | neither |
+| **Sum** | - | - | **10** | - | **10** | **13** | - |
+
+Neither column sums to the answer: $\sum \text{left}[i] = 10$ and $\sum \text{right}[i] = 10$, while the coordinate-wise maximum costs $13$. The two partial arrays are not merely smaller, they are invalid — the forward array gives child 4 only $1$ candy although its right neighbor has rating $2$, and the backward array gives child 1 only $1$ candy although its left neighbor has rating $1$ and child 1 is rated higher.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -157,9 +172,33 @@ Because Pass 1 enforces condition 2, and Pass 2 enforces condition 3 via $\max(C
 - **Overwriting Instead of Max in Pass 2:** Setting $C[i] = C[i+1] + 1$ directly during Pass 2 can destroy a larger value established during Pass 1! Using $\max(C[i], C[i+1] + 1)$ is essential to preserve the taller slope.
 - **Single Child:** If $N = 1$, neither loop runs, returning $1$.
 
+The authored cases of this package exercise each of those traps, and the intermediate arrays below are what the two sweeps must produce before the maximum is taken:
+
+| Authored case | $\text{ratings}$ | $\text{left}[i]$ | $\text{right}[i]$ | $C[i]$ | Total | Boundary exercised |
+|:---|:---|:---|:---|:---|:---:|:---|
+| `sample-1` | $[1, 0, 2]$ | $[1, 1, 2]$ | $[2, 1, 1]$ | $[2, 1, 2]$ | 5 | A valley at index 1 keeps the baseline while both neighbors are raised |
+| `sample-2` | $[1, 2, 2]$ | $[1, 2, 1]$ | $[1, 1, 1]$ | $[1, 2, 1]$ | 4 | An equal-rating plateau at indices 1 and 2 forces no inequality, so the trailing child stays at 1 |
+| `trial-single-child` | $[9]$ | $[1]$ | $[1]$ | $[1]$ | 1 | Both sweeps are empty; the baseline already satisfies every constraint |
+| `trial-long-slope` | $[1, 3, 4, 5, 2]$ | $[1, 2, 3, 4, 1]$ | $[1, 1, 1, 2, 1]$ | $[1, 2, 3, 4, 1]$ | 11 | A four-step ascent is preserved intact, and the drop at index 4 is absorbed without raising the peak |
+
+The `trial-long-slope` row is the one that punishes a direct overwrite in the backward sweep: at index 3 the backward requirement is only $2$, and assigning that value outright would erase the $4$ established by the ascending run.
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(N)$, where $N$ is the number of children. The algorithm performs two linear scans across the array, each step taking $O(1)$ operations.
 - **Auxiliary Space Complexity:** $O(N)$ to store the single candy allocation array $C$ of length $N$.
+
+The linear bound does not depend on the direction of the sweeps, only on never re-examining an index more than a constant number of times:
+
+| Strategy | How a violation is repaired | Time | Auxiliary space | Behavior on `[1, 2, 87, 87, 87, 2, 1]` |
+|:---|:---|:---:|:---:|:---|
+| Two sweeps into two arrays, then coordinate-wise maximum | Each index is raised once from the left and once from the right | $O(N)$ | $O(N)$ | Produces $[1, 2, 3, 1, 3, 2, 1]$ for a total of 13 |
+| Two sweeps over one array | The backward sweep applies $\max(C[i], C[i+1] + 1)$ in place | $O(N)$ | $O(N)$ | Same distribution; the maximum is what protects the peak at index 2 |
+| Single forward sweep with retroactive repairs | On a descent, walk back and raise every earlier child until the slope is satisfied again | $O(N^2)$ | $O(N)$ | The plateau of three 87s is visited repeatedly, and the long descent in `trial-long-slope` re-raises four indices on every fix |
+| Relax all violated pairs repeatedly until stable | Sweep the whole array and repeat while any pair is violated | $O(N^2)$ | $O(N)$ | Converges to the same 13, but only after the right-hand slope has propagated leftwards across the plateau |
+
+The first two rows are the same algorithm with one fewer array. The last two are correct but quadratic, because a single monotone run of length $k$ can force up to $k$ repairs per element instead of one.
+
+---

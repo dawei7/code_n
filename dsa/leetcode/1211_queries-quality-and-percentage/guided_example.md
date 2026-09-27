@@ -92,7 +92,7 @@ flowchart TD
 
 ### Partition Aggregation Trace
 
-| `query_name` | Row Elements $(p, r)$ | Sum of Ratios $\sum \frac{r}{p}$ | Average Ratio | Rounded Quality | Poor Count ($\sum \mathbb{I}$) | Poor Ratio $\frac{\text{Poor}}{|Q|} \times 100$ | Rounded Poor % |
+| `query_name` | Row Elements $(p, r)$ | Sum of Ratios $\sum \frac{r}{p}$ | Average Ratio | Rounded Quality | Poor Count ($\sum \mathbb{I}$) | Poor Ratio $\frac{\text{Poor}}{\lvert Q \rvert} \times 100$ | Rounded Poor % |
 |---|---|---|---|---|---|---|---|
 | `"Dog"` | $(1, 5), (2, 5), (200, 1)$ | $5.0 + 2.5 + 0.005 = 7.505$ | $7.505 / 3 = 2.50167$ | **2.50** | $0 + 0 + 1 = 1$ | $\frac{1}{3} \times 100 = 33.333\%$ | **33.33** |
 | `"Cat"` | $(5, 2), (3, 3), (7, 4)$ | $0.4 + 1.0 + 0.57143 = 1.97143$ | $1.97143 / 3 = 0.65714$ | **0.66** | $1 + 0 + 0 = 1$ | $\frac{1}{3} \times 100 = 33.333\%$ | **33.33** |
@@ -126,8 +126,8 @@ Hash Group-By (Optimal):
 | Boundary Scenario | Input Condition | System Behavior & Verification |
 |---|---|---|
 | **Null Query Name** | Row has `query_name = null` | Filtered out by `WHERE query_name IS NOT NULL`; never forms an empty grouping bucket. |
-| **All Results Poor** | All ratings are 1 or 2 | Poor percentage evaluates to $\frac{|Q|}{|Q|} \times 100 = 100.00$. |
-| **Zero Results Poor** | All ratings are 3, 4, or 5 | Poor percentage evaluates to $\frac{0}{|Q|} \times 100 = 0.00$. |
+| **All Results Poor** | All ratings are 1 or 2 | Poor percentage evaluates to $\frac{\lvert Q \rvert}{\lvert Q \rvert} \times 100 = 100.00$. |
+| **Zero Results Poor** | All ratings are 3, 4, or 5 | Poor percentage evaluates to $\frac{0}{\lvert Q \rvert} \times 100 = 0.00$. |
 | **High Position Displacement** | Result placed at position 500 | Ratio is $\frac{r}{500}$, contributing a tiny value; handled accurately in standard IEEE-754 double precision. |
 | **Integer Division Truncation Risk** | Division performed in integer mode | Ratios must cast to floating-point (`1.0 * rating / position`) to prevent integer truncation to 0. |
 

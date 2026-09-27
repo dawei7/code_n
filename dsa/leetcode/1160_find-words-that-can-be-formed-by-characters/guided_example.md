@@ -59,7 +59,7 @@ Let $\Sigma$ denote the lowercase English alphabet ($\{0, 1, \dots, 25\}$ indexe
 | Inventory Vector $\mathbf{C}$ | Fixed array $[0 \dots 25]$ | Global character supply; immutable across word checks |
 | Candidate Vector $\mathbf{W}$ | Temporary array $[0 \dots 25]$ | Demand vector for the currently evaluated word |
 | Early Exit Predicate | Boolean condition | If for any character $k$, $W[k] > C[k]$, immediately reject word |
-| Length Accumulator | Integer scalar | Sum of lengths $|w|$ for all verified good words |
+| Length Accumulator | Integer scalar | Sum of lengths $\lvert w \rvert$ for all verified good words |
 
 ```mermaid
 flowchart TD

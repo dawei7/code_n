@@ -129,6 +129,20 @@ Step 3:   [3] -> [2] -> [0] -> [-4]
 | 2 | $N_2$ ($0$) | $N_2 \to N_3 \to N_1$ | $N_1$ ($2$) | False | Continue |
 | **3** | **$N_3$ ($-4$)** | **$N_1 \to N_2 \to N_3$** | **$N_3$ ($-4$)** | **True** | **Collision! Return `true`** |
 
+### Relative Gap Dynamics Inside the Cycle
+
+Numbering the cycle nodes in traversal order as $N_1 = 0$, $N_2 = 1$, and
+$N_3 = 2$ gives the cycle coordinate of each pointer. The trailing distance
+$(\text{pos}_{\text{slow}} - \text{pos}_{\text{fast}}) \bmod 3$ is the quantity
+the invariant claims decreases by exactly $1$ per tick.
+
+| Iteration | `slow` cycle coordinate | `fast` cycle coordinate | Trailing distance $(\text{pos}_{\text{slow}} - \text{pos}_{\text{fast}}) \bmod 3$ | `slow == fast`? | Why this state is consistent with the invariant |
+|:---:|:---:|:---:|:---:|:---:|:---|
+| 0 | outside the cycle at $N_0$ | outside the cycle at $N_0$ | undefined — neither pointer has entered the cycle yet | True, but never tested | Both pointers begin at the head, so their coincidence at step $0$ carries no evidence; only equality observed *after* a double advance proves a cycle. |
+| 1 | $0$ ($N_1$, value $2$) | $1$ ($N_2$, value $0$) | $(0 - 1) \bmod 3 = 2$ | False | `slow` has just entered the cycle at its entrance $N_1$, and `fast` sits one node ahead, so `fast` still has $2$ nodes to travel to reach `slow`. |
+| 2 | $1$ ($N_2$, value $0$) | $0$ ($N_1$, value $2$) | $(1 - 0) \bmod 3 = 1$ | False | `fast` gained exactly one node on `slow`; the trailing distance fell from $2$ to $1$, the $\Delta d = 1$ decrement the invariant predicts. |
+| **3** | **$2$ ($N_3$, value $-4$)** | **$2$ ($N_3$, value $-4$)** | **$(2 - 2) \bmod 3 = 0$** | **True — collision** | The trailing distance reached $0$ on the third iteration, satisfying the bound of at most $C = 3$ iterations once `slow` is inside the cycle. |
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -144,6 +158,15 @@ Step 3:   [3] -> [2] -> [0] -> [-4]
 - **Null Pointer Dereference on Fast Runner:** Checking `while fast and fast.next:` is mandatory. On odd-length lists, `fast.next` will be `null`, so attempting `fast.next.next` without the guard throws a null reference exception.
 - **Empty List and Single Node Without Loop:** If `head is None` or `head.next is None`, the while loop never executes and immediately returns `false`.
 - **Identity Check vs Value Check:** The check must compare node references (`slow == fast`), never node values (`slow.val == fast.val`), because multiple distinct nodes in the list can have identical values.
+
+### Boundary Inputs and Their Iteration Counts
+
+| Boundary input | Node structure | Result | Loop iterations | Why the guard or the collision produces it |
+|:---|:---|:---:|:---:|:---|
+| `[]`, $\text{pos} = -1$ (empty list) | `head` is the null reference | `false` | 0 | The guard demands that both `fast` and `fast.next` exist; with `fast` already null the body never executes, and the method returns `false` without a single comparison. |
+| `[7]`, $\text{pos} = 0$ (self-loop) | $N_0$ points to itself, so $K = 0$ and $C = 1$ | `true` | 1 | The guard passes because $N_0$ has a successor. One tick sends `slow` from $N_0$ to $N_0$ and `fast` from $N_0$ through $N_0$ back to $N_0$, so the two pointers coincide on the very first check. |
+| `[1, 2]`, $\text{pos} = 0$ (tail links to head) | $N_0(1) \to N_1(2) \to N_0(1)$, so $K = 0$ and $C = 2$ | `true` | 2 | The entrance is the head, so `slow` is inside the cycle immediately. The trailing distance $(\text{pos}_{\text{slow}} - \text{pos}_{\text{fast}}) \bmod 2$ is $1$ after the first tick and $0$ after the second, where the pointers meet at $N_0$. |
+| `[1]`, $\text{pos} = -1$ (one node, no loop) | $N_0(1) \to \text{null}$ | `false` | 0 | Here $N_0$ exists, but `fast.next` is null, so the guard rejects the first iteration and the method correctly reports the absence of a cycle. |
 
 ---
 

@@ -51,7 +51,7 @@ At each merge step, extracting the two globally minimal values $x = \min(H)$ and
 
 | State Component | Data Structure | Invariant Semantics |
 |---|---|---|
-| Active Sticks | Min-Heap $H$ | Always provides the two smallest available lengths in $\mathcal{O}(\log |H|)$ |
+| Active Sticks | Min-Heap $H$ | Always provides the two smallest available lengths in $\mathcal{O}(\log \lvert H \rvert)$ |
 | Extracted Pair $(x, y)$ | Smallest two integers | Locally optimal merge candidates |
 | Connection Step Cost | $x + y$ | Incremental cost incurred for the current union |
 | Cost Accumulator | Integer scalar | Cumulative sum of all $(N - 1)$ connection costs |

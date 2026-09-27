@@ -132,6 +132,18 @@ Reconstructed:    0             1             1  => 3
 | $3 \dots 30$ | - | 0 | 0 | 0 | 3 |
 | 31 (Sign) | $-2^{31}$ | 0 | 0 | 0 | **3 (Result)** |
 
+The signed instance from the opening is the harder one, because its value is negative and every high bit position sees sign-extended ones. Counting its columns explicitly:
+
+| Bit position $i$ | Values contributing a $1$ | Count | Count mod 3 | Singleton bit | Note |
+|:---:|:---|:---:|:---:|:---:|:---|
+| 0 | the three copies of $1$ | 3 | 0 | 0 | The three $1$s cancel; neither $-2$ nor $-4$ sets bit 0 |
+| 1 | the three copies of $-2$ | 3 | 0 | 0 | Only $-2$ sets bit 1, and it appears exactly three times |
+| 2 | three copies of $-2$, three copies of $4$, one $-4$ | 7 | 1 | 1 | $3 + 3 \equiv 0$, so only the single contribution of $-4$ survives |
+| $3 \dots 30$ | three copies of $-2$, one $-4$ | 4 | 1 | 1 | Sign extension repeats the high bits of both negatives, and $3 + 1 \equiv 1$ |
+| 31 (Sign) | three copies of $-2$, one $-4$ | 4 | 1 | 1 | The set sign bit means the assembly below must be read as a negative value |
+
+Assembling the marked bits gives the unsigned pattern $\text{0xFFFFFFFC}$, and reducing it to a signed 32-bit integer yields $-4$. The lesson of the table is that the tripled negatives contribute high ones in complete groups of three: they vanish at every position above bit 1 as well, so no special branch is needed while counting.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -148,9 +160,36 @@ Reconstructed:    0             1             1  => 3
 - **Negative Tripled Numbers:** A negative number repeated three times contributes three sign-extended $1$s at higher bit positions. These sum to $3$, which also vanishes modulo 3 ($3 \equiv 0$). Negative numbers require no special branching during bit counting.
 - **Generalizing to Multiplicity $K$:** This modulo-counting approach generalizes to any multiplicity $K$: if every non-target element appears $K$ times, taking $\text{count}_i \bmod K$ isolates the singleton.
 
+The authored cases cover the sign bit, the all-zero answer, and the degenerate short arrays:
+
+| Authored case | `nums` | Values appearing three times | Singleton | Decisive detail | Returned |
+|:---|:---|:---|:---:|:---|:---:|
+| `sample-1` | $[2, 2, 3, 2]$ | $2$ | 3 | Bit 0 counts $1$ and bit 1 counts $4$, so both remainders are $1$ | 3 |
+| `sample-2` | $[0, 1, 0, 1, 0, 1, 99]$ | $0$ and $1$ | 99 | Only bits of $99 = 1100011_2$ survive; the triples of $0$ and $1$ contribute multiples of three at every position | 99 |
+| `trial-negative-single` | $[-2, -2, 1, 1, 4, 1, 4, 4, -4, -2]$ | $-2$, $1$, $4$ | $-4$ | Every position from 2 to 31 counts $4$, and the sign bit turns the unsigned pattern into $-4$ | $-4$ |
+| `trial-zero-single` | $[5, 5, 5, 7, 7, 7, 0]$ | $5$ and $7$ | 0 | The bit counts are $6$, $3$ and $6$ at positions 0, 1 and 2, so every remainder is $0$ and no bit is ever set | 0 |
+| `trial-boundary-5` | $[2]$ | none | 2 | Bit 1 counts $1$, so the remainder is $1$ and the value is reconstructed | 2 |
+| `trial-boundary-6` | $[2, 2]$ | none | 2 | Bit 1 counts $2$, and the remainder $2$ is still non-zero, so bit 1 is set | 2 |
+
+The zero row is the sharpest one: the correct answer is an integer whose every bit remainder is $0$, so no position ever marks a bit. An implementation that treats "no bit was marked" as a failure would be wrong here, and an implementation that tests the remainder for equality with $1$ rather than for being non-zero would disagree with the last row.
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(32 \cdot N) = O(N)$, where $N$ is the number of elements in `nums`. The bit-counting loop evaluates 32 fixed positions, each iterating over $N$ numbers. Method 2 (the digital logic FSM) evaluates in a single pass of $N$ operations.
 - **Auxiliary Space Complexity:** $O(1)$ constant memory, utilizing only a few integer registers (`ans`, `count`).
+
+The two methods taught above are complemented by three alternatives, and only two of them stay within constant space:
+
+| Strategy | Idea | Time | Auxiliary space | Behavior on the signed instance |
+|:---|:---|:---:|:---:|:---|
+| Modulo-3 bit counting over 32 positions | Sum each bit column and keep the remainder | $O(32N)$ | $O(1)$ | Recovers $\text{0xFFFFFFFC}$, which needs the explicit sign-bit correction to become $-4$ |
+| Two-register FSM (`ones`, `twos`) | A ternary counter per bit driven by XOR and masks | $O(N)$ | $O(1)$ | Produces $-4$ directly in one pass, with no separate sign step |
+| Frequency map | Count occurrences and report the value seen once | $O(N)$ expected | $O(N)$ | Correct, but stores every distinct value and violates the constant-space requirement |
+| Sort and scan runs of three | Order the array and look for a run of length one | $O(N \log N)$ | $O(N)$ for a copy, $O(1)$ if the caller's array may be reordered | Correct, but violates the linear-time requirement |
+| XOR fold as in the two-copy problem | Reuse $x \oplus x = 0$ | $O(N)$ | $O(1)$ | Fails here: $x \oplus x \oplus x = x \ne 0$, so triples do not cancel and the result is $2 \oplus 3 = 1$ for `sample-1` |
+
+For `sample-1` the naive XOR fold leaves $2 \oplus 2 \oplus 3 \oplus 2 = 1$ instead of $3$, which is exactly the gap the modulo-3 argument closes.
+
+---

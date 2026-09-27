@@ -211,7 +211,7 @@ Center cell (1, 1) achieves the maximum shortest-distance value: 2.
 
 | Trap Category | Hazard Scenario | Root Cause | Preventive Design Invariant |
 |---|---|---|---|
-| **Homogeneous Grid Trap** | Grid contains only water ($|L| = 0$) or only land ($|L| = N^2$) | No pair of water-land exists, so problem contract requires `-1`. | Check boundary immediately: if $|L| = 0$ or $|L| = N^2$, return `-1`. |
+| **Homogeneous Grid Trap** | Grid contains only water ($\lvert L \rvert = 0$) or only land ($\lvert L \rvert = N^2$) | No pair of water-land exists, so problem contract requires `-1`. | Check boundary immediately: if $\lvert L \rvert = 0$ or $\lvert L \rvert = N^2$, return `-1`. |
 | **Enqueue vs Dequeue Mark Trap** | Marking a water cell as visited upon popping rather than enqueuing | Multiple frontier nodes can attempt to enqueue the same water neighbor simultaneously, causing exponential queue bloat and memory exhaustion. | Mark cell visited and assign its distance immediately when enqueuing. |
 | **Off-by-One in Wave Counting** | Returning the total number of BFS while-loop passes without subtracting the base land layer | Land nodes form wave 0; returning total waves increments the answer by 1. | Track distance explicitly inside the queue or via a 2D distance grid. |
 | **Memory Limit Exceeded on Queues** | Storing redundant path objects | Storing full path histories in queue tuples. | Store only coordinate pairs `(r, c)`. |

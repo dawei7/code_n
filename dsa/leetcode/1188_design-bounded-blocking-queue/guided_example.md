@@ -97,7 +97,7 @@ sequenceDiagram
 
 ### State Evolution of Synchronization Primitives
 
-| Event | Queue Size $|Q|$ | $S_{\text{empty}}$ Count | $S_{\text{full}}$ Count | Blocked Producers | Blocked Consumers |
+| Event | Queue Size $\lvert Q \rvert$ | $S_{\text{empty}}$ Count | $S_{\text{full}}$ Count | Blocked Producers | Blocked Consumers |
 |---|---|---|---|---|---|
 | Initialization | 0 | 2 | 0 | None | None |
 | After $P_1$ finishes | 1 | 1 | 1 | None | None |

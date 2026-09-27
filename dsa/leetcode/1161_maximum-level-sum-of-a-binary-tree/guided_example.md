@@ -48,7 +48,7 @@ At the boundary of iteration $L \ge 1$:
 | State Variable | Type / Domain | Algorithmic Role |
 |---|---|---|
 | $L$ | Integer $\ge 1$ | 1-indexed indicator of the current tree level |
-| $K = |q|$ | Integer $\ge 1$ | Snapshot size of the current level frontier |
+| $K = \lvert q \rvert$ | Integer $\ge 1$ | Snapshot size of the current level frontier |
 | $level\_sum$ | Integer $\in [-10^9, 10^9]$ | Sum of values for all nodes at level $L$ |
 | $max\_sum$ | Integer, initialized to $-\infty$ | Global maximum level sum encountered so far |
 | $ans$ | Integer $\ge 1$ | Smallest level index attaining $max\_sum$ |
@@ -176,7 +176,7 @@ Suppose Level 2 sum = 7 and Level 5 sum = 7:
 | Trap Category | Hazard Scenario | Root Cause | Preventive Design Invariant |
 |---|---|---|---|
 | **Negative Root Default Trap** | A tree with $root = [-100]$ | Initializing $max\_sum = 0$ causes the algorithm to reject $-100$, leaving $ans = 0$ or incorrect. | Initialize $max\_sum = -\infty$ so any real level sum overwrites it. |
-| **Dynamic Queue Boundary Bleed** | Using `while len(q) > 0:` without fixed snapshot $K$ | Newly enqueued children of level $L$ are popped in the same loop, merging multiple levels into one corrupted sum. | Capture $K = |q|$ in a local variable before the inner pop loop. |
+| **Dynamic Queue Boundary Bleed** | Using `while len(q) > 0:` without fixed snapshot $K$ | Newly enqueued children of level $L$ are popped in the same loop, merging multiple levels into one corrupted sum. | Capture $K = \lvert q \rvert$ in a local variable before the inner pop loop. |
 | **Tie-Breaker Inversion** | Using `level_sum >= max_sum` | Overwrites earlier optimal levels with later levels of equal sum. | Use strict inequality `level_sum > max_sum`. |
 | **0-Based Level Indexing** | Starting $L = 0$ and returning $L$ | The problem specification explicitly declares the root to be at level 1. | Maintain 1-based indexing for levels. |
 

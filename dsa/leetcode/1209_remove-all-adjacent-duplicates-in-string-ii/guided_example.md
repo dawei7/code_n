@@ -136,7 +136,7 @@ Cancellation Cost Comparison for k = 1000:
 | **Complete String Annihilation** | `s = "aaabbb", k = 3` | `""` (empty string) | Both runs cancel out completely; stack terminates empty. |
 | **Zero Reductions Possible** | `s = "abcdef", k = 2` | `"abcdef"` | Every character distinct; all pushed as count 1; full string returned. |
 | **Cascading Domino Deletion** | Nested wrappers e.g. `s = "abbba", k = 3` | `""` | Inner `'b'`s pop, exposing `'a'`s which merge and pop. |
-| **$k$ Greater Than String Length**| $|s| < k$ | Returns $s$ unchanged | No run can ever reach length $k$; all characters retained. |
+| **$k$ Greater Than String Length**| $\lvert s \rvert < k$ | Returns $s$ unchanged | No run can ever reach length $k$; all characters retained. |
 | **Single Character String** | `s = "a", k = 2` | `"a"` | Count 1 never reaches $k=2$; returned unchanged. |
 
 ---

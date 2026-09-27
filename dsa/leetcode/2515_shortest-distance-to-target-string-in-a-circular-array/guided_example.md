@@ -1,134 +1,135 @@
 # Guided Example: Shortest Distance to Target String in a Circular Array
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. The Instance We Will Solve
 
-- **Input:** `{"words": ["hello", "i", "am", "leetcode", "hello"], "target": "hello", "startIndex": 1}`
-- **Required output:** `1`
+The input is a **0-indexed circular** array of words together with a target word and a starting index. "Circular" is not a metaphor here: it is a rewrite rule for indices. For an array of length $n$, the successor of position $i$ is
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+$$\mathrm{next}(i) = (i + 1) \bmod n, \qquad \mathrm{prev}(i) = (i - 1 + n) \bmod n,$$
 
----
+so stepping right past the last cell lands on cell $0$, and stepping left from cell $0$ lands on cell $n-1$. Every step moves exactly one array position, in either direction, and the cost of a candidate route is simply the number of steps taken.
 
-## 1. Instance & Teaching Goal
+We work the first official instance:
 
-You are given a **0-indexed** **circular** string array `words` and a string `target`. A **circular array** means that the array's end connects to the array's beginning.
+- `words` = `["hello", "i", "am", "leetcode", "hello"]`
+- `target` = `"hello"`
+- `startIndex` = `1`
 
-The objective is to compute `1` from `{"words": ["hello", "i", "am", "leetcode", "hello"], "target": "hello", "startIndex": 1}` while avoiding redundant calculations and unnecessary overhead.
+Here $n = 5$ and the starting position is $s = 1$, whose word is `"i"`. The required result is the shortest number of steps that reaches **any** position holding the target word, or `-1` when no position holds it. For this instance the two occurrences sit at positions $0$ and $4$; we will derive the two arc lengths for each of them, keep the smaller, and confirm the answer.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The whole difficulty of this problem is that a single matching position does not have one distance — it has two, one per direction — and the wrap-around causes the *numerically farther* index to be the *cheaper* one. Choosing this instance exposes exactly that.
 
----
+## 2. Two Arcs Between Two Positions
 
-## 2. Conceptual Foundation & Invariants
+Fix the start position $s$ and one matching position $k$. On a line there is exactly one distance, $\lvert k - s \rvert$. On a circle there are two disjoint arcs joining the same two cells, and their lengths add to the full circumference:
 
-We maintain the core conceptual parameters and state variables:
+- the **clockwise / forward** arc, obtained by repeatedly applying $\mathrm{next}$:
+  $$F(k) = (k - s) \bmod n,$$
+- the **counter-clockwise / backward** arc, obtained by repeatedly applying $\mathrm{prev}$:
+  $$B(k) = (s - k) \bmod n.$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+Because stepping right from $s$ reaches $k$ in $F(k)$ steps and stepping left from $s$ reaches $k$ in $B(k)$ steps, every route from $s$ to $k$ costs at least $\min\{F(k), B(k)\}$, and that value is achieved by simply walking the cheaper arc. Two facts make this computable with ordinary arithmetic:
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+$$F(k) + B(k) = n \quad \text{for every } k, \qquad \min\{F(k), B(k)\} = \min\{\lvert k - s \rvert,\; n - \lvert k - s \rvert\}.$$
 
----
+The right-hand identity is the one worth remembering: the offset $d = \lvert k - s \rvert$ measures how far $k$ lies from $s$ in the *linearized* array, and the complementary arc is $n - d$. This is why the shortest circular distance never exceeds $\lfloor n/2 \rfloor$; an answer larger than half the circumference always has a cheaper counterpart going the other way.
 
-## 3. Step-by-Step Worked Execution
+## 3. Locating the Candidate Positions
 
-### Step 1: Every target occurrence is a possible destination
+Only positions whose word equals the target can be endpoints, so the first job is a linear scan that records matches. Scanning `words` from index $0$ upward for `target` = `"hello"` with $n = 5$:
 
-The target may appear multiple times. The closest occurrence is not necessarily the first one in ordinary array order, so the method scans all indices and evaluates every word equal to `target`.
+| Index $i$ | `words[i]` | Match? | Role in the instance |
+|:---:|:---|:---:|:---|
+| 0 | `"hello"` | yes | candidate endpoint, one step to the left of the start |
+| 1 | `"i"` | no | the start position $s$; it is not itself a match |
+| 2 | `"am"` | no | irrelevant to the answer, but must still be inspected |
+| 3 | `"leetcode"` | no | irrelevant to the answer |
+| 4 | `"hello"` | yes | candidate endpoint, wrapping required |
 
-For an occurrence at index `i`, there are two directions around the circular array:
+So the candidate set is $\{0, 4\}$. Note that position $1$ being the start does not exempt it from inspection: had `words[1]` been `"hello"`, the correct distance would be $0$, and a scan that skipped the start index would miss it.
 
-- move directly along the index gap;
-- wrap around the other side of the circle.
+Because `words` may contain repeated words, we cannot stop at the first match either. Position $0$ and position $4$ both match; picking the first one found is a tempting shortcut that would be wrong for other inputs (for example `["a","x","x","a","x","x"]` with target `"a"` and `startIndex` = `1`, where the later match at index $3$ is the nearest). The scan therefore has to consider **every** matching position and keep the best.
 
-The shorter of these is the distance to that occurrence.
+## 4. Measuring Each Candidate on the Circle
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"words": ["hello", "i", "am", "leetcode", "hello"], "target": "hello", "startIndex": 1}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+For each candidate we compute the offset, the complementary arc, and the true circular cost. With $s = 1$:
 
----
+| Candidate $k$ | Offset $d = \lvert k - s \rvert$ | Complementary arc $n - d$ | Cheaper arc $\min\{d, n-d\}$ | Direction it uses | Cumulative best |
+|:---:|:---:|:---:|:---:|:---|:---:|
+| 0 | 1 | 4 | 1 | backward: $1 \to 0$ | 1 |
+| 4 | 3 | 2 | 2 | backward through the wrap: $1 \to 0 \to 4$ | 1 |
 
-### Step 2: Compute the two circular distances
+Reading the first row: position $0$ is one place to the left of the start, so a single backward step suffices; the alternative is four forward steps, which is worse. Reading the second row is the instructive part: position $4$ is three positions to the right by index arithmetic, yet walking right costs $3$ steps while walking left costs only $2$, because the leftward walk falls off the front of the array and re-enters at the back. Comparing raw index distances ($1$ versus $3$) and picking position $0$ would still give the correct answer here, but it gives the wrong *reason* — position $4$'s distance is $2$, not $3$, and on inputs such as $n = 10$ with $s = 3$ and $k = 9$ (offset $6$, true cost $4$) the raw offset is not the distance at all.
 
-Let
+The two arcs for each candidate also satisfy $F(k) + B(k) = 5$, which is a useful self-check: if the two directions you computed do not sum to $n$, one of them is wrong.
 
-`t = abs(i-startIndex)`.
+## 5. Step-by-Step Trace of the Linear Scan
 
-This is the number of steps between the indices without crossing the array boundary. The circular route in the opposite direction uses the remaining edges of the `n`-node cycle, so its length is
+The method walks the array once in index order, tests equality, and folds each match into a running minimum:
 
-`n-t`.
+$$A_i = \min\Big( A_{i-1},\; \min\{d_i,\; n - d_i\} \Big) \quad \text{when } \texttt{words[i]} = \texttt{target}, \qquad A_i = A_{i-1} \text{ otherwise,}$$
 
-The shortest distance to occurrence `i` is therefore
+with the accumulator seeded at $A_{-1} = n$. Seeding at $n$ is deliberate: it is strictly larger than every achievable distance ($0 \le d \le n-1$, so $\min\{d, n-d\} \le \lfloor n/2 \rfloor < n$), so the first match always replaces it, and an untouched accumulator at the end is an unambiguous "no match" signal.
 
-$$
-\min(t,n-t).
-$$
+| Scan step $i$ | `words[i]` | Equality test | $d_i$ | Arc cost $\min\{d_i, n-d_i\}$ | Accumulator $A_i$ | Note |
+|:---:|:---|:---:|:---:|:---:|:---:|:---|
+| seed | — | — | — | — | 5 | $A = n$ means "nothing found yet" |
+| 0 | `"hello"` | true | 1 | 1 | 1 | first match immediately displaces the seed |
+| 1 | `"i"` | false | — | — | 1 | start position, no update |
+| 2 | `"am"` | false | — | — | 1 | no update |
+| 3 | `"leetcode"` | false | — | — | 1 | no update |
+| 4 | `"hello"` | true | 3 | 2 | 1 | candidate $2$ does not beat the incumbent $1$ |
 
-The update
+The accumulator is monotone non-increasing across the scan, ends at $A_4 = 1$, and $1 \ne n$, so the reported answer is $1$. That agrees with the official example, which reaches the answer by enumerating four explicit routes: $3$ right, $2$ left, $4$ right, and $1$ left. The table above shows that we never need to enumerate routes at all — each endpoint is summarized by the minimum of its two arcs.
 
-`ans = min(ans,t,n-t)`
+For the negative instance, take `words` = `["i","eat","leetcode"]`, `target` = `"ate"`, `startIndex` = `0`. No position matches, so the accumulator is never written, stays at $n = 3$, and the final guard converts that sentinel into `-1`.
 
-compares both routes with the best target occurrence found earlier.
+## 6. Correctness and the Loop Invariant
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+**Invariant.** After processing scan step $i$, the accumulator $A_i$ equals the minimum circular distance from $s$ to every target position in the already-scanned prefix $\texttt{words}[0..i]$, and $A_i = n$ exactly when that prefix contains no target position.
 
----
+*Initialization.* Before any element is read the prefix is empty, no candidate has been measured, and $A_{-1} = n$ records "no candidate yet". Since no distance can equal $n$, the sentinel is never confused with a genuine measurement.
 
-### Step 3: Why the two choices are exhaustive
+*Preservation.* If `words[i]` is not the target, position $i$ is not an endpoint, no completion ending there can exist, and the minimum over the enlarged prefix is unchanged, so $A_i = A_{i-1}$. If `words[i]` is the target, the set of admissible endpoints for the prefix grows by exactly one element, and the new prefix minimum is the smaller of the old minimum and the new element's cost $\min\{d_i, n - d_i\}$ — precisely the update rule.
 
-Between two vertices on a simple cycle, there are exactly two simple paths: clockwise and counterclockwise. Any route that reverses direction or loops around more than once repeats edges and is no shorter than one of those two simple paths.
+*Termination.* After step $n-1$ the invariant covers the whole array, so the accumulator equals the minimum distance over **all** target positions, or $n$ if there is none.
 
-The direct index difference measures one path, and `n-t` measures the complement. Their minimum is exactly the shortest possible movement distance.
+**Optimality.** Every route from $s$ to a position $k$ is a walk on the cycle graph $C_n$ between two of its vertices, so its length is at least the shorter arc length $\min\{F(k), B(k)\} = \min\{\lvert k-s \rvert, n-\lvert k-s \rvert\}$, and that lower bound is attained by walking the shorter arc. The accumulator therefore minimizes an exact per-candidate cost rather than a heuristic proxy. Combining this with the termination invariant gives the final claim: the returned value is the globally shortest distance to any occurrence of the target, and it is `-1` exactly when the target occurs nowhere.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `1` |
+## 7. Traps and Boundary Behaviour
 
----
+| Scenario | Instance | Arithmetic | Result | Why the rule still holds |
+|:---|:---|:---|:---:|:---|
+| start is itself a match | `["x","y","z"]`, target `"y"`, `startIndex` = `1` | $d_1 = 0$, $\min\{0, 3\} = 0$ | 0 | The zero-length walk is a legal route, so the minimum can be $0$; the seed is still replaced. |
+| duplicate matches on both sides | `["hello","i","am","leetcode","hello"]`, target `"hello"`, `startIndex` = `1` | $\{1, 2\} \to 1$ | 1 | Scanning all matches is what makes the choice between arcs meaningful; stopping early is unsafe. |
+| exactly opposite positions | `["a","b","c","goal","d","e"]`, target `"goal"`, `startIndex` = `0` | $d = 3$, $\min\{3, 6-3\} = 3$ | 3 | With even $n$ the two arcs tie; the minimum is still well defined and both directions are equally cheap. |
+| target absent | `["i","eat","leetcode"]`, target `"ate"`, `startIndex` = `0` | accumulator stays at $n = 3$ | -1 | The sentinel is unreachable as a real cost, so "unchanged" faithfully means "no occurrence". |
+| single-cell circular array | `["only"]`, target `"only"`, `startIndex` = `0` | $d = 0$, $\min\{0, 1-0\} = 0$ | 0 | For $n = 1$ the only arc is the empty one; both formulas agree on $0$. |
+| large offset near the wrap | $n = 6$, $s = 0$, match at $k = 5$ | $d = 5$, $\min\{5, 1\} = 1$ | 1 | Linear intuition says "five steps"; the complementary arc shows the true cost is one backward step. |
 
-## 4. Complete Execution Trace
+Two semantic traps deserve to be named explicitly. First, **value identity versus index identity**: the target is a word, not a position, and the array may hold that word many times; the algorithm must answer over the *set* of matching indices, and it compares words by exact equality, since `"ate"` and `"eat"` are unrelated even though they are anagrams. Second, **the sentinel is not an answer**: `n` is a legitimate array length but never a legitimate step count, which is what makes the final `-1` conversion sound. Returning the sentinel directly, or initializing the accumulator to `0`, would silently report nonsense.
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"words": ["hello", "i", "am", "leetcode", "hello"], "target": "hello", "startIndex": 1}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `1` | Verified |
+## 8. Complexity: Time and Auxiliary Space
 
----
+**Time.** The scan inspects each of the $n$ positions exactly once. Per position it performs one string equality comparison and, only for a match, a constant number of arithmetic operations (one offset, one complement, one minimum, one accumulator minimum). With $m$ matching positions the total work is $n$ comparisons plus $\mathrm{O}(m)$ arithmetic steps, and since $m \le n$ the bound is
 
-## 5. Algorithmic Correctness
+$$T(n) = \mathrm{O}(n) + \mathrm{O}(m) = \mathrm{O}(n).$$
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+The word-length limit does not change this class: each comparison inspects at most a constant number of characters under the stated constraints, so comparisons are $\mathrm{O}(1)$ with respect to the array length. Both directions are handled inside one scan, so no second pass is needed and no sorting is performed — sorting the matching indices would cost $\mathrm{O}(n \log n)$ for no benefit.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Auxiliary space.** The method keeps a single integer accumulator and a loop index; it never materializes the list of matching positions, a distance array, or a visited set. The extra memory is therefore constant:
 
----
+$$S_{\text{aux}}(n) = \mathrm{O}(1).$$
 
-## 6. Traps This Instance Exposes
+That low space cost is the practical advantage over the alternative of collecting every match and then scanning that collection: both are linear in time, but the one-pass form needs no second container.
 
-- **Bidirectional step simulation:** Move left and right from the start until finding the target. It can return early but requires modular indexing.
-- **Preindexed positions:** Store occurrence indices per word for many repeated queries, but one query does not justify the extra structure.
-- **Target at start:** Return distance zero.
-- **Multiple occurrences:** Evaluate all or stop only when the theoretical minimum zero is found.
-- **No occurrence:** The sentinel remains `n` and becomes `-1`.
-- **One-element array:** The result is zero on a match and `-1` otherwise.
-- **Wraparound shorter:** `n-t` captures movement across the end-to-start boundary.
-- **Direct route shorter:** `t` captures movement without wrapping.
-- **Exact match:** Substrings do not count.
-- **Sentinel safety:** No valid shortest circular distance can equal `n`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+## 9. Alternatives and Their Trade-offs
 
----
+| Alternative | How it would work | Cost | Why it is not preferred |
+|:---|:---|:---|:---|
+| Two separate directed sweeps | Walk forward from $s$ until a match, then walk backward from $s$ until a match; take $\min$. | $\mathrm{O}(n)$ time, $\mathrm{O}(1)$ space | Correct and equally cheap, but it needs two wrap-aware loops and two termination rules; the single formula $\min\{d, n-d\}$ collapses both directions into one comparison. |
+| Duplicate the array and scan the window | Concatenate `words` with itself and slide a window of length $n$ around $s$. | $\mathrm{O}(n)$ time, $\mathrm{O}(n)$ space | The duplicate is pure overhead: the circular distance formula already encodes the wrap, so doubling the array buys nothing. |
+| Sort the matching indices first | Collect matches, sort by circular distance from $s$, return the head. | $\mathrm{O}(m \log n)$ time | Sorting is unnecessary work when a running minimum over the same set already yields the head value in $\mathrm{O}(m)$. |
+| Stop at the first match found | Return the first matching index's distance without scanning further. | $\mathrm{O}(n)$ to $\mathrm{O}(1)$ in the lucky case | Incorrect in general: a later match can be strictly nearer through the wrap, as $["a","x","x","a","x","x"]$ with target `"a"` and `startIndex` = `1` demonstrates. |
+| Walk the circle step by step outward | Alternate one forward and one backward step, checking the word at each landing position. | $\mathrm{O}(n)$ time | Each position is compared on each attempt and wrap arithmetic is duplicated; the per-candidate formula gives the same answer with fewer comparisons and a cleaner invariant. |
 
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(C)$. Let $n$ be the number of words. The loop examines every word once, so there are $O(n)$ comparisons and constant-time index calculations.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+The lesson of this instance generalizes: on a cycle, never measure separation with a single linear difference. Compute the offset from the start, and remember that the cheaper way around is the complement $n - d$ whenever that complement is smaller.

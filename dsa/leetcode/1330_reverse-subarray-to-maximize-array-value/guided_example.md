@@ -186,9 +186,9 @@ $$
 
 | Category | Subarray Tested | Boundary Modified | Formula Evaluated | Gain $\Delta$ | Total Array Value |
 |---|---|---|---|---|---|
-| Base | None | - | $\sum |x - y|$ | $0$ | $8$ |
-| Prefix | $[0..3]$ | $r = 3$ | $|2 - 4| - |5 - 4| = 2 - 1$ | $+1$ | $9$ |
-| Suffix | $[1..4]$ | $l = 1$ | $|2 - 4| - |2 - 3| = 2 - 1$ | $+1$ | $9$ |
+| Base | None | - | $\sum \lvert x - y \rvert$ | $0$ | $8$ |
+| Prefix | $[0..3]$ | $r = 3$ | $\lvert 2 - 4 \rvert - \lvert 5 - 4 \rvert = 2 - 1$ | $+1$ | $9$ |
+| Suffix | $[1..4]$ | $l = 1$ | $\lvert 2 - 4 \rvert - \lvert 2 - 3 \rvert = 2 - 1$ | $+1$ | $9$ |
 | **Interior** | $[1..3]$ | **Pairs $(2,3)$ and $(5,4)$** | $2 \cdot (4 - 3)$ | **+2** | **10** |
 
 ---

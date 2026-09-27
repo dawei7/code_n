@@ -85,7 +85,7 @@ Let $C$ denote the fixed stack capacity.
 
 | State Component | Role | Invariant Guarantee |
 |---|---|---|
-| `stacks[i]` | Content of stack $i$ | Bounded size: $0 \le |stacks[i]| \le C$ |
+| `stacks[i]` | Content of stack $i$ | Bounded size: $0 \le \lvert stacks[i] \rvert \le C$ |
 | Min-Heap `not_full` | Hole locator | Top element $\min(not\_full)$ is the leftmost non-full stack |
 | Tail Trimming | Boundary maintenance | `stacks[-1]` is guaranteed non-empty whenever `len(stacks) > 0` |
 
@@ -235,10 +235,10 @@ Hole Filling Progression (Ops 6 -> 7):
 
 | Trap Category | Hazard Scenario | Root Cause | Preventive Design Invariant |
 |---|---|---|---|
-| **Stale Index in Heap** | Popping index $i$ from `not_full` where $i \ge |stacks|$ due to earlier tail-trimming | Tail-trimming removed stack $i$, but its index still lingers in the min-heap. | Before pushing to $i$, prune `while not_full and not_full[0] >= len(stacks): heappop(not_full)`. |
+| **Stale Index in Heap** | Popping index $i$ from `not_full` where $i \ge \lvert stacks \rvert$ due to earlier tail-trimming | Tail-trimming removed stack $i$, but its index still lingers in the min-heap. | Before pushing to $i$, prune `while not_full and not_full[0] >= len(stacks): heappop(not_full)`. |
 | **Interior Shifting Fallacy** | Deleting empty stacks from the middle of `stacks` | Shifts all subsequent stack indices, invalidating caller expectations for `popAtStack(index)`. | Only trim empty stacks from the **right tail** (`stacks.pop()`); preserve interior empty stacks as `[]`. |
-| **Duplicate Insertion into Heap** | Pushing index $i$ into $not\_full$ when it was already not full | Causes the same index to appear multiple times in the heap. | Push $index$ to $not\_full$ strictly when $|stacks[index]| == C - 1$ (the pop that created the opening). |
-| **Invalid Index Query** | `popAtStack(100)` when only 3 stacks exist | Accessing `stacks[100]` causes index out-of-range exception. | Validate $0 \le index < |stacks|$; return $-1$ if out of bounds. |
+| **Duplicate Insertion into Heap** | Pushing index $i$ into $not\_full$ when it was already not full | Causes the same index to appear multiple times in the heap. | Push $index$ to $not\_full$ strictly when $\lvert stacks[index] \rvert == C - 1$ (the pop that created the opening). |
+| **Invalid Index Query** | `popAtStack(100)` when only 3 stacks exist | Accessing `stacks[100]` causes index out-of-range exception. | Validate $0 \le index < \lvert stacks \rvert$; return $-1$ if out of bounds. |
 
 ---
 

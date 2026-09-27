@@ -61,7 +61,7 @@ We define state tracking parameters:
 | Parameter | Mathematical Meaning | Initial Value |
 |---|---|---|
 | Reservation Map ($\mathcal{R}$) | Hash map: $\text{row} \mapsto \text{occupied seat set}$ | Populated from input |
-| Default Row Contribution | $2 \times (n - |\mathcal{R}|)$ | Evaluated globally |
+| Default Row Contribution | $2 \times (n - \lvert \mathcal{R} \rvert)$ | Evaluated globally |
 | Left Block Free ($B_{\text{left}}$) | $\{2, 3, 4, 5\} \cap \mathcal{R}[\text{row}] = \emptyset$ | Evaluated per row |
 | Right Block Free ($B_{\text{right}}$) | $\{6, 7, 8, 9\} \cap \mathcal{R}[\text{row}] = \emptyset$ | Evaluated per row |
 | Middle Block Free ($B_{\text{mid}}$) | $\{4, 5, 6, 7\} \cap \mathcal{R}[\text{row}] = \emptyset$ | Evaluated per row |

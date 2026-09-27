@@ -64,7 +64,7 @@ We establish tracking parameters across query evaluations:
 | Permutation $P$ | Sequence of length $m$ | Current ordered multiset containing all $\{1, \dots, m\}$ |
 | Current Query $q$ | Integer $\in [1, m]$ | Key whose position must be located and moved to front |
 | Position $pos$ | Integer $\in [0, m - 1]$ | $0$-based offset of $q$ in $P$, forming output term |
-| Output List | Array of size $|queries|$ | Accumulated position results |
+| Output List | Array of size $\lvert queries \rvert$ | Accumulated position results |
 
 > **Invariant.** At the start of step $t$, $P$ is a valid permutation of $\{1, 2, \dots, m\}$. After removing $q$ from $pos$ and inserting it at index $0$, relative ordering among all other elements is strictly preserved while indices in $[0, pos - 1]$ increase by $1$.
 

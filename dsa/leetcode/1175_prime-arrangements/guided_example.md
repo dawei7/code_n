@@ -66,7 +66,7 @@ $$\text{Total Permutations} = (k! \pmod{10^9 + 7}) \times ((n - k)! \pmod{10^9 +
 |---|---|---|
 | $n$ | $5$ | Upper bound of permutation domain |
 | Primes set $\mathcal{P}$ | $\{2, 3, 5\}$ | Set of prime values / indices |
-| $k = |\mathcal{P}|$ | $3$ | Number of prime positions |
+| $k = \lvert \mathcal{P} \rvert$ | $3$ | Number of prime positions |
 | Non-primes set $\mathcal{C}$ | $\{1, 4\}$ | Set of non-prime values / indices (note: 1 is non-prime) |
 | $m = n - k$ | $2$ | Number of non-prime positions |
 | $k!$ | $3! = 6$ | Ways to arrange primes among prime slots |

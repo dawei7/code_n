@@ -101,7 +101,7 @@ Similarly, for group $id = 2$, only the `'Jan'` row exists, yielding `Jan_Revenu
 | **Query Plan Complexity** | 12 Join operations, high tree depth | Engine-dependent rewrite | Single Hash/Sort Group-By node |
 | **I/O Table Scans** | Up to 12 separate scans or index probes | Single scan | Single scan ($\mathcal{O}(N)$) |
 | **Portability** | Universal ANSI SQL | Limited (vendor-specific dialect) | Universal across PostgreSQL, MySQL, SQLite, Oracle |
-| **Memory Footprint** | Large intermediate hash join tables | Compact accumulator | Minimal ($\mathcal{O}(|\mathcal{D}|)$ aggregate states) |
+| **Memory Footprint** | Large intermediate hash join tables | Compact accumulator | Minimal ($\mathcal{O}(\lvert \mathcal{D} \rvert)$ aggregate states) |
 | **Execution Cost** | $\mathcal{O}(12 \cdot N \log N)$ | $\mathcal{O}(N)$ | $\mathcal{O}(N)$ |
 
 ```

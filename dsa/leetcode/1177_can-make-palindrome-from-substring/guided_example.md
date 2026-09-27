@@ -126,8 +126,8 @@ Index i: [ 0 0 ... 1 0 1 1 0 ] (26 active bits in 4 bytes)
 |---|---|---|---|
 | **Single Character Query** | $l = r$, $k = 0$ | Always True | $m = 1 \implies \lfloor 1/2 \rfloor = 0 \le 0$. A single character is trivially palindromic. |
 | **Zero Replacements Allowed** | $k = 0$, $l < r$ | True only if $m \le 1$ | Checks if the original multiset is already an anagram of a palindrome. |
-| **Generous Budget** | $k \ge 13$ | Always True | Since $|\Sigma| = 26$, $m \le 26$. Thus $\lfloor m/2 \rfloor \le 13$. For any $k \ge 13$, answer is unconditionally True. |
-| **Full String Query** | $l = 0, r = |s|-1$ | Correct global parity | Queries prefix array at boundary $0$ and $n$ without index out-of-bounds. |
+| **Generous Budget** | $k \ge 13$ | Always True | Since $\lvert \Sigma \rvert = 26$, $m \le 26$. Thus $\lfloor m/2 \rfloor \le 13$. For any $k \ge 13$, answer is unconditionally True. |
+| **Full String Query** | $l = 0, r = \lvert s \rvert-1$ | Correct global parity | Queries prefix array at boundary $0$ and $n$ without index out-of-bounds. |
 | **All Identical Characters** | e.g. "aaaaa", $k = 0$ | Always True | $m = 0$ (even length) or $m = 1$ (odd length); satisfies inequality without replacement. |
 
 ---

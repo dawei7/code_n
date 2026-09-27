@@ -121,9 +121,9 @@ We evaluate lengths:
 
 | Metric | Measured Value | Threshold Requirement | Outcome |
 |---|---|---|---|
-| Count of Letters ($|L|$) | $3$ | Non-negative integer | $3$ tokens |
-| Count of Digits ($|D|$) | $3$ | Non-negative integer | $3$ tokens |
-| Absolute Difference | $|3 - 3| = 0$ | $\le 1$ | Feasible alternating configuration |
+| Count of Letters ($\lvert L \rvert$) | $3$ | Non-negative integer | $3$ tokens |
+| Count of Digits ($\lvert D \rvert$) | $3$ | Non-negative integer | $3$ tokens |
+| Absolute Difference | $\lvert 3 - 3 \rvert = 0$ | $\le 1$ | Feasible alternating configuration |
 
 ---
 
@@ -150,7 +150,7 @@ Final constructed string: `"0a1b2c"`.
 | Step Phase | Target Entity | Action Performed | Resulting State |
 |---|---|---|---|
 | Scan | Input $s$ | Partition into letters $L$ and digits $D$ | $L = ['a', 'b', 'c'], D = ['0', '1', '2']$ |
-| Validate | Count difference | Verify $| |L| - |D| | \le 1$ | $0 \le 1 \implies$ Valid |
+| Validate | Count difference | Verify $\lvert \lvert L \rvert - \lvert D \rvert \rvert \le 1$ | $0 \le 1 \implies$ Valid |
 | Align | Stream ordering | Set primary $A = D$, secondary $B = L$ | Lead type = Digit |
 | Interleave | Pair $0$ | Emit $D[0], L[0]$ | Buffer = `"0a"` |
 | Interleave | Pair $1$ | Emit $D[1], L[1]$ | Buffer = `"0a1b"` |

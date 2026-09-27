@@ -158,7 +158,7 @@ Result: $\mathbf{\text{"ABC"}}$.
 
 ## 4. Divisor Candidate Evaluation Trace Table
 
-| Length $i$ | Candidate Prefix $str1[:i]$ | Divides $|str1| = 6$? | Divides $|str2| = 3$? | $t^{6/i} == str1$? | $t^{3/i} == str2$? | Action |
+| Length $i$ | Candidate Prefix $str1[:i]$ | Divides $\lvert str1 \rvert = 6$? | Divides $\lvert str2 \rvert = 3$? | $t^{6/i} == str1$? | $t^{3/i} == str2$? | Action |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | $3$ | `"ABC"` | Yes ($6/3=2$) | Yes ($3/3=1$) | `"ABCABC"` (Yes) | `"ABC"` (Yes) | **Maximal Divisor Found: Return `"ABC"`** |
 | $2$ | `"AB"` | Yes ($6/2=3$) | No ($3\%2 \ne 0$) | — | — | Skip |

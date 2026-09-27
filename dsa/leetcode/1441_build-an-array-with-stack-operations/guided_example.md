@@ -56,7 +56,7 @@ We establish tracking parameters across the algorithm:
 | Parameter | Type & Domain | Role in Algorithm |
 |---|---|---|
 | Stream Integer ($num$) | Integer $1 \le num \le n$ | Next sequential integer available from stream |
-| Target Cursor ($cursor$) | Integer $0 \le cursor \le |target|$ | Index of next required value in $target$ |
+| Target Cursor ($cursor$) | Integer $0 \le cursor \le \lvert target \rvert$ | Index of next required value in $target$ |
 | Stack Contents | List of integers | Emulated stack state representing bottom-to-top order |
 | Operation Sequence | List of strings | Accumulated list of `"Push"` and `"Pop"` commands |
 

@@ -163,7 +163,7 @@ Iterate through aligned pairs $(a, b) \in zip(str1, str2)$:
 
 ### Table 2: Comparative Decision Matrix Across Problem Profiles
 
-| Profile Scenario | Example ($str1 \to str2$) | Target Alphabet Size $|\text{set}(str2)|$ | Functional Mapping Status | Decisive Reason | Expected Result |
+| Profile Scenario | Example ($str1 \to str2$) | Target Alphabet Size $\lvert \text{set}(str2) \rvert$ | Functional Mapping Status | Decisive Reason | Expected Result |
 |:---:|:---|:---:|:---:|:---|:---:|
 | Instance 1 | `"aabcc" \to "ccdee"` | $3 < 26$ | Consistent | Well-defined map with spare characters | **`true`** |
 | Instance 2 | `"leetcode" \to "codeleet"` | $6 < 26$ | **Conflict** ('e' $\to$ 'o' and 't') | One-to-many character divergence | **`false`** |

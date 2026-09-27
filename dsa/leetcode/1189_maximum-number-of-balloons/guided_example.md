@@ -130,7 +130,7 @@ Stoichiometric Reduction:
 | **Odd Count of Double Letters** | `'l'` count = 3, `'o'` count = 3 | 1 | $\lfloor 3 / 2 \rfloor = 1$. The third `'l'` and `'o'` cannot form a word without another companion pair. |
 | **Zero Active Characters** | `"xyzqwerty"` | 0 | All active counts are 0; minimum evaluates cleanly to 0. |
 | **Exact Multiple Balance** | `"balloonballoon"` | 2 | Counts are $(2, 2, 4, 4, 2)$; yields $(2, 2, 2, 2, 2) \implies \min = 2$. |
-| **Short Text** | `"bal"` (length $< 7$) | 0 | Since $|T| < 7$, cannot satisfy $\sum d_c = 7$; evaluated directly to 0. |
+| **Short Text** | `"bal"` (length $< 7$) | 0 | Since $\lvert T \rvert < 7$, cannot satisfy $\sum d_c = 7$; evaluated directly to 0. |
 
 ---
 

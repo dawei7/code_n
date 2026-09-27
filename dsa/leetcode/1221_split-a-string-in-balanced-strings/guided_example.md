@@ -109,7 +109,7 @@ Total maximum balanced strings $= 4$.
 | Approach / Dimension | Recursive Backtracking Partition | Dynamic Programming Array | Greedy Prefix Accumulator (Optimal) |
 |---|---|---|---|
 | **Core Mechanism** | Branch at every zero-crossing to test partitions | $DP[i] = \max_{j < i, s[j \dots i] \text{ bal}} DP[j] + 1$ | Single scalar accumulator counting $H_k = 0$ |
-| **Time Complexity** | $\mathcal{O}(2^{|\mathcal{Z}|})$ exponential | $\mathcal{O}(n^2)$ quadratic | $\mathcal{O}(n)$ strictly single-pass |
+| **Time Complexity** | $\mathcal{O}(2^{\lvert \mathcal{Z} \rvert})$ exponential | $\mathcal{O}(n^2)$ quadratic | $\mathcal{O}(n)$ strictly single-pass |
 | **Auxiliary Memory** | $\mathcal{O}(n)$ call stack | $\mathcal{O}(n)$ memoization array | $\mathcal{O}(1)$ two scalar variables |
 | **State Tracking** | Call stack frames | $n$-element DP table | Single integer register for height |
 | **Practical Speed ($n = 1000$)** | Redundant work / TLE | Millions of operations | $\approx 2\text{ microseconds}$ |

@@ -76,7 +76,7 @@ We define state tracking parameters:
 
 | Parameter | Mathematical Meaning | Initial Value |
 |---|---|---|
-| Total Picks ($n$) | Number of slices to select ($|slices| / 3$) | $2$ |
+| Total Picks ($n$) | Number of slices to select ($\lvert slices \rvert / 3$) | $2$ |
 | Case 1 Array ($A_1$) | $slices[0 \dots 4] = [1, 2, 3, 4, 5]$ | Linear subarray |
 | Case 2 Array ($A_2$) | $slices[1 \dots 5] = [2, 3, 4, 5, 6]$ | Linear subarray |
 | DP Table ($dp[i][j]$) | Max sum of $j$ non-adjacent items from first $i$ elements | $0$ |

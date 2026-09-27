@@ -147,7 +147,7 @@ Bidirectional BFS:
 | **Adjacent Coordinate** | $(1, 0)$ or $(0, 1)$ | 3 moves | Requires detour via $(2, 1)$ and $(0, 2)$; cannot be solved in 1 move. |
 | **Diagonal Neighbor** | $(1, 1)$ | 2 moves | Strictly requires permitting temporary negative coordinate $(2, -1)$. |
 | **Symmetric Diagonals** | $(2, 2)$ | 4 moves | Anomaly: takes 4 moves despite coordinate sum being only 4. |
-| **Negative Input Coordinates** | $(-100, -200)$ | Same as $(100, 200)$ | Absolute value transformation $|X|, |Y|$ normalizes all coordinates to the first quadrant. |
+| **Negative Input Coordinates** | $(-100, -200)$ | Same as $(100, 200)$ | Absolute value transformation $\lvert X \rvert, \lvert Y \rvert$ normalizes all coordinates to the first quadrant. |
 
 ---
 

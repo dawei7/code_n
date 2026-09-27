@@ -68,13 +68,13 @@ $$[\text{"/a"},\, \text{"/a/b"},\, \text{"/c/d"},\, \text{"/c/d/e"},\, \text{"/c
 
 ### Step 2: Sequential Invariant Trace
 
-| Step $k$ | Candidate Path $f$ | Active Root $r = \text{ans}[-1]$ | Lengths $|r|, |f|$ | Prefix Check $f[0 \dots |r|-1] == r$ | Boundary Check $f[|r|] == \text{'/'}$ | Subfolder Condition Met? | Action Taken | Retained Set `ans` |
+| Step $k$ | Candidate Path $f$ | Active Root $r = \text{ans}[-1]$ | Lengths $\lvert r \rvert, \lvert f \rvert$ | Prefix Check $f[0 \dots \lvert r \rvert-1] == r$ | Boundary Check $f[\lvert r \rvert] == \text{'/'}$ | Subfolder Condition Met? | Action Taken | Retained Set `ans` |
 |---|---|---|---|---|---|---|---|---|
 | 1 | `"/a"` | (None) | - | - | - | - | Initial base element | `["/a"]` |
 | 2 | `"/a/b"` | `"/a"` | 2, 4 | `"/a/b"[:2] == "/a"` (True) | `"/a/b"[2] == '/'` (True) | **Yes** ($r \prec f$) | Discard (child of `"/a"`) | `["/a"]` |
 | 3 | `"/c/d"` | `"/a"` | 2, 4 | `"/c/d"[:2] == "/c"` $\neq$ `"/a"` | - | **No** | Retain new root | `["/a", "/c/d"]` |
 | 4 | `"/c/d/e"` | `"/c/d"` | 4, 8 | `"/c/d/e"[:4] == "/c/d"` (True)| `"/c/d/e"[4] == '/'` (True) | **Yes** ($r \prec f$) | Discard (child of `"/c/d"`) | `["/a", "/c/d"]` |
-| 5 | `"/c/f"` | `"/c/d"` | 4, 4 | $|r| \ge |f|$ (Same length) | - | **No** | Retain new root | `["/a", "/c/d", "/c/f"]` |
+| 5 | `"/c/f"` | `"/c/d"` | 4, 4 | $\lvert r \rvert \ge \lvert f \rvert$ (Same length) | - | **No** | Retain new root | `["/a", "/c/d", "/c/f"]` |
 
 ```mermaid
 flowchart TD
@@ -121,7 +121,7 @@ CPU cache locality of contiguous string arrays makes Sorting approach faster in 
 
 | Boundary Scenario | Example Configuration | Expected Output | Behavioral Verification |
 |---|---|---|---|
-| **Non-Delimited Common Prefix** | `["/a", "/ab"]` | `["/a", "/ab"]` | $f[|r|] == \text{'b'} \neq \text{'/'}$. Both paths retained cleanly. |
+| **Non-Delimited Common Prefix** | `["/a", "/ab"]` | `["/a", "/ab"]` | $f[\lvert r \rvert] == \text{'b'} \neq \text{'/'}$. Both paths retained cleanly. |
 | **Deep Linear Nesting** | `["/a", "/a/b", "/a/b/c", "/a/b/c/d"]` | `["/a"]` | `ans[-1]` remains `"/a"` throughout. All subsequent descendants are discarded. |
 | **Independent Sibling Trees** | `["/a", "/b", "/c"]` | `["/a", "/b", "/c"]` | No path shares a prefix with any other. All paths appended to `ans`. |
 | **Multiple Root Slashes** | Deep paths starting at root | Correct filtering | Delimiter check operates on individual component tokens separated by `/`. |

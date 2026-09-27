@@ -56,7 +56,7 @@ We track state using the following parameters:
 | State Parameter | Description | Initial Value |
 |---|---|---|
 | Prefix Array ($P$) | Cumulative products since latest zero, seeded with sentinel $1$ | `[1]` |
-| Available Non-Zeros ($m$) | Number of positive elements appended since latest zero | $0$ ($|P| - 1$) |
+| Available Non-Zeros ($m$) | Number of positive elements appended since latest zero | $0$ ($\lvert P \rvert - 1$) |
 | Query Size ($k$) | Number of trailing integers whose product is requested | Evaluated per query |
 
 > **Invariant.** At any moment, $P$ contains $m + 1$ entries where $P[0] = 1$ and $P[i]$ ($1 \le i \le m$) is the exact cumulative product of the last $i$ non-zero numbers. If a zero arrives, $P$ is immediately reset to `[1]`. For any query $k$, if $k \ge |P|$, the window spans an absorbing zero and yields $0$; otherwise, $P[m] / P[m-k]$ yields the exact product in $\mathcal{O}(1)$ time.

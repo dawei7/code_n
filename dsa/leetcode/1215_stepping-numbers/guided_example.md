@@ -115,7 +115,7 @@ $$[10, 12, 21, 23]$$
 
 | Metric / Dimension | Linear Integer Inspection | Recursive DFS Backtracking | Breadth-First Queue Generation (Optimal) |
 |---|---|---|---|
-| **Strategy** | Check $|d_{i+1} - d_i| == 1$ for all integers | Depth-first branch recursion | Level-by-level queue expansion |
+| **Strategy** | Check $\lvert d_{i+1} - d_i \rvert == 1$ for all integers | Depth-first branch recursion | Level-by-level queue expansion |
 | **Search Space Explored** | Up to $2 \times 10^9$ numbers ($\approx 2 \times 10^{10}$ ops) | $\approx 4,600$ stepping numbers | $\approx 4,600$ stepping numbers |
 | **Sorting Required** | Output naturally sorted | Requires sorting post-DFS | **Naturally sorted by construction** |
 | **Time Complexity** | $\mathcal{O}(\text{high} - \text{low})$ (Severe TLE) | $\mathcal{O}(2^L \log(2^L))$ | $\mathcal{O}(2^L)$ strictly linear in results |

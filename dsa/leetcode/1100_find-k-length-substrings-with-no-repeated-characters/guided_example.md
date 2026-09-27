@@ -202,8 +202,8 @@ Final count: `6`.
 
 | Scenario | Input Pattern | Behavior | Trapped Risk |
 |---|---|---|---|
-| Window Length $k=1$ | $s = \text{"aaaa"}, k = 1$ | Every 1-character substring has distinct characters; returns $|s|$. | Treating single duplicate characters as collisions. |
-| Oversized Window $k > |s|$ | $s = \text{"home"}, k = 5$ | Range loop empty; returns 0. | Negative loop bounds or index crashes. |
+| Window Length $k=1$ | $s = \text{"aaaa"}, k = 1$ | Every 1-character substring has distinct characters; returns $\lvert s \rvert$. | Treating single duplicate characters as collisions. |
+| Oversized Window $k > \lvert s \rvert$ | $s = \text{"home"}, k = 5$ | Range loop empty; returns 0. | Negative loop bounds or index crashes. |
 | Window Size $k > 26$ | $k = 27$ | Pigeonhole principle guarantees collisions; returns 0. | TLE on massive $k$. |
 | Outgoing Character Removal | Count reaches 0 | `cnt.pop()` removes key so $len(cnt)$ reflects distinct keys. | Keys with count 0 inflating $len(cnt)$. |
 

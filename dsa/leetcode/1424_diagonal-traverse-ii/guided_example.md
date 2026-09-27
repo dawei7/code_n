@@ -71,7 +71,7 @@ We establish tracking parameters across the traversal:
 | Parameter | Type & Domain | Role in Pipeline |
 |---|---|---|
 | Row Index ($i$) | $R - 1 \dots 0$ | Decreasing outer loop index |
-| Column Index ($j$) | $0 \dots |nums[i]| - 1$ | Increasing inner loop index |
+| Column Index ($j$) | $0 \dots \lvert nums[i] \rvert - 1$ | Increasing inner loop index |
 | Diagonal Index ($d$) | $i + j \in [0, R + C - 2]$ | Target bucket key |
 | Bucket Table ($B$) | Array of lists | Dynamic arrays accumulating elements per diagonal |
 | Output List | Flattened array of size $N$ | Final sequence of all elements |

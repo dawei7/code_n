@@ -68,7 +68,7 @@ We establish tracking parameters across the algorithm:
 |---|---|---|
 | Row Index ($r$) | Integer $0 \le r < m$ | Active row being merged into running sums |
 | Prefix Sums ($S_r$) | Sorted list of size $\le k$ | Smallest sums formed from rows $0 \dots r$ |
-| Candidate Set ($C$) | List of size $|S_r| \times n$ | All pairwise combinations before truncation |
+| Candidate Set ($C$) | List of size $\lvert S_r \rvert \times n$ | All pairwise combinations before truncation |
 | Target Rank ($k$) | Integer $1 \le k \le 200$ | Capacity ceiling for list truncation |
 
 > **Invariant.** After processing row $r$, $S_r$ contains the exact $\min(k, n^{r+1})$ smallest sums that can be formed by choosing one element from each of rows $0, 1, \dots, r$.

@@ -1,117 +1,235 @@
 # Guided Example: Maximum Number of Points From Grid Queries
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+Each query value $v$ defines a rule, not a path: standing on the top-left cell
+of the matrix, a player may step to a 4-directionally adjacent cell only while
+$v$ is **strictly** greater than the value of the cell currently occupied. The
+first visit to a cell scores one point, revisits score nothing, and the process
+stops the moment the player stands on a cell whose value is not strictly below
+$v$. The requested number is the largest score attainable, which is the size of
+the largest set of cells the player can ever stand on.
 
-- **Input:** `{"grid": [[1, 2, 3], [2, 5, 7], [3, 5, 1]], "queries": [5, 6, 2]}`
-- **Required output:** `[5, 8, 1]`
+That reframing is the whole problem. Score equals the number of *distinct* cells
+reachable under the threshold, because a player who can step onto a cell can
+always step back the way they came: revisits are explicitly allowed and cost
+nothing. So for each query independently we need
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+$$
+A(v) = \#\{\, u : u \text{ is reachable from } (0,0) \text{ using only cells with value} < v \,\}.
+$$
 
----
+Answering each query with its own search would repeat almost all of the work,
+because the sets $A(v)$ are nested. This lesson derives the offline, monotone
+sweep that computes every $A(v)$ in one pass.
 
-## 1. Instance & Teaching Goal
+## 1. The family of reachable sets is monotone
 
-You are given an `m x n` integer matrix `grid` and an array `queries` of size `k`.
+Write $S(v)$ for the set of cells reachable from $(0,0)$ through cells whose
+values are all strictly less than $v$. Two facts hold.
 
-The objective is to compute `[5, 8, 1]` from `{"grid": [[1, 2, 3], [2, 5, 7], [3, 5, 1]], "queries": [5, 6, 2]}` while avoiding redundant calculations and unnecessary overhead.
+- If $u \in S(v)$ and $v \le v'$, then $u \in S(v')$: the witnessing path uses
+  only cells below $v$, hence only cells below $v'$. So $S(v) \subseteq S(v')$.
+- $A(v) = \lvert S(v) \rvert$, and the answer is $A(v)$, not any particular
+  path, so the player's route freedom never needs to be enumerated.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Monotonicity means that sorting the queries ascending turns $k$ independent
+searches into a single growing exploration. Between two consecutive thresholds
+only the cells whose values lie in the half-open interval
+$[v, v')$ can become newly eligible.
 
----
+## 2. The representative instance
 
-## 2. Conceptual Foundation & Invariants
+Use the first official example: a $3 \times 3$ matrix and three queries.
 
-We maintain the core conceptual parameters and state variables:
+| Row \ Col | 0 | 1 | 2 |
+|:---:|:---:|:---:|:---:|
+| 0 | 1 | 2 | 3 |
+| 1 | 2 | 5 | 7 |
+| 2 | 3 | 5 | 1 |
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Original query index | Threshold $v$ | Position in sorted order | Required answer |
+|:---:|:---:|:---:|:---:|
+| 0 | 5 | 2nd | 5 |
+| 1 | 6 | 3rd | 8 |
+| 2 | 2 | 1st | 1 |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+The queries arrive out of order and must be reported in their original order, so
+the plan is: sort the thresholds, sweep once, and scatter each count back to its
+original index.
 
----
+## 3. The frontier and its invariant
 
-## 3. Step-by-Step Worked Execution
+The sweep keeps a min-heap of **frontier** cells keyed by grid value, together
+with a visited flag per cell and a counter of cells already counted.
 
-### Step 1: A query asks for a reachable threshold component
+- The heap starts holding only $(0,0)$.
+- A cell is marked visited at the moment it is pushed, never later.
+- For a threshold $v$, cells are popped while the smallest frontier value is
+  strictly less than $v$; each popped cell increments the counter and pushes its
+  four neighbours that are not yet visited.
 
-For threshold `v`, a cell can score a point only when its value is strictly less than `v`. Starting at the top-left cell, the maximum score is therefore the number of cells connected to `(0,0)` through four-directional paths whose every cell value is below `v`.
+The invariant, maintained across the whole stream of sorted queries, is:
 
-Revisiting cells cannot add points, so the task is a reachability count, not a longest walk.
+> every cell that has been popped lies on a path from $(0,0)$ consisting of
+> popped cells, every popped cell has a value below the threshold currently being
+> processed, and the counter equals the number of popped cells.
 
-Larger query thresholds can only add eligible cells; they never remove a previously reachable one. This monotonicity lets all queries share one incremental graph expansion.
+Visited-on-push is what makes the heap hold each cell at most once, so a cell can
+never be counted twice no matter how many of its neighbours are popped.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"grid": [[1, 2, 3], [2, 5, 7], [3, 5, 1]], "queries": [5, 6, 2]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+## 4. Why no reachable cell is missed
 
----
+**Soundness (nothing is over-counted).** A cell enters the heap only as a
+neighbour of a popped cell, so following the parent links of any popped cell
+backwards terminates at $(0,0)$ and yields a genuine 4-directional path. Every
+cell on that path was popped before or at the same moment as the cell in
+question, and a cell is popped only while its value is strictly below the
+current threshold. The path therefore witnesses membership in $S(v)$, and the
+counted cell truly contributes a point.
 
-### Step 2: Sort queries but remember their original positions
+**Completeness (nothing is under-counted).** Suppose $u$ is reachable from
+$(0,0)$ by a path $p_0 = (0,0), p_1, \dots, p_\ell = u$ whose values are all
+strictly below $v$. Induct along the path. The origin is pushed at construction
+and popped as soon as the sweep starts, because its value is strictly below $v$
+(if it were not, the path could not exist). If $p_i$ has been popped, then
+$p_{i+1}$ was either already visited — hence already pushed, hence popped or
+still in the heap — or it was pushed when $p_i$ was popped. In the remaining case
+$p_{i+1}$ sits in the heap with a value strictly below $v$, and the pop loop
+cannot stop while such an element exists, because the loop stops only when the
+minimum frontier value is at least $v$, which is impossible when a smaller
+element is present. So $p_{i+1}$ is popped too. By induction $u$ is counted.
 
-`qs` contains pairs `(query_value,original_index)` sorted by value. The algorithm processes thresholds from smallest to largest while `ans` remains indexed in the original order.
+**Monotone reuse.** After a query with threshold $v$ is answered, the popped set
+is exactly $S(v)$. The next query $v' \ge v$ continues from that state: by
+monotonicity $S(v) \subseteq S(v')$, and the cells of $S(v') \setminus S(v)$ are
+precisely those the continued sweep pops, because a cell outside $S(v)$ cannot
+have been reachable earlier. The count carried forward is therefore the correct
+size of the next answer as well.
 
-After finishing threshold `v`, it writes the current reachable count into `ans[k]`. Equal query values naturally receive the same count because no new cell can be popped between identical thresholds after the first has exhausted all values below that threshold.
+## 5. Trace at threshold 2, then 5
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Sort the thresholds: $2, 5, 6$. The heap initially holds the origin
+$(0,0)$ with value 1.
 
----
+**Threshold $v = 2$.** Only cells with value strictly below 2 may be popped, so
+only the value-1 cells qualify.
 
-### Step 3: Maintain the smallest boundary cell in a heap
+| Step | Pop | Value | Value $< 2$? | Counter | Pushed this step |
+|:---:|:---:|:---:|:---:|:---:|:---|
+| 1 | $(0,0)$ | 1 | yes | 1 | $(0,1)$ value 2, $(1,0)$ value 2 |
 
-The min-heap `q` begins with the top-left cell represented as `(grid[0][0],0,0)`. It contains discovered cells adjacent to the already expanded region that have not yet been counted.
+The loop then stops: the heap minimum is 2, which is not strictly below 2. The
+answer for the query 2 is $1$, which is the whole reachable set
+$\{(0,0)\}$.
 
-For a query value `v`, the loop pops while the smallest heap value is strictly less than `v`. A popped cell is eligible for this query, so `cnt` increases. Its four neighbors are then discovered and pushed if they have never been seen.
+**Threshold $v = 5$.** The sweep resumes with the counter at 1.
 
-If the smallest boundary value is at least `v`, no heap cell is eligible. Because it is the minimum, every other boundary cell is also too large. Any route to an undiscovered cell must cross the current boundary, so expansion cannot legally proceed for this threshold.
+| Step | Pop | Value | Value $< 5$? | Counter | Pushed this step |
+|:---:|:---:|:---:|:---:|:---:|:---|
+| 1 | $(0,1)$ | 2 | yes | 2 | $(0,2)$ value 3, $(1,1)$ value 5 |
+| 2 | $(1,0)$ | 2 | yes | 3 | $(2,0)$ value 3; $(1,1)$ already visited |
+| 3 | $(0,2)$ | 3 | yes | 4 | $(1,2)$ value 7 |
+| 4 | $(2,0)$ | 3 | yes | 5 | $(2,1)$ value 5; $(1,0)$ already visited |
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[5, 8, 1]` |
+The loop stops when the heap minimum is 5, and the counter reads $5$. The
+reachable set is the five cells with values $1,2,2,3,3$ that form a connected
+region around the origin:
 
----
+| Cell | $(0,0)$ | $(0,1)$ | $(1,0)$ | $(0,2)$ | $(2,0)$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| Value | 1 | 2 | 2 | 3 | 3 |
+| Pop order | 1 | 2 | 3 | 4 | 5 |
 
-## 4. Complete Execution Trace
+## 6. Threshold 6, and the small cell behind a costly wall
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"grid": [[1, 2, 3], [2, 5, 7], [3, 5, 1]], "queries": [5, 6, 2]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[5, 8, 1]` | Verified |
+Continue with $v = 6$. The heap still holds three cells that were pushed but not
+popped: $(1,1)$ with value 5, $(2,1)$ with value 5, and $(1,2)$ with value 7.
 
----
+| Step | Pop | Value | Value $< 6$? | Counter | Pushed this step |
+|:---:|:---:|:---:|:---:|:---:|:---|
+| 1 | $(1,1)$ | 5 | yes | 6 | all four neighbours already visited |
+| 2 | $(2,1)$ | 5 | yes | 7 | $(2,2)$ value 1 |
+| 3 | $(2,2)$ | 1 | yes | 8 | $(1,2)$ and $(2,1)$ already visited |
 
-## 5. Algorithmic Correctness
+The counter reads $8$ and the loop stops at the frontier value 7. This is the
+decisive lesson of the instance: the cell $(2,2)$ has the smallest value in the
+whole matrix, yet it is counted **last**, only after two value-5 cells open the
+way. Reachability is a property of paths, not of values in isolation. The
+bottom-right cell is behind the wall formed by $(1,1) = 5$, $(2,1) = 5$ and
+$(1,2) = 7$, so its own tiny value is irrelevant until the threshold clears the
+wall.
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+Scattering the three counts back to the original query positions gives
+`[5, 8, 1]`, matching the required output.
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+| Sorted threshold | Cells in $S(v)$ | Count | Original query index that receives it |
+|:---:|:---|:---:|:---:|
+| 2 | $(0,0)$ | 1 | 2 |
+| 5 | origin plus the four value-2 and value-3 cells | 5 | 0 |
+| 6 | those five plus $(1,1)$, $(2,1)$, $(2,2)$ | 8 | 1 |
 
----
+## 7. A barrier that keeps eligible cells out
 
-## 6. Traps This Instance Exposes
+The second interesting authored case has a wall of large values with small
+values trapped on both sides:
 
-- **Fresh BFS per query:** It is correct but can cost $O(kmn)$ and repeats reachability work.
-- **Union-find offline:** Sort cells by value, activate them below each sorted query, and track the component containing the start. It has comparable offline efficiency.
-- **Equal cell and query values:** The cell is not eligible because the comparison is strict.
-- **Blocked start:** The answer is zero and no neighbors can be reached.
-- **Duplicate queries:** They receive identical counts and retain their separate original positions.
-- **Unsorted input queries:** Sorting enables reuse; `original_index` restores output order.
-- **Cell discovered early but too large:** Leave it in the heap for a later threshold.
-- **Multiple paths to one cell:** Marking on push prevents duplicates.
-- **Revisiting allowed:** It cannot earn another point, so visited-state counting remains correct.
-- **Heap frontier:** If its minimum is blocked, every route to undiscovered cells is blocked for that threshold.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Row \ Col | 0 | 1 | 2 |
+|:---:|:---:|:---:|:---:|
+| 0 | 1 | 100 | 2 |
+| 1 | 2 | 100 | 2 |
+| 2 | 3 | 4 | 5 |
 
----
+| Threshold $v$ | Eligible cells (value $< v$) | Reachable from $(0,0)$ | Answer |
+|:---:|:---|:---:|:---:|
+| 3 | the three value-1 and value-2 cells | $(0,0)$ and $(1,0)$ only | 2 |
+| 5 | adds the value-3 and value-4 cells | the left column plus $(2,1)$ | 4 |
+| 101 | every cell | the entire $3 \times 3$ matrix | 9 |
 
-## 7. Complexity Derivation
+At $v = 3$ the cells $(0,2) = 2$ and $(1,2) = 2$ satisfy the value test but
+cannot be entered, because every route to them crosses the value-100 column or
+the value-5 corridor. An implementation that counted cells by value alone would
+report a larger, wrong answer; the frontier design never confuses eligibility
+with reachability.
 
-- **Time Complexity:** $O(N\log N+k\log k)$. Let $N=mn$ be the number of grid cells and $k$ the number of queries. Sorting queries costs $O(k\log k)$.
-- **Auxiliary Space Complexity:** $O(N+k)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+## 8. Boundary conditions and strict inequality
+
+| Situation | Correct behaviour | Trap it exposes |
+|:---|:---|:---|
+| A query equal to the origin value | answer 0, no cell is ever entered | the comparison is strict: equal values are *not* below the threshold |
+| A cell whose value equals the threshold | excluded, and it may block the cells behind it | two comparisons must agree: a cell is popped when below $v$, and neighbours are pushed from popped cells |
+| Duplicate query values | identical answers, each scattered to its own index | sorting must carry the original index, not overwrite it |
+| Queries given in decreasing order | results still come out in the original order | scattering must use the saved index, since the sweep order differs from the input order |
+| A value that makes the whole matrix eligible | every cell is counted exactly once | the loop must drain the heap completely without double counting |
+| A one-cell-wide corridor of huge values | small cells beyond it stay uncounted | reachability is path-based, not value-based |
+
+Two authored checks confirm the strictness rule. With
+`grid = [[1,2],[2,1]]` and thresholds $1, 2, 3$ the answers are $0, 1, 4$: at
+$v = 1$ the origin's value 1 is not strictly below 1; at $v = 2$ only the origin
+qualifies; at $v = 3$ the four cells, whose values are all strictly below 3,
+become reachable. And for a $2 \times 3$ matrix whose entries are all 7, the
+thresholds 7 and 8 give $0$ and $6$.
+
+## 9. Complexity: time and auxiliary space
+
+Let $M = mn$ be the number of cells and $k$ the number of queries.
+
+**Time.** Sorting the query thresholds with their original indices costs
+$O(k \log k)$. Every cell is pushed onto the heap at most once and popped at most
+once, since it is marked visited when pushed; with at most $M$ entries the heap
+costs $O(M \log M)$ in total across the entire sweep, not per query. Each pop
+inspects four neighbours, so the neighbour work is $O(M)$. The sweep is therefore
+$O(k \log k + M \log M)$ overall, independent of how many queries are answered —
+the offline sort is what removes the factor of $k$ from the graph search.
+
+**Auxiliary space.** The visited flag array needs $O(M)$ booleans; the heap holds
+at most $M$ entries, so $O(M)$; the sorted query list and the answer array need
+$O(k)$. Total auxiliary space is $O(M + k)$, which matches the input order of
+magnitude and never stores a path. The constraints $mn \le 10^{5}$ and
+$k \le 10^{4}$ are what make this comfortably affordable.
+
+| Strategy | Time | Auxiliary space | Trade-off |
+|:---|:---:|:---:|:---|
+| One heap sweep over sorted thresholds | $O(k \log k + M \log M)$ | $O(M + k)$ | the intended method; reuses the reachable region across all queries |
+| Independent heap search per query | $O(k \cdot M \log M)$ | $O(M)$ | correct but re-explores the same region once per query; too slow for $k = 10^{4}$ |
+| Flood fill per query over eligible cells | $O(k \cdot M)$ | $O(M)$ | simpler inner loop, still repeats the whole exploration per query |
+| Binary search on the sorted cell values plus connectivity | $O(M \log M)$ per query at worst | $O(M)$ | only pays off if the number of distinct values is far smaller than the number of cells |
+| Sorting cells once and growing a union-find region | $O(M \log M + k \log k)$ amortised | $O(M + k)$ | competitive in theory, but the merging order must respect the threshold exactly, which is fiddlier than the heap frontier |

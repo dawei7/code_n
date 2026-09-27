@@ -200,7 +200,7 @@ question about the whole array, which is exactly what the suffix recurrence deci
 | Approach | Idea | Cost | Failure mode or tradeoff |
 |:---|:---|:---|:---|
 | Enumerate every cut set | try all $2^{n-1}$ ways to place cuts and keep the valid ones with fewest parts | exponential in $n$ | hopeless already at moderate $n$; cannot survive the $n \le 1000$ limit |
-| Earliest legal cut (greedy) | always end the current part at the smallest index sharing a prime with its start | one linear scan per part | on `[2, 6, 3, 4, 3]` it takes `[2]`, then `[6]`, then `[4]`, then `[3]` — four parts where two suffice |
+| Earliest legal cut (greedy) | always end the current part at the smallest index sharing a prime with its start | one linear scan per part | on `[2, 6, 3, 4, 3]` it takes `[2]`, then `[6]`, then `[3]`, then `[4]`, then `[3]` — five singleton parts where two suffice |
 | Farthest legal cut (greedy) | always end the current part at the largest index sharing a prime with its start | one linear scan per part | looks right on this instance (it finds $2$), but on `[2, 2, 6, 5, 3]` it takes `[2, 2, 6]`, then `[5]`, then `[3]` — three parts, while `[2, 2]` followed by `[6, 5, 3]` is valid with two |
 | Shortest path over suffix starts | build the cut graph and run breadth-first search from `start 0`, since every cut costs one part | $O(n^2)$ edges, $O(n^2)$ time | gives the same optimum as the recurrence but materialises every edge explicitly, spending more memory for no benefit |
 | Suffix dynamic programming | the recurrence of section 3, filled from right to left | $O(n^2 \log V)$ time, $O(n)$ space | the method used here; it keeps only one number per suffix and never stores the graph |

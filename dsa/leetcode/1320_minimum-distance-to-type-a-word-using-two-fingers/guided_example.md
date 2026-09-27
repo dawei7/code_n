@@ -67,9 +67,9 @@ Let $curr = word[i]$ and $prev = word[i-1]$. To type $curr$, we have two choices
 | Key Character | Matrix Coordinates $(r, c)$ | Movement From | Cost Calculation |
 |---|---|---|---|
 | `'C'` | $(0, 2)$ | Initial placement | $0$ (Free) |
-| `'A'` | $(0, 0)$ | From `'C'` $(0, 2)$ | $|0 - 0| + |2 - 0| = 2$ |
+| `'A'` | $(0, 0)$ | From `'C'` $(0, 2)$ | $\lvert 0 - 0 \rvert + \lvert 2 - 0 \rvert = 2$ |
 | `'K'` | $(1, 4)$ | Initial placement | $0$ (Free) |
-| `'E'` | $(0, 4)$ | From `'K'` $(1, 4)$ | $|1 - 0| + |4 - 4| = 1$ |
+| `'E'` | $(0, 4)$ | From `'K'` $(1, 4)$ | $\lvert 1 - 0 \rvert + \lvert 4 - 4 \rvert = 1$ |
 
 > **Finger Locality Invariant.** At every stage $i$, one finger is guaranteed to be on $word[i]$. Recording only the position of the second finger reduces the dynamic programming state space from $\mathcal{O}(26^2)$ to $\mathcal{O}(26)$ per character.
 

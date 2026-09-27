@@ -115,7 +115,7 @@ flowchart TD
 | **Auxiliary Space** | $\mathcal{O}(1)$ | $\mathcal{O}(1)$ zero allocation | $\mathcal{O}(1)$ two pointer registers |
 | **Code Length** | $\approx 10$ lines | Single arithmetic line | $\approx 8$ lines |
 | **Division by Zero Hazard**| Must handle $d = 0$ explicitly | Unaffected (division by 2 only) | Must handle $d = 0$ separately |
-| **Overflow Resilience** | High | Bounded by $(n+1) \cdot \max(|A|)$ | High |
+| **Overflow Resilience** | High | Bounded by $(n+1) \cdot \max(\lvert A \rvert)$ | High |
 
 ```
 Algorithmic Trade-Off:

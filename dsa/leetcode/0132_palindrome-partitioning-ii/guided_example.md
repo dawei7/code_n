@@ -73,6 +73,19 @@ We trace $s = \text{"aab"}$ ($N = 3$, indices $0, 1, 2$):
 - Substring $s[1 \dots 2] = \text{"ab"}$: Not a palindrome ($'a' \ne 'b'$).
 - Substring $s[0 \dots 2] = \text{"aab"}$: Not a palindrome ($'a' \ne 'b'$).
 
+The recurrence is applied to windows in increasing length order, so the inner window of a longer candidate is always already resolved. Endpoint comparison decides the answer whenever the span is at most two:
+
+| Window $s[j \dots k]$ | $j$ | $k$ | Endpoint test | Inner window $s[j+1 \dots k-1]$ | Span $k - j$ | `is_pal[j][k]` |
+|:---:|:---:|:---:|:---|:---|:---:|:---:|
+| `"a"` | 0 | 0 | $s[0] = \text{"a"}$ (single character) | empty | 0 | `true` |
+| `"a"` | 1 | 1 | $s[1] = \text{"a"}$ (single character) | empty | 0 | `true` |
+| `"b"` | 2 | 2 | $s[2] = \text{"b"}$ (single character) | empty | 0 | `true` |
+| `"aa"` | 0 | 1 | $s[0] = s[1] = \text{"a"}$ | empty, span already $\le 2$ | 1 | `true` |
+| `"ab"` | 1 | 2 | $s[1] = \text{"a"} \neq s[2] = \text{"b"}$ | never consulted | 1 | `false` |
+| `"aab"` | 0 | 2 | $s[0] = \text{"a"} \neq s[2] = \text{"b"}$ | never consulted | 2 | `false` |
+
+Two facts from this table drive Step 3. First, only the single character `"b"` is palindromic among the three windows ending at index 2, so $j = 2$ is the sole split that survives. Second, `is_pal[0][1]` being `true` is what makes $DP[2] = 0$, and that zero is the value the final transition spends.
+
 ---
 
 ### Step 1: Prefix Length $i = 1$ ($s[0 \dots 0] = \text{"a"}$)
@@ -145,6 +158,18 @@ Prefix i=3:     "aab"    -> "aa" | "b" (DP[2] + 1)     DP[3] = 0 + 1 = 1
 - **Base Case Off-by-One:** An entire prefix that is a palindrome requires $0$ cuts (1 piece). Forgetting the $j = 0$ branch and setting $DP[0] = 0$ with $DP[j] + 1$ would erroneously calculate $0 + 1 = 1$ cut for a single palindrome! Either handle $j = 0$ as a special zero-cut case or initialize $DP[0] = -1$.
 - **Redundant Palindrome Recalculation:** Checking if `s[j:i]` is a palindrome via $O(L)$ two-pointer scan inside the nested loop results in $O(N^3)$ total runtime. Precomputing the 2D boolean table or expanding around centers reduces overall time to $O(N^2)$.
 - **Single Character Input:** If $|s| = 1$, the loop terminates with $DP[1] = 0$ cuts, correctly handling base cases.
+
+The authored cases of this package pin those traps to concrete instances. Each row states the state that decides the answer, so none of them can be produced by a wrong base case:
+
+| Authored case | Instance | $N$ | Cuts returned | Decisive state |
+|:---|:---|:---:|:---:|:---|
+| `sample-one-cut` | $s = \text{"aab"}$ | 3 | 1 | $j = 2$ is the only palindromic suffix of `"aab"`, so $DP[3] = DP[2] + 1 = 0 + 1$ |
+| `sample-single` | $s = \text{"a"}$ | 1 | 0 | The prefix is itself a palindrome, so the $j = 0$ branch sets $DP[1] = 0$; with $DP[0] = -1$ the same value follows from $-1 + 1$ |
+| `sample-two` | $s = \text{"ab"}$ | 2 | 1 | Window $s[0 \dots 1]$ is not palindromic, so only $j = 1$ applies: $DP[1] + 1 = 1$ |
+| `trial-whole-palindrome` | $s = \text{"racecar"}$ | 7 | 0 | Window $s[0 \dots 6]$ is palindromic and is tested at $j = 0$, forcing $DP[7] = 0$ before any split can win |
+| `trial-mixed` | $s = \text{"ababbbabbababa"}$ | 14 | 3 | Witness partition $\text{"a"} \mid \text{"bab"} \mid \text{"bbabb"} \mid \text{"ababa"}$ has 4 palindromic pieces; no 3-piece partition exists, so $DP[14] = 3$ |
+
+The witness for `trial-mixed` is the useful check: each of the four pieces is palindromic, so $DP[14] \le 3$, and the recurrence reports no cheaper split for any prefix length, so $DP[14] = 3$ exactly.
 
 ---
 

@@ -163,6 +163,18 @@ total_tank:     0 (>= 0 -> Feasible)
 | 3 | 4 | 1 | $+3$ | $+3$ | No | 3 | $-3$ |
 | 4 | 5 | 2 | $+3$ | $+6$ | No | **3** | **0 (Feasible)** |
 
+The pointer value alone is not yet a proof, so the resulting tour is walked once at the level of individual legs. The tank starts empty at the candidate station, and each row credits the fuel of the departure station before charging the leg:
+
+| Leg | Depart from $i$ | $\text{gas}[i]$ | $\text{cost}[i]$ | Tank on arrival at $(i + 1) \bmod 5$ | Dropped below zero? |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | 3 | 4 | 1 | $0 + 4 - 1 = 3$ | No |
+| 2 | 4 | 5 | 2 | $3 + 5 - 2 = 6$ | No |
+| 3 | 0 | 1 | 3 | $6 + 1 - 3 = 4$ | No |
+| 4 | 1 | 2 | 4 | $4 + 2 - 4 = 2$ | No |
+| 5 | 2 | 3 | 5 | $2 + 3 - 5 = 0$ | No, the tank is exactly empty on returning to station 3 |
+
+The smallest arrival value is $0$, reached only on the final leg, and it is reached exactly when the car is back at the candidate station. That is the sharp boundary the reset rule respects: the tank is allowed to be exactly empty at a station, and a reset is triggered only by a strictly negative value.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -179,9 +191,32 @@ total_tank:     0 (>= 0 -> Feasible)
 - **Total Gas Insufficiency:** If $\sum \text{gas} < \sum \text{cost}$, no starting station anywhere on the circle can succeed because the net energy of the closed loop is strictly negative. Checking `if total_tank < 0: return -1` immediately catches this.
 - **Zero Balance Transitions:** Running with `curr_tank == 0` is allowed; fuel is empty, but the car does not stall. The deficit reset is triggered strictly on `curr_tank < 0`.
 
+The authored cases show both sides of the final decision, including the one where a surviving candidate is still overruled:
+
+| Authored case | Net sequence $\Delta_i$ | $\sum_i \Delta_i$ | Candidate `start` after the pass | Returned | What decides the row |
+|:---|:---|:---:|:---:|:---:|:---|
+| `sample-1` | $[-2, -2, -2, +3, +3]$ | $0$ | 3 | 3 | Three resets consume stations 0, 1 and 2; the surviving suffix then carries the tour |
+| `sample-2` | $[-1, -1, +1]$ | $-1$ | 2 | $-1$ | A candidate index does survive, but the global guard overrides it because the closed loop is net negative |
+| `trial-single-station` | $[+1]$ | $+1$ | 0 | 0 | The single leg earns more than it spends, so no reset ever fires |
+| `trial-late-start` | $[+1, -3, +1, -2, +3]$ | $0$ | 4 | 4 | Resets at stations 1 and 3 discard indices 0 through 3, leaving only the final suffix |
+
+The second row is the reason the guard is not optional: the deficit resets leave `start = 2`, yet no station can complete a cycle whose total net fuel is $-1$, and reporting that index would be wrong.
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(N)$, where $N$ is the number of gas stations. The array is traversed once in a single forward pass, performing $O(1)$ scalar updates per station.
 - **Auxiliary Space Complexity:** $O(1)$ constant memory, utilizing only three scalar counters (`total_tank`, `curr_tank`, `start`).
+
+Three strategies agree on every authored case, but only two of them are linear:
+
+| Strategy | Work performed | Time | Auxiliary space | Behavior on `sample-2` |
+|:---|:---|:---:|:---:|:---|
+| Simulate every candidate start | Up to $N$ legs are walked for each of the $N$ starts | $O(N^2)$ | $O(1)$ | Returns $-1$ only after all three candidate starts have failed |
+| Single-pass greedy with deficit resets | One forward pass over the net sequence | $O(N)$ | $O(1)$ | Resets at stations 0 and 1, then the global guard returns $-1$ |
+| Two-pointer window grown leftwards | A window absorbs a station on its left whenever its own balance turns negative | $O(N)$ | $O(1)$ | Also returns $-1$, because the final window balance is still negative |
+
+The first row is the honest baseline: it is only correct because it retries after every failure. The greedy rows reach the same index in one pass because a failure at station $K$ retires a whole contiguous block of candidates at once.
+
+---

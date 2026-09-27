@@ -144,6 +144,17 @@ Final Isolated Value: 4
 
 **Completeness.** Every number in the array is included in the sequential XOR fold. No element is skipped, ensuring all duplicates cancel completely.
 
+The accumulator trace hides the mechanism, so the same conclusion is derived one bit position at a time. Values $4$, $2$ and $1$ occupy bits $2$, $1$ and $0$ respectively, and a bit of the result survives exactly when an odd number of inputs carry it:
+
+| Bit position $b$ | Place value $2^b$ | Indices carrying a $1$ | Ones counted | Count modulo $2$ | Bit $b$ of the result |
+|:---:|:---:|:---|:---:|:---:|:---:|
+| 2 | 4 | index 0 (value 4) | 1 | 1 | 1 |
+| 1 | 2 | indices 2 and 4 (value 2 twice) | 2 | 0 | 0 |
+| 0 | 1 | indices 1 and 3 (value 1 twice) | 2 | 0 | 0 |
+| **All** | - | - | - | - | $100_2 = 4$ |
+
+Bits above position 2 are carried by no element at all, so their counts are $0$ and they stay $0$. The single row whose count is odd is the row contributed by the unique element, which is why the reconstruction is exact rather than merely arithmetic.
+
 ---
 
 ## 6. Traps This Instance Exposes
@@ -152,9 +163,34 @@ Final Isolated Value: 4
 - **Requiring Odd Multiplicities Greater Than 1:** The proof strictly relies on the guarantee that non-target numbers appear *exactly twice*. If another number appeared three times, two would cancel and one would remain, polluting the accumulator (see LeetCode 137 for three-copy variations).
 - **Single Element Input:** If `nums = [1]`, the accumulator initialized with `nums[0]` terminates immediately with `1`.
 
+The authored cases pin each trap to a concrete array, and the negative row is the one that shows the cancellation is a bit operation rather than an arithmetic one:
+
+| Authored case | `nums` | Duplicate structure | Accumulator after the full fold | Returned |
+|:---|:---|:---|:---|:---:|
+| `sample-1` | $[2, 2, 1]$ | Pair $\{2, 2\}$, singleton $1$ | $2 \oplus 2 = 0$, then $0 \oplus 1 = 1$ | 1 |
+| `sample-2` | $[4, 1, 2, 1, 2]$ | Pairs $\{1, 1\}$ and $\{2, 2\}$, singleton $4$ | $1$ and $2$ cancel in either arrival order, leaving $4$ | 4 |
+| `trial-single-value` | $[1]$ | No pair at all | The fold is a single term, so the accumulator never changes from $1$ | 1 |
+| `trial-negative-single` | $[-1, -1, -2]$ | Pair $\{-1, -1\}$, singleton $-2$ | In two's complement $-1$ is all ones, so $(-1) \oplus (-1) = 0$, then $0 \oplus (-2) = -2$ | $-2$ |
+
+The last row is decisive against any "count occurrences and pick the odd count" implementation built on comparisons of magnitudes: the pairing here happens in the bit pattern, and $-1 \oplus -1 = 0$ holds even though $(-1) + (-1) = -2$.
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(N)$, where $N$ is the number of elements in `nums`. A single loop processes each element once, performing an $O(1)$ hardware bitwise operation.
 - **Auxiliary Space Complexity:** $O(1)$ extra space, using only a single scalar accumulator register.
+
+Every alternative below is correct on this instance, so the deciding factor is the resource bound and the tolerance for a different multiplicity guarantee:
+
+| Strategy | Idea | Time | Auxiliary space | Failure mode |
+|:---|:---|:---:|:---:|:---|
+| Running XOR fold | Fold every element with $\oplus$ and read the register | $O(N)$ | $O(1)$ | None under the stated guarantee; a value appearing three times would leave a residue |
+| Parity of each bit position | Count how many elements carry bit $b$, keep the count mod $2$ | $O(32N)$ | $O(1)$ | None for 32-bit inputs, but the constant depends on the word width |
+| Hash set with parity toggle | Insert on first sight, remove on second | $O(N)$ expected | $O(N)$ | Solves three-copy variants too, but violates the constant-space requirement |
+| Set identity $2\sum S - \sum \text{nums}$ | Difference between twice the distinct sum and the true sum | $O(N)$ | $O(N)$ | Breaks as soon as a value appears a third time: for $[2, 2, 2, 1]$ it yields $6 - 7 = -1$ instead of $1$ |
+| Sort and scan for the unpaired value | Order the array, then walk adjacent pairs | $O(N \log N)$ | $O(N)$ for a copy, $O(1)$ if the input may be reordered | Violates the linear-time requirement and mutates the caller's array |
+
+The first row is the only one that satisfies both bounds simultaneously, and it does so without ever inspecting an element twice.
+
+---

@@ -118,7 +118,7 @@ Therefore, the maximum equal frequency prefix length is **7**.
 | Metric / Approach | Offline Histogram Recalculation | Sorting Frequencies per Prefix | Online Dual Hash Maps (Optimal) |
 |---|---|---|---|
 | **Mechanism** | Rebuild frequency table from scratch for each prefix $i$ | Compute frequency array and sort at every step | Incremental update of `count` and `freq_count` |
-| **Per-Step Complexity** | $\mathcal{O}(i)$ rebuild | $\mathcal{O}(|\mathcal{U}| \log |\mathcal{U}|)$ sort | $\mathcal{O}(1)$ hash increments and decrements |
+| **Per-Step Complexity** | $\mathcal{O}(i)$ rebuild | $\mathcal{O}(\lvert \mathcal{U} \rvert \log \lvert \mathcal{U} \rvert)$ sort | $\mathcal{O}(1)$ hash increments and decrements |
 | **Total Time Complexity** | $\mathcal{O}(N^2)$ quadratic | $\mathcal{O}(N \cdot K \log K)$ | $\mathcal{O}(N)$ strictly linear single pass |
 | **Auxiliary Memory** | $\mathcal{O}(N)$ scratch space | $\mathcal{O}(N)$ buffer | $\mathcal{O}(N)$ two hash counters |
 | **Runtime for $N = 10^5$** | $> 30\text{ seconds}$ (TLE) | $\approx 2.5\text{ seconds}$ | $\approx 0.05\text{ seconds}$ |

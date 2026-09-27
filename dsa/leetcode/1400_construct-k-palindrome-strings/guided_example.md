@@ -70,9 +70,9 @@ We define state tracking parameters:
 
 | Parameter | Mathematical Meaning | Initial Value |
 |---|---|---|
-| String Length ($n$) | Total available characters ($|s|$) | $9$ |
+| String Length ($n$) | Total available characters ($\lvert s \rvert$) | $9$ |
 | Frequency Map ($C$) | Character counts across lowercase alphabet | Populated from $s$ |
-| Odd Parity Count ($\text{odds}$) | $|\{ c \in \Sigma \mid C[c] \equiv 1 \pmod 2 \}|$ | $1$ |
+| Odd Parity Count ($\text{odds}$) | $\lvert \{ c \in \Sigma \mid C[c] \equiv 1 \pmod 2 \} \rvert$ | $1$ |
 | Feasibility Condition | $\text{odds} \le k \le n$ | Boolean check |
 
 > **Invariant.** The number of odd-frequency characters establishes the strict minimum number of palindromic components required to consume all characters without parity violations.
@@ -132,7 +132,7 @@ Return `true`.
 
 ## 4. Complete Execution Trace
 
-| Test Instance | Length ($|s|$) | Target ($k$) | Odd Parity Count ($\text{odds}$) | Check: $k \le |s|$ | Check: $\text{odds} \le k$ | Feasible? |
+| Test Instance | Length ($\lvert s \rvert$) | Target ($k$) | Odd Parity Count ($\text{odds}$) | Check: $k \le \lvert s \rvert$ | Check: $\text{odds} \le k$ | Feasible? |
 |---|---|---|---|---|---|---|
 | `"annabelle"` | $9$ | $2$ | $1$ ('b') | $2 \le 9$ (True) | $1 \le 2$ (True) | **True** |
 | `"leetcode"` | $8$ | $3$ | $6$ ('l','e','t','c','o','d') | $3 \le 8$ (True) | $6 \le 3$ (False) | **False** |

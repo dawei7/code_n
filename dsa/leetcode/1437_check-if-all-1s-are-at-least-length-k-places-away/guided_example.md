@@ -49,8 +49,8 @@ We establish tracking parameters across the algorithm:
 
 | Parameter | Type & Domain | Role in Algorithm |
 |---|---|---|
-| Current Index ($i$) | Integer $0 \le i < |nums|$ | Active index in single-pass traversal |
-| Previous One Index ($prev$) | Integer $\{-1, 0, \dots, |nums|-1\}$ | Stores index of most recently encountered `1` |
+| Current Index ($i$) | Integer $0 \le i < \lvert nums \rvert$ | Active index in single-pass traversal |
+| Previous One Index ($prev$) | Integer $\{-1, 0, \dots, \lvert nums \rvert-1\}$ | Stores index of most recently encountered `1` |
 | Computed Spacing | Integer $\ge 0$ | Evaluates $i - prev - 1$ against threshold $k$ |
 
 > **Invariant.** At any index $i$, all pairs of consecutive `1`s strictly before $i$ have been verified to have an intervening gap of at least $k$ zeros, and $prev$ stores the index of the rightmost `1` observed in $nums[0 \dots i-1]$.

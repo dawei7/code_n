@@ -148,6 +148,22 @@ Phase 3 Merge:  1 -> 5 -> 2 -> 4 -> 3 -> null
 | 3.2 | Interweave | $L_1(2), L_2(4)$ | Connect $2 \to 4 \to 3$ | $1 \to 5 \to 2 \to 4 \to 3 \to \text{null}$ |
 | **Final** | Termination | `second=null` | List complete | **$[1, 5, 2, 4, 3]$** |
 
+### Phase 2 Reversal Ledger
+
+The second half of this instance is only two nodes long, so the three-pointer
+reversal is easy to misread as a single swap. Tracking `prev`, `curr`, and the
+cached `nxt` separately shows that each node is relinked exactly once.
+
+| Reversal iteration | `curr` before the step | `nxt = curr.next` cached first | Link written | `prev` after | `curr` after | Reversed chain built so far |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| initial | $\text{Node}(4)$ | not yet read | none | `null` | $\text{Node}(4)$ | empty |
+| 1 | $\text{Node}(4)$ | $\text{Node}(5)$ | $\text{Node}(4).\text{next} \leftarrow \text{null}$ | $\text{Node}(4)$ | $\text{Node}(5)$ | $4 \to \text{null}$ |
+| 2 | $\text{Node}(5)$ | `null` | $\text{Node}(5).\text{next} \leftarrow \text{Node}(4)$ | $\text{Node}(5)$ | `null`, so the loop ends | $5 \to 4 \to \text{null}$ |
+
+Caching `nxt` before overwriting the link is what makes the walk safe: after
+iteration 1 the only surviving route from $\text{Node}(4)$ is backwards, so
+without the saved $\text{Node}(5)$ the tail would be lost.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -163,6 +179,24 @@ Phase 3 Merge:  1 -> 5 -> 2 -> 4 -> 3 -> null
 - **Failing to Sever `slow.next = None`:** Omitting `slow.next = None` leaves the first half connected to the second half, producing a circular cycle ($3 \to 4$ and $4 \to 3$) during the merge!
 - **Even vs Odd Length Parity:** On even-length lists like $[1, 2, 3, 4]$, `slow` stops at $2$. $L_1 = [1, 2]$ and $L_2 = [3, 4] \implies [4, 3]$. Merging gives $1 \to 4 \to 2 \to 3 \to \text{null}$, matching exact parity.
 - **Short Lists ($N \le 2$):** If `not head or not head.next or not head.next.next: return`, the list is already reordered.
+
+### Split Sizes and Outcomes Across Representative Instances
+
+The split point depends on parity, and on very short lists the midpoint loop
+never runs. Each row below is the full three-phase outcome for one input.
+
+| Input | Where Phase 1 stops with `slow` | First half $L_1$ | Second half after reversal | Merged output |
+|:---|:---|:---|:---|:---|
+| $[1, 2, 3, 4, 5]$ | $\text{Node}(3)$, the exact median | $1 \to 2 \to 3$ | $5 \to 4$ | $[1, 5, 2, 4, 3]$ |
+| $[1, 2, 3, 4]$ | $\text{Node}(2)$, the lower median | $1 \to 2$ | $4 \to 3$ | $[1, 4, 2, 3]$ |
+| $[1, 1, 2, 2, 3, 3]$ | the node of value $2$ at index $2$ | $1 \to 1 \to 2$ | $3 \to 3 \to 2$ | $[1, 3, 1, 3, 2, 2]$, so equal values never merge into one node |
+| $[8, 9]$ | $\text{Node}(8)$; the `fast.next.next` test fails at once | $8$ | $9$ | $[8, 9]$, unchanged |
+| $[1]$ | $\text{Node}(1)$; the `fast.next` test fails at once | $1$ | empty — the reversal loop never starts | $[1]$, unchanged |
+
+The first half is never shorter than the second: for odd $N$ it holds
+$\lceil N/2 \rceil = 3$ of the five nodes, and for even $N$ the halves are equal.
+That imbalance is exactly what leaves the median node as the final tail after
+the zipper stops.
 
 ---
 

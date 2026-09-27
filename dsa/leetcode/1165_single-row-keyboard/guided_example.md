@@ -67,7 +67,7 @@ Let $cursor_k$ denote the finger's position after typing the $k$-th character of
 | $pos[\cdot]$ | Array of size $26$ | Maps each letter to its unique physical slot in $[0, 25]$ |
 | $cursor$ | Integer in $[0, 25]$ | Physical coordinate of the key most recently typed |
 | $target$ | Integer in $[0, 25]$ | Physical coordinate of the current letter to type |
-| $\Delta = |cursor - target|$ | Non-negative integer | Metric distance traversed along the 1D rail |
+| $\Delta = \lvert cursor - target \rvert$ | Non-negative integer | Metric distance traversed along the 1D rail |
 | $total\_time$ | Non-negative integer | Running cumulative sum of all displacements |
 
 ```mermaid
@@ -199,9 +199,9 @@ Finger Coordinates Over Time:
 | Trap Category | Hazard Scenario | Root Cause | Preventive Design Invariant |
 |---|---|---|---|
 | **The Letter 'a' Starting Fallacy** | Setting initial finger position to $pos[\text{'a'}]$ | Misreading "starts at index 0" as "starts at letter a". In custom layouts, index 0 can be any letter (e.g. 'p'). | Initialize $cursor = 0$ (the physical slot index, not a letter index). |
-| **Consecutive Char Cost Error** | Assuming every typed letter incurs movement $> 0$ | Typing duplicate adjacent letters (like `"ee"` in `"leetcode"`) requires $0$ movement. | Absolute difference $|15 - 15| = 0$ handles identical characters naturally. |
-| **Repeated Search Overhead** | Using `keyboard.find(c)` inside the typing loop | Causes $\mathcal{O}(|\Sigma| \cdot |word|)$ operations instead of $\mathcal{O}(|word|)$. | Precompute an inverted table `int[26]` for $\mathcal{O}(1)$ access. |
-| **Signed Difference Bug** | Omitting the absolute value operator `abs()` | Negative leftward movements subtract from total time instead of adding. | Always apply absolute value $|cursor - target|$. |
+| **Consecutive Char Cost Error** | Assuming every typed letter incurs movement $> 0$ | Typing duplicate adjacent letters (like `"ee"` in `"leetcode"`) requires $0$ movement. | Absolute difference $\lvert 15 - 15 \rvert = 0$ handles identical characters naturally. |
+| **Repeated Search Overhead** | Using `keyboard.find(c)` inside the typing loop | Causes $\mathcal{O}(\lvert \Sigma \rvert \cdot \lvert word \rvert)$ operations instead of $\mathcal{O}(\lvert word \rvert)$. | Precompute an inverted table `int[26]` for $\mathcal{O}(1)$ access. |
+| **Signed Difference Bug** | Omitting the absolute value operator `abs()` | Negative leftward movements subtract from total time instead of adding. | Always apply absolute value $\lvert cursor - target \rvert$. |
 
 ---
 
