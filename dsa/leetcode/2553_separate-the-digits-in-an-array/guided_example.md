@@ -1,128 +1,191 @@
 # Guided Example: Separate the Digits in an Array
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. The Instance and the Required Outcome
 
-- **Input:** `{"nums": [13, 25, 83, 77]}`
-- **Required output:** `[1, 3, 2, 5, 8, 3, 7, 7]`
+Each entry of `nums` is a positive integer, and the task is to replace that entry
+by its decimal digits, written left to right, keeping every block in the same
+order the values occupy in `nums`. The result is a flat list of digits whose
+length depends on how many digits each value happens to have.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+The instance traced here is the authored mixed-width case
 
----
+```text
+nums = [909, 8, 70]
+```
 
-## 1. Instance & Teaching Goal
+which is deliberately unhelpful to shortcuts: it mixes a three-digit value, a
+one-digit value, and a two-digit value whose units digit is $0$. Its required
+output is `[9, 0, 9, 8, 7, 0]`.
 
-Given an array of positive integers `nums`, return *an array *`answer`* that consists of the digits of each integer in *`nums`* after separating them in **the same order** they appear in *`nums`.
+| Output position | Source index $i$ | `nums[i]` | Digits of `nums[i]` | Digits contributed | Positions consumed |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 0 | 0 | `909` | 9, 0, 9 | 3 | 0-2 |
+| 1 | 1 | `8` | 8 | 1 | 3 |
+| 2 | 2 | `70` | 7, 0 | 2 | 4-5 |
 
-The objective is to compute `[1, 3, 2, 5, 8, 3, 7, 7]` from `{"nums": [13, 25, 83, 77]}` while avoiding redundant calculations and unnecessary overhead.
+The width of each block is $d_i = \lfloor \log_{10} \texttt{nums[i]} \rfloor + 1$,
+so the answer length is $\sum_i d_i = 3 + 1 + 2 = 6$, matching the six entries
+above.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+## 2. Positional Value and the Direction Digits Are Produced
 
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Extracting one decimal digit at a time
-
-For every positive integer in `nums`, the output must contain its decimal digits from most significant to least significant. The integers themselves must also be processed in their original array order. The solution handles these two ordering requirements separately: the outer loop preserves the order of the integers, while a temporary list repairs the order in which arithmetic digit extraction discovers the digits.
-
-For a positive integer $x$, the remainder $x\bmod 10$ is its last decimal digit. Integer division by $10$ then removes that digit:
+A positive integer has a unique decimal expansion
 
 $$
-x\leftarrow\left\lfloor\frac{x}{10}\right\rfloor.
+x = \sum_{k=0}^{d-1} a_k \, 10^{k}, \qquad a_{d-1} \neq 0, \quad 0 \le a_k \le 9,
 $$
 
-For example, begin with $x=10921$. The first remainder is $1$, and division changes $x$ to $1092$. Repeating the operations produces $2$, $9$, $0$, and $1$. These are exactly the original digits, but they arrive from right to left as `[1, 2, 9, 0, 1]`.
+where $a_k$ is the digit standing at place $k$. Place $0$ is the units position,
+the largest nonzero place is $d-1$, and the digit the reader sees first is
+$a_{d-1}$.
 
-That reversal is unavoidable when repeatedly looking at the units place. The solution therefore appends the extracted digits to a temporary list `t` and, after the number has become zero, extends the answer with `t[::-1]`. Reversing the temporary sequence changes the example back to `[1, 0, 9, 2, 1]`, the required left-to-right order.
+| Value $x$ | $a_2$ (hundreds) | $a_1$ (tens) | $a_0$ (units) | Reconstruction |
+|:---:|:---:|:---:|:---:|:---:|
+| `909` | 9 | 0 | 9 | `9*100 + 0*10 + 9 = 909` |
+| `8` | — | — | 8 | `8 = 8` |
+| `70` | — | 7 | 0 | `7*10 + 0 = 70` |
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [13, 25, 83, 77]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+Division with remainder recovers the digits from the *small* place upward.
+Let $r = x \bmod 10$ and $q = \lfloor x / 10 \rfloor$. The division identity
+$x = 10q + r$ with $0 \le r \le 9$ forces $r = a_0$ and $q = \sum_{k \ge 1} a_k 10^{k-1}$:
+the remainder *is* the units digit, and the quotient is the same numeral with its
+units digit removed. Repeating the split therefore emits
+$(a_0, a_1, \dots, a_{d-1})$ — least significant first, which is the reverse of
+the order the answer demands. Reversal is not cosmetic; it is the step that turns
+the extraction order into reading order.
 
----
+## 3. Extracting Every Block
 
-### Step 2: Why the loop stops at the right moment
+Applying the split until the remaining value is $0$ gives one short chain per
+element. The table records the value before the split, the digit the split
+releases, and the value left behind.
 
-At the start of each pass through `while x`, the current $x$ consists precisely of the digits not yet extracted. The remainder operation moves its final remaining digit into `t`, and floor division removes that digit from $x$. Because $x$ is a nonnegative integer and becomes at least ten times smaller after each pass, it must eventually reach zero.
+| Source `nums[i]` | Step | Value before split | Released digit `x % 10` | Value after split `x // 10` | Buffer so far (least significant first) |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| `909` | 1 | `909` | 9 | `90` | 9 |
+| `909` | 2 | `90` | 0 | `9` | 9, 0 |
+| `909` | 3 | `9` | 9 | `0` | 9, 0, 9 |
+| `8` | 1 | `8` | 8 | `0` | 8 |
+| `70` | 1 | `70` | 0 | `7` | 0 |
+| `70` | 2 | `7` | 7 | `0` | 0, 7 |
 
-When it reaches zero, there are no digits left to process. If the original value contains $d$ decimal digits, the loop runs exactly $d$ times. A zero inside the number is not lost. For instance, processing $10$ first extracts $0$ and changes $x$ to $1$; the next pass extracts $1$. Both digits are stored in `t`. The truth test only ends the loop when the whole remaining number is zero, not when one extracted digit happens to be zero.
+Two details in this trace carry most of the lesson's weight. First, `909` is a
+digit palindrome, so its buffer already reads correctly and would hide an
+authoring mistake; the value `70` is the honest witness, because its buffer is
+`0, 7` while its block must be `7, 0`. Second, the units digit of `70` is a real
+digit that must be emitted. A zero is only "leading" when it sits at the front of
+a written numeral, and in the buffer a released zero is just an ordinary digit
+waiting to be placed.
 
-The constraints say every input integer is at least $1$. This matters because the representation of the number zero contains one digit, but `while x` would perform no iteration for an initial zero. No special case is needed under the stated contract.
+## 4. Restoring Reading Order
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Reversing each buffer converts the extraction order $(a_0, \dots, a_{d-1})$ into
+the presentation order $(a_{d-1}, \dots, a_0)$. The reversal is performed per
+value, before the blocks are appended, so no block can bleed into its neighbour.
 
----
+| Source `nums[i]` | Buffer, least significant first | Block after reversal | Comment |
+|:---:|:---:|:---:|:---|
+| `909` | 9, 0, 9 | 9, 0, 9 | Palindrome: reversal is invisible here |
+| `8` | 8 | 8 | A single digit is its own reversal |
+| `70` | 0, 7 | 7, 0 | The released zero is a trailing digit, not a leading one |
+| `405` | 5, 0, 4 | 4, 0, 5 | Author test `[10921, 405]`: reversal genuinely reorders |
 
-### Step 3: Preserving order across the whole array
+The last row is included because the authored case `nums = [10921, 405]` expects
+`[1, 0, 9, 2, 1, 4, 0, 5]`; emitting `5, 0, 4` would produce a different list of
+the same length, which is exactly the kind of error a length check cannot detect.
 
-After one number has been completely extracted, `ans.extend(t[::-1])` appends all of its corrected digits to the end of the shared answer. It does not sort them or insert them ahead of digits from earlier numbers. The temporary list is recreated on the next outer-loop iteration, so digits from neighboring values never become mixed before reversal.
+## 5. Invariant, Termination, and Why the Blocks Concatenate Correctly
 
-For `nums = [13, 25, 83, 77]`, the steps are:
+**The split invariant.** Immediately after releasing digit $r$ from value $x$,
+the pair satisfies $x = 10\,q + r$ with $0 \le r \le 9$ and $q = \lfloor x/10 \rfloor$.
+Each released digit is therefore a true positional coefficient of the original
+numeral, and the value handed to the next step is the original numeral with one
+fewer place. Because $x > 0$ implies $q < x$, the sequence of remaining values is
+strictly decreasing, so the chain reaches $0$ after exactly
+$d = \lfloor \log_{10} x \rfloor + 1$ releases and cannot loop forever. The chain
+ends only at $0$: stopping one step earlier, when the remaining value first drops
+below $10$, would drop the leading digit $a_{d-1}$ — for the value `8` that would
+discard the only digit and emit nothing.
 
-- extracting `13` creates temporary `[3, 1]` and appends `[1, 3]`;
-- extracting `25` creates temporary `[5, 2]` and appends `[2, 5]`;
-- extracting `83` creates temporary `[3, 8]` and appends `[8, 3]`;
-- extracting `77` creates temporary `[7, 7]` and appends `[7, 7]`.
+**The prefix invariant.** After the first $i$ values of `nums` have been handled,
+the emitted list is exactly the concatenation, in index order, of the digit blocks
+of `nums[0]`, `nums[1]`, …, `nums[i-1]`. The invariant holds vacuously before any
+value is handled. Each step appends precisely the block of `nums[i]` — the digits
+$a_{d-1}, \dots, a_0$ produced by the chain and reversal — leaving the earlier
+blocks untouched, so the invariant survives. When $i$ reaches the length of
+`nums`, the emitted list is the concatenation over the whole array, which is the
+required answer.
 
-The accumulated result is `[1, 3, 2, 5, 8, 3, 7, 7]`. The process is a flattening operation: each integer becomes its ordered digit sequence, and those sequences are concatenated in input order.
+| Output position | 0 | 1 | 2 | 3 | 4 | 5 |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Digit written | 9 | 0 | 9 | 8 | 7 | 0 |
+| Owning index $i$ | 0 | 0 | 0 | 1 | 2 | 2 |
+| Place $k$ inside that value | 2 | 1 | 0 | 0 | 1 | 0 |
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[1, 3, 2, 5, 8, 3, 7, 7]` |
+The table also separates *value identity* from *index identity*: two positions of
+the output can carry the same digit, and two positions of `nums` can carry the
+same value, yet each index contributes its own block. For instance, the authored
+case `nums = [13, 13]` must yield `[1, 3, 1, 3]` — four digits, because both
+indices are processed independently. Values are not deduplicated and digits are
+not stored as a set.
 
----
+## 6. Boundary Behaviour and the Traps This Instance Exposes
 
-## 4. Complete Execution Trace
+| Instance | Required output | What it tests |
+|:---|:---|:---|
+| `[5]` | `[5]` | Minimum length and minimum value; the chain runs once |
+| `[10, 20, 30]` | `[1, 0, 2, 0, 3, 0]` | Trailing zeros survive; three blocks of width 2 |
+| `[100000]` | `[1, 0, 0, 0, 0, 0]` | Maximum value $10^{5}$; five zero digits after the leading 1 |
+| `[10921, 405]` | `[1, 0, 9, 2, 1, 4, 0, 5]` | Internal zeros keep their slots; reversal genuinely matters |
+| `[13, 13]` | `[1, 3, 1, 3]` | Duplicate values are both expanded; index order is preserved |
+| `[7, 1, 3, 9]` | `[7, 1, 3, 9]` | One-digit values pass through unchanged |
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [13, 25, 83, 77]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[1, 3, 2, 5, 8, 3, 7, 7]` | Verified |
+The specific traps worth naming:
 
----
+- **Skipping the reversal.** The buffer arrives least-significant-first. Omitting
+  the reversal still yields the right *length*, so a length-only check passes while
+  the values are wrong; `70` is the smallest witness.
+- **Filtering out zeros.** Treating `0` as absence rather than as a digit breaks
+  `[10, 20, 30]` and `[100000]`, where zeros are digits in the middle and at the
+  end of the numeral.
+- **Terminating too early.** Halting when the quotient first reaches $0$ instead
+  of when the value reaches $0$ discards the leading digit, so `[8]` would answer
+  with an empty list.
+- **Fusing neighbouring values.** Concatenating several integers first and then
+  splitting the fused value can borrow or invent places across the seam; block
+  boundaries must be respected per index.
 
-## 5. Algorithmic Correctness
+## 7. Alternative Formulations and Their Trade-offs
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+| Alternative | How it works | Trade-off |
+|:---|:---|:---|
+| Decimal string per value | Render `nums[i]` as text and map each character to its digit value | Short and directly produces reading order, but allocates a string per value and depends on the language's integer-to-text rules |
+| Concatenate all text, then map | Join the decimal texts of every value, then walk the joined text once | One pass and no per-value reversal; the seam between blocks must be a pure concatenation, and the fused text no longer identifies which index produced each digit |
+| Divide by descending powers of ten | Compute $d$, then read $\lfloor x / 10^{k} \rfloor \bmod 10$ for $k = d-1, \dots, 0$ | Emits reading order without a reversal, but needs a correct digit count first, and the leading place must not be recomputed as a zero |
+| Remainder chain plus reversal | Split off $a_0$ repeatedly, then reverse the collected digits | One exact integer arithmetic pass per value and no digit-count estimate; the reversal is the only ordering step and must not be omitted |
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+All four produce the identical answer because every one of them realises the same
+positional identity for each value; they differ only in which intermediate
+representation is materialised and in how the ordering is recovered.
 
----
+## 8. Time and Auxiliary Space
 
-## 6. Traps This Instance Exposes
+Let $d_i$ be the number of digits of `nums[i]` and let
 
-- **Convert each number to a string:** Iterating through `str(x)` is concise and also takes $O(D)$ time, but the checked-in solution demonstrates the arithmetic representation directly and avoids character-to-integer conversion.
-- **Traverse input backward and reverse once:** Processing `nums` from right to left, appending units digits immediately, and reversing the complete answer at the end avoids a separate temporary list per number. It has the same $O(D)$ time and still stores the output.
-- **Place-value divisor:** One can first find the largest power of ten not exceeding $x$ and then read digits from left to right. This avoids reversing a temporary list but requires careful divisor updates and leading-zero reasoning.
-- **Single-digit values:** One remainder extracts the value, one division reaches zero, and reversing a one-element list changes nothing.
-- **Internal zeros:** Values such as `1005` work correctly because `x % 10` can append zero. A zero digit must not be confused with termination of the entire number.
-- **Maximum value:** `100000` has six digits, including five trailing zeros. Each zero is extracted on a separate iteration before the leading one.
-- **Initial zero outside the contract:** If zero were allowed, the current loop would append nothing for it. Supporting that altered contract would require an explicit `if x == 0` case.
-- **Input preservation:** Reassigning the local name `x` is safe because integers are immutable and the code never assigns through an index of `nums`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+$$
+D = \sum_{i=0}^{n-1} d_i
+$$
 
----
+be the total number of digits, which is exactly the length of the answer. The
+remainder chain performs one release per digit of the current value, so
+extraction costs $\sum_i d_i = D$ constant-time splits, and the reversals move
+exactly $D$ digits in total. Scanning the array itself costs one step per value,
+which is absorbed because $d_i \ge 1$ implies $D \ge n$.
 
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(D)$. Let $D$ be the total number of decimal digits across every value in `nums`. Every execution of the inner loop extracts one digit, so all inner loops together execute exactly $D$ times. Reversing and extending each temporary list also touches each extracted digit once. The total time is consequently $O(D)$.
-- **Auxiliary Space Complexity:** $O(D)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time:** $O(D)$. With the stated limits $1 \le \texttt{nums[i]} \le 10^{5}$ we
+  have $1 \le d_i \le 6$, hence $n \le D \le 6n$ and the bound is $O(n)$ in the
+  array length as well.
+- **Space:** $O(D)$ for the answer, which must be returned. Excluding that output,
+  the auxiliary working space is the buffer of the value currently being split,
+  whose largest size is $\max_i d_i \le 6$ — a constant under these constraints —
+  so the method uses $O(1)$ auxiliary space beyond the answer.

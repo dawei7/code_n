@@ -156,6 +156,34 @@ Result: [5, 6, 7, 1, 2, 3, 4]
 | **2** | **$[0, 2]$** | **`[7, 6, 5]`** | **Reverse First $k$** | **`[5, 6, 7, 4, 3, 2, 1]`** |
 | **3** | **$[3, 6]$** | **`[4, 3, 2, 1]`** | **Reverse Suffix** | **`[5, 6, 7, 1, 2, 3, 4]` (Final)** |
 
+### Swap-Level View of the Three Reversals
+
+The table above shows the array after each call. Descending to the level of individual swaps exposes the two-pointer mechanics and the single index that no swap touches:
+
+| Reversal | Swap pairs $(L, R)$ in order | Values exchanged | Index left at a midpoint | Array after the reversal |
+|:---|:---|:---|:---|:---|
+| $\text{reverse}(0, 6)$ | $(0, 6)$, $(1, 5)$, $(2, 4)$ | $1 \leftrightarrow 7$, $2 \leftrightarrow 6$, $3 \leftrightarrow 5$ | index 3 keeps the value $4$, its own mirror | `[7, 6, 5, 4, 3, 2, 1]` |
+| $\text{reverse}(0, 2)$ | $(0, 2)$ | $7 \leftrightarrow 5$ | index 1 keeps the value $6$ | `[5, 6, 7, 4, 3, 2, 1]` |
+| $\text{reverse}(3, 6)$ | $(3, 6)$, $(4, 5)$ | $4 \leftrightarrow 1$, $3 \leftrightarrow 2$ | none, because the range has even length | `[5, 6, 7, 1, 2, 3, 4]` |
+
+Six swaps in total: three in the global reversal, one in the prefix reversal, and two in the suffix reversal. The pointers always close from the outside in, and a swap pair is skipped exactly when the range length is odd, so no element is ever compared with itself.
+
+### Where Every Element Ends Up
+
+Checking the three reversals against the rotation contract is a separate verification from checking them against each other. Right-rotating by $k$ requires the element that starts at index $i$ to finish at index $(i + k) \bmod N$, and the trace satisfies that requirement for all seven elements:
+
+| Element | Original index $i$ | Required destination $(i + k) \bmod N$ | How the reversals deliver it | Final index observed |
+|:---:|:---:|:---:|:---|:---:|
+| 1 | 0 | $(0 + 3) \bmod 7 = 3$ | global reversal sends it to 6, the suffix reversal brings it back to 3 | 3 |
+| 2 | 1 | $(1 + 3) \bmod 7 = 4$ | global reversal sends it to 5, the suffix reversal moves it to 4 | 4 |
+| 3 | 2 | $(2 + 3) \bmod 7 = 5$ | global reversal sends it to 4, the suffix reversal moves it to 5 | 5 |
+| 4 | 3 | $(3 + 3) \bmod 7 = 6$ | it is the untouched midpoint of the global reversal, then the suffix reversal moves it to 6 | 6 |
+| 5 | 4 | $(4 + 3) \bmod 7 = 0$ | global reversal sends it to 2, the prefix reversal moves it to 0 | 0 |
+| 6 | 5 | $(5 + 3) \bmod 7 = 1$ | global reversal sends it to 1, and the prefix reversal leaves that midpoint alone | 1 |
+| 7 | 6 | $(6 + 3) \bmod 7 = 2$ | global reversal sends it to 0, the prefix reversal moves it to 2 | 2 |
+
+The table also shows the division of labour between the two phases: the global reversal crosses the block boundary and puts every element into the correct *half* of the array, while the prefix and suffix reversals only fix the internal order within a half. An implementation that reverses the halves in the wrong order, or that reverses $[0, N-k-1]$ instead of $[0, k-1]$, produces an array whose elements are in the right halves but the wrong positions — a failure this index-by-index check catches immediately.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -172,9 +200,24 @@ Result: [5, 6, 7, 1, 2, 3, 4]
 - **Using Slicing Reassignment in Python:** Writing `nums = nums[-k:] + nums[:-k]` creates a new list and rebinds the local variable `nums`, leaving the caller's list unchanged! In-place modification requires `nums[:] = ...` or manual swaps.
 - **Cyclic Replacement Index Jumps:** The alternative $O(1)$ space algorithm jumps through index cycles $(i + k) \pmod N$. However, when $\gcd(N, k) > 1$, multiple disjoint cycles exist, requiring complex cycle counting. The three-reversal method is far less error-prone.
 
+### Boundary Rotations and What Normalization Buys
+
+Every degenerate rotation is settled by the single modulo step, so the three reversals are never asked to operate outside the array:
+
+| Instance | Normalized $k$ | Result | What the instance settles |
+|:---|:---:|:---|:---|
+| `[1, 2, 3]`, $k = 0$ | 0 | `[1, 2, 3]` | no rotation is required; the guard returns before any swap, and the array is neither read nor written |
+| `[1, 2]`, $k = 4$ | $4 \bmod 2 = 0$ | `[1, 2]` | an exact multiple of $N$ is the identity permutation, so a "large" $k$ can normalize to no work at all |
+| `[0, 1, 2, 3, 4]`, $k = 12$ | $12 \bmod 5 = 2$ | `[3, 4, 0, 1, 2]` | normalization is not cosmetic: reversing "the first $k$" without it would address indices past the end of the array |
+| `[1, 2, 3, 4]`, $k = 3$ | 3 | `[2, 3, 4, 1]` | with $k = N - 1$ the rotation is a single left shift, and the prefix block is almost the entire array |
+| `[7]`, any $k$ | $k \bmod 1 = 0$ | `[7]` | a one-element array equals its own rotation for every $k$, and the modulo makes the guard fire with no special case for $N = 1$ |
+| `[-1, -100, 3, 99]`, $k = 2$ | 2 | `[3, 99, -1, -100]` | the algorithm is value-agnostic: negative entries move by the same index arithmetic as positive ones |
+
+The first two rows are different failures of intuition. $k = 0$ means the caller asked for nothing; $k = 4$ with $N = 2$ means the caller asked for two complete revolutions, which is also nothing. Both collapse to the same early exit, which is why the modulo is the first statement of the method rather than a defensive afterthought.
+
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N)$, where $N$ is the number of elements in `nums`. Step 1 performs $\lfloor N/2 \rfloor$ swaps, Step 2 performs $\lfloor k/2 \rfloor$ swaps, and Step 3 performs $\lfloor (N-k)/2 \rfloor$ swaps. Total swaps are exactly $N$, running in strictly $O(N)$ linear time.
+- **Time Complexity:** $O(N)$, where $N$ is the number of elements in `nums`. Step 1 performs $\lfloor N/2 \rfloor$ swaps, Step 2 performs $\lfloor k/2 \rfloor$ swaps, and Step 3 performs $\lfloor (N-k)/2 \rfloor$ swaps. For the traced instance those counts are $3 + 1 + 2 = 6$ swaps, one fewer than $N$; in general the total is $N$ when both $N$ and $k$ are even and $N - 1$ otherwise, so the swap count never exceeds $N$ and the running time is strictly $O(N)$.
 - **Auxiliary Space Complexity:** $O(1)$ constant memory, modifying elements entirely in-place.

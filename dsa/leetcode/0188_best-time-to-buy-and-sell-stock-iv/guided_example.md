@@ -188,6 +188,24 @@ The intermediate states explain why the second trade could not start earlier. On
 - **Negative Balance Initialization:** Initializing $\text{buy}[j] = 0$ instead of $-\infty$ falsely assumes buying stock is free. $\text{buy}[j]$ must start at $-\infty$.
 - **Same-Day Transitions:** Updating $\text{buy}[j]$ and $\text{sell}[j]$ on the same day allows buying and selling at price $P$ for net profit 0, which correctly leaves the maximum unchanged.
 
+### Boundary Instances and What Each One Settles
+
+The traced instance happens to make the transaction limit bite, which is the interesting case but not the only one. The degenerate and extreme settings each isolate one mechanism:
+
+| Instance | Result | What the instance settles |
+|:---|:---:|:---|
+| $k = 0$, prices $= [3, 2, 6, 5, 0, 3]$ | 0 | no state above $j = 0$ can ever become reachable, so the answer is the starting capital |
+| $k = 1$, prices $= [3, 2, 6, 5, 0, 3]$ | 4 | withholding the second transaction costs exactly $3$ on the same series, so the limit is genuinely binding here |
+| $k = 2$, prices $= [1, 2, 3, 4, 5]$ | 4 | one trade from $1$ to $5$ beats any split, since splitting a rising run earns the same total; transactions are permission, not obligation |
+| $k = 2$, prices $= [5, 4, 3, 2, 1]$ | 0 | every step is a fall, and the $-\infty$ initialization prevents a fictitious free purchase from creating paper profit |
+| $k = 2$, prices $= [3, 3, 3]$ | 0 | a same-price round trip earns exactly $0$, so flat prices never raise the answer |
+| $k = 2$, prices $= [1, 2, 1, 2, 1, 2]$ | 2 | with $N = 6$ the limit $k < \lfloor N/2 \rfloor = 3$ binds, and the two available trades capture only two of the three rises |
+| $k = 3$, prices $= [1, 2, 1, 2, 1, 2]$ | 3 | at $k = \lfloor N/2 \rfloor$ the limit stops binding, and the answer equals the greedy sum $1 + 1 + 1$ |
+| $k = 10$, prices $= [1, 2, 1, 4, 2, 7]$ | 9 | a $k$ far above $\lfloor N/2 \rfloor$ is answered by the greedy sum $1 + 3 + 5$ without allocating any state array of length $k$ |
+| prices $= [7]$, any $k$ | 0 | one day admits no buy-then-sell pair, and the loop simply leaves every sell state at $0$ |
+
+The pair $(k = 2, k = 3)$ on $[1, 2, 1, 2, 1, 2]$ is the cleanest demonstration of the shortcut: the array-based method would still need three transaction slots, while the threshold test recognises that the limit can no longer restrict anything and reduces the work to a single linear pass.
+
 ---
 
 ## 7. Complexity Derivation
