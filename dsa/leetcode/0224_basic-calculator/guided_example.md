@@ -167,6 +167,17 @@ Final Answer: 23
 | `6 + 8` | Evaluate terms | 6 | 1 | 8 | `[9, 1]` |
 | **`)`** | **Complete group ($14$), fold: $9 + 1 \times 14$** | **23** | **1** | **0** | **`[]` (Finished: 23)** |
 
+The same execution, organised by scope instead of by character, makes the stack contract explicit. The string is indexed from $0$, so the left group opens at index $0$, the inner group at index $3$, and the right group at index $14$.
+
+| Scope | Opened at index | Frame pushed $(\text{prev\_ans}, \text{prev\_sign})$ | Expression evaluated locally | Local value | Fold applied on the closing `)` | Stack after closing |
+|:---|:---:|:---|:---|:---:|:---|:---|
+| Global frame (never pushed) | - | - | $9$ then $+\,14$ across the two top-level groups | - | The final value $23$ lives here | `[]` |
+| Outer left group | 0 | $(0, 1)$ | `1+(4+5+2)-3` | $1 + 11 - 3 = 9$ | $0 + 1 \times 9 = 9$ | `[]` |
+| Inner group | 3 | $(1, 1)$ | `4+5+2` | $4 + 5 + 2 = 11$ | $1 + 1 \times 11 = 12$ | `[0, 1]` |
+| Outer right group | 14 | $(9, 1)$ | `6+8` | $6 + 8 = 14$ | $9 + 1 \times 14 = 23$ | `[]` |
+
+Each `(` writes two entries — the running total first, then the sign — so each `)` must pop them in the opposite order: the sign is on top. The stack depth never exceeds twice the nesting depth, and the frame at index $3$ is the only one that closes while another frame is still suspended, which is why `[0, 1]` is still present after the inner fold.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -175,17 +186,11 @@ Final Answer: 23
 
 **Completeness.** Every character in the string is processed exactly once. Balanced parentheses guarantee that every pushed context is popped at the corresponding `)`, leaving the stack empty at termination with the full scalar answer in `ans`.
 
----
+**Input boundaries, and the exact path through the machine.** Each row below is a package case, and the third column names the mechanism that produces its answer — which for several of them is the trailing accumulation rather than any operator.
 
-## 6. Traps This Instance Exposes
-
-- **Leading Unary Minus:** For expressions like `"- (3 + 4)"`, `ans` starts at $0$. Encountering `-` sets `sign = -1`. The parenthesized group evaluates to $7$, and the final fold computes $0 + (-1) \times 7 = -7$, naturally supporting unary signs without extra parser rules.
-- **Multi-Digit Numbers:** Scanning characters individually requires shifting previous digits (`num * 10 + int(c)`). Forgetting to reset `num = 0` after applying an operator causes digits to bleed into subsequent numbers.
-- **Trailing Unapplied Number:** Expressions like `"1 + 2"` have no closing parenthesis at the end. An explicit final accumulation `ans += sign * num` after the loop is required.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(N)$, where $N$ is the length of string $s$. The string is scanned in a single forward pass, with each character triggering $O(1)$ stack operations or arithmetic updates.
-- **Auxiliary Space Complexity:** $O(N)$ auxiliary space for the stack, proportional to the maximum nesting depth of parentheses (at most $N/2$).
+| Expression | Answer | Path through the machine | Why it is a boundary worth checking |
+|:---|:---:|:---|:---|
+| `"1"` | 1 | The single digit leaves $\text{num} = 1$; no operator ever fires, so only the final flush $\text{ans} \mathrel{+}= \text{sign} \cdot \text{num}$ produces the answer | The shortest legal input, and the one that fails if the trailing flush is omitted |
+| `"111"` | 111 | Digits accumulate as $1 \to 11 \to 111$ and no operator interrupts them | Multi-digit parsing: the value must survive an arbitrary run of digits without a flush between them |
+| `"1 + 1"` | 2 | `1` parses, `+` flushes $\text{ans} = 1$ and resets, the second `1` remains pending, and the trailing flush adds it | The last operand is never followed by an operator, so this case returns 1 instead of 2 if the post-loop accumulation is missing |
+| `"-2 + 

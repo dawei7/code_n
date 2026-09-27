@@ -72,6 +72,16 @@ Nodes: $N_0(1) \to N_1(2) \to N_2(2) \to N_3(1) \to \text{None}$.
   - $\text{fast} \to \text{None}$ (since $N_2\text{.next.next} = N_3\text{.next} = \text{None}$).
 - Loop ends. `slow` points to $N_2(2)$, the start of the second half.
 
+Because the landing index of `slow` is fixed by the parity of $N$, the size of the reversal and the number of mirror comparisons are decided before any comparison happens. The table below applies the same midpoint rule to every instance named at the top of this lesson; the final row is a near-miss that shares a prefix and a suffix with the worked instance yet still fails.
+
+| Instance | $N$ (parity) | `slow` lands on | Nodes taken into the reversal | Comparisons actually run | Verdict | Mirror check that decides it |
+|:---|:---:|:---:|:---|:---:|:---:|:---|
+| $[7]$ | $1$ (odd) | $N_0$, the center | $N_0$ | $1$ | `true` | $(0, 0)$: the center node is compared with itself |
+| $[1, 2]$ | $2$ (even) | $N_1$ (index $k = 1$) | $N_1$ | $1$ | `false` | $(0, 1)$: $1 \ne 2$ |
+| $[1, 2, 2, 1]$ | $4$ (even) | $N_2$ (index $k = 2$) | $N_2, N_3$ | $2$ | `true` | $(0, 3)$: $1 = 1$, then $(1, 2)$: $2 = 2$ |
+| $[1, 2, 3, 2, 1]$ | $5$ (odd) | $N_2$, the center | $N_2, N_3, N_4$ | $3$ | `true` | $(1, 3)$: $2 = 2$, then the self-check $(2, 2)$ |
+| $[1, 2, 3, 1]$ | $4$ (even) | $N_2$ (index $k = 2$) | $N_2, N_3$ | $2$, then it stops | `false` | $(1, 2)$: $2 \ne 3$ |
+
 ---
 
 ### Phase 2: Reverse Second Half Starting at $N_2$
@@ -159,6 +169,16 @@ Phase 3 (Two Pointers):
 
 - **Odd Length Center Element:** When $N$ is odd (e.g. $[1, 2, 3, 2, 1]$), `slow` lands on the exact center node ($3$). Reversing from `slow` includes $3$ in the reversed list. Because the loop condition is `while p2:`, comparing $p_1$ and $p_2$ tests $1 == 1, 2 == 2, 3 == 3$, which succeeds correctly without special handling for the middle node.
 - **Copying to List vs In-Place Reversal:** Appending node values to a Python list `vals = []` and checking `vals == vals[::-1]` takes $O(N)$ auxiliary memory. The pointer reversal technique is required to achieve $O(1)$ space.
+
+Every other familiar way of reading a singly linked list backwards pays for the missing `prev` field somewhere; the table names where each one pays, and which of them survives the $O(1)$ follow-up.
+
+| Approach | Where the backward direction comes from | Time | Auxiliary space | Failure mode or tradeoff |
+|:---|:---|:---:|:---:|:---|
+| Copy the values into an array, then walk two inward indices | The array supplies random access, so $\text{val}[i]$ is compared with $\text{val}[N - 1 - i]$ | $O(N)$ | $O(N)$ | Correct but violates the $O(1)$ follow-up; the whole value sequence is duplicated |
+| Recursive mirror check | Recursion unwinds from the tail back toward the head, comparing on the return path | $O(N)$ | $O(N)$ call stack | Depth grows with $N$, so a long list exhausts the stack; still fails the follow-up |
+| Reverse the entire list, then walk it against a saved traversal | The reversed list supplies the backward order | $O(N)$ | $O(N)$ | The saved traversal is again a copy, so nothing is gained over the array |
+| Midpoint search plus in-place reversal of the second half (this lesson) | The suffix is rewired so it can be read from its old tail forward | $O(N)$ | $O(1)$ | Destroys the original link order while it runs; a caller that needs the list intact must reverse the suffix back |
+| Reverse the whole list, compare, then reverse it back | Two complete reversals and one paired walk | $O(N)$ | $O(1)$ | Meets the space bound but rewires about twice as many links and must handle the even/odd meeting point twice |
 - **Restoring List (Good Practice):** Mutating input structures during a query can have side effects in concurrent systems. In production, re-reversing the second half before returning restores the original list geometry.
 
 ---
