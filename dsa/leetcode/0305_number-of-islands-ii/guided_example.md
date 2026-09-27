@@ -166,6 +166,43 @@ Results: [1, 1, 2, 3]
 | 3 | $(1, 2)$ | 5 | None | 0 | **2** | `[1, 1, 2]` |
 | 4 | $(2, 1)$ | 7 | None | 0 | **3** | `[1, 1, 2, 3]` |
 
+That summary hides the fifteen probes that changed nothing. The next table lists
+every cardinal probe, in the order up, right, down, left, with the count as it
+stands *after* the activation increment of its step. The probe order is
+immaterial: the decrement happens exactly once per genuinely distinct component
+touched, whatever order those components are discovered in.
+
+| Step | Activated cell (id) | Probe | Inside the grid? | Land? | `union` called | Islands `cnt` after this probe |
+|:---:|:---|:---|:---:|:---:|:---|:---:|
+| 1 | $(0, 0) \to 0$ | up to $(-1, 0)$ | No | not tested | No | 1 |
+| 1 | $(0, 0) \to 0$ | right to $(0, 1)$ | Yes | Water | No | 1 |
+| 1 | $(0, 0) \to 0$ | down to $(1, 0)$ | Yes | Water | No | 1 |
+| 1 | $(0, 0) \to 0$ | left to $(0, -1)$ | No | not tested | No | 1 |
+| 2 | $(0, 1) \to 1$ | up to $(-1, 1)$ | No | not tested | No | 2 |
+| 2 | $(0, 1) \to 1$ | right to $(0, 2)$ | Yes | Water | No | 2 |
+| 2 | $(0, 1) \to 1$ | down to $(1, 1)$ | Yes | Water | No | 2 |
+| 2 | $(0, 1) \to 1$ | left to $(0, 0)$ | Yes | Land | Yes — roots 1 and 0 differ | **1** |
+| 3 | $(1, 2) \to 5$ | up to $(0, 2)$ | Yes | Water | No | 2 |
+| 3 | $(1, 2) \to 5$ | right to $(1, 3)$ | No | not tested | No | 2 |
+| 3 | $(1, 2) \to 5$ | down to $(2, 2)$ | Yes | Water | No | 2 |
+| 3 | $(1, 2) \to 5$ | left to $(1, 1)$ | Yes | Water | No | 2 |
+| 4 | $(2, 1) \to 7$ | up to $(1, 1)$ | Yes | Water | No | 3 |
+| 4 | $(2, 1) \to 7$ | right to $(2, 2)$ | Yes | Water | No | 3 |
+| 4 | $(2, 1) \to 7$ | down to $(3, 1)$ | No | not tested | No | 3 |
+| 4 | $(2, 1) \to 7$ | left to $(2, 0)$ | Yes | Water | No | 3 |
+
+The same steps seen from inside the disjoint-set forest show why the counter is
+the number of roots among activated nodes. Sizes are given for each component
+root; unactivated ids such as 2, 3, 4, 6 and 8 still own a singleton slot in the
+parent array but contribute nothing to $\text{cnt}$.
+
+| Step | Activated node | Components of activated nodes | Component sizes | Islands `cnt` |
+|:---:|:---:|:---|:---|:---:|
+| 1 | 0 | $\{0\}$ | 1 | 1 |
+| 2 | 1 | $\{0, 1\}$ | 2 | 1 |
+| 3 | 5 | $\{0, 1\}, \; \{5\}$ | 2, 1 | 2 |
+| 4 | 7 | $\{0, 1\}, \; \{5\}, \; \{7\}$ | 2, 1, 1 | 3 |
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -181,6 +218,22 @@ Results: [1, 1, 2, 3]
 - **Duplicate Additions:** If the same coordinate appears multiple times in `positions`, turning an already active land cell into land again without a guard would erroneously increment `cnt` by 1. Checking `grid[i][j]` prevents duplicate counts.
 - **Multiple Neighbors in the Same Island:** If a new cell touches two cells that are already part of the same island, only the first `union` returns `True`. The second `union` sees identical roots and returns `False`. Blindly decrementing `cnt` for every adjacent land neighbor causes severe undercounting.
 - **Diagonal Neighbors:** Two cells that touch diagonally (e.g. $(0, 0)$ and $(1, 1)$) do not share an edge. Attempting 8-way connectivity violates problem rules.
+
+### Boundary scenarios and the invariant that settles each one
+
+The traced instance never merges two established islands, never repeats a
+coordinate, and never touches a grid edge. Each neighbouring scenario below
+isolates exactly one of those conditions, with the island counts it produces.
+
+| Scenario | Instance | Island counts | Why the counter stays exact |
+|:---|:---|:---|:---|
+| Repeated coordinate | $2 \times 2$, positions `[[1, 1], [1, 1], [1, 1]]` | `[1, 1, 1]` | The duplicate guard reads `grid[1][1] == 1` and appends the current count without activating, without incrementing, and without a single `union` call |
+| Duplicate, then a bridge | $2 \times 2$, `[[0, 0], [0, 0], [1, 1], [0, 1]]` | `[1, 1, 2, 1]` | The second `[0, 0]` is a pure no-op; the last cell is adjacent to both live cells, so two distinct roots merge and the count falls from $2 + 1 = 3$ to $1$ |
+| One cell joins two islands | $3 \times 3$, `[[0, 0], [0, 2], [1, 0], [1, 2], [1, 1]]` | `[1, 2, 2, 2, 1]` | $(1, 1)$ touches $(1, 0)$ and $(1, 2)$, which are separate roots, so two `union` calls return true and the increment of $+1$ is cancelled twice |
+| One cell joins four islands | $3 \times 3$, `[[0, 1], [1, 0], [1, 2], [2, 1], [1, 1]]` | `[1, 2, 3, 4, 1]` | The centre is surrounded by four islands of one cell each: four distinct roots, so the count drops by $4$ from the incremented value $5$ |
+| Neighbours already in one island | $3 \times 3$ ring, `[[0, 0], [0, 1], [0, 2], [1, 0], [1, 2], [2, 0], [2, 1], [2, 2], [1, 1]]` | `[1, 1, 1, 1, 1, 1, 1, 1, 1]` | The centre's four land neighbours all share one root, so only the first `union` returns true; the other three see identical roots and are ignored |
+| Diagonal land only | $3 \times 3$, `[[0, 0], [1, 1], [2, 2]]` | `[1, 2, 3]` | No pair of these cells is cardinally adjacent, so no probe ever reaches a land neighbour and the count only ever increments |
+| Endpoint columns | $1 \times 10000$, `[[0, 0], [0, 9999], [0, 1], [0, 9998]]` | `[1, 2, 2, 2]` | Every up and down probe is rejected by $0 \le x < m$ because $m = 1$; the last two cells each attach to an island 9997 water cells away, and the flattening $i \cdot n + j$ still yields the ids $0$, $9999$, $1$ and $9998$ |
 
 ---
 

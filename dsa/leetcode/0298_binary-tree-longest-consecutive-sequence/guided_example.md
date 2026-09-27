@@ -70,6 +70,19 @@ We pass down the current path length `current_streak` from parent to child:
 
 > **Invariant.** At every visited node, `streak` represents the exact length of the unique contiguous increasing consecutive path ending at `node` from an ancestor. `max_len` stores the global supremum over all explored nodes.
 
+### The Same Recurrence Read Bottom-Up
+Nothing in the problem forces the running length to travel downward. A post-order reading computes, for each node, the longest valid sequence that **starts** at that node and descends: the value is `1` plus the child's own answer when the edge steps by exactly $+1$, and it collapses to `1` when the edge does not. Both readings describe the same five nodes, and the table below shows them side by side:
+
+| Node | Left child (edge step) | Right child (edge step) | Longest run starting at this node (bottom-up) | Streak ending at this node (top-down view) |
+|:---:|:---:|:---:|:---:|:---:|
+| $1$ | none | $3$ (step $+2$) | $1$ — neither branch steps by $+1$ | $1$ — it is the root |
+| $3$ | $2$ (step $-1$) | $4$ (step $+1$) | $3$ — the chain $3 \to 4 \to 5$ | $1$ — the edge from $1$ broke the chain |
+| $2$ | none | none | $1$ — a leaf | $1$ |
+| $4$ | none | $5$ (step $+1$) | $2$ — the chain $4 \to 5$ | $2$ — the chain $3 \to 4$ |
+| $5$ | none | none | $1$ — a leaf | $3$ — the chain $3 \to 4 \to 5$ |
+
+The two middle columns are why the bottom-up form needs no parent parameter: the edge test compares a node with its own child, which is already in hand. The last column is why the top-down form needs no combination step: the streak already counts the whole path behind the node. Both columns reach the same maximum of $3$, but note where that maximum lives — column four peaks at the internal node $3$, and the value returned for the root is only $1$. The global answer must therefore be accumulated separately from whatever a single call returns, whichever direction the recurrence runs.
+
 ---
 
 ## 3. Step-by-Step Worked Execution
@@ -195,9 +208,34 @@ Final Result: 3
 - **Strict $+1$ Step Size:** A sequence like $1 \to 3$ is increasing, but NOT consecutive. The check must test `node.val == parent.val + 1`, not `node.val > parent.val`.
 - **Streak Reset Invariant:** When a streak breaks, the path length resets to $1$ (the current node itself), NOT $0$. Every single node constitutes a valid sequence of length 1.
 
+### Boundary Shapes and Their Exact Answers
+Each row below is a verified answer for a small tree, chosen because it isolates one way the rule can be misread:
+
+| Tree (array form) | Answer | Why that value is forced |
+|:---|:---:|:---|
+| `[-30000]` | $1$ | One node is a sequence of length $1$ whatever its value; the bottom of the value range changes nothing about the count |
+| `[5,5,5,5,5,5,5]` | $1$ | Every edge steps by $0$, and the rule demands exactly $+1$, so all six edges reset |
+| `[5,4,null,3,null,2]` | $1$ | Each edge steps by $-1$; a decreasing chain never extends, however long it is |
+| `[2,1,3]` | $2$ | The edge $2 \to 3$ steps by $+1$ and gives length $2$; the tempting chain $1 \to 2 \to 3$ climbs through the root, which the parent-to-child rule forbids |
+| `[1,3,2,4]` | $2$ | $1 \to 3$ skips the value $2$ and resets; what survives are $1 \to 2$ and $3 \to 4$, both of length $2$ |
+| `[0,1,1,2,null,null,2,3,null,null,3]` | $4$ | Two parallel $0 \to 1 \to 2 \to 3$ chains run in the two child subtrees; they cannot be merged through the shared root, and either one alone already has length $4$ |
+| `[-2,-1,10,0,null,null,11,1]` | $4$ | The chain $-2 \to -1 \to 0 \to 1$ crosses zero without special handling, while $10 \to 11$ stays separate |
+| `[29999,-30000,30000,-29999]` | $2$ | A valid $+1$ edge exists at the top of the range ($29999 \to 30000$) and at the bottom ($-30000 \to -29999$), but the two runs are in different subtrees and cannot be joined |
+
+Two conclusions follow. The parity or magnitude of the values never matters, only the difference across an edge; and the reset is local, so a broken edge never destroys a run that was already completed in another subtree.
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(N)$, where $N$ is the number of nodes in the binary tree. Each node is visited exactly once during the DFS traversal, performing $O(1)$ arithmetic comparisons and assignments.
 - **Auxiliary Space Complexity:** $O(H)$, where $H$ is the height of the binary tree, corresponding to the maximum recursion call stack frames. In balanced trees, $H = O(\log N)$; in the worst-case skewed tree, $H = O(N)$.
+
+### Alternatives and Their Costs
+| Approach | Time | Space | Tradeoff |
+|:---|:---|:---|:---|
+| **Top-down with an inherited streak (the method traced here)** | $O(N)$ | $O(H)$ stack | Each call needs the parent value and the streak so far, but the global maximum can be updated the moment a node is visited |
+| **Post-order returning "longest run starting here"** | $O(N)$ | $O(H)$ stack | The edge test compares a node with its own child, so no parent parameter is needed; the returned value for the root is not the answer, so the maximum must still be tracked separately |
+| **Collect every root-to-leaf path, then scan each one** | $O(N \cdot H)$ time for copying the paths | $O(N \cdot H)$ | Correct but wasteful: the same chain is re-scanned once per path that contains it, and a skewed tree holds one path of $N$ nodes |
+| **Bidirectional post-order combination (the LeetCode 549 rule)** | $O(N)$ | $O(H)$ stack | It also joins an increasing left run with a decreasing right run through their common parent, so the sibling tree `[2,1,3]` returns $3$ from the chain $1 \to 2 \to 3$ where this problem requires $2$ |
+| **Breadth-first traversal with a queue carrying the streak** | $O(N)$ | $O(\text{width})$ queue | Removes the recursion-depth exposure on skewed trees, at the cost of storing the streak for every node of the current level |

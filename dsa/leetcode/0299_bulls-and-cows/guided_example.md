@@ -174,6 +174,24 @@ Result: "1A3B"
 - Cow evaluation for `'1'`: $\min(cnt_1[\text{'1'}], cnt_2[\text{'1'}]) = \min(1, 2) = \mathbf{1}$.
 - Result: `"1A1B"`.
 
+Both instances reduce to the same intersection computation, and the row-by-row view shows exactly where a digit's multiplicity decides the outcome:
+
+| Instance | Digit $c$ | $cnt_1[c]$ (unmatched secret) | $cnt_2[c]$ (unmatched guess) | $\min(cnt_1[c], cnt_2[c])$ | Cows contributed |
+|:---|:---:|:---:|:---:|:---:|:---|
+| `"1807"` / `"7810"` | `'0'` | $1$ | $1$ | $1$ | $1$ |
+| `"1807"` / `"7810"` | `'1'` | $1$ | $1$ | $1$ | $1$ |
+| `"1807"` / `"7810"` | `'7'` | $1$ | $1$ | $1$ | $1$ |
+| `"1807"` / `"7810"` | **total** | — | — | — | **$3$** |
+| `"1122"` / `"2211"` | `'1'` | $2$ | $2$ | $2$ | $2$ |
+| `"1122"` / `"2211"` | `'2'` | $2$ | $2$ | $2$ | $2$ |
+| `"1122"` / `"2211"` | **total** | — | — | — | **$4$** |
+| `"1123"` / `"0111"` | `'1'` | $1$ | $2$ | $1$ | $1$ — the secret holds only one spare `'1'`, so the guess's extra copy is unusable |
+| `"1123"` / `"0111"` | `'2'` | $1$ | absent $= 0$ | $0$ | $0$ — a digit the guess never offers pairs with nothing |
+| `"1123"` / `"0111"` | `'3'` | $1$ | absent $= 0$ | $0$ | $0$ |
+| `"1123"` / `"0111"` | **total** | — | — | — | **$1$** |
+
+The middle block is the multiplicity argument in miniature: when both sides hold two copies, the pairing consumes both copies; when one side holds fewer, the surplus is stranded. The last block shows the asymmetry that a missing key is a count of zero, which is why the summation can safely iterate over the keys of $cnt_1$ alone.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -190,9 +208,30 @@ Result: "1A3B"
 - **Set Intersection vs Multiset Frequencies:** Using sets (`set(secret) & set(guess)`) discards digit multiplicities. If `secret` has two `'1'`s and `guess` has three `'1'`s, set intersection yields count 1, ignoring the second valid pair. Frequency counting via `Counter` preserves exact multiplicities.
 - **Fixed Alphabet Size Optimization:** Digits consist only of characters `'0'` through `'9'`. Frequency tables have at most 10 keys, bounding the second pass to at most 10 operations regardless of string length.
 
+### Boundary Instances and What Each One Isolates
+| `secret` / `guess` | Hint | Bulls | Cows | What the instance isolates |
+|:---|:---:|:---:|:---:|:---|
+| `"1"` / `"0"` | `"0A0B"` | $0$ | $0$ | The shortest possible pair: a single mismatch with no shared digit |
+| `"0000"` / `"0000"` | `"4A0B"` | $4$ | $0$ | Every index is a bull, so both counters stay empty and the cow sum runs over zero keys |
+| `"1111"` / `"2222"` | `"0A0B"` | $0$ | $0$ | Both counters hold a single key with count $4$; a count is worthless unless the *same* digit appears on the other side, so every minimum is $0$ |
+| `"1122"` / `"2211"` | `"0A4B"` | $0$ | $4$ | Every digit matches but none in position; the answer needs both multiplicities, since a set comparison would see only two distinct digits |
+| `"9305"` / `"0395"` | `"2A2B"` | $2$ | $2$ | Bulls and cows coexist: the two matching middles are consumed first, and only the swapped outer digits feed the counters |
+| `"1234567890"` / `"0123456789"` | `"0A10B"` | $0$ | $10$ | All ten digits appear on both sides, so the counter has ten keys and the cow total can reach the full string length; the second pass still costs only those ten steps |
+
+The last row also fixes the shape of the complexity argument: the cow pass is bounded by the size of the alphabet, not by $N$, so a very long string does not make the second pass longer.
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(N)$, where $N$ is the length of `secret` and `guess`. The initial loop iterates $N$ times with $O(1)$ operations per character. The second loop iterates over at most 10 distinct digits ($O(1)$ work). Total time is strictly linear $O(N)$.
 - **Auxiliary Space Complexity:** $O(1)$ auxiliary memory. The counters store frequencies for at most 10 decimal digits (`'0'` through `'9'`), which is constant size independent of $N$.
+
+### Alternatives and Their Costs
+| Approach | Time | Space | Tradeoff |
+|:---|:---|:---|:---|
+| **Two counters that exclude bulls (the method here)** | $O(N)$ | $O(1)$ — at most 10 keys | One branch per index, and the cow total is exactly the sum of the per-digit minima; nothing has to be subtracted afterwards |
+| **Count the full strings, then cows = intersection total − bulls** | $O(N)$ | $O(1)$ | Removes the branch from the first pass, but it leans on the identity that each bull is also counted once by the multiset intersection; with duplicates the intersection can exceed the bull count, so the subtraction needs care |
+| **Sort both strings and merge with two pointers** | $O(N \log N)$ | $O(N)$ | Conceptually direct for the multisets, but sorting discards the positional information bulls need, so the bull count must be taken in a separate pass first |
+| **Set intersection of the two digit sets** | $O(N)$ | $O(1)$ | Loses multiplicity: `"1122"` and `"2211"` both reduce to `{'1', '2'}`, so it reports $2$ cows where the correct answer is $4$ |
+| **Brute-force pairing with a used-flag array** | $O(N^2)$ | $O(N)$ | For each unmatched secret position, scan the guess for an unused equal digit; exact, but quadratic when the ten-symbol alphabet makes counting enough |

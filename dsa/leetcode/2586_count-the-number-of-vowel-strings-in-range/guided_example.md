@@ -8,7 +8,7 @@ The second official instance supplies an array, a window, and two one-sided trap
 - `left = 1` and `right = 4`, so the window is the inclusive index range $[1, 4]$;
 - the required outcome is `3`.
 
-A word is a **vowel string** when its first character is one of `a`, `e`, `i`, `o`, `u` **and** its last character is one of those five letters. The requested value is the number of vowel strings at indices $i$ with `left <= i <= right`. The instance is well chosen because index $2$ holds `"mu"`, whose final letter is the vowel `u` while its first letter is a consonant: any reasoning that inspects only one endpoint will count it and return `4` instead of `3`. The same array also contains `"hey"` at index $0$, one position left of the window, so the range boundary has to be respected independently of the predicate.
+A word is a **vowel string** when its first character is one of `a`, `e`, `i`, `o`, `u` **and** its last character is one of those five letters. The requested value is the number of vowel strings at indices $i$ with `left <= i <= right`. The instance is well chosen because index $2$ holds `"mu"`, whose final letter is the vowel `u` while its first letter is a consonant: reasoning that inspects only the final character will count it and return `4` instead of `3`. The same array also contains `"hey"` at index $0$, one position left of the window, so the range boundary has to be respected independently of the predicate.
 
 ## 2. Reducing the definition to two endpoint tests
 
@@ -84,7 +84,7 @@ Every wrong answer to this problem comes from dropping one half of the conjuncti
 | `"unit"` | `u`, a vowel | `t`, a consonant | `0` | The last-character test |
 | `"ooo"` | `o`, a vowel | `o`, a vowel | `1` | Neither half |
 
-A word that begins with a vowel but ends with a consonant, and a word that ends with a vowel but begins with a consonant, are equally disqualified. Checking only the first character, or only the last, is not an approximation of the rule: it is a different rule, and on this instance it would return `4` rather than `3`.
+A word that begins with a vowel but ends with a consonant, and a word that ends with a vowel but begins with a consonant, are equally disqualified. Checking only the first character, or only the last, is not an approximation of the rule: it is a different rule, and on this instance dropping the first-character test would return `4` rather than `3`.
 
 ## 6. Boundaries, degenerate shapes, and traps
 

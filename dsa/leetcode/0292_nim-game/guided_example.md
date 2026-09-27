@@ -42,6 +42,17 @@ $$
 n \pmod 4 \ne 0
 $$
 
+The candidates that could answer this question differ by orders of magnitude in cost, so the choice is settled before any heap is analysed:
+
+| Approach | How it decides | Time | Auxiliary space | Failure mode or tradeoff |
+|:---|:---|:---:|:---:|:---|
+| Exhaustive play-tree recursion | Expand every legal sequence of moves and check whether one of them wins | Exponential in $n$ | $O(n)$ for the recursion stack | Correct but hopeless once $n$ reaches the millions |
+| Bottom-up dynamic programming | Fill a table from $1$ to $n$ where a heap is winning exactly when one of the three smaller heaps is losing | $O(n)$ | $O(n)$ | The domain reaches $2^{31} - 1$, so the table cannot be allocated at all |
+| Memoized recursion on the same recurrence | Compute only the states actually reached | $O(n)$ states | $O(n)$ for the memo | Same allocation wall, masked by a smaller constant |
+| Period inference from small heaps | Compute the first few states, notice the repeat every four, and extrapolate | $O(1)$ after a constant amount of work | $O(1)$ | The period has to be *proved*; an observed pattern is not yet a strategy |
+| Modular complement argument (used here) | Report whether $n \bmod 4 \ne 0$ and pair every opponent move $x$ with $4 - x$ | $O(1)$ | $O(1)$ | Relies entirely on the induction that the losing set is exactly the multiples of $4$ |
+| Greedy maximum removal | Always take $3$ stones | $O(1)$ | $O(1)$ | Loses on $n = 5$, where taking $3$ leaves $2$ for the opponent to finish, and on every heap congruent to $1$ or $2$ modulo $4$ |
+
 ---
 
 ## 2. Conceptual Foundation & Invariants
@@ -57,6 +68,26 @@ In an impartial normal-play game under optimal play:
 - $n = 2$: Remove 2 stones $\to 0 \in \mathcal{L} \implies \mathbf{\mathcal{W}}$.
 - $n = 3$: Remove 3 stones $\to 0 \in \mathcal{L} \implies \mathbf{\mathcal{W}}$.
 - $n = 4$: Available moves lead to $3, 2, 1 \in \mathcal{W}$. Every move hands the opponent a win $\implies \mathbf{\mathcal{L}}$.
+
+Continuing the same two rules past $n = 4$ shows the block of four repeating, and records for each heap the single move that settles it:
+
+| Heap $n$ | Status | Deciding move | State handed over (its status) | Why the decision is forced |
+|:---:|:---:|:---:|:---|:---|
+| 0 | $\mathcal{L}$ | none available | — | The player to move has no stone to take; never an input, but the base of the induction |
+| 1 | $\mathcal{W}$ | remove 1 | $0$ ($\mathcal{L}$) | Taking the whole heap wins on the spot |
+| 2 | $\mathcal{W}$ | remove 2 | $0$ ($\mathcal{L}$) | Same, with a larger first bite |
+| 3 | $\mathcal{W}$ | remove 3 | $0$ ($\mathcal{L}$) | Same |
+| **4** | **$\mathcal{L}$** | **none works** | $\{3, 2, 1\}$, all $\mathcal{W}$ | Every move leaves a heap the opponent can clear |
+| 5 | $\mathcal{W}$ | remove 1 | $4$ ($\mathcal{L}$) | Removing $2$ leaves $3$ and removing $3$ leaves $2$, both winning for the opponent |
+| 6 | $\mathcal{W}$ | remove 2 | $4$ ($\mathcal{L}$) | The winning move is exactly $n \bmod 4$, not the largest legal one |
+| 7 | $\mathcal{W}$ | remove 3 | $4$ ($\mathcal{L}$) | Same |
+| **8** | **$\mathcal{L}$** | **none works** | $\{7, 6, 5\}$, all $\mathcal{W}$ | The block repeats: every move lands exactly one, two or three stones above a multiple of $4$ |
+| 9 | $\mathcal{W}$ | remove 1 | $8$ ($\mathcal{L}$) | Row-for-row the same reasoning as $n = 5$ |
+| 10 | $\mathcal{W}$ | remove 2 | $8$ ($\mathcal{L}$) | Row-for-row the same reasoning as $n = 6$ |
+| 11 | $\mathcal{W}$ | remove 3 | $8$ ($\mathcal{L}$) | Row-for-row the same reasoning as $n = 7$ |
+| **12** | **$\mathcal{L}$** | **none works** | $\{11, 10, 9\}$, all $\mathcal{W}$ | The third losing heap in the sequence $0, 4, 8, 12$ |
+
+The table contains exactly three losing heaps in the range $1 \dots 12$, and they are precisely $4$, $8$ and $12$; every other column position is winning. That is the periodic structure the closed form encodes.
 
 ### The Modulo 4 Invariant:
 For any $n$:
@@ -113,6 +144,26 @@ We trace the transitions for $n = 4$ and contrast with $n = 5$:
   - If opponent takes 3 stones $\implies$ 1 left $\implies$ You take 1 and win!
 - You win unconditionally.
 - **Return `true`**.
+
+---
+
+### The Mirror Round at Scale ($n = 9999$)
+
+The same reasoning survives when the heap is too large to enumerate, because after the opening move every round removes exactly four stones:
+
+| Stage | Heap at the start of the turn | Player to move | Stones removed | Heap handed over | Multiple of $4$? |
+|:---|:---:|:---:|:---:|:---:|:---|
+| Opening | $9999$ | You | $r = 9999 \bmod 4 = 3$ | $9996$ | Yes: $4 \times 2499$ |
+| Reply A | $9996$ | Opponent | $1$ | $9995$ | No — the invariant is temporarily broken |
+| Mirror A | $9995$ | You | $3 = 4 - 1$ | $9992$ | Yes: $4 \times 2498$ |
+| Reply B | $9996$ | Opponent | $2$ | $9994$ | No |
+| Mirror B | $9994$ | You | $2 = 4 - 2$ | $9992$ | Yes: $4 \times 2498$ |
+| Reply C | $9996$ | Opponent | $3$ | $9993$ | No |
+| Mirror C | $9993$ | You | $1 = 4 - 3$ | $9992$ | Yes: $4 \times 2498$ |
+| Terminal round | $4$ | Opponent | any $x \in \{1, 2, 3\}$ | $4 - x$ | No |
+| Final mirror | $4 - x$ | You | $4 - x$ | $0$ | The last stone is yours |
+
+Rows A, B and C are alternatives, not three consecutive rounds: whichever reply the opponent chooses at $9996$, your answer lands on the same heap $9992$. Every such round consumes four stones, so the descent passes through the multiples $9996, 9992, \dots, 4$ — exactly $2499$ of them — and the opponent is the player to move at each one, until the terminal round hands you the final stone.
 
 ---
 

@@ -54,7 +54,7 @@ is exactly the statement that every $c_k$ is even. The necessary condition is a 
 
 Even parities are not merely necessary; they are enough. Suppose every $c_k$ is even. If some element is nonzero, it has a set bit at some position $k$; since $c_k$ is even and at least $1$, some *other* element also has bit $k$ set, so a legal move with that $k$ exists. Apply it: two elements lose the same bit, so the sum of the elements strictly decreases while every parity is preserved.
 
-The argument closes by induction on the total sum $T = \sum x$ of the subarray, a non-negative integer that drops by $2^{k+1} > 0$ on each move. If $T = 0$ the subarray is already all zeros. Otherwise a legal move exists, as just shown, and after it the sum is smaller while all parities are still even — so by induction the remaining configuration can be zeroed. The construction produces at most $\tfrac{1}{2}\sum_k c_k$ moves, and it never needs a bit position to be chosen twice.
+The argument closes by induction on the total sum $T = \sum x$ of the subarray, a non-negative integer that drops by $2^{k+1} > 0$ on each move. If $T = 0$ the subarray is already all zeros. Otherwise a legal move exists, as just shown, and after it the sum is smaller while all parities are still even — so by induction the remaining configuration can be zeroed. The construction produces at most $\tfrac{1}{2}\sum_k c_k$ moves, and bit position $k$ is chosen exactly $c_k / 2$ times.
 
 Combining the two directions gives the characterisation that the whole solution rests on:
 
@@ -114,7 +114,7 @@ Step 4 pairs the new prefix $P_4 = 4$ with the earlier $P_1 = 4$, which certifie
 | Precompute prefix XORs, then test every pair $(u, v)$ directly | $O(n^2)$ | Still $\Theta(n^2)$ pairs, around $5 \times 10^9$ tests at the maximum length |
 | Sort the prefix values and count equal neighbours | $O(n \log n)$ | Correct and deterministic, but it discards the streaming structure and stores the whole prefix array |
 | Simulate the moves to decide beauty | exponential in the worst case | Unnecessary: Section 4 replaced simulation with a parity argument |
-| Count only subarrays whose elements are nonzero and cancel pairwise | $O(n)$ but wrong | Ranges such as `[1, 1]` and `[1, 2, 3]` qualify for reasons that pairwise equality does not describe |
+| Count only subarrays whose elements are nonzero and cancel pairwise | $O(n)$ but wrong | Ranges such as `[1, 2, 3]` qualify for a reason that pairwise equality does not describe |
 
 The last row is the trap this instance is chosen to expose. Subarray `[3, 1, 2]` contains no repeated value at all, yet it is beautiful because bit `1` appears twice (in `3` and `2`) and bit `0` appears twice (in `3` and `1`); the pairing is over *bits*, not over equal values. Any reasoning that looks for duplicate elements, or for a zero element, will miss it.
 

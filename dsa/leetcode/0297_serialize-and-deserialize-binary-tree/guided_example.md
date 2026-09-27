@@ -101,6 +101,21 @@ $$
 \mathbf{\text{"1,2,3,\#,\#,4,5,\#,\#,\#,\#"}}
 $$
 
+The same eleven pops as a ledger, showing exactly what each pop contributes and what it leaves behind:
+
+| Pop # | Node popped | Token appended | Children enqueued | Queue after the pop | $\lvert q \rvert$ |
+|:---:|:---:|:---:|:---:|:---|:---:|
+| 1 | `Node(1)` | `"1"` | `Node(2)`, `Node(3)` | `[2, 3]` | $2$ |
+| 2 | `Node(2)` | `"2"` | `None`, `None` | `[3, None, None]` | $3$ |
+| 3 | `Node(3)` | `"3"` | `Node(4)`, `Node(5)` | `[None, None, 4, 5]` | $4$ |
+| 4 | `None` (child of 2) | `"#"` | — a null token enqueues nothing | `[None, 4, 5]` | $3$ |
+| 5 | `None` (child of 2) | `"#"` | — | `[4, 5]` | $2$ |
+| 6 | `Node(4)` | `"4"` | `None`, `None` | `[5, None, None]` | $3$ |
+| 7 | `Node(5)` | `"5"` | `None`, `None` | `[None, None, None, None]` | $4$ |
+| 8–11 | four remaining `None` entries | `"#", "#", "#", "#"` | — | `[]` (empty) | $0$ |
+
+Two properties are visible here. First, a null pop still consumes one token but enqueues nothing, which is exactly why the stream length is driven by the number of *child slots* rather than by the node count. Second, the queue never holds more than the children of one level, so the peak occupancy is $4$ even though the widest level of this tree holds only $2$ nodes.
+
 ---
 
 ### Part B: Deserialization Phase
@@ -173,6 +188,19 @@ Result: "1,2,3,#,#,4,5,#,#,#,#"
 
 **Completeness.** Since a binary tree of $N$ nodes has exactly $2N$ child pointers (of which $N - 1$ are internal edges and $N + 1$ are null leaves), the serialized stream has length $2N + 1$. The deserialization index $i$ consumes exactly two tokens per non-null parent, completely exhausting the stream simultaneously with queue termination.
 
+The counting identity is worth checking against shapes that stress it, because the token total depends only on $N$ while the queue peak depends on the width:
+
+| Shape | $N$ | Value tokens | `#` tokens | Total tokens | Serialized string | Peak queue occupancy |
+|:---|:---:|:---:|:---:|:---:|:---|:---:|
+| Empty tree | $0$ | $0$ | $0$ | special-cased to `""` | `""` | $0$ |
+| Single node | $1$ | $1$ | $2$ | $3 = 2 \cdot 1 + 1$ | `"1,#,#"` | $2$ |
+| Complete three-node tree | $3$ | $3$ | $4$ | $7 = 2 \cdot 3 + 1$ | `"1,2,3,#,#,#,#"` | $4$ |
+| Left-leaning chain `[1,2,null,3]` | $3$ | $3$ | $4$ | $7$ | `"1,2,#,3,#,#,#"` | $3$ |
+| Right-leaning chain `[1,null,2,null,3]` | $3$ | $3$ | $4$ | $7$ | `"1,#,2,#,3,#,#"` | $2$ |
+| Sample tree | $5$ | $5$ | $6$ | $11 = 2 \cdot 5 + 1$ | `"1,2,3,#,#,4,5,#,#,#,#"` | $4$ |
+
+Three different shapes of three nodes all produce exactly seven tokens, which is the uniqueness claim in action: the token stream is a function of the shape, and the shape is recoverable from the token stream. The empty tree is the single case the formula cannot cover — for $N = 0$ it would predict one token — so the protocol answers it with the empty string, and a decoder that reads `vals[0]` must test for that before parsing.
+
 ---
 
 ## 6. Traps This Instance Exposes
@@ -188,4 +216,13 @@ Result: "1,2,3,#,#,4,5,#,#,#,#"
 - **Time Complexity:**
   - `serialize`: $O(N)$ linear time. Every node is enqueued and dequeued once, performing $O(1)$ operations per node.
   - `deserialize`: $O(N)$ linear time. String splitting takes $O(N)$ time, and each token is processed exactly once by the queue loop.
-- **Auxiliary Space Complexity:** $O(N)$ auxiliary memory for the BFS queue and tokens array, proportional to the maximum width of the binary tree.
+- **Auxiliary Space Complexity:** $O(N)$ auxiliary memory overall, but the two structures differ in what drives them. The token list holds exactly $2N + 1$ entries regardless of shape, so it is $\Theta(N)$. The BFS queue instead holds only nodes from two consecutive levels, so its high-water mark is proportional to the tree's width — $4$ for the sample tree, whose widest level holds $2$ nodes — and it stays tiny for a chain.
+
+### Alternative Encodings and Their Tradeoffs
+| Encoding | Sample output | Decoding rule | Depth cost | Tradeoff |
+|:---|:---|:---|:---|:---|
+| **Level-order with explicit nulls (the method here)** | `"1,2,3,#,#,4,5,#,#,#,#"` | A FIFO queue pairs two tokens with each non-null parent | Iterative, so no recursion depth at all | The longest output of the four: exactly $2N + 1$ tokens |
+| **Preorder with null sentinels** | `"1,2,#,#,3,4,#,#,5,#,#"` | Recursive descent consumes one whole subtree per token | Recursion depth equals the tree height | Also $O(N)$ and equally lossless, but a chain of $10^{4}$ nodes nests the calls just as deep |
+| **Preorder plus inorder pair** | Two strings of $N$ values each | The root splits the inorder list into left and right subtrees | Recursion depth equals the tree height | Needs distinct values to find that split; values lie in $[-1000, 1000]$, so duplicates are unavoidable once $N$ exceeds $2001$ values |
+| **Nested bracket form** | `1(2)(3(4)(5))` | A parser matches each opening bracket with its closing one | Recursion depth equals the tree height | Compact and self-delimiting, but it introduces new delimiters to parse and still recurses as deep as the tree |
+| **Level-order without trailing nulls (the array form the cases use)** | `[1,2,3,null,null,4,5]` | Children attach to non-null nodes in level order, and null entries are skipped | Iterative | Shorter, but the strict "two tokens per parent" rule disappears, so the decoder can no longer rely on fixed token positions |

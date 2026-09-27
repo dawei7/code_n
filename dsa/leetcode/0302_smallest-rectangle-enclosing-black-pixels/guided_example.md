@@ -50,6 +50,24 @@ Minimal enclosing box area = 3 * 2 = 6
   - Rows after $d$: contain **only `'0'`**.
 We can find all four boundary coordinates $u, d, l, r$ using **four independent binary searches**!
 
+The two occupancy profiles those searches query are the following slices:
+
+| Slice | Index | Cells in the slice | Contains a `'1'` | Interval role | Consequence for this instance |
+|:---|:---:|:---|:---:|:---|:---|
+| Row 0 | 0 | `"0010"` | Yes | $u = 0$, top endpoint | The $u$-search interval $[0, x] = [0, 0]$ is a singleton, so it evaluates no predicate and returns the seed row directly |
+| Row 1 | 1 | `"0110"` | Yes | interior of $[u, d]$ | The probe $\text{mid} = 1$ in the $d$-search succeeds, proving $d \ge 1$ |
+| Row 2 | 2 | `"0100"` | Yes | $d = 2$, bottom endpoint | The probe $\text{mid} = 2$ succeeds, and there is no row 3 left to test |
+| Column 0 | 0 | `(0, 0, 0)` | No | left of $[l, r]$ | The probe $\text{mid} = 0$ fails, proving $l > 0$ |
+| Column 1 | 1 | `(0, 1, 1)` | Yes | $l = 1$, left endpoint | The probe $\text{mid} = 1$ succeeds, proving $l \le 1$ |
+| Column 2 | 2 | `(1, 1, 0)` | Yes | $r = 2$, right endpoint | This is the seed column, and the only column that can still hold $r$ once column 3 fails |
+| Column 3 | 3 | `(0, 0, 0)` | No | right of $[l, r]$ | The probe $\text{mid} = 3$ fails, proving $r < 3$ |
+
+The row profile reads occupied, occupied, occupied, and the column profile reads
+empty, occupied, occupied, empty. Both therefore have the shape
+$\text{No}^{*}\,\text{Yes}^{+}\,\text{No}^{*}$: one contiguous block of occupied
+slices, with the seed's own slice inside it. That shape — and not merely the
+existence of black pixels — is what makes a single bisection per boundary sound.
+
 ---
 
 ## 2. Conceptual Foundation & Invariants
@@ -196,6 +214,30 @@ Area = (2 - 0 + 1) * (2 - 1 + 1) = 3 * 2 = 6
 - **Linear Scanning ($O(M N)$):** Running BFS/DFS or scanning every cell takes $O(M N)$ time. The problem explicitly requires a solution with less than $O(M N)$ complexity. Four 1D binary searches achieve this in $O(N \log M + M \log N)$.
 - **Midpoint Biasing for Upper vs Lower Bounds:** When finding the upper boundaries ($d$ and $r$), the midpoint must be biased upward: `(left + right + 1) // 2`. Using integer floor division without `+ 1` causes infinite loops when `left = right - 1`.
 - **Assuming Multiple Components:** The problem guarantees only ONE connected component of black pixels. If multiple disjoint components existed, the 1D projection would not be monotonic and binary search would fail.
+
+### Boundary scenarios around this instance
+
+The traced instance uses every search at full strength. These neighbours of it
+show which search does the work when the geometry is degenerate; the probe counts
+are the number of slice predicates each boundary costs.
+
+| Scenario | Instance | $(u, d, l, r)$ | Probes on $u, d, l, r$ | Area | What keeps the result exact |
+|:---|:---|:---:|:---:|:---:|:---|
+| Isolated seed | `["1"]`, $(x, y) = (0, 0)$ | $(0, 0, 0, 0)$ | 0, 0, 0, 0 | 1 | All four intervals are singletons, so no predicate is evaluated at all and the area formula alone produces the answer |
+| Seed pinned to the top-left corner | `["11000", "10000", "10000"]`, $(0, 0)$ | $(0, 2, 0, 1)$ | 0, 2, 0, 2 | 6 | Both lower-bound searches start already converged at the seed; only the two upper-bound searches still have larger candidates to confirm |
+| Seed pinned to the bottom-right corner | `["0000", "0001", "0011"]`, $(2, 3)$ | $(1, 2, 2, 3)$ | 2, 0, 2, 0 | 4 | Both upper-bound searches are singletons fixed by the seed, so the lower-bound searches must rule out the empty slices above and to the left |
+| Single pixel inside a white border | `["00000", "00000", "00100", "00000"]`, $(2, 2)$ | $(2, 2, 2, 2)$ | 1, 1, 1, 1 | 1 | Each interval has exactly two candidates, so one probe per axis decides on which side of the seed the empty slice lies |
+| Dense rectangle | `["1111", "1111", "1111"]`, $(1, 2)$ | $(0, 2, 0, 3)$ | 1, 1, 2, 1 | 12 | Every probe succeeds, so each interval shrinks only from the outside and no occupied slice is ever discarded |
+| Maximum-width single row | one row of 100 `'1'` cells, $(0, 99)$ | $(0, 0, 0, 99)$ | 0, 0, 7, 0 | 100 | The lone row makes both row intervals singletons; only the $l$-search runs, spending seven probes to walk from $\text{mid} = 49$ down to $\text{mid} = 0$ |
+
+### Approaches this instance eliminates
+
+| Approach | State maintained | Time | Auxiliary space | Why it is chosen or eliminated |
+|:---|:---|:---:|:---:|:---|
+| Full raster scan | Four running extremes, updated per cell | $O(M N)$ | $O(1)$ | Correct, but it reads every cell and the statement demands strictly less than $O(M N)$ |
+| BFS or DFS flood fill from the seed | A frontier plus a visited set | $O(M N)$ worst case | $O(M N)$ worst case | It must touch every black cell; on the dense $3 \times 4$ rectangle that is all 12 cells, plus a visited structure the bisections never need |
+| Four seed-bounded bisections (the method used here) | Four intervals $[left, right]$ and one occupancy predicate | $O(N \log M + M \log N)$ | $O(1)$ | Each probe costs one slice read, and the seed bound keeps every predicate monotone |
+| Bisections over the whole axis $[0, m-1]$ or $[0, n-1]$ | The same four intervals, widened | $O(N \log M + M \log N)$ | $O(1)$ | Rejected: a full axis has the profile empty–occupied–empty, so the predicate is not monotone. On the eight-row single column $(0, 0, 0, 0, 0, 1, 1, 1)$ with the seed at row 6, the upper-bound search converges to $d = 0$ although the true bottom row is $7$ |
 
 ---
 

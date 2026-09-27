@@ -111,7 +111,7 @@ Reading the regimes against the authored instances confirms each one.
 | `29` | `30` | impossible | `-1` | $29 < 30$ |
 | `200` | `30` | ordinary | `24` | $\lfloor (200-30)/7 \rfloor = \lfloor 170/7 \rfloor = 24$, with `8` dollars left for `6` children |
 
-The `23` and `25` rows are a matched pair worth comparing: adding one dollar to a budget that already pays two eights and leaves `7` reduces the answer, because the extra dollar must go somewhere and the only place left is the child holding the remainder. This is the same forced-amount phenomenon as Section 4 in a milder form: a residual that cannot be split without displacing an eight.
+The `23` and `25` rows are a matched pair worth comparing: both score `2`, while the `24` row between them scores `3`. Adding one dollar to that `24` budget reduces the answer, because the extra dollar must go somewhere and every child already holds exactly `8`, so one of them has to be pushed above `8`. This is the same forced-amount phenomenon as Section 4 in a milder form: a residual that cannot be split without displacing an eight.
 
 ## 7. Attaining the counting bound in the ordinary regime
 

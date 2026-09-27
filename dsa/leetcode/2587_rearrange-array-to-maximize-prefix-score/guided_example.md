@@ -67,7 +67,7 @@ Sort the values in non-increasing order and accumulate, counting strictly positi
 | 6 | `-3` | `2` | yes | 6 | The buffer absorbs a second negative as well |
 | 7 | `-3` | `-1` | no | 6 | The running sum finally drops below zero and the sweep can stop |
 
-The first five steps spent the two positive values, the zero, and one negative while the running sum never left the positive region; step $6$ exhausted the remaining buffer, and step $7$ produced the first non-positive prefix. The score at that moment was `6`, and because the running sum can only fall from there — Section 5 — the answer is `6`.
+The first five steps spent the three positive values, the zero, and one negative while the running sum never left the positive region; step $6$ exhausted the remaining buffer, and step $7$ produced the first non-positive prefix. The score at that moment was `6`, and because the running sum can only fall from there — Section 5 — the answer is `6`.
 
 Notice the plateau at steps $3$ and $4$: adding the zero produces a second prefix with the value `6`. Both entries are counted separately, which is exactly why zeros sitting inside the positive region are worth real score. A rule that counted only "positions holding a positive element" would return `3` here and would be wrong.
 
@@ -108,7 +108,7 @@ The table certifies both halves of the answer. The upper bounds say that a posit
 | No positive value exists at all | `nums = [-2, -3, 0]` | `0` | Every ordering starts with a non-positive value, so no prefix is positive |
 | Zeros and negatives only | `nums = [0, -1, 0]` | `0` | The running sum is never above zero, so no prefix qualifies even though three prefixes exist |
 | A negative tail longer than the buffer | `nums = [-3, 4, -1, -2]` | `3` | Ordered as `[4, -1, -2, -3]`, the prefixes are `4, 3, 1, -2`; the buffer covers two of the three negatives |
-| Large magnitudes | Ten values of $\pm 10^{6}$ alternating | `9` | The running sum reaches $5 \cdot 10^{6}$, far beyond a 32-bit signed integer, so the accumulator must be wide enough |
+| Large magnitudes | Ten values of $\pm 10^{6}$ alternating | `9` | The running sum reaches $5 \cdot 10^{6}$, far beyond a 16-bit signed integer, so the accumulator must be wide enough |
 | The total sum is negative | the instance of Section 1 | at most `6` | The final prefix is the fixed total $-1$, so position $n$ never scores |
 
 The last row is worth separating from the others: a negative total does not merely *usually* cost one point, it forces the last prefix to be non-positive, so an array of length $n$ with a negative total can never score $n$. Two further traps follow from the definition. Counting positions whose *element* is positive rather than positions whose *prefix sum* is positive undercounts badly — the instance of Section 1 would report `3` instead of `6`. And treating a zero prefix as positive would inflate `nums = [-2, 2]` from `1` to `2`.

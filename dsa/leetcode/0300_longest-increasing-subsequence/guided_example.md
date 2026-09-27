@@ -33,6 +33,21 @@ $$
 This requires scanning all preceding $j < i$, costing $O(N^2)$ time.
 By reframing the problem as **Patience Sorting** (tracking minimum tail values for each length), we can use binary search to determine each element's contribution in $O(\log N)$ time, achieving **$O(N \log N)$** overall.
 
+Filling that recurrence by hand on this instance shows both what it buys and what it costs:
+
+| Index $i$ | $\text{nums}[i]$ | Predecessors $j < i$ with $\text{nums}[j] < \text{nums}[i]$ | Best $dp[j]$ among them | $dp[i] = 1 + \max dp[j]$ |
+|:---:|:---:|:---|:---:|:---:|
+| 0 | 10 | none | — | 1 |
+| 1 | 9 | none: both earlier values exceed 9 | — | 1 |
+| 2 | 2 | none | — | 1 |
+| 3 | 5 | $j = 2$ (value 2) | 1 | 2 |
+| 4 | 3 | $j = 2$ (value 2) | 1 | 2 |
+| 5 | 7 | $j = 2, 3, 4$ (values 2, 5, 3) | 2, reached from value 5 or value 3 | 3 |
+| 6 | 101 | every earlier index | 3 (from $j = 5$, value 7) | 4 |
+| 7 | 18 | $j = 0 \dots 5$ (101 is excluded) | 3 (from $j = 5$, value 7) | 4 |
+
+The maximum is $4$, matching the patience result. Two details in this table matter later. First, index 6 compares against all seven predecessors, and a descending input would make every index do the same — that is the quadratic term. Second, the recurrence records *which* predecessor produced the maximum (here $j = 5$ with value 7), and following those winners backwards reconstructs an actual subsequence; the patience array keeps no such link, since it tracks lengths rather than chains.
+
 ---
 
 ## 2. Conceptual Foundation & Invariants
@@ -197,9 +212,33 @@ Length of tails: 4
 - **Strictly Increasing vs Non-Decreasing:** Because the problem demands *strictly increasing* elements, duplicate values cannot extend a subsequence. Using `bisect_left` ensures an existing equal value is replaced rather than appended. (For non-decreasing LIS, one would use `bisect_right`).
 - **Overwriting Tails:** Replacing an element in `tails` does not alter the maximum length achieved so far; it only increases future capacity to extend subsequences.
 
+### Boundary Instances and What the Final `tails` Really Is
+| `nums` | Answer | Final `tails` | Is `tails` a subsequence of `nums`? | What it isolates |
+|:---|:---:|:---:|:---:|:---|
+| `[10]` | $1$ | `[10]` | yes | The shortest legal input; the array never grows past one slot |
+| `[10, 10]` | $1$ | `[10]` | yes | Equality replaces instead of appending, because `bisect_left` returns the index of the equal element |
+| `[7, 7, 7, 7]` | $1$ | `[7]` | yes | Repeated equality keeps rewriting the same slot |
+| `[5, 4, 3, 2, 1]` | $1$ | `[1]` | yes | Every element lands at index $0$; a decreasing input never extends anything |
+| `[1, 2, 3, 4]` | $4$ | `[1, 2, 3, 4]` | yes | Every element is larger than every tail, so every element appends |
+| `[2, 5, 3, 1]` | $2$ | `[1, 3]` | **no** | `tails` is a length ledger: the `1` arrives after the `3`, so no such subsequence exists in the input |
+| `[-2, -1, -3, 0, 1]` | $4$ | `[-3, -1, 0, 1]` | **no** | Negatives obey the same rules, and the replacement at index $0$ again merges elements from different prefixes |
+| `[4, 10, 4, 3, 8, 9]` | $3$ | `[3, 8, 9]` | yes | A replacement can still leave a genuine subsequence, so the property cannot be assumed in either direction |
+| `[0, 1, 0, 3, 2, 3]` | $4$ | `[0, 1, 2, 3]` | yes | Duplicate input values do not shorten the answer: $0, 1, 2, 3$ is strictly increasing and appears in order |
+
+The middle rows settle the trap from both sides: whether `tails` happens to be a subsequence is an accident of the instance, never a guarantee, so the array must be read as a table of best tails per length and nothing more.
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(N \log N)$, where $N$ is the number of elements in `nums`. The outer loop runs $N$ times. In each iteration, binary search (`bisect_left`) over `tails` (of size at most $N$) takes $O(\log N)$ time. Total runtime is strictly $O(N \log N)$.
 - **Auxiliary Space Complexity:** $O(N)$ auxiliary memory to store the `tails` array, which contains at most $N$ elements.
+
+### Alternatives and Their Costs
+| Approach | Time | Space | Tradeoff |
+|:---|:---|:---|:---|
+| **Quadratic recurrence $dp[i] = 1 + \max_{j < i, \text{nums}[j] < \text{nums}[i]} dp[j]$** | $O(N^2)$ — about $3.1 \cdot 10^{6}$ comparisons at the $2500$-element limit | $O(N)$ | Simple, and it records the winning predecessor, so the actual subsequence can be reconstructed; it is the straightforward answer to the length question, but the stated follow-up asks for better |
+| **Patience sorting with `bisect_left` (the method traced here)** | $O(N \log N)$ | $O(N)$ | Keeps only minimal tails per length, so the length is exact but no chain is retained; recovering a concrete subsequence needs extra bookkeeping |
+| **Fenwick or segment tree over compressed values** | $O(N \log N)$ | $O(N)$ | Computes $1 + \max$ over all values below $\text{nums}[i]$ with a range query, and adapts to non-decreasing variants by changing the comparison; it costs coordinate compression up front |
+| **`bisect_right` instead of `bisect_left`** | $O(N \log N)$ | $O(N)$ | This computes the longest *non-decreasing* subsequence, so it returns $6$ for `[1, 1, 1, 2, 2, 2]` and $4$ for `[7, 7, 7, 7]` — both wrong when strict increase is required |
+| **Longest path in the DAG whose edges are all pairs $j < i$ with $\text{nums}[j] < \text{nums}[i]$** | $O(N^2)$ to build and traverse | $O(N^2)$ memory for the edges | Expresses exactly the same recurrence, but materialising $\Theta(N^2)$ edges wastes memory that the incremental scan never needs |
