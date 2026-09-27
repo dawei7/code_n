@@ -64,16 +64,16 @@ We define the primary state tracking parameters:
 flowchart TD
     accTitle: Monotonic Stack Discount Decision Flow
     accDescr: Flowchart illustrating the decision process for each item during reverse traversal.
-    Start([Evaluate Item i in Reverse]) --> Compare{Stack non-empty AND top > prices[i]?}
-    Compare -- Yes --> Pop[Pop top element from Stack]
+    Start(["Evaluate item i in reverse"]) --> Compare{"Stack non-empty and top > prices[i]?"}
+    Compare -- Yes --> Pop["Pop the top element from the stack"]
     Pop --> Compare
-    Compare -- No --> CheckEmpty{Is Stack empty?}
-    CheckEmpty -- Yes --> NoDiscount[Discount = 0]
-    CheckEmpty -- No --> ApplyDiscount[Discount = Stack.top]
-    NoDiscount --> ComputePrice[Final Price = prices[i] - Discount]
+    Compare -- No --> CheckEmpty{"Is the stack empty?"}
+    CheckEmpty -- Yes --> NoDiscount["Discount = 0"]
+    CheckEmpty -- No --> ApplyDiscount["Discount = stack top"]
+    NoDiscount --> ComputePrice["Final price = prices[i] - discount"]
     ApplyDiscount --> ComputePrice
-    ComputePrice --> Push[Push original prices[i] onto Stack]
-    Push --> NextItem([Advance i to i - 1])
+    ComputePrice --> Push["Push the original prices[i] onto the stack"]
+    Push --> NextItem(["Advance i to i - 1"])
 ```
 
 ---
