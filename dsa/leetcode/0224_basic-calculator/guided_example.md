@@ -193,4 +193,31 @@ Each `(` writes two entries — the running total first, then the sign — so ea
 | `"1"` | 1 | The single digit leaves $\text{num} = 1$; no operator ever fires, so only the final flush $\text{ans} \mathrel{+}= \text{sign} \cdot \text{num}$ produces the answer | The shortest legal input, and the one that fails if the trailing flush is omitted |
 | `"111"` | 111 | Digits accumulate as $1 \to 11 \to 111$ and no operator interrupts them | Multi-digit parsing: the value must survive an arbitrary run of digits without a flush between them |
 | `"1 + 1"` | 2 | `1` parses, `+` flushes $\text{ans} = 1$ and resets, the second `1` remains pending, and the trailing flush adds it | The last operand is never followed by an operator, so this case returns 1 instead of 2 if the post-loop accumulation is missing |
-| `"-2 + 
+| `"-2 + 1"` | $-1$ | The leading `-` sets $\text{sign} = -1$ while $\text{ans}$ is still $0$; the `+` then flushes $0 + (-1) \times 2 = -2$ and resets the sign to $+1$; the trailing flush adds 1 | Unary minus needs no special rule: it is the ordinary binary operator applied to a zero accumulator |
+| `"1-(-2+3)"` | 0 | `1` and `-` set $\text{ans} = 1$ with $\text{sign} = -1$; the `(` pushes the frame $(1, -1)$; the inner frame evaluates $-2 + 3 = 1$; the fold is $1 + (-1) \times 1 = 0$ | The suspended sign is negative, so the whole group is negated. Dropping the sign multiplier would yield $1 + 1 = 2$ |
+| `" 2-1 + 2 "` | 3 | Spaces are skipped wherever they appear, including both ends, so the machine reads $2 - 1 + 2$ | Whitespace must not act as a terminator; treating it as one would require an extra state for no benefit |
+| `"2147483647"` | 2147483647 | Ten digits accumulate into the largest signed 32-bit value | The largest permitted number must pass through the digit accumulation unchanged |
+
+---
+
+## 6. Traps This Instance Exposes
+
+- **Leading Unary Minus:** For expressions like `"- (3 + 4)"`, `ans` starts at $0$. Encountering `-` sets `sign = -1`. The parenthesized group evaluates to $7$, and the final fold computes $0 + (-1) \times 7 = -7$, naturally supporting unary signs without extra parser rules.
+- **Multi-Digit Numbers:** Scanning characters individually requires shifting previous digits (`num * 10 + int(c)`). Forgetting to reset `num = 0` after applying an operator causes digits to bleed into subsequent numbers.
+- **Trailing Unapplied Number:** Expressions like `"1 + 2"` have no closing parenthesis at the end. An explicit final accumulation `ans += sign * num` after the loop is required.
+
+**Alternative formulations, and the risk each one carries.** All four methods return $23$ on the traced expression; they differ in how much grammar machinery they bring and in what limits them at the maximum input length.
+
+| Approach | Mechanism | Time | Auxiliary space | Failure mode or tradeoff |
+|:---|:---|:---:|:---:|:---|
+| Single-pass sign-stack accumulation (this lesson) | Carry one running total, one pending sign and one pending number, and push $( \text{ans}, \text{sign} )$ at every `(` | $O(N)$ | $O(\text{nesting depth})$, at most $N/2$ | Depends on two details: the trailing flush after the loop, and popping the sign before the total. It also relies on `+` and `-` sharing a single precedence level, which holds for this contract |
+| Recursive descent parser | One routine per grammar level; on `(` recurse and resume after the matching `)` | $O(N)$ | $O(\text{nesting depth})$ call frames | Identical asymptotics, but a maximally nested input of length $3 \times 10^5$ can nest about $150{,}000$ deep, which overruns the default interpreter recursion limit and must be rewritten with an explicit stack |
+| Shunting-yard with operand and operator stacks | Push operators and apply precedence when popping | $O(N)$ | $O(N)$ | Built for general precedence, which this grammar never uses, and it still needs an explicit rule for the unary minus that the sign-stack method absorbs automatically |
+| Two-pass sign propagation | First pass computes an effective sign at every position from a stack of signs; second pass accumulates each number times its sign | $O(N)$ | $O(\text{nesting depth})$, or $O(N)$ if the signs are stored | Cleaner separation of sign logic from digit scanning, at the cost of a second traversal or an extra array; the unary case becomes explicit rather than implicit |
+
+---
+
+## 7. Complexity Derivation
+
+- **Time Complexity:** $O(N)$, where $N$ is the length of string $s$. The string is scanned in a single forward pass, with each character triggering $O(1)$ stack operations or arithmetic updates.
+- **Auxiliary Space Complexity:** $O(N)$ auxiliary space for the stack, proportional to the maximum nesting depth of parentheses (at most $N/2$).

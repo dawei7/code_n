@@ -125,6 +125,20 @@ We trace the recursive execution for two representative queries:
    - `left` is Node 2, `right` is `None`.
    - Root 3 returns $\mathbf{\text{Node 2}}$.
 
+The bubble-up order matters more than the recursion order: a node answers only after both of its children have answered, so the reference travelling upward is always already a final verdict for the subtree it leaves. Laid out in post-order, Query 3 makes every rule of the contract visible at once.
+
+| Node (post-order position) | Left child's answer | Right child's answer | Rule applied | Reference sent to the caller |
+|:---:|:---:|:---:|:---|:---:|
+| Node 6 | `None` (leaf) | `None` (leaf) | Both null | `None` |
+| Node 7 | not consulted | not consulted | Base case: this node is $p$ | Node 7 |
+| Node 4 | not consulted | not consulted | Base case: this node is $q$ | Node 4 |
+| Node 2 | Node 7 | Node 4 | Both non-null: this node separates the two targets | **Node 2** |
+| Node 5 | `None` (from Node 6) | Node 2 | Exactly one non-null: forward it unchanged | Node 2 |
+| Node 0 | `None` (leaf) | `None` (leaf) | Both null | `None` |
+| Node 8 | `None` (leaf) | `None` (leaf) | Both null | `None` |
+| Node 1 | `None` (from Node 0) | `None` (from Node 8) | Both null | `None` |
+| Node 3 (root) | Node 2 | `None` (from Node 1) | Exactly one non-null: forward it unchanged | **Node 2** |
+
 ---
 
 ## 4. Complete Execution Trace
@@ -160,6 +174,14 @@ Node 2 bubbles up through Node 5 and Node 3 -> LCA = 2
 | Node 4 | - | - | Base case ($== q$) | Node 4 |
 | **Node 2** | **Node 7** | **Node 4** | **Both non-null $\implies$ LCA at 2** | **Node 2** |
 
+The three queries touch very different amounts of the tree even though each is a single pass. Recording exactly which nodes are entered makes the short-circuit argument concrete: the regions that are skipped are precisely those whose only possible answer has already been established higher up.
+
+| Query | Nodes actually entered | Nodes never entered | Why skipping the remainder is sound | Answer |
+|:---|:---|:---|:---|:---:|
+| $p = 5, q = 1$ | Node 3, Node 5, Node 1 | Node 6, Node 2, Node 0, Node 8, Node 7, Node 4 | Both targets are met at their own nodes, so each call returns itself at once; anything below them can only contain a target that is already accounted for | **3** |
+| $p = 5, q = 4$ | Node 3, Node 5, Node 1, Node 0, Node 8 | Node 6, Node 2, Node 7, Node 4 | Node 5 matches $p$ and returns before descending, so $q = 4$ is never even visited: whatever lies below 5 still has 5 as its ancestor | **5** |
+| $p = 7, q = 4$ | all nine nodes, including Node 6 and the pair Node 0, Node 8 | none | No target sits where the other one was found, so no short-circuit is available and the untouched right subtree must be cleared before the root may forward the result | **2** |
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -175,6 +197,16 @@ Node 2 bubbles up through Node 5 and Node 3 -> LCA = 2
 - **Over-Exploring Subtrees:** When `root == p`, returning `root` immediately without exploring its subtrees is correct even if $q$ is located inside $p$'s subtree. If $q$ were inside, $p$ is the LCA; if $q$ were outside, the other branch will find $q$ and combine with $p$ higher up.
 - **Node Values vs Object Identity:** Tree node values are unique in LeetCode 236, but comparing node pointers (`root == p` or `root is p`) is more robust than comparing integer values.
 - **Returning Boolean vs Node Reference:** Some recursive formulations return boolean flags (`found_p`, `found_q`). Bubbling the `TreeNode` reference itself allows returning the node directly without extra global variables.
+
+Several textbook LCA designs avoid recursion, or trade preprocessing against query time. The table compares them with the bubbling post-order method used here and names what each one gives up.
+
+| Design | Preprocessing | Cost per query | Auxiliary space | Failure mode or tradeoff |
+|:---|:---|:---:|:---:|:---|
+| Bubbling post-order recursion (this lesson) | none | $O(N)$ | $O(H)$ call stack | Call-stack depth equals the tree height, so a skewed tree can exhaust the stack; a new query restarts the whole traversal |
+| Recursive boolean flags plus a shared answer variable | none | $O(N)$ | $O(H)$ plus the shared reference | Needs mutable state outside the recursion and misreports when only one target exists in the tree |
+| Record both root-to-target paths, then compare the prefixes | none | $O(N)$ | $O(H)$ for the two recorded sequences | Requires a second traversal for the other target and an explicit deepest-common-element step, so more bookkeeping than one pass |
+| Parent pointers plus ancestor marking | one traversal to attach parent links | $O(H)$ | $O(N)$ for the links plus $O(H)$ marks | The node type carries no parent field, so the tree must be augmented before any query runs |
+| Euler tour with range-minimum queries | $O(N \log N)$ | $O(1)$ | $O(N \log N)$ | Pays once to make many queries cheap; for a single pair the preprocessing dwarfs the traversal it replaces |
 
 ---
 

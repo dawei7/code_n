@@ -1,121 +1,124 @@
 # Guided Example: Count the Number of Vowel Strings in Range
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. The instance we will count
 
-- **Input:** `{"words": ["are", "amy", "u"], "left": 0, "right": 2}`
-- **Required output:** `2`
+The second official instance supplies an array, a window, and two one-sided traps:
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- `words = ["hey", "aeo", "mu", "ooo", "artro"]`, of length $5$;
+- `left = 1` and `right = 4`, so the window is the inclusive index range $[1, 4]$;
+- the required outcome is `3`.
 
----
+A word is a **vowel string** when its first character is one of `a`, `e`, `i`, `o`, `u` **and** its last character is one of those five letters. The requested value is the number of vowel strings at indices $i$ with `left <= i <= right`. The instance is well chosen because index $2$ holds `"mu"`, whose final letter is the vowel `u` while its first letter is a consonant: any reasoning that inspects only one endpoint will count it and return `4` instead of `3`. The same array also contains `"hey"` at index $0$, one position left of the window, so the range boundary has to be respected independently of the predicate.
 
-## 1. Instance & Teaching Goal
+## 2. Reducing the definition to two endpoint tests
 
-You are given a **0-indexed** array of string `words` and two integers `left` and `right`.
+The definition mentions only the first and the last character of a word, so a word of length $L$ carries exactly two relevant facts, no matter how large $L$ is. Write
 
-The objective is to compute `2` from `{"words": ["are", "amy", "u"], "left": 0, "right": 2}` while avoiding redundant calculations and unnecessary overhead.
+$$
+A(i) \;=\; \bigl(\, \text{words}[i][0] \in V \,\bigr) \;\wedge\; \bigl(\, \text{words}[i][L_i - 1] \in V \,\bigr),
+\qquad V = \{\texttt{a},\texttt{e},\texttt{i},\texttt{o},\texttt{u}\}
+$$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+where $L_i$ is the length of `words[i]` and $A(i)$ is the indicator of "is a vowel string". Evaluating $A$ for the five words of the instance gives the complete picture before any counting starts.
 
----
+| Index $i$ | `words[i]` | Length $L_i$ | First character | Last character | Starts with a vowel? | Ends with a vowel? | $A(i)$ |
+|---|---|---|---|---|---|---|---|
+| 0 | `"hey"` | 3 | `h` | `y` | no | no | `0` |
+| 1 | `"aeo"` | 3 | `a` | `o` | yes | yes | `1` |
+| 2 | `"mu"` | 2 | `m` | `u` | no | yes | `0` |
+| 3 | `"ooo"` | 3 | `o` | `o` | yes | yes | `1` |
+| 4 | `"artro"` | 5 | `a` | `o` | yes | yes | `1` |
 
-## 2. Conceptual Foundation & Invariants
+The conjunction in $A$ is the whole difficulty of the problem. Index $2$ is the decisive row: the last-character test succeeds there, so the word is a *partial* match, and only the first-character test removes it. Because the two tests are independent, the indicator is `1` exactly when both columns read "yes".
 
-We maintain the core conceptual parameters and state variables:
+## 3. The window restricts which indices are examined
 
-| State Parameter | Role & Purpose | Initial State |
+The count ranges over indices, not over array values. The window is inclusive on both ends, so the inspected indices are precisely $left, left + 1, \dots, right$, a set of exactly
+
+$$
+r - l + 1 = 4 - 1 + 1 = 4
+$$
+
+positions, where $l$ and $r$ abbreviate `left` and `right`. Index $0$ and any index above $4$ are outside the window and cannot contribute, regardless of whether they hold vowel strings.
+
+| Window parameter | Value in this instance | Effect |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Indices examined | `1, 2, 3, 4` | Exactly $r - l + 1 = 4$ candidate positions |
+| Indices excluded below | `0` | `"hey"` is never tested, even though it would not qualify anyway |
+| Indices excluded above | `5, 6, ...` | None exist, since `words.length - 1 = 4` |
+| Endpoints | `left = 1` and `right = 4` | Both are included; dropping either would change the answer |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Note that the guarantees $0 \le left \le right < \text{words.length}$ make the window always non-degenerate and always in bounds, so no clamping, swapping, or empty-window handling is needed. A useful consequence is that the answer is `0` only when every word inside the window fails at least one endpoint test; it can never be `0` merely because the window is empty.
 
----
+## 4. Accumulating the answer position by position
 
-## 3. Step-by-Step Worked Execution
+The answer is the sum of the indicators over the window,
 
-### Step 1: Only the two endpoint characters matter
+$$
+\text{answer} \;=\; \sum_{i=l}^{r} A(i) \;=\; A(1) + A(2) + A(3) + A(4),
+$$
 
-A word qualifies when its first character and its last character are both in the vowel collection `"aeiou"`. Nothing between those endpoints affects the definition.
+and it is computed by one left-to-right sweep that maintains a single counter. The invariant of the sweep is that the counter holds the number of vowel strings among the positions already visited, that is, among indices $l, \dots, i$ after step $i$ has been applied.
 
-All words have length at least one, so accesses `w[0]` and `w[-1]` are safe. For a one-character word, both expressions refer to the same character; a single vowel qualifies and a single consonant does not.
+| Step | Index $i$ | `words[i]` | $A(i)$ | Counter before | Counter after | Meaning of the counter after the step |
+|---|---|---|---|---|---|---|
+| 1 | 1 | `"aeo"` | `1` | 0 | 1 | One vowel string among indices $1$ to $1$ |
+| 2 | 2 | `"mu"` | `0` | 1 | 1 | One vowel string among indices $1$ to $2$ |
+| 3 | 3 | `"ooo"` | `1` | 1 | 2 | Two vowel strings among indices $1$ to $3$ |
+| 4 | 4 | `"artro"` | `1` | 2 | 3 | Three vowel strings among indices $1$ to $4$ |
 
-The solution applies this test to every word in the requested inclusive range and sums the boolean results.
+After the final step the counter equals $3$, which matches the required outcome. The two increments come from `"aeo"` and `"ooo"`, the increment at step $4$ comes from `"artro"`, and step $2$ contributes nothing because $A(2) = 0$.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+Each position is visited exactly once and contributes either `0` or `1`, so the counter never counts a word twice and never skips one. That is the entire counting argument: a sum of indicators over a contiguous window, evaluated by a single pass.
+
+## 5. Why both endpoint tests are unavoidable
+
+Every wrong answer to this problem comes from dropping one half of the conjunction. The instance contains one word of each failure type, and the authored cases contain the rest.
+
+| Word (or situation) | First character | Last character | Verdict | Which half of the test rejects it |
+|---|---|---|---|---|
+| `"mu"` | `m`, a consonant | `u`, a vowel | `0` | The first-character test |
+| `"hey"` | `h`, a consonant | `y`, a consonant | `0` | Both halves |
+| `"ant"` | `a`, a vowel | `t`, a consonant | `0` | The last-character test |
+| `"table"` | `t`, a consonant | `e`, a vowel | `0` | The first-character test |
+| `"unit"` | `u`, a vowel | `t`, a consonant | `0` | The last-character test |
+| `"ooo"` | `o`, a vowel | `o`, a vowel | `1` | Neither half |
+
+A word that begins with a vowel but ends with a consonant, and a word that ends with a vowel but begins with a consonant, are equally disqualified. Checking only the first character, or only the last, is not an approximation of the rule: it is a different rule, and on this instance it would return `4` rather than `3`.
+
+## 6. Boundaries, degenerate shapes, and traps
+
+| Situation | Instance | Outcome | Why |
 |---|---|---|---|
-| Input Slice | `{"words": ["are", "amy", "u"], "left": 0, "right": 2}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| One-character word that is a vowel | `words = ["a"]`, `left = 0`, `right = 0` | `1` | The first and the last character are the same letter, so both tests read the same character and both succeed |
+| One-character word that is a consonant | `words = ["z"]`, `left = 0`, `right = 0` | `0` | Both tests inspect `z` and both fail |
+| Window is a single position | `words = ["aa","bc","ee"]`, `left = 1`, `right = 1` | `0` | The qualifying words `"aa"` and `"ee"` lie outside the window; only `"bc"` is tested, and it fails both tests |
+| Several qualifying words in range | `words = ["a","e","i","o","u"]`, full window | `5` | Every word is a single vowel, so every indicator is `1` |
+| Both endpoints are qualifying | `words = ["aba","bbb","ece"]`, `left = 0`, `right = 2` | `2` | Inclusion of `right` is required: `"ece"` sits exactly on the upper endpoint |
+| Duplicate string values | Two identical vowel strings in the window | counted twice | The count is over indices, so equal values occupy two positions and contribute two indicators |
+| Longest allowed word | A word of length $10$ with vowel endpoints | `1` | Only the endpoints are inspected; the interior letters are irrelevant and never change the verdict |
+| Longest allowed word, bad interior | `"abcdefghia"` | `1` | Interior consonants do not matter, because the definition constrains only the first and last characters |
 
----
+Two traps deserve explicit statements. First, do not confuse the two index spaces: the window indices describe *positions in the array*, while the first and last characters describe *positions inside a word*, so `left` and `right` must never be compared with a character offset. Second, "starts with a vowel" means exactly membership in the five-letter set $V$; the letter `y` is not in $V$, so `"hey"` ends with a consonant, and uppercase letters cannot occur because the words consist of lowercase English letters only.
 
-### Step 2: Convert the inclusive indices into a Python slice
+## 7. The correctness argument for the sweep
 
-Python slices exclude their stop index. To include `right`, the code uses
+Two properties together establish that the sweep returns the requested number.
 
-`words[left : right + 1]`.
+**Each counted word satisfies the definition.** The counter is incremented only at positions where both endpoint tests succeed, and those two tests are precisely the definition of a vowel string. A word that fails either test leaves the counter unchanged, so no word is credited without meeting the rule.
 
-This slice begins at `left` and ends just before `right + 1`, so it contains exactly indices `left,left+1,...,right`.
+**Every qualifying position in the window is counted exactly once.** The sweep visits the indices $l, l+1, \dots, r$ in order, exactly once each, and stops after $r$. The guarantees $0 \le left \le right < \text{words.length}$ ensure this list is non-empty and contains no index outside the array, so no in-window position is skipped and no out-of-window position is visited. Because each visited position changes the counter by the indicator $A(i)$, induction on the number of steps gives the invariant
 
-The constraints guarantee both bounds are valid and `left <= right`, so the slice is never unexpectedly empty from reversed indices.
+$$
+\text{counter after position } i \;=\; \sum_{j=l}^{i} A(j),
+$$
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+and instantiating it at $i = r$ yields the required sum. The sweep is therefore sound (it never over-counts) and complete (it never under-counts).
 
----
+**A note on alternatives.** A prefix-sum table would answer many window queries on the same array in $O(1)$ each, at the cost of an $O(n)$ precomputation and $O(n)$ auxiliary storage; that trade is only worthwhile when the number of queries is large, and the interface here provides a single window. A regular-expression match, or a normalisation step such as collecting the endpoints of every word into a boolean array first, would compute exactly the same indicators while adding a second pass over the data; the single sweep already has the optimal shape for one query.
 
-### Step 3: Boolean membership tests
+## 8. Complexity: time and auxiliary space
 
-The expression `w[0] in 'aeiou'` is true exactly for the five lowercase vowels. The constraints guarantee lowercase English letters, so uppercase handling and normalization are unnecessary.
+**Time.** Exactly $r - l + 1$ words are inspected, so the work is $\Theta(k)$ where $k = r - l + 1$ is the window width; the worst case over all valid windows is $\Theta(n)$ for $n = \text{words.length}$. Each inspection reads two characters and tests membership in a fixed five-letter set, both of which are $O(1)$ operations that do not depend on the word length $L_i \le 10$. The total cost is therefore independent of the interior of the words, which is why very long words cost the same as very short ones.
 
-The same test on `w[-1]` checks the final character. They are joined by `and`, meaning both conditions must hold. Python short-circuits the second membership test when the first is false, though this changes only a constant amount of work.
-
-The vowel collection is a five-character string rather than a set. Membership scans at most five characters, which is constant time under this fixed alphabet.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"words": ["are", "amy", "u"], "left": 0, "right": 2}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Direct index loop:** Iterate `for i in range(left, right + 1)` and inspect `words[i]`, preserving $O(k)$ time with $O(1)$ auxiliary space.
-- **Prefix counts:** Precompute cumulative vowel-string totals for $O(1)$ range queries, worthwhile only when many queries use the same words.
-- **Set of vowels:** A set gives expected constant membership and communicates intent, though a five-character string is already constant-sized.
-- **One-character vowel:** It qualifies because the same vowel is both first and last.
-- **One-character consonant:** Both endpoint references are valid but membership is false.
-- **Only one vowel endpoint:** The `and` condition correctly rejects the word.
-- **Single-index range:** The slice contains one word and returns either zero or one.
-- **Whole-array range:** Every word is checked exactly once.
-- **Lowercase guarantee:** No case conversion is required.
-- **Slice allocation:** The exact code is not constant-space; direct indexing is the allocation-free alternative.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(k)$. Let $k=right-left+1$. Creating the slice takes $O(k)$ time and $O(k)$ temporary space. The generator then performs two constant-size membership checks for each of $k$ words, also $O(k)$ time. Total time is $O(k)$.
-- **Auxiliary Space Complexity:** $O(k)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+**Auxiliary space.** The sweep stores one counter and one loop index, so the extra space is $O(1)$; it never builds a slice of the array, a prefix-sum table, or an endpoint array. The input array and its strings are read-only and are not counted as auxiliary storage, so the reported memory does not grow with $n$.

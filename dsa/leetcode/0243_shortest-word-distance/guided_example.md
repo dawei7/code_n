@@ -29,6 +29,15 @@ For `"makes"` and `"coding"`, possible pairs are $(1, 3)$ with distance $2$, and
 A brute-force comparison collects all indices of `word1` ($K_1$ indices) and `word2` ($K_2$ indices) and checks all pairs in $O(K_1 \cdot K_2) = O(N^2)$ time.
 A streaming single-pass approach updates the most recently observed index for both targets. It computes the distance only against the latest opposite target, finding the global optimum in a single $O(N)$ pass with $O(1)$ extra space.
 
+### Candidate Methods Compared
+
+| Method | Mechanism | Time | Auxiliary space | Tradeoff or failure mode |
+|:---|:---|:---:|:---:|:---|
+| Brute force over all pairs | Collect every index of both targets, then test each cross pair | $O(K_1 \cdot K_2)$, which is $O(N^2)$ when both targets are frequent | $O(K_1 + K_2)$ | Correct but quadratic: a dictionary in which each target occupies half the positions forces roughly $N^2 / 4$ comparisons |
+| Per-word posting lists merged with two pointers | Build both index lists in one pass, then advance the smaller index while measuring gaps | $O(N)$ to build plus $O(K_1 + K_2)$ to merge | $O(K_1 + K_2)$ | Linear, but it materialises every occurrence even though only the most recent occurrence of each target can ever be the closer endpoint |
+| Precomputed word-to-indices dictionary | Record the positions of *every* distinct word once, then answer by merging two of those lists | $O(N)$ once, then $O(K_1 + K_2)$ per query | $O(N)$ | The right design for a repeated-query variant of this problem; wasteful when, as here, exactly one query is asked over a single dictionary |
+| Streaming latest index (chosen) | Two scalar cursors hold the most recent position of each target; a candidate distance is scored as soon as both are live | $O(N \cdot L)$ with $L$ the word length, i.e. $O(N)$ for bounded words | $O(1)$ | Relies on the guarantee `word1 != word2`: if the two targets were equal, one cursor would overwrite the other and every candidate would collapse to distance $0$ |
+
 ---
 
 ## 2. Conceptual Foundation & Invariants
@@ -145,6 +154,19 @@ Result: 1
 **Soundness.** Every evaluated distance $|\text{idx}_1 - \text{idx}_2|$ corresponds to real indices where $\text{wordsDict}[\text{idx}_1] == \text{word1}$ and $\text{wordsDict}[\text{idx}_2] == \text{word2}$.
 
 **Completeness.** Let $(i^*, j^*)$ be any global minimum pair with $j^* > i^*$. When the scan reaches $j^*$, the opposite target has already been observed at index $i^*$. The recorded index for the opposite target is either $i^*$ or an even later occurrence $i' \in (i^*, j^*)$. In either case, the recorded distance is $\le j^* - i^*$, guaranteeing that the global minimum is evaluated and preserved.
+
+### The Pair the Scan Deliberately Never Scores
+
+Run the same protocol over a second dictionary, $\text{wordsDict} = [\text{"x"}, \text{"a"}, \text{"x"}, \text{"b"}, \text{"a"}, \text{"b"}]$ with $\text{word1} = \text{"a"}$ and $\text{word2} = \text{"b"}$. The target occurrences are `"a"` at indices $1, 4$ and `"b"` at indices $3, 5$, so there are four cross pairs in total:
+
+| Candidate pair $(i, j)$ | Occurrences | Distance $\lvert i - j \rvert$ | Scored at scan position | What happens at that position |
+|:---|:---|:---:|:---:|:---|
+| $(1, 3)$ | `"a"` at $1$, `"b"` at $3$ | 2 | $i = 3$ | Both cursors are live for the first time: $\text{idx}_1 = 1$, $\text{idx}_2 = 3$, so $\text{min\_dist} \leftarrow 2$ |
+| $(1, 5)$ | `"a"` at $1$, `"b"` at $5$ | 4 | never | By position $5$, the cursor $\text{idx}_1$ has already advanced to $4$, so index $1$ is no longer represented; the discarded value $4$ exceeds the minimum $1$ recorded one step earlier |
+| $(4, 3)$ | `"a"` at $4$, `"b"` at $3$ | 1 | $i = 4$ | The newly seen `"a"` is scored against the still-live $\text{idx}_2 = 3$, lowering $\text{min\_dist}$ to $1$ |
+| $(4, 5)$ | `"a"` at $4$, `"b"$ at $5$ | 1 | $i = 5$ | Scores $1$ again, tying the incumbent minimum and leaving the answer unchanged |
+
+Only three of the four pairs are ever measured, and the pair that is skipped is precisely the one whose left endpoint was superseded before its right endpoint arrived. The skipped value $4$ is larger than a value already committed to $\text{min\_dist}$, which is the domination argument in miniature: the general proof above shows it can never be smaller, and here it is not even close. The reported answer is $\mathbf{1}$.
 
 ---
 

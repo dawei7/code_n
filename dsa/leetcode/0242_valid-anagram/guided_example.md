@@ -26,6 +26,15 @@ Determine whether $t$ is an anagram of $s$ (meaning $t$ is formed by rearranging
   - Consuming characters in $t$ decrements their inventory.
   - If any count ever becomes negative, $t$ has overused a letter (or used an absent letter), and the algorithm terminates immediately in $O(N)$ time with $O(1)$ auxiliary space.
 
+### Candidate Methods Compared
+
+| Method | Mechanism | Time | Auxiliary space | Verdict for this instance |
+|:---|:---|:---:|:---:|:---|
+| Compare sorted strings | Sort both strings into canonical order, then compare position by position | $O(N \log N)$ | $O(N)$ | Correct but pays for a comparison sort when only multiplicities matter, and materialises two new sequences |
+| Fixed $26$-slot frequency vector | Tally $s$ by letter, then draw the tally down with $t$ | $O(N)$ | $O(\lvert \Sigma \rvert) = O(1)$ | Chosen: one linear tally pass, one linear drawdown pass, and the overdraw check fires at the exact offending character |
+| Dynamic hash map keyed by code point | The same tally and drawdown, with an unbounded key space | $O(N)$ expected | $O(\lvert \Sigma' \rvert)$ | Needed only by the Unicode follow-up in section 6; the extra hashing constant buys nothing on lowercase English |
+| Drawdown with no length guard | Decrement a per-character counter for each character of $t$, never compare lengths first | $O(N)$ | $O(\lvert \Sigma \rvert)$ | Fails on $s = \text{"abc"}, t = \text{"ab"}$: every bucket stays $\ge 0$ because the surplus letters of $s$ are simply never visited |
+
 ---
 
 ## 2. Conceptual Foundation & Invariants
@@ -149,6 +158,20 @@ All counts valid -> Return True
 
 **Soundness.** Let $\vec{u}$ and $\vec{v}$ be the character frequency vectors of $s$ and $t$ over alphabet $\Sigma$. Because $\sum_{c \in \Sigma} u_c = \text{len}(s) = \text{len}(t) = \sum_{c \in \Sigma} v_c$, we have $\sum_{c \in \Sigma} (u_c - v_c) = 0$. If $u_c - v_c \ge 0$ for all $c \in \Sigma$, then the only way a set of non-negative integers can sum to zero is if $u_c - v_c = 0$ for all $c$. Thus, $\vec{u} = \vec{v}$, which is the exact definition of an anagram.
 
+The two vectors for the traced instance, coordinate by coordinate over the alphabet $\Sigma$:
+
+| Character $c$ | $u_c$ from $s = \text{"anagram"}$ | $v_c$ from $t = \text{"nagaram"}$ | Difference $u_c - v_c$ | Difference $\ge 0$? |
+|:---:|:---:|:---:|:---:|:---:|
+| `'a'` | 3 | 3 | 0 | Yes |
+| `'g'` | 1 | 1 | 0 | Yes |
+| `'m'` | 1 | 1 | 0 | Yes |
+| `'n'` | 1 | 1 | 0 | Yes |
+| `'r'` | 1 | 1 | 0 | Yes |
+| the other 21 letters, collectively | 0 | 0 | 0 | Yes |
+| **Alphabet total $\sum_{c \in \Sigma}$** | **7** | **7** | **0** | — |
+
+Every coordinate is non-negative and the coordinates sum to zero, so no coordinate can be strictly positive: the surplus in one bucket would have to be cancelled by a deficit in another, and a deficit is exactly the negative value the drawdown check rejects.
+
 **Completeness.** Every character in $s$ and $t$ is evaluated. If any discrepancy in frequency exists, at least one character in $t$ will exceed the count provided by $s$, triggering the negative check and returning `false`.
 
 ---
@@ -158,6 +181,16 @@ All counts valid -> Return True
 - **Missing Length Check:** If length checking is omitted, comparing $s = \text{"abc"}$ and $t = \text{"ab"}$ decrements `'a'` and `'b'` to zero without any counter going negative. It would falsely return `true` unless a trailing check is performed.
 - **Sorting Overhead:** In Python, `sorted(s) == sorted(t)` takes $O(N \log N)$ time and allocates two new lists. Frequency counting takes $O(N)$ time with fixed $O(1)$ space.
 - **Unicode Follow-up:** If input contains arbitrary Unicode code points (Chinese, emojis, accented characters), a fixed 26-element array is insufficient. A dynamic hash map (`collections.defaultdict(int)`) naturally scales to arbitrary Unicode alphabets in $O(N)$ time.
+
+### Boundary Behaviour of the Protocol
+
+| Scenario | Concrete input | Condition exercised | Required result | Why the protocol decides correctly |
+|:---|:---|:---|:---:|:---|
+| Empty pair | $s = \text{""}$, $t = \text{""}$ | $\text{len}(s) = \text{len}(t) = 0$ | `true` | The tally stays all zeros and the drawdown loop executes zero times, so the empty multiset is reported equal to itself |
+| Same letters, different multiplicities | $s = \text{"aacc"}$, $t = \text{"ccac"}$ | Identical letter *set*, unequal counts | `false` | Tally from $s$ is $\text{count}[\text{'a'}] = 2$, $\text{count}[\text{'c'}] = 2$; the fourth character of $t$ drives $\text{count}[\text{'c'}]$ from $0$ to $-1$, the overdraw signal |
+| Character absent from $s$ | $s = \text{"rat"}$, $t = \text{"car"}$ | A letter of $t$ that $s$ never supplies | `false` | On the first character, $\text{count}[\text{'c'}] = 0 - 1 = -1$, so the scan stops after one step and the remaining two characters are never read |
+| Unequal length with no possible overdraw | $s = \text{"a"}$, $t = \text{"ab"}$ | $t$ contains all of the multiset of $s$ plus a surplus | `false` | The length guard rejects before any tally exists; note that the drawdown alone would *not* catch this, because the surplus character of $t$ is drawn last and every bucket it touches stays $\ge 0$ |
+| Identical strings | $s = t = \text{"abc"}$ | Every bucket reaches exactly zero | `true` | Each character draws its own bucket down by exactly one, so no bucket is ever overdrawn and the terminal verdict is `true` |
 
 ---
 
