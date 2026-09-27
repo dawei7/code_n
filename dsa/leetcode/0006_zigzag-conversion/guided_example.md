@@ -30,6 +30,14 @@ Concatenating rows $0$, $1$, and $2$ yields $\text{"PAHNAPLSIIGYIR"}$.
 
 A naive approach allocates a full 2D sparse matrix of dimensions $\text{numRows} \times N$, wasting $O(\text{numRows} \cdot N)$ memory on empty filler cells. The optimal approach maintains $\text{numRows}$ string buffers and simulates only the vertical cursor position, consuming strictly $O(N)$ auxiliary space.
 
+The three candidate representations differ only in what they record per character, and the difference decides the auxiliary space:
+
+| Representation | State Kept Per Step | Auxiliary Space | Extra Work Beyond the Single Pass | Why It Is Not the Representation Used Here |
+|:---|:---|:---|:---|:---|
+| Dense character grid | Cursor $(r, c)$ plus blank-filled cells | $O(\text{numRows} \cdot N)$, i.e. $3 \times 14 = 42$ allocated cells | A second sweep to collect the non-blank cells one row at a time | Only $N = 14$ of those cells ever hold a character; the padding is allocated and re-scanned for nothing |
+| $(r, c, i)$ placement records | A list of row, column, and source-index triples | $O(N) = 14$ records | A lexicographic comparison sort by $(r, c)$ before joining | Correct, but the sort costs $O(N \log N)$ for an ordering that the bouncing cursor already produces automatically |
+| One buffer per row plus a bouncing cursor | $r$, $d$, and $\text{numRows}$ buffers | $O(N) = 14$ characters, no padding | None; concatenation is one linear join | Chosen: every append lands at its final relative position inside its row |
+
 ---
 
 ## 2. Conceptual Foundation & Invariants
@@ -125,6 +133,19 @@ The complete state table tracing each character assignment:
 - **Single Row Degeneracy ($\text{numRows} = 1$):** If $\text{numRows} = 1$, the top and bottom boundaries coincide ($0 = \text{numRows} - 1$). The direction cannot oscillate properly, leading to out-of-bounds indexing if not guarded by an early exit returning $s$ directly.
 - **Short Input ($N \le \text{numRows}$):** When the string length does not exceed $\text{numRows}$, no zigzag bounce occurs; the string is placed straight down the first column and returned unchanged.
 - **Memory Overhead of Sparse Matrix:** Simulating the 2D grid with full whitespace padding requires $O(\text{numRows} \cdot N)$ storage and additional scanning time. Using dynamic row buffers eliminates grid padding completely.
+
+The degenerate rail counts are worth tabulating, because each one turns off part of the bounce mechanism rather than requiring a different mechanism:
+
+| Boundary Regime | Instance | Behaviour of $r$ and $d$ | Rail Contents | Returned Value |
+|:---|:---|:---|:---|:---|
+| Single rail | `s = "ABCD"`, $\text{numRows} = 1$ | $r$ is pinned at $0$, since $0 = \text{numRows} - 1$; the upward and downward reflections coincide, so $d$ never produces a legal move | Rail 0 absorbs the whole string | `"ABCD"`, the input unchanged |
+| Rails equal to the character count | `s = "ABCD"`, $\text{numRows} = 4$ | $r$ walks $0 \to 1 \to 2 \to 3$ and lands exactly on the bottom rail at the last character, so no diagonal step is ever taken | Four rails of one character each | `"ABCD"` |
+| More rails than characters | `s = "ABC"`, $\text{numRows} = 5$ | $r$ reaches only $2 < \text{numRows} - 1 = 4$; the direction remains $d = +1$ for the entire traversal | Rails 0, 1, 2 hold one character each; rails 3 and 4 stay empty | `"ABC"` |
+| Two rails | `s = "ABCDE"`, $\text{numRows} = 2$ | Cycle period shrinks to $2 \cdot (2 - 1) = 2$, so every index is a turning point: $r$ visits $0, 1, 0, 1, 0$ | Rail 0 = `"ACE"`, rail 1 = `"BD"` | `"ACEBD"` |
+| Maximum rail count | `s = "Z"`, $\text{numRows} = 1000$ | One append to rail 0, then the traversal ends immediately | Rail 0 = `"Z"`; the other 999 rails contribute the empty string | `"Z"` |
+| Non-letter characters | `s = "A,B.C"`, $\text{numRows} = 3$ | Cycle period $4$; $r$ visits $0, 1, 2, 1, 0$ exactly as for letters | Rail 0 = `"AC"`, rail 1 = `",."`, rail 2 = `"B"` | `"AC,.B"` |
+
+No regime above needs a separate rule: in each case the boundary tests plus the final row concatenation already produce the stated output, which is why the guard for $\text{numRows} = 1$ is the only genuine special case.
 
 ---
 

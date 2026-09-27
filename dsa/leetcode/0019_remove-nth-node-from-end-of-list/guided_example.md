@@ -17,6 +17,15 @@ A naive two-pass approach traverses the list once to measure the total length $L
 
 The optimal one-pass algorithm uses two pointers separated by an exact gap of $n$ nodes. When the lead pointer (`fast`) reaches the end of the list, the trailing pointer (`slow`) arrives precisely at the predecessor of the target node, allowing deletion in a single pass with $O(1)$ auxiliary space.
 
+The competing strategies differ in how much they must remember, which is the only reason the two-pass approach is not simply shorter:
+
+| Strategy | Structural Passes | Pointer Advances on the Traced List ($L = 5$, $n = 2$) | Auxiliary Space | Tradeoff |
+|:---|:---|:---|:---|:---|
+| Count $L$, then walk to index $L - n$ | Two: one to measure, one to reach the predecessor | $5$ advances to count, then $3$ advances to reach index $3$ | $O(1)$ | Simple, but the deletion index is unknown until the entire list has been counted |
+| Unwind recursively from the tail | One traversal, with the work deferred to the returns | $5$ calls before the innermost return, then $5$ unwinds | $O(L) = 5$ frames, growing with the list | A list of length $L = 30$ needs $30$ frames, so the auxiliary space scales with the input |
+| Store node references in an array | One traversal | $5$ advances to fill the container | $O(L) = 5$ references | Gives direct indexing, but allocates a second container as large as the list |
+| One-pass fixed-gap scan with a sentinel | One traversal | `fast` advances $L + 1 = 6$ times; `slow` advances $L - n = 3$ times | $O(1)$ | Chosen: the fixed gap encodes the offset directly, so neither the length nor a container is needed |
+
 ---
 
 ## 2. Conceptual Foundation & Invariants
@@ -123,6 +132,19 @@ Final:    dummy -> [1] -> [2] -> [3] -----------> [5] -> None
 - **Deleting the Head Node ($n = L$):** When $n = L$, the node to delete is the first node ($\text{head}$). Without a sentinel, $\text{slow}$ would need to point before `head`, which is invalid. The $\text{dummy}$ node handles this cleanly: $\text{slow}$ remains at $\text{dummy}$, and $\text{dummy.next}$ is set to $\text{head.next}$.
 - **Single-Node List ($L = 1, n = 1$):** If the list has only one node, $\text{dummy.next} = \text{head}$. After the loop, $\text{slow}$ is at $\text{dummy}$, and $\text{dummy.next} \leftarrow \text{head.next} = \text{None}$. The function correctly returns an empty list ($\text{None}$).
 - **Two-Pass vs One-Pass:** Counting length $L$ in a first pass requires traversing the list twice. The $n$-gap technique achieves true single-pass execution while visiting each node at most once.
+
+The positions can be read off arithmetically, and doing so makes the two boundary shapes mechanical rather than special:
+
+| Instance | $L$ | $n$ | Removed 1-Based Index $L - n + 1$ | Removed Value | Final $\text{slow}$ Index $L - n$ | $\text{slow}$ Node | Output |
+|:---|:---:|:---:|:---:|:---:|:---:|:---|:---|
+| `[1, 2, 3, 4, 5]` | 5 | 2 | 4 | 4 | 3 | $\text{Node}(3)$ | `[1, 2, 3, 5]` |
+| `[1, 2]` | 2 | 1 | 2 | 2 | 1 | $\text{Node}(1)$ | `[1]` |
+| `[1, 2]` | 2 | 2 | 1 | 1 | 0 | $\text{dummy}$ | `[2]` |
+| `[1]` | 1 | 1 | 1 | 1 | 0 | $\text{dummy}$ | `[]` |
+| `[4, 8, 15, 16, 23, 42]` | 6 | 3 | 4 | 16 | 3 | $\text{Node}(15)$ | `[4, 8, 15, 23, 42]` |
+| `[0, 1, \dots, 29]` | 30 | 15 | 16 | 15 | 15 | $\text{Node}(14)$ | the same list with the value $15$ removed |
+
+The two rows with $\text{slow}$ index $0$ are the ones that would break without the sentinel: the predecessor of the head is the sentinel itself, so the bypass $\text{slow.next} \leftarrow \text{slow.next.next}$ reduces to $\text{dummy.next} \leftarrow \text{head.next}$ with no separate branch.
 
 ---
 

@@ -112,6 +112,18 @@ Final output: $\text{jumps} = 2$.
 | 2 | 1 | 3 | 4 | 2 | **Yes ($i == 2$)** | **2** | $[3, 4]$ (Tier 2) |
 | 3 | 1 | 4 | 4 | 4 | No ($3 < 4$) | 2 | Target reached |
 
+### Layer Decomposition of the Same Instance
+
+The scan above is written in index order. The table below regroups exactly the same work by breadth-first layer, which is the view the invariant is stated in: every position assigned to layer $k$ is reachable in at least $k$ jumps, and the frontier interval of layer $k$ is precisely the set of positions whose minimum jump count is $k$.
+
+| BFS layer $k$ | Positions whose minimum cost is $k$ | Reach offered at each scanned position | Best reach $\max(i + \text{nums}[i])$ | Frontier interval | $\text{jumps}$ after the layer | Contains destination (index 4)? |
+|:---:|:---|:---|:---:|:---:|:---:|:---|
+| 0 | $\{0\}$ | $0 + 2 = 2$ | 2 | $[0, 0]$ | 0 | No |
+| 1 | $\{1, 2\}$ | $1 + 3 = 4$ and $2 + 1 = 3$ | 4 | $[1, 2]$ | 1 | No |
+| 2 | $\{3, 4\}$ | $3 + 1 = 4$; position 4 is itself the destination and is never scanned | 4 | $[3, 4]$ | 2 | Yes, so the scan halts |
+
+Layer 1 is where the answer is decided: position 1 offers reach $4$ while position 2 offers only $3$, so the layer's horizon is $4$ even though position 2 is the later of the two. A method that committed to a landing position before finishing the layer — say by taking position 2 because it is further right — would still need three jumps and would only discover its mistake later.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -128,9 +140,31 @@ Final output: $\text{jumps} = 2$.
 - **Single-Element Array ($N = 1$):** When $N = 1$, the loop over `range(N - 1)` does not execute at all, correctly returning $\text{jumps} = 0$ because no jumps are needed to start at the destination.
 - **Greedy Subproblem Fallacy:** Jumping greedily to the immediate largest value ($\text{argmax}(\text{nums}[j])$) is suboptimal; the algorithm must maximize $j + \text{nums}[j]$ (future reach), not $\text{nums}[j]$ alone.
 
+### Boundary and Degenerate Inputs
+
+| Boundary scenario | Input | Required result | Why the frontier rule still holds |
+|:---|:---|:---:|:---|
+| Already standing on the destination | $[0]$ | 0 | The scan range excludes the final index, so it is empty; $\text{cur\_end}$ is never reached and $\text{jumps}$ stays $0$. |
+| First jump reaches the destination | $[5, 0, 0, 0, 0, 0]$ | 1 | At $i = 0$ the horizon becomes $0 + 5 = 5 \ge N - 1 = 5$, and the single boundary commit raises $\text{jumps}$ to $1$. |
+| Maximum legal jump length | $[1000, 0]$ | 1 | $\text{nums}[0] = 1000 \ge N - 1 = 1$, so layer 1 already covers the whole array. |
+| Every step is mandatory | $[1, 1, 1, 1]$ | 3 | Each layer contains exactly one position, so every scanned index is simultaneously a tier boundary; the jump counts along the scan are $1, 2, 3$. |
+| A zero inside a reachable layer | $[2, 3, 0, 1, 4]$ | 2 | Position 2 contributes $2 + 0 = 2$, which loses to position 1's $1 + 3 = 4$; the dead element is simply outbid. |
+| The furthest position in a layer is not the strongest | $[3, 5, 1, 4, 0, 0, 0, 0]$ | 2 | Layer 1 is $\{1, 2, 3\}$; the maximum $i + \text{nums}[i]$ is $3 + 4 = 7 = N - 1$, so layer 2 already contains the destination. |
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(N)$, where $N = |\text{nums}|$. The algorithm traverses the array from index $0$ to $N - 2$ in a single linear pass. Each element performs $O(1)$ scalar updates.
 - **Auxiliary Space Complexity:** $O(1)$. Memory consumption is strictly constant, using only three integer variables (`jumps`, `cur_end`, `cur_farthest`).
+
+### Alternative Formulations
+
+| Approach | State carried | Time | Auxiliary space | Behaviour on a concrete input |
+|:---|:---|:---|:---|:---|
+| Frontier expansion (this lesson) | $\text{jumps}$, $\text{cur\_end}$, $\text{cur\_farthest}$ | $O(N)$ | $O(1)$ | On $[2, 3, 1, 1, 4]$ it commits two jumps, the second horizon being supplied by position 1 rather than position 2. |
+| Explicit BFS over the jump graph | Queue of positions plus a visited set | $O(N^2)$ edge enumerations in the worst case, since an index may connect to as many as $\text{nums}[i]$ successors | $O(N)$ | Also returns $2$ on $[2, 3, 1, 1, 4]$, finding index 4 at depth 2. |
+| Quadratic dynamic programming | Minimum jump count for every prefix | $O(N^2)$ | $O(N)$ | On $[2, 3, 1, 1, 4]$ the table is $[0, 1, 1, 2, 2]$, so the answer is the last entry, $2$. |
+| Immediate-largest-value greedy | Current position only | $O(N)$ | $O(1)$ | Coincidentally returns $2$ on $[2, 3, 1, 1, 4]$, where the largest value also maximises the reach; but on $[4, 4, 1, 1, 3, 0, 0, 0]$ it moves $0 \to 1$, then $1 \to 4$, then $4 \to 5$, and stalls at index 5 after three jumps, even though $0 \to 4 \to 7$ needs only two. |
+
+The failure on the last row is the reason the lesson tracks a horizon instead of a landing position: the greedy choice must be deferred until the whole layer has been inspected, because two positions can offer the same value while offering very different remaining reach.

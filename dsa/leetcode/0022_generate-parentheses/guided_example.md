@@ -24,6 +24,19 @@ $$
 C_n = \frac{1}{n+1} \binom{2n}{n} \implies C_3 = \frac{1}{4} \binom{6}{3} = \frac{20}{4} = 5
 $$
 
+The gap between the unconstrained search space and the answer is the whole point of generating under a constraint, and it widens quickly:
+
+| $n$ | String Length $2n$ | Unconstrained Strings $2^{2n}$ | Valid Strings $C_n$ | Fraction Retained |
+|:---:|:---:|:---:|:---:|:---:|
+| $1$ | 2 | 4 | 1 | $1/4$ |
+| $2$ | 4 | 16 | 2 | $1/8$ |
+| $3$ | 6 | 64 | 5 | $5/64$ |
+| $4$ | 8 | 256 | 14 | $7/128$ |
+| $5$ | 10 | 1024 | 42 | $21/512$ |
+| $8$ | 16 | 65536 | 1430 | $715/32768$ |
+
+At $n = 3$ the filter would reject $59$ of $64$ strings, so the pruning is not a minor optimization: it removes the overwhelming majority of the candidate space before it is ever constructed.
+
 ---
 
 ## 2. Conceptual Foundation & Invariants
@@ -129,6 +142,16 @@ Level 6 (Leaf):      "((()))"    "(()())" "(())()" "()(())" "()()()"
 **Soundness.** A string of brackets is valid if and only if every prefix has at least as many opening brackets as closing brackets ($\text{close} \le \text{open}$) and the total counts are equal ($\text{open} = \text{close} = n$). Because the backtracking guard strictly forbids placing `')'` when $\text{close} \ge \text{open}$, every constructed string satisfies the Dyck language property by invariant induction.
 
 **Completeness.** Every valid parentheses sequence can be read character by character from left to right. At each character, it must satisfy $\text{open} \le n$ and $\text{close} \le \text{open}$. Because the backtracking tree branches on every legal option at each index, every possible valid sequence corresponds to a unique path from the root to a leaf.
+
+The five outputs can also be counted without running the tree at all. Every well-formed string of length $2n$ decomposes uniquely as $\text{"("} A \text{")"} B$, where $A$ holds the characters up to the match of the first `'('` and $B$ is whatever follows. If $A$ has $2k$ characters, then $A$ and $B$ are themselves well-formed, and the count obeys $C_n = \sum_{k=0}^{n-1} C_k C_{n-1-k}$. For $n = 3$ that recurrence reproduces exactly the five strings the trace emitted:
+
+| $k$ | Characters in $A$ | Choices for $A$ | Characters in $B$ | Choices for $B$ | Product $C_k C_{2-k}$ | Strings Produced |
+|:---:|:---:|:---|:---:|:---|:---:|:---|
+| $0$ | 0 | $A = \epsilon$ (1 choice) | 4 | $B \in \{\text{"(())"}, \text{"()()"}\}$ (2 choices) | 2 | `"()(())"`, `"()()()"` |
+| $1$ | 2 | $A = \text{"()"}$ (1 choice) | 2 | $B = \text{"()"}$ (1 choice) | 1 | `"(())()"` |
+| $2$ | 4 | $A \in \{\text{"(())"}, \text{"()()"}\}$ (2 choices) | 0 | $B = \epsilon$ (1 choice) | 2 | `"((()))"`, `"(()())"` |
+
+The column total $2 + 1 + 2 = 5$ equals $C_3$, which confirms that the constrained branching explores exactly the well-formed strings and nothing else: no output is duplicated by two different decompositions, and no well-formed string is missing from the table.
 
 ---
 

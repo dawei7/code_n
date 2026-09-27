@@ -96,6 +96,22 @@ Final output: `[[1, 1, 6], [1, 2, 5], [1, 7], [2, 6]]`.
 
 ## 4. Complete Execution Trace
 
+### Sibling-Pruning Decisions at the Root State
+
+The root state $(\text{start} = 0, \text{remain} = 8)$ is where horizontal pruning is decided, one loop index at a time. The two rejection columns are deliberately separate: a duplicate sibling is skipped because of *value* equality with the previous index, while an overflow is a *capacity* failure, and only the second one can terminate the whole loop.
+
+| Loop index $j$ | $\text{candidates}[j]$ | $j > \text{start}$? | Equals previous value? | Exceeds $\text{remain} = 8$? | Action taken at level 0 |
+|:---:|:---:|:---:|:---:|:---:|:---|
+| 0 | 1 | no | — | no | Descend. This copy owns every combination beginning with the value 1, including $[1, 1, 6]$, which reaches the second copy further down |
+| 1 | 1 | yes | yes ($1 = 1$) | no | Skip as a duplicate sibling. Its reachable set — $[1, 2, 5]$ and $[1, 7]$ — is already produced from index 0 with the same first element |
+| 2 | 2 | yes | no ($2 \ne 1$) | no | Descend. It is the only index that can produce $[2, 6]$ |
+| 3 | 5 | yes | no | no | Descend. The path $[5]$ leaves $\text{remain} = 3$, and no later candidate fits, so the branch dies one level down |
+| 4 | 6 | yes | no | no | Descend. This copy supplies the $6$ in $[1, 1, 6]$ and $[2, 6]$ |
+| 5 | 7 | yes | no | no | Descend. The path $[7]$ leaves $\text{remain} = 1$, so it dies one level down |
+| 6 | 10 | yes | no | yes | Reject. Sorting guarantees every later candidate also exceeds $\text{remain}$, so the tail of the loop is abandoned |
+
+### Level-0 Outcome Summary
+
 | Level 0 Choice | Sub-Level Choices | Full Candidate Path | Path Sum | Condition Met | Output Emitted / Status |
 |:---:|:---:|:---:|:---:|:---:|:---|
 | $1$ (idx 0) | $1$ (idx 1) $\to 6$ (idx 4) | `[1, 1, 6]` | 8 | $\text{remain} = 0$ | **`[1, 1, 6]`** |
@@ -120,6 +136,19 @@ Final output: `[[1, 1, 6], [1, 2, 5], [1, 7], [2, 6]]`.
 - **Skipping All Duplicates (`j >= start`):** Writing `if candidates[j] == candidates[j-1]` without checking `j > start_idx` mistakenly prevents vertical reuse, missing valid combinations like $[1, 1, 6]$.
 - **Shallow Reference Mutations:** Backtracking must create a shallow copy `current_combo[:]` when recording solutions to prevent subsequent pop operations from clearing the result.
 - **Missing Break on Overflow:** Because candidates are sorted, once $\text{candidates}[j] > \text{remain}$, all subsequent $k > j$ will also exceed $\text{remain}$. Breaking the loop instead of continuing saves exponential search steps.
+
+### Boundary instances and why they stay on the same path
+
+Each instance below is handled by the identical sorted, index-advancing search with sibling pruning; the recursive-call column counts how much work the two rejection rules save.
+
+| Candidates | Target | $N$ | Recursive calls | What it stresses | Expected output | Why the rules cover it |
+|:---|:---:|:---:|:---:|:---|:---|:---|
+| $[7, 7]$ | $4$ | $2$ | $1$ | Every candidate exceeds the target | `[]` | The root state already has $\text{remain} = 4 < 7$, and all candidates are positive, so no choice can be extended into a solution |
+| $[2, 3]$ | $4$ | $2$ | $3$ | Reuse is forbidden | `[]` | The path $[2]$ leaves $\text{remain} = 2$ and the recursion index has advanced past $2$, so $2 + 2$ is unreachable; the path $[3]$ leaves $1$ |
+| $[1, 1, 1, 2, 2, 3]$ | $4$ | $6$ | $12$ | Multiplicity from distinct copies | `[[1, 1, 2], [1, 3], [2, 2]]` | A repeated value can be used as many times as it appears and no more, because each copy is a separate index that is consumed in turn |
+| $[30, 1]$ | $30$ | $2$ | $3$ | Exact singleton match | `[[30]]` | The branch $[1]$ leaves $\text{remain} = 29$, which the only remaining candidate ($30$) overshoots; $\text{remain} = 0$ is the sole success condition |
+| $100$ copies of $1$ | $1$ | $100$ | $2$ | Extreme duplication | `[[1]]` | Sibling pruning collapses all $100$ identical positions at one depth into a single live branch, so the work does not grow with the copy count |
+| $[30, 20, 10]$ | $30$ | $3$ | $6$ | Two different shapes reach the target | `[[10, 20], [30]]` | Sorting places $10$ before $20$, so the pair is emitted in ascending order, and index advancement stops $20 + 10$ from being produced as a second copy of the same multiset |
 
 ---
 

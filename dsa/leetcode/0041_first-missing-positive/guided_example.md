@@ -114,6 +114,20 @@ Cyclic sort completes with array: $[1, -1, 3, 4]$.
 | 7 | 3 | 4 | 3 | 4 | Already at home; scan finishes | $[1, -1, 3, 4]$ |
 | Scan | 1 | -1 | - | - | $\text{nums}[1] \ne 1 + 1$ | **Return 2** |
 
+### Swap Accounting and the Linear Bound
+
+The $O(N)$ claim rests on the fact that every swap permanently increases the number of elements sitting at their home index. Counting that quantity after each swap makes the bound visible on this instance instead of merely asserted.
+
+| Step | Swap performed | Array after the step | Elements at their home index | Change in the home count |
+|:---:|:---|:---|:---:|:---:|
+| 0 | none — starting arrangement | $[3, 4, -1, 1]$ | $0$ of $4$ | — |
+| 1 | $\text{nums}[0] \leftrightarrow \text{nums}[2]$ | $[-1, 4, 3, 1]$ | $1$ of $4$ (index $2$ holds $3$) | $+1$ |
+| 2 | $\text{nums}[1] \leftrightarrow \text{nums}[3]$ | $[-1, 1, 3, 4]$ | $2$ of $4$ (indices $2$ and $3$) | $+1$ |
+| 3 | $\text{nums}[1] \leftrightarrow \text{nums}[0]$ | $[1, -1, 3, 4]$ | $3$ of $4$ (indices $0$, $2$, $3$) | $+1$ |
+| 4 | none — $\text{nums}[1] = -1$ fails the range test, so the while loop halts | $[1, -1, 3, 4]$ | $3$ of $4$ | $0$ |
+
+The count rises from $0$ to $3$ in exactly $3$ swaps and then never decreases, because a value that has reached its home index is never displaced: the guard $\text{nums}[\text{nums}[i] - 1] \ne \text{nums}[i]$ refuses to swap when the destination already holds that value. Since the count is bounded by $N$ and grows by at least one per swap, at most $N = 4$ swaps can ever occur, so the nested while loop cannot push the total work past a linear number of steps.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -129,6 +143,20 @@ Cyclic sort completes with array: $[1, -1, 3, 4]$.
 - **Infinite Loop on Duplicate Values:** If $\text{nums} = [1, 1]$, index 1 has value $1$ with target home $0$. If we check only $\text{nums}[i] \ne i + 1$, swapping $\text{nums}[1]$ with $\text{nums}[0]$ creates an infinite loop because both are $1$. The condition must check $\text{nums}[i] \ne \text{nums}[\text{nums}[i] - 1]$ to halt when the target position already contains the correct value.
 - **Negative and Out-of-Bounds Numbers:** Values $\le 0$ or $> N$ must not be swapped. Attempting to index $\text{nums}[x - 1]$ when $x \le 0$ or $x > N$ causes invalid memory access or negative index aliasing.
 - **Array Fully Populated:** For $\text{nums} = [1, 2, 3]$, all indices match ($1, 2, 3$). The scan finishes without finding a mismatch; the algorithm correctly returns $N + 1 = 4$.
+
+### Boundary instances and the guard that handles each
+
+The swap count below is the exact number of exchanges the cyclic pass performs, which shows how little work the rejected elements actually require.
+
+| $\text{nums}$ | $N$ | Swaps | Arrangement after the cyclic pass | Output | Why the rules produce it |
+|:---|:---:|:---:|:---|:---:|:---|
+| $[1, 2, 0]$ | $3$ | $0$ | $[1, 2, 0]$ | $3$ | $0$ is outside $[1, N]$ and is ignored; indices $0$ and $1$ already hold $1$ and $2$, while index $2$ holds $0 \ne 3$ |
+| $[7, 8, 9, 11, 12]$ | $5$ | $0$ | unchanged | $1$ | Every value exceeds $N = 5$, so no element is ever a candidate for placement and index $0$ fails at once |
+| $[1, 1]$ | $2$ | $0$ | $[1, 1]$ | $2$ | At index $1$ the guard sees $\text{nums}[1] = 1 = \text{nums}[\text{nums}[1] - 1]$, so it refuses to swap; comparing only against $i + 1$ would exchange two equal values forever |
+| $[4, 2, 1, 3]$ | $4$ | $2$ | $[1, 2, 3, 4]$ | $5$ | Every integer $1 \dots 4$ is present, the scan finds no mismatch, and the fallback answer is $N + 1$ |
+| $[1]$ | $1$ | $0$ | $[1]$ | $2$ | The shortest complete prefix; the scan passes and the answer is $N + 1 = 2$ |
+| $[2, 2, 1, 1]$ | $4$ | $1$ | $[1, 2, 2, 1]$ | $3$ | The first two positions end up holding $1$ and $2$; index $2$ holds $2 \ne 3$, so the duplicate is irrelevant |
+| $[-2147483648, 2147483647, 1]$ | $3$ | $1$ | $[1, 2147483647, -2147483648]$ | $2$ | Both 32-bit endpoints fail the range test $1 \le x \le N$; only $1$ is moved into place |
 
 ---
 

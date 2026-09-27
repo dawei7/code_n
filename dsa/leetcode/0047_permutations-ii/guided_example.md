@@ -117,6 +117,23 @@ All choices complete. Output contains exactly 3 unique permutations.
 | `[2, 1]` | Pos 2 | 1 | 1 | `[T, F, T]` | $\text{used}[0] == \text{T} \implies$ Valid vertical reuse | **`[2, 1, 1]`** |
 | `[2]` | Pos 1 | 1 | 1 | `[F, F, T]` | $\text{nums}[1]==\text{nums}[0] \land \neg\text{used}[0]$ | **Pruned (Skip $1_b$)** |
 
+### Subtree Accounting: Why Exactly Three Leaves Survive
+
+The trace above shows two pruned branches, but it does not show what those prunings cost or save. The table below counts distinct completions for every prefix the canonical search actually enters, and records the two rejected sibling branches as contributing zero.
+
+| Prefix (path so far) | Unchosen multiset | Distinct completions below this node | Leaves emitted from this subtree |
+|:---|:---|:---:|:---|
+| `[]` | $\{1, 1, 2\}$ | $\frac{3!}{2! \cdot 1!} = 3$ | `[1,1,2]`, `[1,2,1]`, `[2,1,1]` |
+| `[1]` from $j = 0$ ($1_a$ chosen) | $\{1, 2\}$ | $2! = 2$ | `[1,1,2]`, `[1,2,1]` |
+| `[1, 1]` | $\{2\}$ | $1$ | `[1,1,2]` |
+| `[1, 2]` | $\{1\}$ | $1$ | `[1,2,1]` |
+| `[2]` from $j = 2$ | $\{1, 1\}$ | $\frac{2!}{2!} = 1$ | `[2,1,1]` |
+| `[2, 1]` from $j = 0$ at Pos 1 ($1_a$ chosen) | $\{1\}$ | $1$ | `[2,1,1]` |
+| `[1]` from $j = 1$ at Pos 0 ($1_b$ first) | — | $0$, rejected by the sibling rule because $\text{used}[0]$ is $\text{F}$ | *(branch never entered)* |
+| `[2, 1]` from $j = 1$ at Pos 1 ($1_b$ first) | — | $0$, rejected for the same reason | *(branch never entered)* |
+
+The two rejected rows are the entire saving. Without them — that is, treating $1_a$ and $1_b$ as independent values — the search would enumerate $1 + 3 + 6 = 10$ prefix states and reach $6$ leaves, three of which would be duplicate arrays; with them the canonical search enters $6$ prefix states and reaches exactly $3$ leaves, never materialising a duplicate at all.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -133,9 +150,29 @@ All choices complete. Output contains exactly 3 unique permutations.
 - **Forgetting to Sort:** The duplicate condition `nums[j] == nums[j-1]` assumes identical elements are adjacent. Without sorting, identical values scattered across the array will not trigger the check.
 - **Cloning Mutated Paths:** As in all backtracking routines, appending `path[:]` rather than `path` prevents subsequent element pop operations from altering stored results.
 
+### Boundary Cases for the Precedence Rule
+
+| Scenario | Input | Required output | What it demonstrates about the sibling rule |
+|:---|:---|:---|:---|
+| Every value identical | eight copies of `10` | the single array `[10, 10, 10, 10, 10, 10, 10, 10]` | $\frac{8!}{8!} = 1$; the rule fires at every level and admits only the left-to-right consumption chain, so the answer is one row for eight elements. |
+| Every value distinct | `[1, 2, 3]` | the $3! = 6$ orderings | The test $\text{nums}[j] == \text{nums}[j-1]$ is false for every $j$, so no branch is ever pruned and the problem degenerates to the previous problem. |
+| Duplicates separated in the input | `[2, -1, 2]` | `[[-1, 2, 2], [2, -1, 2], [2, 2, -1]]` | Sorting turns this into `[-1, 2, 2]`; without the sort the two `2`s are not adjacent and the adjacency test cannot see them at all. |
+| Two independent duplicate groups | `[1, 1, 2, 2]` | the $\frac{4!}{2! \cdot 2!} = 6$ arrays listed in the package cases | Two separate twins must each be consumed in index order, and the two groups do not interfere. |
+| Shortest legal input | `[7]` | `[[7]]` | No sibling exists, so the rule can never fire and the single leaf is emitted unconditionally. |
+| Extreme distinct values | `[-10, 10]` | `[[-10, 10], [10, -10]]` | Distinct values survive the sort unchanged, so both orders remain reachable. |
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(N \cdot \frac{N!}{\prod n_i!})$, where $n_i$ is the count of each duplicate value. For $[1, 1, 2]$, $\frac{3!}{2! \cdot 1!} = 3$ unique permutations. Sorting takes $O(N \log N)$. Generating and copying each permutation takes $O(N)$ time.
 - **Auxiliary Space Complexity:** $O(N)$ for the recursion call stack, boolean `used` array, and candidate path list.
+
+### Alternative Formulations
+
+| Approach | Mechanism | Time | Auxiliary space | Behaviour on sorted `[1, 1, 2]` |
+|:---|:---|:---|:---|:---|
+| Sort plus used mask with the sibling rule (this lesson) | Skip a repeated value whose predecessor index is unused at the same depth | $O\!\left(N \cdot \frac{N!}{\prod n_i!}\right)$ | $O(N)$ | Emits `[1,1,2]`, `[1,2,1]`, `[2,1,1]` directly; the two sibling branches are never entered. |
+| Swap-based DFS plus a result set | Generate all $N!$ arrangements and discard repeats when converting to a set | $O(N \cdot N!)$ | $O\!\left(N \cdot \frac{N!}{\prod n_i!}\right)$ for the result set | Reaches $6$ leaves and discards $3$ of them, so it does twice the generation work and then pays for hashing each array. |
+| Frequency-map DFS | At each level pick one *distinct* value and decrement its remaining count | $O\!\left(N \cdot \frac{N!}{\prod n_i!}\right)$ | $O(N)$ for the counter plus recursion | Emits exactly $3$ leaves and constructs no duplicate at any point, at the cost of maintaining a mutable multiset instead of a boolean mask. |
+| Lexicographic successor iteration | Start from the sorted multiset and apply the next-permutation step repeatedly | $O\!\left(N \cdot \frac{N!}{\prod n_i!}\right)$ total | $O(N)$ | Emits `[1,1,2]`, `[1,2,1]`, `[2,1,1]` in lexicographic order, giving a deterministic ordering that the DFS does not promise. |

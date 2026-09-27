@@ -28,6 +28,14 @@ $$
 \text{Area} = (8 - 1) \cdot \min(8, 7) = 7 \cdot 7 = 49
 $$
 
+Before committing to the shrinkage scan it is worth seeing what each available strategy actually inspects on this array:
+
+| Strategy | Configurations Examined | Time | Auxiliary Space | Failure Mode or Tradeoff |
+|:---|:---|:---|:---|:---|
+| Exhaustive scan of every pair | All $\binom{9}{2} = 36$ pairs | $O(N^2)$ | $O(1)$ | Correct but re-derives 35 pairs that the dominance argument already rules out; it re-evaluates the same limiting height repeatedly |
+| Tallest lines first, ordered by height | Pairs chosen by decreasing $\min(\text{height}[l], \text{height}[r])$ until the width term can no longer help | $O(N \log N)$ | $O(N)$ for the order | Discards the index information that defines the width $r - l$; the two tallest lines may be adjacent, so the largest height can pair with the smallest width |
+| Two-pointer shrinkage of the widest interval | Exactly $N - 1 = 8$ intervals: $(0,8), (1,8), (1,7), \dots, (1,2)$ | $O(N)$ | $O(1)$ | Chosen: the pointer that is discarded steps off a line that is provably unable to beat its current partner with any remaining candidate |
+
 ---
 
 ## 2. Conceptual Foundation & Invariants
@@ -155,6 +163,21 @@ Pointers meet at $l = r = 1$. The search terminates with $\text{max\_area} = 49$
 - **Moving the Taller Line:** A common pitfall is greedily moving the taller line in hopes of finding an even taller line inward. Because width decreases monotonically with every step, moving the taller line can only reduce or preserve the limiting height, guaranteeing a smaller area. Only moving the shorter line offers any chance of an increased minimum height that compensates for the lost width.
 - **Equal Heights Case:** When $\text{height}[l] = \text{height}[r]$, moving either pointer (or both) is sound, because any inner container formed with one of these lines would have strictly smaller width and a height bounded by that line's height.
 - **Premature Termination:** One cannot stop when the area decreases; area fluctuations are non-monotonic because tall lines may exist deeper inside the array.
+
+Each boundary instance below is a case where the shrinkage rule behaves differently, or where a wrong variant of the rule would answer incorrectly:
+
+| Boundary Instance | Structural Condition | Behaviour of the Pointers | Optimal Pair and Its Area | Result |
+|:---|:---|:---|:---|:---:|
+| `height = [1, 1]` | Minimum legal length | The only pair is examined at once, then $l$ and $r$ meet | $(0, 1)$: $1 \cdot \min(1, 1) = 1$ | $1$ |
+| `height = [0, 0]` | Every line has zero height, so every effective height is $0$ | Equal heights let either pointer move; the scan ends after one interval | $(0, 1)$: $1 \cdot \min(0, 0) = 0$ | $0$ |
+| `height = [10000, 10000]` | Maximum line height at minimum length | One comparison, then termination | $(0, 1)$: $1 \cdot 10000 = 10000$ | $10000$ |
+| `height = [9, 8, 7, 6, 5, 4, 3]` | Strictly descending, so $\text{height}[l] > \text{height}[r]$ at every interval | The right pointer is the shorter one every time, so only $r$ moves | $(0, 4)$: $4 \cdot 5 = 20$, matched by $(0, 5)$: $5 \cdot 4 = 20$ | $20$ |
+| `height = [3, 4, 5, 6, 7, 8, 9]` | Strictly ascending, so only $l$ ever moves | The left pointer is the shorter one at every interval | $(1, 6)$: $5 \cdot \min(4, 9) = 20$ | $20$ |
+| `height = [0, 2, 0, 4, 0, 3, 0]` | Useful walls separated by zero-height lines | Zero-height lines are legal but contribute nothing, so the scan must skip past them by width | $(1, 5)$: $4 \cdot \min(2, 3) = 8$ | $8$ |
+| `height = [4, 3, 2, 1, 4]` | Equal heights at both ends, with a strictly lower interior | The tie rule moves $r$ inward, and no interior line is taller than $4$ | $(0, 4)$: $4 \cdot \min(4, 4) = 16$ | $16$ |
+| `height = [1, 3, 2, 5, 25, 24, 5]` | The optimum is an adjacent interior pair, not a wide one | The scan reaches the sharp interior step only after discarding the low outer lines | $(4, 5)$: $1 \cdot \min(25, 24) = 24$ | $24$ |
+
+The last two rows are the traps in tabular form: a wide span is not required for the maximum, and equal end heights do not permit stopping early.
 
 ---
 

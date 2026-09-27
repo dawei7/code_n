@@ -17,6 +17,16 @@ Two combinations are unique if the frequency of at least one of the chosen numbe
 
 A naive approach generates all unrestricted permutations of candidates summing to 7 and filters them with a hash set. The optimal backtracking approach enforces non-decreasing candidate indices: by only allowing candidates at index $j \ge i$ in subsequent recursive steps, every valid multiset combination is generated in canonical sorted order exactly once without hash-set filtering.
 
+### What the three candidate strategies cost on this instance
+
+Duplicate elimination can be bought in three different currencies: memory, structure, or reconstruction work. The instance $\text{candidates} = [2, 3, 6, 7]$, $\text{target} = 7$ separates them sharply, because only two multisets are valid while the permutation search visits leaves that the combinatorial count hides.
+
+| Strategy | What it would build for this instance | How duplicates are removed | Result ordering | Tradeoff or failure mode |
+|:---|:---|:---|:---|:---|
+| Unrestricted permutation search plus a hash set | Every arrangement of $\{2,2,3\}$ — namely $[2,2,3]$, $[2,3,2]$, $[3,2,2]$ — plus $[7]$, then a filter pass | Each result is sorted into a tuple key and tested against a set | Only after the final sort | Auxiliary memory scales with the number of arrangements, not with the number of distinct multisets, and the same subtree is rebuilt many times |
+| Canonical non-decreasing index enumeration | Only $[2,2,3]$ and $[7]$ are ever constructed | Structural: an index below the previous choice is never offered, so a permutation of an already-emitted multiset is unreachable | Non-decreasing by construction | Needs one ascending sort of the candidates, and the recursive call must forward $j$ rather than $j + 1$ so a value can repeat |
+| Coin-change counting recurrence | Fills a residual-sum table and reports that exactly $2$ combinations reach $7$ | Implicit: processing candidates in a fixed outer order counts each multiset once | No ordering; only a count | Runs in $O(N \cdot T)$ time but produces no combinations, so recovering `[[2, 2, 3], [7]]` needs a second enumeration pass |
+
 ---
 
 ## 2. Conceptual Foundation & Invariants
@@ -134,6 +144,19 @@ All branches exhausted. Emitted combinations: `[[2, 2, 3], [7]]`.
 - **Storing List References Instead of Copies:** Appending `current_combo` directly into `results` stores a reference to the mutable working list. When subsequent backtracking calls modify the list, earlier entries in `results` become corrupted or empty. Appending a clone `current_combo[:]` is essential.
 - **Missing Early Break Optimization:** Without sorting, one must continue checking all remaining candidates even after one exceeds $\text{remain}$. Sorting allows an immediate `break`, pruning entire subtrees.
 - **Forgetting Element Reuse ($j$ vs $j+1$):** Passing $j + 1$ prevents candidate reuse (which is required for $0040\text{ Combination Sum II}$, but incorrect for $0039$). Passing $j$ allows arbitrary reuse while preventing smaller-index elements from creating permutations.
+
+### Boundary instances and the invariant that covers each
+
+All of these run through the same sorted, non-decreasing-index search; none needs a special branch.
+
+| Candidates | Target | Input condition | Traced behaviour | Expected output | Invariant that makes it correct |
+|:---|:---:|:---|:---|:---|:---|
+| $[2]$ | $1$ | Target below every candidate | The root state already has $\text{remain} = 1 < 2 = \min(\text{candidates})$, so no branch is entered | `[]` | Every non-empty multiset of positive candidates has sum at least $\min(\text{candidates})$, so a sum of $1$ is unreachable |
+| $[8, 3]$ | $8$ | One candidate equals the target exactly | Sorted to $[3, 8]$; the branch $[3]$ leaves $\text{remain} = 5$, then $2$, then goes negative, so it dies, while $[8]$ leaves $\text{remain} = 0$ | `[[8]]` | A recorded combination is exactly one whose $\text{remain}$ hits $0$; the failing branch could never be repaired by adding more positive values |
+| $[7, 2, 6, 3]$ | $7$ | Candidates arrive unsorted | Sorting to $[2, 3, 6, 7]$ restores ascending index order, so the two surviving multisets are emitted as $[2, 2, 3]$ and then $[7]$ | `[[2, 2, 3], [7]]` | The no-duplicate guarantee rests on ascending index order, which the preprocessing establishes regardless of the input arrangement |
+| $[2]$ | $4$ | One value reused twice | $[2]$, then $[2, 2]$, whose $\text{remain}$ is $0$; the recursive call forwards the same index, so the value repeats | `[[2, 2]]` | Forwarding $j$ keeps the candidate available, and depth is bounded by $T / M = 4 / 2 = 2$ |
+| $[2, 3, \dots, 31]$ | $5$ | Thirty candidates, most larger than the target | Only $2$, $3$ and $5$ can appear; every candidate at or above $6$ is pruned the first time it is offered | `[[2, 3], [5]]` | Because the array is sorted, once a candidate exceeds $\text{remain}$ every later candidate does too, so the whole tail of the loop can be abandoned at once |
+| $[39, 40]$ | $40$ | Target reached by a single value | $[39]$ leaves $\text{remain} = 1$, which is below every candidate, so the branch dies; $[40]$ leaves $\text{remain} = 0$ and is recorded | `[[40]]` | Each addition decreases $\text{remain}$ by at least $M = 39$, so the recursion depth is at most $\lceil 40 / 39 \rceil = 2$ |
 
 ---
 

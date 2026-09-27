@@ -138,6 +138,19 @@ We trace $x = 2.0, n = 10$:
 3. Step 2 ($n = 1$): low bit 1, $\text{res} \leftarrow 1.0 \times 0.25 = 0.25$, $n \leftarrow 0$.
 4. Result: $0.25$.
 
+### Negative Exponent Trace as a Table
+
+The reciprocal is applied once, before the loop begins, so the negative-exponent run needs only two iterations. The exponent is now $|n| = 2$, whose binary form `10` has a single set bit, and that bit is not the lowest one.
+
+| Iteration | Working base | Exponent $n$ | Low bit $n \ \& \ 1$ | $\text{base} = x^{2^k}$ | Accumulator $\text{res}$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| Start | $0.5$ | 2 | - | $0.5$ | $1.0$ |
+| 1 ($k = 0$) | $0.5$ | 2 (`10`) | 0 | $1.0 \to 0.5 \times 0.5 = 0.25$ after squaring | $1.0$ (bit is 0, so nothing is multiplied in) |
+| 2 ($k = 1$) | $0.5$ | 1 (`1`) | **1** | $0.0625$ after squaring | $1.0 \times 0.25 = \mathbf{0.25}$ |
+| End | - | 0 | - | - | $\mathbf{0.25}$ |
+
+The mirror-image route — compute $2.0^{2} = 4.0$ first and divide once at the very end, $1.0 / 4.0$ — lands on the same $0.25$. Both routes are arithmetically equivalent, but they place the reciprocal at opposite ends of the computation: this lesson inverts the base first so that the loop body needs no post-processing at all.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -158,9 +171,30 @@ The loop computes $x^{2^k}$ at step $k$ and multiplies it into $\text{res}$ if a
 - **Base Inversion vs Final Division:** Either invert the base at the start ($x \leftarrow 1/x, n \leftarrow -n$) or compute $x^{|n|}$ and return $1.0 / \text{res}$ at the end. Both are mathematically equivalent, but inverting upfront maintains identical loop logic.
 - **Zero Base with Non-Positive Exponent:** $0^0$ is defined as $1.0$, while $0^{-k}$ would divide by zero. LeetCode constraints guarantee valid domain inputs ($x \ne 0$ when $n < 0$).
 
+### Boundary Cases at the Exponent Limits
+
+| Boundary scenario | Input | Required result | How the bit scan reaches it |
+|:---|:---|:---|:---|
+| Zero exponent | $x = -7.5$, $n = 0$ | $1.0$ | The loop condition fails on the first test, so no squaring and no multiplication happen and the initial accumulator is returned as the empty product. |
+| Most negative exponent | $x = -1.0$, $n = -2147483648$ | $1.0$ | After inversion the working magnitude is $\lvert n \rvert = 2^{31}$, a single set bit followed by thirty-one zeros, so only the final iteration multiplies; the base has been squared an even number of times, leaving the sign positive. |
+| Most positive exponent | $x = -1.0$, $n = 2147483647$ | $-1.0$ | $2^{31} - 1$ is thirty-one set bits, so the accumulator absorbs thirty-one factors; every one has magnitude $1$, and the odd count of factors leaves the sign negative. |
+| Zero base | $x = 0.0$, $n = 5$ | $0.0$ | The first set bit multiplies $0.0$ into the accumulator, and every subsequent squaring keeps the base at $0.0$ as well. |
+| Negative base, negative odd exponent | $x = -2.0$, $n = -3$ | $-0.125$ | Inversion gives a working base of $-0.5$ with $\lvert n \rvert = 3$; the accumulator becomes $(-0.5) \times (0.25) = -0.125$, an odd number of negative factors. |
+| Unit exponent | $x = -99.999$, $n = 1$ | $-99.999$ | Exactly one set bit, so exactly one multiplication; the loop degenerates to a single scalar copy. |
+| Fractional base | $x = 2.1$, $n = 3$ | $9.261$ | Set bits at $2^0$ and $2^1$ give $\text{res} = 2.1 \times 4.41 = 9.261$, so only two multiplications replace a three-step linear chain. |
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(\log n)$. Each iteration performs a bitwise right-shift $n \gg 1$, cutting the exponent in half. At most $32$ iterations occur for any 32-bit signed integer.
 - **Auxiliary Space Complexity:** $O(1)$. The iterative implementation requires only scalar floating-point and integer registers.
+
+### Alternative Formulations
+
+| Formulation | Mechanism | Time | Auxiliary space | Behaviour on $x = 2.0$, $n = 10$ |
+|:---|:---|:---|:---|:---|
+| Iterative bit scan (this lesson) | Keep a running squared base and shift the exponent right | $O(\log n)$ | $O(1)$ | Four iterations, accumulator finishing at $1024.0$. |
+| Recursive halving | For even $n$, square the base and halve the exponent; for odd $n$, peel off one factor first | $O(\log n)$ | $O(\log n)$ call stack | The same $1024.0$, reached through four nested calls; at the exponent ceiling the depth is only about $31$ frames. |
+| Compute $\lvert n \rvert$ first, then divide once | Build $x^{\lvert n \rvert}$ and take a single reciprocal at the end | $O(\log n)$ | $O(1)$ | Returns $4.0$ for $n = -2$ and then $0.25$, matching this lesson's result; the reciprocal simply lands at the other end of the pipeline. |
+| Linear repeated multiplication | Multiply the base by itself $n$ times | $O(n)$ | $O(1)$ | Ten multiplications to reach $1024.0$ — indistinguishable here, but at $n = 2147483647$ it is roughly $2 \times 10^8$ times more work than the bit scan. |

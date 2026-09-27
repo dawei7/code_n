@@ -127,6 +127,21 @@ $$
 | 5 | `"nat"` | `"ant"` | Yes | `{"aet": [...], "ant": ["tan", "nat"]}` |
 | 6 | `"bat"` | `"abt"` | No (New) | `{"aet": [...], "ant": [...], "abt": ["bat"]}` |
 
+### Signature Comparison Across the Six Words
+
+The two signature formulations of section 2 are equivalent, and this table lets them be checked against each other directly. Because only five distinct letters — `a`, `b`, `e`, `n`, `t` — occur anywhere in this input, each frequency vector is fully described by those five counts; the remaining twenty-one lowercase letters have count $0$ in every word.
+
+| Step | Word | Counts $(a, b, e, n, t)$ | Sorted-character key | Bucket contents after insertion |
+|:---:|:---|:---:|:---:|:---|
+| 1 | `"eat"` | $(1, 0, 1, 0, 1)$ | `"aet"` | `{"aet": ["eat"]}` |
+| 2 | `"tea"` | $(1, 0, 1, 0, 1)$ | `"aet"` | `{"aet": ["eat", "tea"]}` |
+| 3 | `"tan"` | $(1, 0, 0, 1, 1)$ | `"ant"` | `{"aet": ["eat", "tea"], "ant": ["tan"]}` |
+| 4 | `"ate"` | $(1, 0, 1, 0, 1)$ | `"aet"` | `{"aet": ["eat", "tea", "ate"], "ant": ["tan"]}` |
+| 5 | `"nat"` | $(1, 0, 0, 1, 1)$ | `"ant"` | `{"aet": ["eat", "tea", "ate"], "ant": ["tan", "nat"]}` |
+| 6 | `"bat"` | $(1, 1, 0, 0, 1)$ | `"abt"` | `{"aet": ["eat", "tea", "ate"], "ant": ["tan", "nat"], "abt": ["bat"]}` |
+
+The two columns agree on every row: they place `"eat"`, `"tea"`, and `"ate"` together despite three different letter orders, and they separate `"eat"` from `"bat"` even though both need exactly one `a` and one `t`. The distinguishing count is the third letter, and both signatures capture it — the sorted key through its middle character, the vector through its `e` versus `b` slot.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -143,6 +158,17 @@ $$
 - **Mutable Keys in Hash Maps:** Using a list `[0]*26` directly as a dictionary key causes a runtime `TypeError: unhashable type: 'list'`. Converting the count to an immutable tuple `tuple(count)` makes it hashable.
 - **Empty Strings and Single Letters:** An empty string `""` has canonical key `""`. Single letters `"a"` have key `"a"`. Both are handled uniformly by sorting or count tuples without special casing.
 
+### Boundary Cases for the Signature
+
+| Scenario | Input | Required output | What it establishes about the key |
+|:---|:---|:---|:---|
+| Empty word only | `[""]` | `[[""]]` | The key of an empty string is the empty signature, which is itself a legal key; no guard is needed for zero-length words. |
+| Single letter | `["a"]` | `[["a"]]` | A multiset of size one still has a well-defined key, so the shortest non-empty word groups exactly like any other. |
+| Repeated identical words | `["a", "a", "a"]` | `[["a", "a", "a"]]` | All three map to the same key, so one bucket holds three entries; grouping is by key equality and does not de-duplicate the input. |
+| Same letters, different counts | `["ab", "aab", "bba", "ba"]` | `[["ab", "ba"], ["aab"], ["bba"]]` | The keys are `"ab"`, `"aab"`, `"abb"`, `"ab"`: `"aab"` and `"abb"` use the same two letters but differ in frequency, so frequency — not the letter set — is what the signature must encode. |
+| Duplicates mixed with empty strings | `["", "abc", "bca", "", "cab", "foo", "ofo", "abc"]` | `[["", ""], ["abc", "bca", "cab", "abc"], ["foo", "ofo"]]` | The empty key collects both empty strings, the repeated `"abc"` stays as two separate entries in its bucket, and the total number of words is preserved across all buckets. |
+| Maximum word length | one word of one hundred `z` characters | that single word in its own group | Any signature must handle a count as large as $100$ in a single slot; a 26-slot vector stores it as `100`, and the sorted key stores it as a run of one hundred identical characters. |
+
 ---
 
 ## 7. Complexity Derivation
@@ -151,3 +177,12 @@ $$
   - With Sorting: $O(N \cdot K \log K)$, where $N$ is the number of strings and $K$ is the maximum string length.
   - With 26-tuple Frequency Counting: $O(N \cdot K)$. Counting frequencies takes $O(K)$ time per word, and hashing a 26-element tuple takes $O(26) = O(1)$ time.
 - **Auxiliary Space Complexity:** $O(N \cdot K)$ to store the hash map containing all words and signatures.
+
+### Alternative Formulations
+
+| Approach | Key construction | Time | Auxiliary space | Tradeoff or failure mode |
+|:---|:---|:---|:---|:---|
+| Sorted-character key | Order the characters of each word alphabetically | $O(N \cdot K \log K)$ | $O(N \cdot K)$ | Keys are directly readable, which makes debugging simple, but every word pays a sort; on $10^4$ words of length $100$ that is the dominant cost. |
+| 26-slot frequency vector | Count letters into a fixed-width tuple | $O(N \cdot K)$ | $O(N \cdot K)$ | Fastest of the three and language-agnostic, but the key is opaque, and a mutable list in place of an immutable tuple stops being hashable. |
+| Prime-product signature | Assign each letter a distinct prime and multiply them | $O(N \cdot K)$ | $O(N)$ | Elegant in theory because equal products imply equal multisets, but the product for a $100$-character word exceeds $64$-bit range, so it silently overflows in fixed-width integer languages. |
+| Pairwise comparison grouping | Compare each word with a representative of every open group | $O(N^2 \cdot K)$ | $O(N \cdot K)$ | Quadratic in the number of words; at the constraint ceiling of $10^4$ strings it becomes the bottleneck the hash map exists to remove. |

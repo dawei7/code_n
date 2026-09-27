@@ -109,6 +109,35 @@ Both characters match the second `'*'` at $j = 3$:
 - $j = 4$ (`b`): $s[4] == \text{'b'}$. Take diagonal $DP[4][3] = \text{True}$!
 - Terminal state: $DP[5][4] = \text{True}$.
 
+### Cell-by-Cell Recurrence Derivation
+
+The matrix in the next section records only the settled truth values. This table records *why* each interior cell holds its value: which rule fired for the pair of characters at that cell, and which already-solved cells that rule was allowed to consult.
+
+| Cell $(i, j)$ | $s[i-1]$ versus $p[j-1]$ | Rule invoked | Source cells consulted | $DP[i][j]$ |
+|:---:|:---|:---|:---|:---:|
+| $(1, 1)$ | `'a'` vs `'*'` | Star: consume nothing or consume at least one character | $DP[1][0] = \text{F}$, $DP[0][1] = \text{T}$ | **T** |
+| $(1, 2)$ | `'a'` vs `'a'` | Literal agreement, so take the diagonal | $DP[0][1] = \text{T}$ | **T** |
+| $(1, 3)$ | `'a'` vs `'*'` | Star disjunction | $DP[1][2] = \text{T}$, $DP[0][3] = \text{F}$ | **T** |
+| $(1, 4)$ | `'a'` vs `'b'` | Literal disagreement, and `'b'` is not `'?'` | none; cell stays $\text{F}$ | F |
+| $(2, 1)$ | `'d'` vs `'*'` | Star disjunction | $DP[2][0] = \text{F}$, $DP[1][1] = \text{T}$ | **T** |
+| $(2, 2)$ | `'d'` vs `'a'` | Literal disagreement | none; cell stays $\text{F}$ | F |
+| $(2, 3)$ | `'d'` vs `'*'` | Star disjunction | $DP[2][2] = \text{F}$, $DP[1][3] = \text{T}$ | **T** |
+| $(2, 4)$ | `'d'` vs `'b'` | Literal disagreement | none; cell stays $\text{F}$ | F |
+| $(3, 1)$ | `'c'` vs `'*'` | Star disjunction | $DP[3][0] = \text{F}$, $DP[2][1] = \text{T}$ | **T** |
+| $(3, 2)$ | `'c'` vs `'a'` | Literal disagreement | none; cell stays $\text{F}$ | F |
+| $(3, 3)$ | `'c'` vs `'*'` | Star disjunction | $DP[3][2] = \text{F}$, $DP[2][3] = \text{T}$ | **T** |
+| $(3, 4)$ | `'c'` vs `'b'` | Literal disagreement | none; cell stays $\text{F}$ | F |
+| $(4, 1)$ | `'e'` vs `'*'` | Star disjunction | $DP[4][0] = \text{F}$, $DP[3][1] = \text{T}$ | **T** |
+| $(4, 2)$ | `'e'` vs `'a'` | Literal disagreement | none; cell stays $\text{F}$ | F |
+| $(4, 3)$ | `'e'` vs `'*'` | Star disjunction | $DP[4][2] = \text{F}$, $DP[3][3] = \text{T}$ | **T** |
+| $(4, 4)$ | `'e'` vs `'b'` | Literal disagreement | none; cell stays $\text{F}$ | F |
+| $(5, 1)$ | `'b'` vs `'*'` | Star disjunction | $DP[5][0] = \text{F}$, $DP[4][1] = \text{T}$ | **T** |
+| $(5, 2)$ | `'b'` vs `'a'` | Literal disagreement | none; cell stays $\text{F}$ | F |
+| $(5, 3)$ | `'b'` vs `'*'` | Star disjunction | $DP[5][2] = \text{F}$, $DP[4][3] = \text{T}$ | **T** |
+| $(5, 4)$ | `'b'` vs `'b'` | Literal agreement, so take the diagonal | $DP[4][3] = \text{T}$ | **T (Result)** |
+
+Two structural facts are visible in this table. First, the second `'*'` at column 3 stays true for every row from $i = 1$ onward, because the upward branch $DP[i-1][3]$ re-supplies truth once the star has matched at least the prefix `"ad"`. Second, every false cell in column 4 except the last is a plain literal disagreement, which is exactly why the answer hinges on the single diagonal read at $(5, 4)$.
+
 ---
 
 ## 4. Complete Execution Trace
@@ -140,9 +169,37 @@ Both characters match the second `'*'` at $j = 3$:
 - **Consecutive Stars:** A pattern with consecutive stars like `****` is equivalent to a single `*`. Collapsing consecutive stars into one star reduces redundant table columns.
 - **Empty String Matches:** Leading stars can match the empty string (e.g. $s = \text{""}, p = \text{"*"}$). Row 0 initialization must correctly propagate `True` across all consecutive leading stars.
 
+### Boundary and Degenerate Inputs
+
+Each row below is a genuinely different geometric situation for the table: an empty prefix, a star-only pattern, a pattern that runs out of columns, or a star whose split cannot be completed.
+
+| Input pair | Structural situation | Governing cell or rule | Required result |
+|:---|:---|:---|:---:|
+| $s = \text{""}$, $p = \text{""}$ | Both prefixes are empty | Base cell $DP[0][0]$ | `true` |
+| $s = \text{""}$, $p = \text{"***"}$ | Pattern is stars only, string is empty | Row 0 propagates truth rightward: $DP[0][1] = DP[0][2] = DP[0][3] = \text{T}$ | `true` |
+| $s = \text{""}$, $p = \text{"a*"}$ | Empty string, but a literal appears first | $DP[0][1]$ stays $\text{F}$ because `'a'` is not a star, so the later star at column 2 has no true neighbour to inherit | `false` |
+| $s = \text{"a"}$, $p = \text{""}$ | Pattern exhausted, string not | Column 0 is $\text{F}$ for every $i \ge 1$ by definition | `false` |
+| $s = \text{"aa"}$, $p = \text{"a"}$ | The pattern has one column fewer than needed | Row 1 agrees on the diagonal, but row 2 has no column 2 to read, so $DP[2][1]$ stays $\text{F}$ | `false` |
+| $s = \text{"aa"}$, $p = \text{"*"}$ | One star must absorb two characters | The upward branch $DP[i-1][j]$ carries truth down the single star column | `true` |
+| $s = \text{"z"}$, $p = \text{"?"}$ | Question mark consumes exactly one character | $(1, 1)$ reads the diagonal $DP[0][0] = \text{T}$ | `true` |
+| $s = \text{"acdcb"}$, $p = \text{"a*c?b"}$ | A plausible star split that cannot be finished | The star may absorb `"cd"` or `"cdc"`, but the terminal `?b` then has the wrong characters left, so $DP[5][5] = \text{F}$ | `false` |
+
+The third and fifth rows are the ones most often misjudged: a star is only as strong as the prefix to its left, and a pattern shorter than the string can still succeed — but only through a star, never through literals alone.
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(M \cdot N)$, where $M = |s|$ and $N = |p|$. The table contains $(M + 1) \times (N + 1)$ cells, each computed in $O(1)$ time.
 - **Auxiliary Space Complexity:** $O(M \cdot N)$ for the full 2D table, which can be optimized to $O(N)$ space by maintaining only the previous and current rows.
+
+### Alternative Formulations
+
+| Formulation | State carried | Time | Auxiliary space | Behaviour on $s = \text{"adceb"}$, $p = \text{"*a*b"}$ |
+|:---|:---|:---|:---|:---|
+| Full $(M+1) \times (N+1)$ table | Every prefix-pair truth value | $O(M \cdot N)$ | $O(M \cdot N)$ | Produces the matrix of section 4 and returns $DP[5][4] = \text{True}$. |
+| Two rolling rows | The row above plus the row being built | $O(M \cdot N)$ | $O(N)$ | Still returns `true`, because the star rule reads only the row above and the cell to its left. |
+| Memoised recursion over $(i, j)$ | The same truth values, computed on demand | $O(M \cdot N)$ distinct states, recursion depth $O(M + N)$ | $O(M \cdot N)$ memo plus call stack | Returns `true` by unwinding from $(5, 4)$ along literal-agreement diagonals; risks exhausting the stack at the $2000$-character limit. |
+| Collapse runs of stars, then single-star backtracking | The most recent star position and how much of $s$ that star currently absorbs | $O(M \cdot N)$ character comparisons in the worst case | $O(1)$ | Returns `true`: the star at position 1 absorbs `"dce"` on its first viable attempt, so no second retry is triggered. |
+
+The last formulation endures the $2000$-character upper bound most comfortably, but only because it discards the whole table and reasons about one live star at a time; the table is what makes that shortcut provable rather than merely plausible.

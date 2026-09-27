@@ -63,6 +63,21 @@ We multiply $\text{num1} = \text{"123"}$ and $\text{num2} = \text{"456"}$ using 
 
 ### Phase 1: Bucket Accumulation
 
+The target slot of every one of the $M \times N = 9$ digit products can be read off directly, because
+the slot index depends only on $i + j + 1$. Pairs sharing the same anti-diagonal $i + j$ therefore
+share a bucket, which is exactly what makes the accumulation a convolution.
+
+| $\text{num1}[i] \to$ | $j = 0$: $4$ (weight $10^{2}$) | $j = 1$: $5$ (weight $10^{1}$) | $j = 2$: $6$ (weight $10^{0}$) |
+|:---|:---:|:---:|:---:|
+| $i = 0$: $1$ (weight $10^{2}$) | $1 \times 4 = 4$ into slot $1$ | $1 \times 5 = 5$ into slot $2$ | $1 \times 6 = 6$ into slot $3$ |
+| $i = 1$: $2$ (weight $10^{1}$) | $2 \times 4 = 8$ into slot $2$ | $2 \times 5 = 10$ into slot $3$ | $2 \times 6 = 12$ into slot $4$ |
+| $i = 2$: $3$ (weight $10^{0}$) | $3 \times 4 = 12$ into slot $3$ | $3 \times 5 = 15$ into slot $4$ | $3 \times 6 = 18$ into slot $5$ |
+
+Reading the table by anti-diagonal reproduces the bucket sums: slot $1$ collects $4$; slot $2$ collects
+$5 + 8 = 13$; slot $3$ collects $6 + 10 + 12 = 28$; slot $4$ collects $12 + 15 = 27$; and slot $5$
+collects $18$. Slot $0$ receives no product at all, which is why it is reserved for a final carry and
+why the buffer must be $M + N$ long rather than $M + N - 1$.
+
 - **Position 5 ($i + j + 1 = 5 \implies i = 2, j = 2$):**
   - $\text{num1}[2] \times \text{num2}[2] = 3 \times 6 = 18$.
   - $\text{res}[5] = 18$.
@@ -149,6 +164,21 @@ Normalized array: $[0, 5, 6, 0, 8, 8]$.
 - **Multiplying by Zero:** If either input is $\text{"0"}$ (e.g. $\text{"0"} \times \text{"456"}$), all array buckets remain $0$. Failing to handle the all-zero case would emit an empty string `""` instead of $\text{"0"}$.
 - **Leading Zeros in Buffer:** A product of length $M + N$ may have $M + N - 1$ digits (e.g. $10 \times 10 = 100$, occupying 3 digits in a 4-slot array). Stripping leading zeros before joining prevents outputs like $\text{"056088"}$.
 - **Index Arithmetic Confusion:** Placing products directly at $i + j$ without allocating $M + N$ slots causes index out-of-bounds or misaligned place values. Slot $i + j + 1$ correctly reserves slot 0 for the final carry.
+
+### Boundary instances and what each one measures
+
+The buffer length below is $M + N$, and the raw bucket column is the largest unnormalized value any single slot ever holds — the quantity the carry pass must reduce to a digit.
+
+| $\text{num1}$ | $\text{num2}$ | $M + N$ | Largest raw bucket | Slots that carry | Product digits | Result | Why it is handled |
+|:---|:---|:---:|:---:|:---:|:---:|:---|:---|
+| `"2"` | `"3"` | $2$ | $6$ | $0$ | $1$ | `"6"` | A single product already below $10$ needs no carry; slot $0$ stays zero and is stripped |
+| `"1002"` | `"304"` | $7$ | $8$ | $0$ | $6$ | `"304608"` | Interior zero digits still contribute $0$ into their slots, so place value is preserved without any special handling |
+| `"123"` | `"456"` | $6$ | $28$ | $4$ | $5$ | `"56088"` | Four slots exceed $9$; the buffer still fits because slot $0$ is only needed for a leading carry that never arrives |
+| `"999"` | `"999"` | $6$ | $243$ | $5$ | $6$ | `"998001"` | The heaviest accumulation in a three-digit case: a single bucket reaches $243$, and the carry ripples through every remaining slot |
+| `"123456789"` | `"98765"` | $14$ | $255$ | $13$ | $14$ | `"12193209765585"` | Unequal lengths do not change the mapping; the product occupies all $M + N$ slots, so no leading zero is stripped |
+| `"0"` | `"999"` | $4$ | $0$ | $0$ | $1$ | `"0"` | Every bucket stays $0$, so reading the buffer literally would emit `"000"`; the all-zero case must collapse to a single `"0"` |
+| `"999"` | `"0"` | $4$ | $0$ | $0$ | $1$ | `"0"` | The mirror of the previous row, confirming that the zero rule cannot depend on operand order |
+| $200$ nines | $200$ nines | $400$ | $16200$ | $399$ | $400$ | $199$ nines, then $8$, then $199$ zeros, then $1$ | The maximum legal case: one bucket reaches $16200$, and the carry chain runs through almost the whole buffer |
 
 ---
 

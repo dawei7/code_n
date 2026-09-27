@@ -115,6 +115,32 @@ We trace the candidate evaluation and placement for the first empty cell in the 
 | 8 | No | **Yes** | **Yes** | No | Pruned immediately |
 | 9 | No | No | **Yes** | No | Pruned immediately |
 
+### What Each Branch of the Search Actually Costs
+
+Legality is not the same as usefulness: a legal digit can still open a vast dead subtree. The
+next table follows the accepted digit at each decisive ply of the successful path and records
+how many recursive placements the rejected candidates consume before rollback discards them.
+
+| Ply $k$ | Blank $(r, c)$ | Rejected candidates (subtree calls spent) | Accepted digit | Subtree calls under the accepted digit |
+|:---:|:---:|:---|:---:|:---:|
+| 0 | $(0, 2)$ | $1$ ($333$ calls), $2$ ($1874$ calls) | $4$ | $2001$ |
+| 1 | $(0, 3)$ | $2$ ($40$) | $6$ | $1960$ |
+| 2 | $(0, 5)$ | $2$ ($34$) | $8$ | $1925$ |
+| 3 | $(0, 6)$ | $1$ ($1207$) | $9$ | $717$ |
+| 6 | $(1, 1)$ | $2$ ($434$) | $7$ | $280$ |
+| 12 | $(2, 3)$ | $2$ ($102$) | $3$ | $172$ |
+| 17 | $(3, 1)$ | $1$ ($44$), $2$ ($60$) | $5$ | $63$ |
+| 18 | $(3, 2)$ | $1$ ($23$) | $9$ | $39$ |
+| 34 | $(6, 0)$ | $3$ ($6$) | $9$ | $17$ |
+| 37 | $(6, 4)$ | none: row, column and box leave exactly one digit | $3$ | $14$ |
+| 50 | $(8, 6)$ | none: the final blank | $1$ | $1$ (the terminating base-case call) |
+
+The accounting closes exactly: $1 + 333 + 1874 + 2001 = 4209$ recursive placements for the whole
+solve, against $51$ blanks. Well over half of that total — $2207$ calls — is spent proving that
+placing $1$ or $2$ at $(0,2)$ cannot ever complete the grid, which is exactly the work that
+rollback throws away. After ply $19$ the search is nearly forced: only ply $34$ still rejects a
+candidate, and every other ply up to $50$ accepts its first legal digit.
+
 ### Solution Verification Snapshot (First 3 Rows)
 
 ```text
@@ -138,6 +164,19 @@ Row 2:  [1, 9, 8 | 3, 4, 2 | 5, 6, 7]  -> Digits 1-9 unique
 - **Failing to Revert State on Backtrack:** Forgetting to clear `board[r][c] = '.'` or forgetting to remove $d$ from the used sets poisons subsequent branch evaluations with stale constraints.
 - **Deep Recursion Limit:** A board with up to 64 empty cells has recursion depth at most 64, well within default Python stack limits (1000).
 - **Early Termination Propagation:** Once the base case returns $\text{True}$, returning $\text{True}$ immediately up the call stack prevents further backtracking and preserves the solved board in place.
+
+### Boundary instances solved by the identical procedure
+
+No case-specific branch is needed for any of these; the table records what each one stresses and
+the recursion count it produces, so the same procedure is seen to cover the whole legal domain.
+
+| Instance | Blanks $E$ | Recursive placements | What it stresses | Why no special case is required |
+|:---|:---:|:---:|:---|:---|
+| Already solved grid | $0$ | $1$ | An empty blank list | The base case fires before any candidate is examined, so the grid is returned exactly as given |
+| Single hole at $(8,8)$ | $1$ | $2$ | One forced placement | Row 8, column 8 and the bottom-right box together leave only $9$, which is placed and immediately accepted |
+| One hole per row | $9$ | $10$ | Nine independent forced placements | Blanks $(0,0), (1,1), \dots, (8,8)$ admit the single digits $5, 7, 8, 7, 5, 4, 2, 3, 9$, so no rejection ever occurs |
+| Sparse grid | $45$ | $83$ | Broad branching with many legal digits per cell | Even though each blank initially has several legal digits, forward checking rejects them at the next ply, so the search never explodes |
+| Digit-remapped grid | $9$ | $10$ | A different completed grid | The clues describe a relabelled completion whose row 0 is `576432198`; the constraints alone must rediscover it, because nothing in the state records a memorised answer |
 
 ---
 

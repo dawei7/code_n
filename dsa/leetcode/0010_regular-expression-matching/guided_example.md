@@ -121,6 +121,23 @@ Row 2: `[F, F, F, F, T, F]`.
 
 Terminal entry $DP[3][5] = \text{True}$.
 
+### Dependency Audit for the Decisive Cells
+
+Each cell below lists the exact subproblems the recurrence consulted, so that the propagation of the single terminal $\text{True}$ back through the grid can be checked rather than trusted:
+
+| Cell $(i, j)$ | String Prefix / Pattern Prefix | Rule Applied | Subproblems Consulted | Resolved Value |
+|:---:|:---|:---|:---|:---:|
+| $(0, 2)$ | $\epsilon$ / `"c*"` | Star at the empty string | Zero copies: $DP[0][0] = \text{True}$ | $\text{True}$ |
+| $(0, 4)$ | $\epsilon$ / `"c*a*"` | Star at the empty string | Zero copies: $DP[0][2] = \text{True}$ | $\text{True}$ |
+| $(1, 3)$ | `"a"` / `"c*a"` | Literal token, exact match | Diagonal: $DP[0][2] = \text{True}$ | $\text{True}$ |
+| $(1, 4)$ | `"a"` / `"c*a*"` | Star, both branches | Zero: $DP[1][2] = \text{False}$; one-or-more: $s[0] = p[2] = \text{'a'}$ and $DP[0][4] = \text{True}$ | $\text{True}$ |
+| $(2, 4)$ | `"aa"` / `"c*a*"` | Star, one-or-more branch | Zero: $DP[2][2] = \text{False}$; one-or-more: $s[1] = p[2] = \text{'a'}$ and $DP[1][4] = \text{True}$ | $\text{True}$ |
+| $(3, 2)$ | `"aab"` / `"c*"` | Star, both branches | Zero: $DP[3][0] = \text{False}$; one-or-more: $s[2] = \text{'b'} \ne p[0] = \text{'c'}$ | $\text{False}$ |
+| $(3, 4)$ | `"aab"` / `"c*a*"` | Star, both branches | Zero: $DP[3][2] = \text{False}$; one-or-more: $s[2] = \text{'b'} \ne p[2] = \text{'a'}$ | $\text{False}$ |
+| $(3, 5)$ | `"aab"` / `"c*a*b"` | Literal token, exact match | Diagonal: $DP[2][4] = \text{True}$ | $\text{True}$ (terminal) |
+
+The audit shows why two `'a'` characters can be absorbed by one starred token while one `'b'` cannot: the one-or-more branch keeps the *same* column $j$ and moves up one row, so a single `"a*"` can consume any run of `'a'` characters, whereas `"c*"` can never consume `'b'`.
+
 ---
 
 ## 4. Complete Execution Trace
@@ -149,6 +166,18 @@ Terminal entry $DP[3][5] = \text{True}$.
 - **Regex `*` vs Wildcard `*`:** In LeetCode 44 (Wildcard Matching), `*` is a standalone wild sequence. In LeetCode 10 (Regex), `*` can never appear alone at the start of a pattern; it always qualifies the preceding token $p[j-2]$.
 - **Zero-Occurrence Lookback:** When evaluating a star, forgetting to check $DP[i][j-2]$ makes it impossible to discard unused patterns like `"c*"`.
 - **Dot-Star Pattern (`".*"`):** When $p[j-2] == \text{'.'}$, the star can match any sequence of arbitrary characters because $s[i-1]$ always satisfies the character match condition.
+
+The boundary instances below are the ones that separate a working recurrence from a plausible-looking one; each is settled by naming the cell that decides it:
+
+| Boundary Scenario | Instance | Decisive Cell and Its Dependency | Result | Why the Recurrence Is Right |
+|:---|:---|:---|:---:|:---|
+| Pattern shorter than the string | $s = \text{"aa"}$, $p = \text{"a"}$ | $DP[2][1]$ reads the diagonal $DP[1][0] = \text{False}$ | `false` | A literal token consumes exactly one character, so the second `'a'` has nothing left to match against |
+| A matching prefix is not sufficient | $s = \text{"ab"}$, $p = \text{".*c"}$ | $DP[2][3]$ compares $s[1] = \text{'b'}$ with $p[2] = \text{'c'}$ and finds no match, even though $DP[2][2] = \text{True}$ | `false` | The answer is the full-corner cell $DP[M][N]$; $DP[2][2] = \text{True}$ only certifies that `".*"` consumed every character, not that the pattern as a whole is exhausted |
+| Leading star takes zero copies | $s = \text{"b"}$, $p = \text{"a*b"}$ | $DP[0][2] = DP[0][0] = \text{True}$, then $DP[1][3]$ reads that diagonal | `true` | The `"a*"` pair vanishes at the empty prefix, which the row-0 base case must therefore mark $\text{True}$ before any string character is processed |
+| Trailing star takes zero copies | $s = \text{"a"}$, $p = \text{"ab*"}$ | $DP[1][3]$ falls through the zero-copy branch to $DP[1][1] = \text{True}$ | `true` | Because `'b'` never occurs in $s$, the one-or-more branch is unavailable and only the two-step lookback $DP[i][j-2]$ can resolve the cell |
+| A single star absorbing a long run | $s = \text{"aaaaaaaaaaaaaaaaaaaa"}$ (20 characters), $p = \text{"a*"}$ | $DP[0][2] = \text{True}$, then $DP[i][2] = DP[i-1][2]$ for $i = 1, \dots, 20$ | `true` | The one-or-more branch keeps column $2$ fixed and steps up one row, so truth flows down the column for as many rows as the run is long |
+| Many starred pairs, one real match | $s = \text{"j"}$, $p = \text{"a*b*c*d*e*f*g*h*i*j*"}$ | $DP[0][20] = \text{True}$ by repeated zero-copy lookbacks, and $DP[1][20]$ uses the one-or-more branch on $s[0] = p[18] = \text{'j'}$ | `true` | Nine starred tokens are discarded without consuming input, and only the final `"j*"` spends a character |
+| Stars that must cooperate | $s = \text{"aaa"}$, $p = \text{"ab*a*c*a"}$ | $DP[3][8]$ reads the diagonal $DP[2][7] = \text{True}$, which comes from the zero-copy branch $DP[2][5] = \text{True}$, which comes from the one-or-more branch $DP[1][5] = \text{True}$ | `true` | Spending all three `'a'` characters on `"a*"` would leave nothing for the trailing literal `'a'`; because the disjunction also keeps $DP[i][j-2]$, `"c*"` may vanish and the final `'a'` still finds a character |
 
 ---
 

@@ -142,6 +142,23 @@ Search finishes. Exactly 2 valid configurations found.
 | Row 3 | $(3, 1)$ | $\{2, 0, 3, 1\}$ | $\{2, 1, 5, 4\}$ | $\{-2, 1, -1, 2\}$ | **Emits Solution 2 (`[2, 0, 3, 1]`)** |
 | Row 0 | $(0, 3)$ | $\{3\}$ | $\{3\}$ | $\{-3\}$ | Dead end (Symmetric to $(0, 0)$) |
 
+### Candidate Audit at Row 2
+
+The trace records what happened to each row-1 child, but the interesting step is row 2, where the two live branches meet opposite fates. At row 2 the threat sets are frozen by the two queens already placed, so every column can be tested against all three constraints at once.
+
+| Row-1 state | Columns in use | Anti-diagonals $r+c$ | Main diagonals $r-c$ | Candidate $c$ | Column clash? | Anti-diagonal clash $2 + c$? | Main-diagonal clash $2 - c$? | Verdict |
+|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| $(0,0), (1,2)$ | $\{0, 2\}$ | $\{0, 3\}$ | $\{0, -1\}$ | 0 | Yes, $0 \in \{0, 2\}$ | No ($2$) | No ($2$) | Rejected |
+| $(0,0), (1,2)$ | $\{0, 2\}$ | $\{0, 3\}$ | $\{0, -1\}$ | 1 | No | Yes, $3 \in \{0, 3\}$ | No ($1$) | Rejected |
+| $(0,0), (1,2)$ | $\{0, 2\}$ | $\{0, 3\}$ | $\{0, -1\}$ | 2 | Yes, $2 \in \{0, 2\}$ | No ($4$) | Yes, $0 \in \{0, -1\}$ | Rejected |
+| $(0,0), (1,2)$ | $\{0, 2\}$ | $\{0, 3\}$ | $\{0, -1\}$ | 3 | No | No ($5$) | Yes, $-1 \in \{0, -1\}$ | Rejected |
+| $(0,1), (1,3)$ | $\{1, 3\}$ | $\{1, 4\}$ | $\{-1, -2\}$ | 0 | No | No ($2$) | No ($2$) | **Accepted, queen at $(2, 0)$** |
+| $(0,1), (1,3)$ | $\{1, 3\}$ | $\{1, 4\}$ | $\{-1, -2\}$ | 1 | Yes, $1 \in \{1, 3\}$ | No ($3$) | No ($1$) | Rejected |
+| $(0,1), (1,3)$ | $\{1, 3\}$ | $\{1, 4\}$ | $\{-1, -2\}$ | 2 | No | Yes, $4 \in \{1, 4\}$ | No ($0$) | Rejected |
+| $(0,1), (1,3)$ | $\{1, 3\}$ | $\{1, 4\}$ | $\{-1, -2\}$ | 3 | Yes, $3 \in \{1, 3\}$ | No ($5$) | Yes, $-1 \in \{-1, -2\}$ | Rejected |
+
+The left block is the clearest illustration of why exhaustive checking at each row pays for itself: the four candidates are rejected for three distinct reasons — a column clash at $c = 0$, an anti-diagonal clash at $c = 1$, a column clash *and* a main-diagonal clash together at $c = 2$, and a main-diagonal clash at $c = 3$. A pruning rule that tracked only columns would have accepted $c = 1$ and $c = 3$ and then discovered the conflict one row too late. The right block shows the same audit producing a single survivor, and that survivor is the queen at $(2, 0)$ that leads to the first recorded board.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -158,9 +175,31 @@ Search finishes. Exactly 2 valid configurations found.
 - **Negative Diagonal Indices:** $r - c$ ranges from $-(n - 1)$ to $n - 1$. While Python sets naturally handle negative keys, fixed arrays require adding an offset $n$ (`diag[r - c + n]`).
 - **Bitmask Acceleration:** For $n \le 16$, the three conflict sets can be represented as integer bitmasks, with threat testing and bit flipping performed via fast bitwise operations (`cols | (1 << c)`).
 
+### Board Sizes and Their Solution Counts
+
+| Board size $n$ | Required output | Why that many |
+|:---:|:---|:---|
+| 1 | `[["Q"]]` — one board | A single queen shares a row, column, and diagonal with nobody, so the only configuration is immediately accepted. |
+| 2 | `[]` — no boards | Rows 0 and 1 must take distinct columns, leaving only the assignments $[0, 1]$ and $[1, 0]$; the first puts both queens on the main diagonal $r - c = 0$ and the second puts both on the anti-diagonal $r + c = 1$. |
+| 3 | `[]` — no boards | All $3! = 6$ column assignments are rejected, so the impossibility is total rather than a matter of missing a corner case. |
+| 4 | 2 boards | The two surviving assignments are column lists $[1, 3, 0, 2]$ and $[2, 0, 3, 1]$, exactly the two boards this lesson's search records. |
+| 6 | 4 boards | The $6! = 720$ column assignments prune down to four complete boards, all listed in the package cases. |
+| 9 | 352 boards | The largest board the constraints permit still yields $352$ distinct configurations, which is why the answer is returned as a list of boards rather than a count. |
+
+The jump from $n = 2$ and $n = 3$ (impossible) to $n = 4$ (two boards) is the reason the search cannot be replaced by a formula: existence is not monotone in $n$, and the counting sequence for this puzzle has no closed form, so enumeration with pruning is the method the constraints demand.
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(n!)$. Row 0 has $n$ choices, Row 1 has at most $n-1$, Row 2 has at most $n-2$. Diagonal constraints prune the tree much faster than $n!$. For $n=4$, only 8 leaf states are examined.
 - **Auxiliary Space Complexity:** $O(n)$ to store the recursion stack and conflict sets of size $O(n)$.
+
+### Alternative Formulations
+
+| Approach | Conflict state | Time | Auxiliary space | Behaviour on $n = 4$ |
+|:---|:---|:---|:---|:---|
+| Column and diagonal sets (this lesson) | Three hash sets keyed by $c$, $r + c$, and $r - c$ | $O(n!)$ node visits before pruning | $O(n)$ for the sets plus the recursion | Walks the tree in section 3, rejecting row-2 candidate 1 by the anti-diagonal test and candidate 3 by the main-diagonal test. |
+| Three boolean arrays | Offset indices, with $r - c + n$ used for the main diagonals | $O(n!)$ node visits before pruning | $O(n)$ | Identical tree; the main-diagonal values $\{0, -1\}$ in the left block above are stored at array slots $4$ and $3$. |
+| Three integer bitmasks | One bit per column, per anti-diagonal, and per main diagonal | $O(n!)$ node visits before pruning | $O(1)$ beyond the recursion | Identical tree using a 4-bit column mask and two 7-bit diagonal masks, with a single combined test replacing three membership queries. |
+| Mutable board rescanned at every step | The partial board itself | $O(n! \cdot n^2)$ before pruning, since each trial placement rescans earlier rows | $O(n^2)$ for the board | Still finds both boards, but re-derives conflicts that the sets and masks already hold, and the reconstruction cost is paid at every node rather than once at depth $n$. |

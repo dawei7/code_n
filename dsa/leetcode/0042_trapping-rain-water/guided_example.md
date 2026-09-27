@@ -105,6 +105,27 @@ Total trapped water: $1 + 1 + 2 + 1 + 1 = 6$.
 | 10 | 2 | 3 | 2 | 2 | $2 - 2 = 0$ | 6 |
 | 11 | 1 | 3 | 1 | 1 | $1 - 1 = 0$ | 6 |
 
+### Two-Pointer Walk with Constant Auxiliary Space
+
+The previous table uses the precomputed arrays. The same total must emerge from the pointer method, and the next table records the frontier state before each decision so the elimination rule can be checked column by column. Here $\text{left\_max}$ and $\text{right\_max}$ are the scalar running maxima held by the two pointers.
+
+| Step | $l$ | $r$ | $\text{left\_max}$ before | $\text{right\_max}$ before | Comparison | Column retired | Height | Water added | Cumulative |
+|:---:|:---:|:---:|:---:|:---:|:---|:---:|:---:|:---:|:---:|
+| 1 | 0 | 11 | 0 | 0 | $0 \le 0$, so the left side is the bottleneck | $l = 0$ | 0 | $0 - 0 = 0$ | 0 |
+| 2 | 1 | 11 | 0 | 0 | $0 \le 0$, left side | $l = 1$ | 1 | $1 - 1 = 0$ | 0 |
+| 3 | 2 | 11 | 1 | 0 | $1 \le 0$ is false, so the right side is the bottleneck | $r = 11$ | 1 | $1 - 1 = 0$ | 0 |
+| 4 | 2 | 10 | 1 | 1 | $1 \le 1$, left side | $l = 2$ | 0 | $1 - 0 = 1$ | 1 |
+| 5 | 3 | 10 | 1 | 1 | $1 \le 1$, left side | $l = 3$ | 2 | $2 - 2 = 0$ | 1 |
+| 6 | 4 | 10 | 2 | 1 | $2 \le 1$ is false, right side | $r = 10$ | 2 | $2 - 2 = 0$ | 1 |
+| 7 | 4 | 9 | 2 | 2 | $2 \le 2$, left side | $l = 4$ | 1 | $2 - 1 = 1$ | 2 |
+| 8 | 5 | 9 | 2 | 2 | $2 \le 2$, left side | $l = 5$ | 0 | $2 - 0 = 2$ | 4 |
+| 9 | 6 | 9 | 2 | 2 | $2 \le 2$, left side | $l = 6$ | 1 | $2 - 1 = 1$ | 5 |
+| 10 | 7 | 9 | 2 | 2 | $2 \le 2$, left side | $l = 7$ | 3 | $3 - 3 = 0$ | 5 |
+| 11 | 8 | 9 | 3 | 2 | $3 \le 2$ is false, right side | $r = 9$ | 1 | $2 - 1 = 1$ | **6** |
+| 12 | 8 | 8 | 3 | 2 | $3 \le 2$ is false, right side | $r = 8$ | 2 | $2 - 2 = 0$ | 6 |
+
+The retired columns in order are $0, 1, 11, 2, 3, 10, 4, 5, 6, 7, 9, 8$: all twelve indices exactly once, with no column revisited. The positive contributions land on columns $2, 4, 5, 6, 9$ and total $1 + 1 + 2 + 1 + 1 = 6$, matching the array-based evaluation. Step 11 is the decisive one for the right half: once $\text{right\_max} = 2$ is known to be below $\text{left\_max} = 3$, column $9$ cannot hold more than $2$ units, so the left peak no longer constrains it.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -121,9 +142,32 @@ Total trapped water: $1 + 1 + 2 + 1 + 1 = 6$.
 - **Negative Water Depths:** If a bar is higher than an adjacent valley, $\min(L_i, R_i) - \text{height}[i]$ could theoretically be negative if $L_i$ did not include $\text{height}[i]$. Defining $L_i = \max(L_{i-1}, \text{height}[i])$ ensures $\min(L_i, R_i) \ge \text{height}[i]$, naturally preventing negative depths.
 - **Monotonic Stack Alternative:** Water can also be computed horizontally in layers using a monotonic decreasing stack of indices. When a taller bar is found, valleys are popped and filled layer by layer. The two-pointer / DP column method is mathematically equivalent and simpler to reason about.
 
+### Boundary terrain profiles
+
+Each profile below is evaluated by the same $\min(L_i, R_i) - \text{height}[i]$ rule; the last column records which side's pointer retires the columns, which is where an off-by-one in the tie-break would show up.
+
+| Elevation map | $N$ | Trapped volume | Why no water is held or how it is held | Pointer behaviour |
+|:---|:---:|:---:|:---|:---|
+| $[0]$ | $1$ | $0$ | A single column has no enclosing wall on either side, so $\min(L_0, R_0) = 0 = \text{height}[0]$ | The lone column is retired once and contributes $0$ |
+| $[1, 2, 3, 4]$ | $4$ | $0$ | Strictly increasing: the left maximum at each column equals that column's own height, so the surface never rises above the bar | The left pointer retires every column |
+| $[4, 3, 2, 1]$ | $4$ | $0$ | Strictly decreasing: the mirrored case, where the right maximum equals the column height | The right pointer retires every column |
+| $[3, 3, 3]$ | $3$ | $0$ | Equal boundaries: $\min(L_i, R_i) = 3 = \text{height}[i]$ everywhere, so every depth is zero | Both maxima stay equal, so ties are resolved by the left branch |
+| $[5, 0, 0, 0, 5]$ | $5$ | $15$ | A flat basin: the three interior columns each hold $5 - 0 = 5$ units | The two walls give equal maxima, and the left branch retires the interior columns |
+| $[100000, 0, 100000]$ | $3$ | $100000$ | The largest legal wall bounds a single interior column, holding $100000 - 0$ units | The interior column is retired by the left branch after the wall maxima match |
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(N)$, where $N$ is the number of bars. Precomputing $\text{left\_max}$ and $\text{right\_max}$ requires two linear passes, and summation requires one pass ($3N = O(N)$). The two-pointer approach solves it in a single pass of $N$ steps.
 - **Auxiliary Space Complexity:** $O(1)$ when using the two-pointer approach, maintaining only scalar variables ($\text{left\_max}$, $\text{right\_max}$, $l$, $r$, $\text{ans}$).
+
+### Cost of each equivalent method
+
+All three methods below produce the same total; they differ in what they must remember in order to know $\min(L_i, R_i)$.
+
+| Method | Time | Auxiliary space | State it maintains | Why it still yields the exact total |
+|:---|:---:|:---:|:---|:---|
+| Prefix and suffix maximum arrays | $O(N)$ across two build passes plus one summation pass | $O(N)$ | A full $\text{left\_max}$ array and a full $\text{right\_max}$ array | For each column the two arrays hold exactly $L_i$ and $R_i$, so the per-column formula is applied directly |
+| Two pointers with running maxima | $O(N)$ in a single pass | $O(1)$ | Two indices and two scalar maxima | The smaller of the two running maxima is provably the true bottleneck for the column on its own side, so the taller opposite peak cannot raise the surface |
+| Monotonic decreasing stack | $O(N)$ amortized, since each index is pushed and popped at most once | $O(N)$ | A stack of indices whose heights are non-increasing | Water is filled in horizontal layers between each popped valley floor and the taller bar that closes it, which sums to the same vertical depths |

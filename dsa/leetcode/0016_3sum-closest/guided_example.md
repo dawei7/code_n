@@ -22,6 +22,17 @@ The optimal sum is $2$, achieving the minimal distance $1$ to target $1$.
 
 A naive brute-force search enumerates all $\binom{N}{3} = O(N^3)$ triplets. By sorting the array first, we fix one element and reduce the remaining two-element search to an $O(N)$ monotonic two-pointer scan, bringing the total time down to $O(N^2)$.
 
+There are exactly $\binom{4}{3} = 4$ distinct index triples, so the entire candidate set can be written out and each member checked against the answer:
+
+| Triplet Values | Positions in the Sorted Array | Sum $S$ | Absolute Error $\lvert S - 1 \rvert$ | Reached by the Two-Pointer Scan |
+|:---|:---:|:---:|:---:|:---|
+| $(-4, -1, 1)$ | $(0, 1, 2)$ | $-4$ | $5$ | No; eliminated when $j$ advanced from $1$ to $2$ after step 1 |
+| $(-4, -1, 2)$ | $(0, 1, 3)$ | $-3$ | $4$ | Yes, at step 1 |
+| $(-4, 1, 2)$ | $(0, 2, 3)$ | $-1$ | $2$ | Yes, at step 2 |
+| $(-1, 1, 2)$ | $(1, 2, 3)$ | $2$ | $1$ | Yes, at step 3; this is the minimum |
+
+The omitted triple $(-4, -1, 1)$ has error $5$, which is larger than the best error $1$ the scan eventually finds. That is the concrete content of the pruning rule: the scan is allowed to skip candidates only because every skipped candidate is dominated in the same direction.
+
 ---
 
 ## 2. Conceptual Foundation & Invariants
@@ -116,6 +127,19 @@ Final answer: $2$.
 - **Duplicate Skipping Optimization:** If consecutive elements are identical (e.g. $\text{nums}[i] = \text{nums}[i-1]$), skipping the duplicate anchor avoids redundant searches without compromising completeness.
 - **Initial Accumulator Value:** Initializing $\text{closest}$ with $0$ is an error because $0$ might falsely masquerade as a candidate sum. Initializing with $\text{nums}[0] + \text{nums}[1] + \text{nums}[2]$ or $\infty$ guarantees correctness.
 - **Integer Overflow with Sentinel:** When using $\infty$, one must take care in languages with fixed integer widths not to trigger overflow when computing $|S - \text{target}|$. In Python, arbitrary-precision integers handle this natively.
+
+The boundary instances below show what the answer must be when the target is not reachable at all, when only one triple exists, and when the exact target occurs early:
+
+| Boundary Instance | Reachable Sums | Result | Why the Pointer Rule Settles It |
+|:---|:---|:---:|:---|
+| $\text{nums} = [0, 0, 0]$, $\text{target} = 1$ | Only $0$ | $0$ | Distinct indices are still required, so the single triple $(0, 1, 2)$ is the only candidate; its error $\lvert 0 - 1 \rvert = 1$ is unimprovable |
+| $\text{nums} = [-1000, 0, 1000]$, $\text{target} = 10000$ | Only $0$ | $0$ | The target lies above every reachable sum, so every comparison reports $S < \text{target}$ and the scan simply exhausts the array, returning the closest value it saw |
+| $\text{nums} = [-1000, -999, -998]$, $\text{target} = -10000$ | Only $-2997$ | $-2997$ | Mirror image of the previous row: the target lies below every reachable sum, so the anchor never yields a second candidate |
+| $\text{nums} = [1, 1, 1, 0]$, $\text{target} = -100$ | $2$ and $3$ | $2$ | Sorted as $[0, 1, 1, 1]$, both candidates exceed the target, so the scan keeps decrementing and can never move away from the smaller sum $2$ |
+| $\text{nums} = [-3, -3, -3, 3, 3, 3]$, $\text{target} = 1$ | $-9, -3, 3, 9$ | $3$ | Repeated values come from distinct positions, so the four sums are all legal; $\lvert 3 - 1 \rvert = 2$ beats $\lvert -3 - 1 \rvert = 4$ |
+| $\text{nums} = [1, 2, 4, 8, 16]$, $\text{target} = 10$ | $7$ and $11$ among others | $11$ | The candidate $1 + 2 + 8 = 11$ has error $1$, while $1 + 2 + 4 = 7$ has error $3$; the larger sum wins because distance, not magnitude, is being minimized |
+| $\text{nums} = [-2, 0, 1, 1, 2]$, $\text{target} = 0$ | $-1, 0, 1, 2, 3, 4$ | $0$ | The triple $-2 + 0 + 2 = 0$ hits the target exactly, so the distance reaches its theoretical minimum $0$ and the search returns immediately |
+| $\text{nums} = [-1, 2, 1, -4]$, $\text{target} = 1$ | $-4, -3, -1, 2$ | $2$ | The traced instance: the winner is the only candidate above the target, reached after both lower candidates were discarded |
 
 ---
 
