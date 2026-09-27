@@ -120,6 +120,7 @@ def audit() -> int:
     code_leaks = []
     missing_sections = []
     render_failures = []
+    missing_newlines = []
 
     target_filter = sys.argv[1:]
     for pkg in sorted(leetcode_dir.iterdir()):
@@ -160,6 +161,12 @@ def audit() -> int:
         risks = render_risks(content)
         if risks:
             render_failures.append((pkg.name, risks[0]))
+
+        # Text files end with a newline. 1,410 of the 4,005 lessons had drifted
+        # without one because authoring tools differ on appending it, which makes
+        # every later diff of those files report "\ No newline at end of file".
+        if content and not content.endswith("\n"):
+            missing_newlines.append(pkg.name)
 
         if "## 1." not in content:
             missing_sections.append((pkg.name, "Missing '## 1.' section"))
@@ -206,6 +213,7 @@ def audit() -> int:
     print(f"Code Leak Violations: {len(code_leaks)}")
     print(f"Structural Section Failures: {len(missing_sections)}")
     print(f"Render Risk Violations: {len(render_failures)}")
+    print(f"Missing Final Newline: {len(missing_newlines)}")
     print("=" * 60)
 
     total_errors = (
@@ -216,6 +224,7 @@ def audit() -> int:
         + len(code_leaks)
         + len(missing_sections)
         + len(render_failures)
+        + len(missing_newlines)
     )
 
     if total_errors > 0:
@@ -228,6 +237,8 @@ def audit() -> int:
             print(f"Sample code leaks: {code_leaks[:5]}")
         if render_failures[:5]:
             print(f"Sample render risks: {render_failures[:5]}")
+        if missing_newlines[:5]:
+            print(f"Sample lessons without a final newline: {missing_newlines[:5]}")
         return 1
     else:
         print("AUDIT PASSED: 100% of packages have valid, code-free, authentic Guided Examples!")
