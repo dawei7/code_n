@@ -170,6 +170,26 @@ Result:    [3, 2, 1]
 | 3 | `[Node(3)]` | $\text{Node}(3)$ | 3 | Left: $\emptyset$, Right: $\emptyset$ | `[]` |
 | **Invert** | `[]` | - | - | **Reverse $[1, 2, 3]$** | **`[3, 2, 1]`** |
 
+### Single-Stack `last_visited` Ledger
+
+Method 2 reaches the same answer without any reversal, so its four iterations
+merit their own trace. The decisive column is the test on `peek.right`: only
+when that link exists *and* differs from `last_visited` does the walk descend
+instead of finishing the parent.
+
+| Iteration | Left-spine descent from `curr` | Stack after the descent | `peek` | Test on `peek.right` | Action | Output so far |
+|:---:|:---|:---|:---:|:---|:---|:---|
+| 1 | push `Node(1)`; `1.left` is `null`, so the descent stops immediately | `[Node(1)]` | $\text{Node}(1)$ | exists as `Node(2)` and differs from `last_visited = null` | move `curr` to `Node(2)` without popping anything | `[]` |
+| 2 | push `Node(2)`, then push `Node(3)`; `3.left` is `null` | `[Node(1), Node(2), Node(3)]` | $\text{Node}(3)$ | `null` | pop `Node(3)`, visit `3`, set `last_visited = Node(3)` | `[3]` |
+| 3 | none — `curr` is `null` | `[Node(1), Node(2)]` | $\text{Node}(2)$ | `null` | pop `Node(2)`, visit `2`, set `last_visited = Node(2)` | `[3, 2]` |
+| 4 | none — `curr` is `null` | `[Node(1)]` | $\text{Node}(1)$ | exists as `Node(2)` but now **equals** `last_visited` | pop `Node(1)`, visit `1`, set `last_visited = Node(1)` | `[3, 2, 1]` |
+
+Iteration 4 is the whole reason the extra pointer exists: `Node(1)` still has a
+right child, so a rule that only asked "does `peek.right` exist?" would push
+`Node(2)` a second time and loop forever. Comparing against `last_visited`
+distinguishes "the right subtree has not started" from "the right subtree just
+finished".
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -192,6 +212,29 @@ Therefore, the inverted sequence is $\text{Post}(L) \circ \text{Post}(R_T) \circ
 - **Infinite Loops with Single Stack:** In a single-stack implementation, returning from the right child to the parent can accidentally re-enter the right child if the algorithm does not track `last_visited`. The condition `if peek.right and peek.right != last_visited:` prevents re-visitation.
 - **Empty Tree:** An empty tree $\text{root} == \emptyset$ returns `[]` immediately.
 - **Pushing Order in Duality:** To produce Root $\to$ Right $\to$ Left, the left child must be pushed *before* the right child so that the right child is on top of the stack and popped first.
+
+### Duality Check Across Representative Inputs
+
+The equivalence is easiest to audit by writing down the modified-preorder
+sequence and confirming that its exact reverse is the required postorder.
+
+| Input | Modified preorder (Root $\to$ Right $\to$ Left) | Reversed, which must be postorder | Required postorder |
+|:---|:---|:---|:---|
+| `[]` | `[]` — the stack starts empty, so nothing is ever popped | `[]` | `[]` |
+| `[1]` | `[1]` | `[1]` | `[1]` |
+| `[9]` | `[9]` | `[9]` | `[9]` |
+| `[1, null, 2, 3]` | `[1, 2, 3]` | `[3, 2, 1]` | `[3, 2, 1]` |
+| `[1, 2, 3, 4, 5]` | `[1, 3, 2, 5, 4]` — visit `1`, then the right subtree `3`, then the left subtree rooted at `2` | `[4, 5, 2, 3, 1]` | `[4, 5, 2, 3, 1]` |
+| `[1, 2, 3, 4, 5, 6, 7]` | `[1, 3, 7, 6, 2, 5, 4]` | `[4, 5, 2, 6, 7, 3, 1]` | `[4, 5, 2, 6, 7, 3, 1]` |
+| `[1, 2, 3, 4, 5, null, 8, null, null, 6, 7, 9]` | `[1, 3, 8, 9, 2, 5, 7, 6, 4]` | `[4, 6, 7, 5, 2, 9, 8, 3, 1]` | `[4, 6, 7, 5, 2, 9, 8, 3, 1]` |
+| `[2, 2, 2, null, 2]` | `[2, 2, 2, 2]` | `[2, 2, 2, 2]` | `[2, 2, 2, 2]` |
+
+Reading the balanced row in detail shows why the forward walk is not simply the
+preorder reversed: preorder on `[1, 2, 3, 4, 5]` is `1, 2, 4, 5, 3`, whereas the
+modified walk swaps the children at every node and produces `1, 3, 2, 5, 4`.
+Only the modified walk reverses into postorder, and the `[2, 2, 2, null, 2]` row
+is the reminder that the equivalence is about *positions*, not values, so a tree
+whose values all coincide still exercises a genuine permutation of four visits.
 
 ---
 

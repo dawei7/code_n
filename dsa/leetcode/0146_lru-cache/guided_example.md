@@ -218,6 +218,24 @@ get(4):   head <-> [4:4] <-> [3:3] <-> tail           (Returns 4)
 | **9** | `get` | `[3]` | `[3, 4]` (3 promoted) | - | **3** |
 | **10** | `get` | `[4]` | `[4, 3]` (4 promoted) | - | **4** |
 
+### Eviction Ledger Across the Authored Instances
+
+The traced instance exercises two evictions, but the boundary instances are what
+pin down the rule. Each row reports the complete outcome for one authored input.
+
+| Instance (capacity) | Eviction-triggering operation | Keys evicted, in order | Order after the last operation (MRU $\to$ LRU) | Returned values |
+|:---|:---|:---|:---|:---|
+| main instance, capacity $2$, ten operations | `put(3, 3)` at operation $5$, then `put(4, 4)` at operation $7$ | `2`, then `1` | `[4, 3]`, because the final `get(4)` re-promotes $4$ | `[null, null, null, 1, null, -1, null, -1, 3, 4]` |
+| `trial-capacity-one`, capacity $1$ | `put(2, 2)` at operation $4$ — the first insertion after the cache is full | `1` | `[2]`, the only survivor | `[null, null, 1, null, -1, 2]` |
+| `trial-overwrite`, capacity $2$ | none: `put(1, 9)` touches a key that already exists, so the size never exceeds $2 = C$ | none | `[2, 1]`, with key $1$ now carrying value $9$ | `[null, null, null, null, 9, 2]` |
+| `trial-get-refreshes`, capacity $2$ | `put(3, 3)` at operation $5$ | `2` | `[3, 1]`, because the last `get(3)` re-promotes $3$ | `[null, null, null, 1, null, -1, 1, 3]` |
+
+The `trial-capacity-one` row is the extreme case: with $C = 1$ every insertion
+after the first is immediately followed by an eviction, so `get(1)` returns $-1$
+without any key having been explicitly removed by a user call. The
+`trial-overwrite` row is the opposite extreme: an update keeps the size fixed,
+so no eviction is possible no matter how many times the same key is written.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -240,3 +258,18 @@ get(4):   head <-> [4:4] <-> [3:3] <-> tail           (Returns 4)
 
 - **Time Complexity:** $O(1)$ time for both `get` and `put`. Hash map lookup and insertion take $O(1)$ average time. Doubly linked list removal and insertion take $O(1)$ pointer rewires.
 - **Auxiliary Space Complexity:** $O(C)$, where $C$ is the cache capacity. The hash map and linked list each store at most $C$ nodes and entries simultaneously.
+
+### Alternative Designs and Their Constant Factors
+
+The asymptotics are not the only differentiator here: because the required bound
+is $O(1)$, the number of constant-time pointer writes decides which designs
+survive. The counts below are for the sentinel list used in this lesson, where a
+detach is $2$ pointer writes and a splice after `head` is $4$.
+
+| Design | How recency order is maintained | Cost of one `get` | Cost of one `put` | Tradeoff or failure mode |
+|:---|:---|:---|:---|:---|
+| Hash map + sentinel doubly linked list (used here) | detach ($2$ writes) then splice after `head` ($4$ writes); the victim is read straight from `tail.prev` | $O(1)$ average: one map read plus $6$ pointer writes on a hit | $O(1)$ average: $6$ writes for an existing key; for a new key, $4$ splice writes plus $2$ more only when an eviction fires | Every node must also store its `key`, otherwise the map entry belonging to the evicted node cannot be located in $O(1)$. |
+| Hash map + ordered dictionary primitive | one `move-to-end` call on access, and eviction removes the first entry | $O(1)$ average, delegated to the primitive | $O(1)$ average | Identical asymptotics with far less code, but it presumes a ready-made ordered map, which the exercise's interface may not provide. |
+| Hash map + access timestamps with a min-heap | each touch pushes a (timestamp, key) record; eviction discards records until one is current | $O(1)$ map lookup, but the record push costs $O(\log n)$ | $O(\log n)$ amortized, with up to $O(N)$ stale records after $N$ operations | Fails the strict $O(1)$ requirement and can consume $O(N)$ space instead of $O(C)$. |
+| Hash map + singly linked list | promotion would have to locate the predecessor of the touched node | a scan to find that predecessor: $O(C)$ | $O(C)$ | The predecessor is unreachable in constant time from the node alone, which is exactly why the list must be doubly linked. |
+| Array or list with in-place shifting | array order is the recency order; promotion moves the element to the front | $O(C)$ scan to locate the key | $O(C)$ removal plus shifting of the remaining elements | Easiest to reason about and the worst fit for the stated bound. |

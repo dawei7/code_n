@@ -157,6 +157,29 @@ Result:      [1, 2, 3]
 | 3 | `[Node(3)]` | $\text{Node}(3)$ | **3** | Right: $\emptyset$, Left: $\emptyset$ | `[]` |
 | Final | `[]` | - | - | Loop terminates | **`[1, 2, 3]`** |
 
+### Morris Threading Ledger on the Balanced Instance
+
+Method 2 is easier to trust when its temporary links are enumerated. On
+`root = [1, 2, 3, 4, 5]` — node `1` with children `2` and `3`, and node `2` with
+children `4` and `5` — the walk performs seven iterations, creates exactly two
+threads, and removes both again.
+
+| Iteration | `curr` | Predecessor `pred`, the rightmost node of the left subtree | `pred.right` before | Action taken | Output so far |
+|:---:|:---:|:---|:---:|:---|:---|
+| 1 | $\text{Node}(1)$ | $\text{Node}(5)$, the rightmost node below `2` | `null` | Visit `1`, create the thread `5.right = 1`, descend into `Node(2)` | `[1]` |
+| 2 | $\text{Node}(2)$ | $\text{Node}(4)$, which is the left child itself | `null` | Visit `2`, create the thread `4.right = 2`, descend into `Node(4)` | `[1, 2]` |
+| 3 | $\text{Node}(4)$ | not needed — `4.left` is `null` | — | Visit `4`, then follow `4.right`, which currently holds the thread back to `Node(2)` | `[1, 2, 4]` |
+| 4 | $\text{Node}(2)$ | $\text{Node}(4)$, reached one step to the right of `2.left` | `== curr`, pointing at `Node(2)` | Sever the thread `4.right = null`, then follow the real right link to `Node(5)` | `[1, 2, 4]` |
+| 5 | $\text{Node}(5)$ | not needed — `5.left` is `null` | — | Visit `5`, then follow `5.right`, which holds the thread back to `Node(1)` | `[1, 2, 4, 5]` |
+| 6 | $\text{Node}(1)$ | $\text{Node}(5)$, the rightmost node below `2` | `== curr`, pointing at `Node(1)` | Sever the thread `5.right = null`, then follow the real right link to `Node(3)` | `[1, 2, 4, 5]` |
+| 7 | $\text{Node}(3)$ | not needed — `3.left` is `null` | — | Visit `3`, then follow `3.right = null`, which ends the walk | `[1, 2, 4, 5, 3]` |
+
+The fifth value `5` is emitted while the tree is *still* threaded, whereas `1`
+is emitted before any thread exists; that difference is the whole point of
+visiting on thread **creation** rather than on thread removal. Because
+iterations 4 and 6 cut both threads, the tree's original shape is restored when
+the traversal ends.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -172,6 +195,21 @@ Result:      [1, 2, 3]
 - **Reversed Push Order Bug:** Pushing left before right onto a LIFO stack causes the right child to sit on top of the left child, reversing the traversal into Root $\to$ Right $\to$ Left! Pushing right before left is required.
 - **Empty Tree Handling:** If $\text{root} == \emptyset$, `stack` is initialized empty or early-returned, correctly producing `[]`.
 - **Morris Traversal Visit Timing:** In Morris Inorder traversal, a node is visited when the thread is removed (`pred.right == curr`). In Morris Preorder traversal, the node must be visited when the thread is *first created* (`pred.right is None`), ensuring the parent is recorded before descending into its left subtree.
+
+### Maximum Stack Depth Across Representative Inputs
+
+The explicit stack never holds more than one node per level of the current root
+to leaf path, so its peak size is the tree's height $H$ — not the node count
+$N$. The rows below show when each peak is actually reached.
+
+| Input | Traversal output | Peak stack size | Where the peak is reached | Why the depth is bounded there |
+|:---|:---|:---:|:---|:---|
+| `[]` | `[]` | $0$ | nowhere — the stack is never populated | With no root there is nothing to push, so the loop body never executes. |
+| `[1]` | `[1]` | $1$ | at initialization | The root is the only node, and a leaf contributes no pushes. |
+| `[1, null, 2, 3]` | `[1, 2, 3]` | $1$ | at initialization and again after popping `Node(1)` | Every node has at most one child, so each push is immediately matched by the next pop; two siblings never wait on the stack together. |
+| `[1, 2, 3, 4, 5]` | `[1, 2, 4, 5, 3]` | $3$ | after popping `Node(2)` | Popping `2` pushes both `5` and `4` while `3` is still waiting, producing the stack `[3, 5, 4]`; the peak equals $H = 3$. |
+| `[2, 2, 2, null, 2]` | `[2, 2, 2, 2]` | $2$ | after popping the root | Equal values are still distinct nodes, so both children of the root are pushed and counted despite the repetition. |
+| `[1, 2, 3, 4, 5, null, 8, null, null, 6, 7, 9]` | `[1, 2, 4, 5, 6, 7, 3, 8, 9]` | $3$ | after popping `Node(2)` | Nodes `6` and `7` are pushed much later, but by then the stack has shrunk to `[3]`, so the deeper subtree only ties the earlier peak instead of raising it. |
 
 ---
 

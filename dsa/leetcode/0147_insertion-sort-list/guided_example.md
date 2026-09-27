@@ -145,6 +145,33 @@ Iter 3 (3<4):   dummy -> [1] -> [2] -> [3] -> [4] -> null
 | **3** | **$\text{Node}(3)$** | **4** | **$3 < 4$** | **$\text{Node}(2)$** | **Insert between 2 and 4** | **`dummy -> [1, 2, 3, 4]`** |
 | Done | $\emptyset$ | 4 | - | - | Traversal complete | **$[1, 2, 3, 4]$** |
 
+### Comparison-Cost Ledger and the Expensive Arrangement
+
+The guard test and the inner scan are not the same expense. The guard runs once
+per node and costs nothing extra when it succeeds, while the scan is the only
+part whose length depends on the arrangement of the input. Counting both kinds
+of comparison for every authored instance gives the ledger below.
+
+| Input | $N$ | Guard tests `pre.val <= cur.val` | Scan probes `p.next.val <= cur.val` | Total comparisons | Nodes spliced | Output |
+|:---|:---:|:---:|:---:|:---:|:---:|:---|
+| `[4, 2, 1, 3]` | $4$ | $4$ | $5$ | $9$ | $3$ | `[1, 2, 3, 4]` |
+| `[-1, 5, 3, 4, 0]` | $5$ | $5$ | $7$ | $12$ | $3$ | `[-1, 0, 3, 4, 5]` |
+| `[3, 1, 3, 2, 1]` | $5$ | $5$ | $5$ | $10$ | $3$ | `[1, 1, 2, 3, 3]` |
+| `[1, 2, 3]` | $3$ | $3$ | $0$ | $3$ | $0$ | `[1, 2, 3]`, untouched because the guard never fails |
+| `[]` | $0$ | $0$ | $0$ | $0$ | $0$ | `[]`, returned by the up-front length check |
+
+Probe counts are what separate the linear case from the quadratic one, and the
+expensive arrangement is *not* the descending list. Because the scan starts at
+`dummy` and stops at the first prefix element larger than `cur`, a descending
+input such as `[4, 3, 2, 1]` performs exactly $1$ probe per moved node, only $3$
+probes in total, and the ascending list `[1, 2, 3]` performs none. The maximum
+for $N = 4$ is instead reached by `[3, 0, 1, 2]`, where the largest value sits
+first and every later node must be spliced past an ever-longer sorted prefix:
+the probes are $1 + 2 + 3 = 6 = \frac{N(N-1)}{2}$, the quadratic bound. The
+stable placement rule is visible in the `[3, 1, 3, 2, 1]` row: the scan advances
+while `p.next.val <= cur.val` with a non-strict comparison, so a node is always
+inserted *after* equal values and their original relative order survives.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -161,9 +188,22 @@ Iter 3 (3<4):   dummy -> [1] -> [2] -> [3] -> [4] -> null
 - **Scanning from Dummy on Already Sorted Nodes:** If an element is already larger than `last_sorted`, scanning from `dummy` would degrade already-sorted lists to $O(N^2)$. The `if curr.val >= last_sorted.val` check achieves $O(N)$ best-case time.
 - **Empty or Single Node List:** If `not head or not head.next: return head`, handles base cases in $O(1)$.
 
+### Alternative Sorting Strategies for a Linked List
+
+The list representation changes which sorting strategies are actually cheap, and
+two of the alternatives below quietly rewrite node values instead of links.
+
+| Strategy | Comparison cost | Extra space | What it modifies | Tradeoff or failure mode |
+|:---|:---|:---|:---|:---|
+| Insertion sort with pointer splicing (this lesson) | $O(N^2)$ worst case; $O(N)$ when the guard never fails, as on `[1, 2, 3]` | $O(1)$ | links only — values never move | Simple and stable, but the scan length grows with the sorted prefix on adversarial inputs such as `[3, 0, 1, 2]`. |
+| Array insertion sort over extracted values | $O(N^2)$ comparisons plus $O(N^2)$ element shifts | $O(N)$ for the array | values rewritten into the existing nodes | Easy to write, yet it gives up both the in-place property and the linked structure's advantage that insertion needs no shifting. |
+| Extract the values, run an $O(N \log N)$ comparison sort, write them back | $O(N \log N)$ | $O(N)$ | values rewritten | The fastest straightforward option, but it moves data rather than links and ignores the $O(1)$ space goal. |
+| Bottom-up merge sort on the list | $O(N \log N)$ comparisons in every case | $O(1)$ when the merges are iterative, $O(\log N)$ with recursion | links only | The standard improvement over insertion sort and the usual follow-up answer, at the cost of substantially more pointer bookkeeping. |
+| Bubble or exchange sort on adjacent values | $O(N^2)$ comparisons, each failing pair costing $3$ writes | $O(1)$ | values rewritten | Stable and trivial to verify, but it performs the most writes of any option here and still misses the $O(N \log N)$ bound. |
+
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N^2)$ worst-case (reverse sorted list), where each node requires scanning the entire sorted prefix. $O(N)$ best-case (already sorted list) due to the boundary comparison guard.
+- **Time Complexity:** $O(N^2)$ worst case, but not from a descending list: because the scan stops at the first prefix element larger than the one being placed, a descending list costs a single probe per moved node. The probe maximum $N(N-1)/2$ is reached by inputs such as `[3, 0, 1, 2]`, whose largest value arrives first and leaves every later node to walk the whole sorted prefix. $O(N)$ best-case (already sorted list) due to the boundary comparison guard.
 - **Auxiliary Space Complexity:** $O(1)$ constant extra space, manipulating only pointer references in place.
