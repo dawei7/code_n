@@ -153,6 +153,32 @@ Cancellations:   [ 2, 2 ] vs [ 1, 1 ] cancel!
 | 5 | 2 | `(1, 1)` | $x \ne \text{cand}$ | 1 | 0 | 1 cancelled by 2 |
 | **6** | **2** | **`(1, 0)`** | **`cnt == 0`** | **2** | **1** | **Surviving Majority: 2** |
 
+### The Cancellation Ledger
+
+The single `count` variable stands for several simultaneous pairings. Adding them up shows the counting argument behind the invariant, and shows exactly how much of the majority survives:
+
+| Cancellation event | Pairs matched | Running surplus of the elected candidate | Elements consumed so far | What the prefix proves |
+|:---|:---|:---:|:---:|:---|
+| Indices 0-1 reinforce candidate $2$ | no cancellation | $+2$ for $2$ | 2 of 7 | The prefix holds two uncancelled copies of $2$ |
+| Index 2 cancels | $(2, 1)$ | $+1$ for $2$ | 3 of 7 | One copy of $2$ is retired against a $1$; the remainder is untouched |
+| Index 3 cancels | $(2, 1)$ | $0$ | 4 of 7 | The prefix $[2, 2, 1, 1]$ is perfectly balanced, so removing it cannot change which value dominates the suffix $[1, 2, 2]$ |
+| Index 4 elects $1$ | no cancellation | $+1$ for $1$ | 5 of 7 | The new candidate is a temporary placeholder, not a claim about the whole array |
+| Index 5 cancels | $(1, 2)$ | $0$ | 6 of 7 | The second balanced prefix $[1, 2]$ is discarded as well |
+| Index 6 elects $2$ | no cancellation | $+1$ for $2$ | 7 of 7 | The suffix left after both balanced prefixes is the single element $2$ |
+
+Two balanced prefixes were discarded ($4$ elements in the first, $2$ in the second), and the element that survived both discards is $2$. In total $3$ pairs were cancelled: two copies of $2$ against two $1$s, and one $1$ against one $2$. Since $2$ occurs $4$ times and every other value occurs $3$ times in total, at most $3$ copies of $2$ could ever be cancelled — one always remains.
+
+### Boundary Scenarios This Instance Sits Next To
+
+| Scenario | Input | Expected | Net cancellation / final `count` | Why this boundary matters |
+|:---|:---|:---:|:---:|:---|
+| Single element | $[7]$ | 7 | elected on an empty ballot, final `count` $= 1$ | A one-element prefix is trivially "more than half", and the very first comparison uses `count == 0` rather than `x == candidate` |
+| Strict alternation | $[3, 2, 3]$ | 3 | $3 \to$ cancel $\to 0 \to$ re-elect $3$, final `count` $= 1$ | The majority does not have to lead from the start; it can be re-elected after the count returns to zero |
+| Negative values | $[-1, 2, -1, -1]$ | $-1$ | $2$ is cancelled, then $-1$ survives, final `count` $= 2$ | Comparison is by equality only, so negating an array cannot break the algorithm; a sentinel such as $0$ would be wrong here |
+| Majority arrives late | $[1, 2, 3, 9, 9, 9, 9, 9]$ | 9 | four early elements cancel to $0$, then $9$ accumulates `count` $= 5$ | The whole prefix is discarded, which is legal precisely because it was balanced |
+| Balanced prefix, odd tail | $[2, 2, 1, 1, 1]$ | 1 | first four elements cancel to $0$, $1$ elected with `count` $= 1$ | A one-element residue is enough when a majority exists; the guarantee is what makes the last election trustworthy |
+| No majority at all | $[1, 2, 3]$ | undefined by the contract | candidate becomes $3$ with `count` $= 1$ | The vote still returns a value, so a second counting pass is needed whenever existence is not guaranteed |
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -168,6 +194,16 @@ Cancellations:   [ 2, 2 ] vs [ 1, 1 ] cancel!
 - **Count Is Not Total Frequency:** The variable `count` is a *net surplus counter*, NOT the total number of times `candidate` appeared in the array! For instance, in Step 3 above, `count` dropped from 2 to 1 even though 2 appeared twice.
 - **Assuming Candidate Never Changes:** Temporary candidates can and do change (as seen in Step 5 where candidate briefly switched to 1). The algorithm guarantees only that the **final** candidate is correct.
 - **Arrays Without a Majority Element:** If an array has no element with frequency $> n/2$ (e.g. $[1, 2, 3]$), Boyer–Moore will still return some arbitrary candidate. In problems where existence is not guaranteed, a second $O(N)$ verification pass is required to confirm frequency $> n/2$.
+
+### Alternative Approaches on This Array
+
+| Approach | How it decides $[2, 2, 1, 1, 1, 2, 2]$ | Time | Auxiliary space | Tradeoff for this contract |
+|:---|:---|:---:|:---:|:---|
+| Hash map of frequencies | Counts $1 \to 3$ and $2 \to 4$, then returns $2$ | $O(N)$ | $O(N)$ | Optimal time but the map grows with the number of distinct values, so it forfeits the constant-space requirement |
+| Sort, then read the middle position | Sorts to $[1, 1, 1, 2, 2, 2, 2]$ and returns index $\lfloor 7/2 \rfloor = 3$, which holds $2$ | $O(N \log N)$ | $O(\log N)$ to $O(N)$ depending on the sort | Correct because a value occurring more than half the time must occupy the middle slot, but it pays a logarithmic factor and may mutate the input |
+| Bit-by-bit majority reconstruction | Builds the answer bit by bit, each pass keeping only the elements whose bit matches the current majority bit | $O(32N)$ | $O(1)$ | Constant space and correct, yet it needs a fixed-width integer assumption and many passes over the data |
+| Boyer–Moore voting | Cancels $2$ against $1$ four times and keeps a surplus copy of $2$ | $O(N)$ | $O(1)$ | Reaches both bounds; the price is that correctness depends on the existence guarantee, so a verification pass is required when that is absent |
+| Random sampling | Picks a random index and checks its value's frequency | $O(N)$ per check | $O(1)$ | The majority occupies more than half the array, so a handful of samples usually finds it, but the method is probabilistic rather than certain |
 
 ---
 

@@ -155,6 +155,37 @@ Query find(7):
 | **`find`** | **4** | `{1: 1, 3: 1, 5: 1}` | **$x=1 \implies y=3$** | **$3 \ne 1$ (distinct)** | **`true`** |
 | **`find`** | **7** | `{1: 1, 3: 1, 5: 1}` | **$y \in \{6, 4, 2\}$** | **None found** | **`false`** |
 
+### Query Evaluation, Key by Key
+
+A `find` call is only as good as the keys it inspects, and the two branches of the multiplicity rule are what separate a real pair from a value paired with itself:
+
+| Query | Key $x$ inspected | Complement $y = \text{value} - x$ | Branch taken | Membership / multiplicity evidence | Verdict from this key |
+|:---:|:---:|:---:|:---|:---|:---|
+| `find(4)` | 1 | 3 | distinct, $y \ne x$ | `freq[3] = 1`, so one stored copy exists | `true` — pair $(1, 3)$ is valid |
+| `find(7)` | 1 | 6 | distinct, $y \ne x$ | 6 was never added | continue |
+| `find(7)` | 3 | 4 | distinct, $y \ne x$ | 4 was never added | continue |
+| `find(7)` | 5 | 2 | distinct, $y \ne x$ | 2 was never added | continue; all keys exhausted, so `false` |
+| `find(6)` after a second `add(3)` | 3 | 3 | identical, $x == y$ | `freq[3] = 2`, so two separate `add` calls happened | `true` — the two copies are distinct elements |
+| `find(6)` before the second `add(3)` | 3 | 3 | identical, $x == y$ | `freq[3] = 1`, only one copy ever stored | `false` — a single element may not be reused as both addends |
+
+The same key $x = 3$ answers `true` and `false` for the same query value $6$ depending only on the stored multiplicity. That is why the data structure stores counts rather than mere membership.
+
+### Scenario Table: What Kind of Evidence Each Query Needs
+
+| Stored state | Query | Complement situation | Deciding check | Result | Why |
+|:---|:---:|:---|:---|:---:|:---|
+| `{}` | 0 | no keys to inspect | loop body never runs | `false` | Nothing has been added, so no pair can exist |
+| `{0: 1}` | 0 | $x = 0$ gives $y = 0$ | multiplicity: `freq[0] = 1` is below $2$ | `false` | Zero is its own complement, so the same single element would have to serve twice |
+| `{0: 2}` | 0 | $x = 0$ gives $y = 0$ | multiplicity: `freq[0] = 2` | `true` | Two separate `add(0)` calls provide two distinct elements |
+| `{3: 1}` | 6 | $x = 3$ gives $y = 3$ | multiplicity: `freq[3] = 1` | `false` | The classic double-counting trap: a set-like store would answer `true` here |
+| `{3: 2}` | 6 | $x = 3$ gives $y = 3$ | multiplicity: `freq[3] = 2` | `true` | Duplicates are legal addends as long as two copies exist |
+| `{-2: 1, 5: 1}` | 3 | $x = -2$ gives $y = 5$ | membership: $5$ present and $5 \ne -2$ | `true` | The complement rule is pure subtraction, so it works unchanged across the sign boundary |
+| `{-100000: 1, 100000: 1}` | 0 | $x = -100000$ gives $y = 100000$ | membership: $100000$ present | `true` | The query value may be far smaller than either stored magnitude |
+| `{-100000: 2, 100000: 1}` | $-200000$ | $x = -100000$ gives $y = -100000$ | multiplicity: `freq[-100000] = 2` | `true` | A negative target can be met by two copies of the same negative value |
+| `{-100000: 2, 100000: 1}` | $2^{31} - 1$ | complements $2147583647$ (for $x = -100000$) and $2147383647$ (for $x = 100000$) are both absent | membership: no key matches | `false` | The stored magnitudes are tiny compared with the query, so the complement of every key misses |
+
+The last two rows also settle a performance question: an unreachable target still forces a scan of all $U$ distinct keys, which is why `find` costs $O(U)$ even when the answer is obviously `false`.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -170,6 +201,17 @@ Query find(7):
 - **Using a Set Instead of a Frequency Map:** A standard `set` cannot differentiate between receiving a single $3$ versus receiving two $3$s. Calling `find(6)` on `set({1, 3, 5})` would falsely return `True` by pairing $3$ with itself!
 - **Precomputing All Pair Sums:** If $N$ numbers are added, there are $\binom{N}{2} \approx N^2 / 2$ pairs. Precomputing all sums takes $O(N^2)$ space and $O(N)$ time per `add`, exceeding memory limits for large streams.
 - **Negative Targets and Numbers:** Complement formula $y = \text{value} - x$ works identically for negative numbers and negative targets without modification.
+
+### Alternative Designs on This Operation Stream
+
+| Design | `add` cost | `find` cost | Space after $N$ adds | What it does on this exact stream |
+|:---|:---:|:---:|:---:|:---|
+| List of all added values | $O(1)$ | $O(N^{2})$ by scanning all index pairs | $O(N)$ | Answers `find(4)` and `find(7)` correctly but re-derives every pair from scratch on each query |
+| Sorted list plus two pointers | $O(N)$ to keep it sorted | $O(N)$ | $O(N)$ | Maintains order unnecessarily; additions dominate the cost even though the queries are rare |
+| Set of distinct values | $O(1)$ | $O(U)$ | $O(U)$ | Returns `true` for `find(6)` after a single `add(3)`, silently pairing an element with itself |
+| Precomputed set of all pair sums | $O(N)$ per add | $O(1)$ | $O(N^{2})$ | Answers instantly but stores roughly $N^{2}/2$ sums, which is untenable for a long stream |
+| Frequency map with complement scan | $O(1)$ | $O(U)$ | $O(U)$ | Answers `find(4)` $\to$ `true`, `find(7)` $\to$ `false`, and correctly distinguishes one `add(3)` from two |
+| Frequency map plus a bound on stored values | $O(1)$ | $O(U)$ | $O(U)$ | The value range reaches $\pm 2^{31}$, so a direct-address array indexed by value is infeasible; hashing the keys is what keeps the space linear in distinct inputs |
 
 ---
 

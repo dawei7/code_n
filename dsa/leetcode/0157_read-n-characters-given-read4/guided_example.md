@@ -135,6 +135,17 @@ Result:        buf = ['l', 'e', 'e', 't', 'c'], return 5
 - `copied = 3`. EOF terminates loop.
 - Return $3$.
 
+The authored instances cover six distinct boundary shapes, and each one halts the loop for a different reason:
+
+| Boundary shape | Instance | `read4` results | Return | Why the loop stops there |
+|:---|:---|:---|:---|:---|
+| File shorter than the request | `"abc"`, $n = 4$ | one call returning $3$ | $3$ | a partial block sets `eof`, and $\min(3, 4 - 0) = 3$ transfers every character that exists |
+| Request shorter than the first block | `"abcd"`, $n = 2$ | one call returning $4$ | $2$ | $\min(4, 2) = 2$ copies `'a'` and `'b'`; `'c'` and `'d'` were read off the stream but are never delivered |
+| Request ending exactly on a block boundary | `"abcde"`, $n = 4$ | one call returning $4$ | $4$ | `copied` reaches $n$ with the block fully transferred, so no second call is made and the stream stays positioned at `'e'` |
+| Smallest possible request | `"Z"`, $n = 1$ | one call returning $1$ | $1$ | the single character satisfies $n$ and reports `eof` at the same time, so both stopping conditions agree |
+| Request crossing blocks, partial final block | `"abcdefghijk"`, $n = 9$ | calls returning $4$, $4$, $3$ | $9$ | the third call delivers $3$ characters, `eof` is set, and $\min(3, 9 - 8) = 1$ stops at the ninth character while `'j'` and `'k'` are discarded |
+| File length a multiple of $4$, still shorter than $n$ | 500-character file, $n = 1000$ | 125 calls returning $4$, then one call returning $0$ | $500$ | no call reports fewer than $4$ characters until the pointer reaches the end, so detecting that end costs one extra call delivering nothing |
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -151,9 +162,34 @@ Result:        buf = ['l', 'e', 'e', 't', 'c'], return 5
 - **Ignoring Stale Buffer Characters:** If `read4` returns 2 characters on a partial block, indices 2 and 3 in `buf4` contain leftover characters from previous reads. Copying all 4 positions corrupts the destination with stale data.
 - **Multiple Call Reusability (Distinction from LeetCode 158):** In LeetCode 157, `read` is called only **once**. Any uncopied characters left in `buf4` (like `'o', 'd', 'e'`) are discarded. In LeetCode 158, `read` is called repeatedly, requiring an internal persistent queue to preserve leftovers.
 
+Each of the following plausible variations of the protocol breaks on one of the instances above; naming the failure makes the two stopping conditions and the transfer bound look necessary rather than arbitrary:
+
+| Candidate rule | What it changes | Observable failure | Instance that exposes it |
+|:---|:---|:---|:---|
+| Transfer every delivered character | drops the $\min(\text{count}, n - \text{copied})$ bound | `buf` is written past the requested length whenever $n$ is not a multiple of $4$ | `"abcd"`, $n = 2$ writes four positions instead of two |
+| Stop only when `count < 4` | drops the `copied == n` test | the loop keeps calling `read4` after the request is satisfied, consuming the next block for nothing; the count stays $4$ only because the transfer bound evaluates to $0$ | `"abcde"`, $n = 4$ spends a second call on `'e'` |
+| Stop only when `copied == n` | drops the `count < 4` test | a file shorter than $n$ never terminates the loop, because every later call returns $0$ and adds nothing | `"abc"`, $n = 4$ spins on empty blocks |
+| Ask for one character at a time | call the API once per requested character | each call still consumes up to $4$ stream characters, so three of every four are lost | `"abcdefghijk"`, $n = 9$ yields `'a'`, `'e'`, `'i'` — three characters instead of nine |
+| Keep a leftover queue across calls | persists the unconsumed tail of `buf4`, as LeetCode 158 requires | correct here but dead state: `read` runs once, so nothing ever consults the queue | `"abcd"`, $n = 2$ queues `'c'` and `'d'` that no later call reads |
+
 ---
 
 ## 7. Complexity Derivation
+
+The cost of a fixed $4$-character block API is best seen by counting, for every authored instance, how much the API delivered, how much the destination received, and how much was read off the stream and thrown away:
+
+| Instance | $n$ | `read4` calls | Characters delivered | Characters copied into `buf` | Read but never delivered | Returned |
+|:---|:---:|:---:|:---:|:---:|:---:|:---:|
+| `"Z"` | 1 | 1 | 1 | 1 | 0 | 1 |
+| `"abcd"` | 2 | 1 | 4 | 2 | 2 | 2 |
+| `"abc"` | 4 | 1 | 3 | 3 | 0 | 3 |
+| `"abcde"` | 4 | 1 | 4 | 4 | 0 | 4 |
+| `"abcde"` | 5 | 2 | 5 | 5 | 0 | 5 |
+| `"abcdefghijk"` | 9 | 3 | 11 | 9 | 2 | 9 |
+| `"abcdABCD1234"` | 12 | 3 | 12 | 12 | 0 | 12 |
+| 500-character file | 1000 | 126 | 500 | 500 | 0 | 500 |
+
+The discarded column is the price of a block granularity: a call cannot be undone, so any character of the final block beyond the requested length is lost to this invocation, and to the caller as well because `read` is not called again.
 
 - **Time Complexity:** $O(n)$ time. At most $\lceil n / 4 \rceil$ API calls are made to `read4`, each copying up to 4 characters into `buf`.
 - **Auxiliary Space Complexity:** $O(1)$ constant memory, requiring only the fixed 4-character array `buf4`.

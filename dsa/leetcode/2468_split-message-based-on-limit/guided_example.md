@@ -71,7 +71,7 @@ The last three rows contain the whole drama of this instance. With $k = 13$ the 
 carry only $35$ characters while the message needs $37$, so $13$ pieces are impossible. With
 $k = 14$ the capacity is exactly $37$ — a perfect fit, with no slack at all. Note also that
 the digit jump from $k = 9$ to $k = 10$ costs the packing $7$ payload characters: capacity
-falls from $36$ to $29$ even though ten more total length was added.
+falls from $36$ to $29$ even though nine more total length was added.
 
 ## 3. Scanning part counts in increasing order
 
@@ -126,7 +126,7 @@ gives each piece as much as it can hold, leaving the remainder for the later pie
 | 14 | `<14/14>` | 7 | 2 | 2 | 36–37 | 37 | `ge<14/14>` |
 
 All $37$ characters are consumed and every piece reaches the full length $9$, which is what
-an exactly-satisfied capacity bound predicts. The spaces at positions $5$, $8$, $13$, $15$,
+an exactly-satisfied capacity bound predicts. The spaces at positions $5$, $8$, $15$, $17$,
 $22$ and $30$ are payload characters like any other: the piece `ly <5/14>` ends with the
 space between `really` and `a`, and the piece ` aw<8/14>` begins with the space between
 `very` and `awesome`. Suffix removal and concatenation therefore reproduce the message

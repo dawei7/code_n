@@ -133,6 +133,30 @@ Final Result: 6
 | **3** | **`"/"`** | **Operator** | **$a=13, \, b=5$** | **$\text{int}(13 / 5) = 2$** | **`[4, 2]`** |
 | **4** | **`"+"`** | **Operator** | **$a=4, \, b=2$** | **$4 + 2 = 6$** | **`[6]` (Result)** |
 
+The package also carries a longer mixed expression whose value is $22$:
+$$
+\text{tokens} = [\text{"10"}, \text{"6"}, \text{"9"}, \text{"3"}, \text{"+"}, \text{"-11"}, \text{"*"}, \text{"/"}, \text{"*"}, \text{"17"}, \text{"+"}, \text{"5"}, \text{"+"}]
+$$
+Tracing it token by token shows the same protocol surviving a negative operand, a negative product, and a negative intermediate quotient:
+
+| Token Index | Token | Kind | Operands popped $(a, b)$ | Evaluation | Stack Afterwards |
+|:---:|:---:|:---:|:---:|:---|:---|
+| 0 | `"10"` | Operand | - | Parse integer $10$ | `[10]` |
+| 1 | `"6"` | Operand | - | Parse integer $6$ | `[10, 6]` |
+| 2 | `"9"` | Operand | - | Parse integer $9$ | `[10, 6, 9]` |
+| 3 | `"3"` | Operand | - | Parse integer $3$ | `[10, 6, 9, 3]` |
+| 4 | `"+"` | Operator | $a=9, \, b=3$ | $9 + 3 = 12$ | `[10, 6, 12]` |
+| 5 | `"-11"` | Operand | - | Parse integer $-11$, not the subtraction operator | `[10, 6, 12, -11]` |
+| 6 | `"*"` | Operator | $a=12, \, b=-11$ | $12 \times (-11) = -132$ | `[10, 6, -132]` |
+| 7 | `"/"` | Operator | $a=6, \, b=-132$ | $\text{trunc}(6 / (-132)) = 0$ | `[10, 0]` |
+| 8 | `"*"` | Operator | $a=10, \, b=0$ | $10 \times 0 = 0$ | `[0]` |
+| 9 | `"17"` | Operand | - | Parse integer $17$ | `[0, 17]` |
+| 10 | `"+"` | Operator | $a=0, \, b=17$ | $0 + 17 = 17$ | `[17]` |
+| 11 | `"5"` | Operand | - | Parse integer $5$ | `[17, 5]` |
+| 12 | `"+"` | Operator | $a=17, \, b=5$ | $17 + 5 = 22$ | `[22]` (Result) |
+
+Index 7 is the decisive row: without truncation toward zero the intermediate value would be $-1$, and the final $*$ and $+$ operations would propagate that error all the way to the wrong answer.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -148,6 +172,17 @@ Final Result: 6
 - **Operand Order Asymmetry ($a - b$ vs $b - a$):** Because the stack pops in reverse order, the first popped value is the **right operand** ($b$) and the second popped value is the **left operand** ($a$). Calculating $b - a$ or $b / a$ produces completely incorrect signs and fractions!
 - **Python Floor Division Trap (`//` vs `int(a / b)`):** In Python, `-3 // 2 = -2` (floor toward negative infinity). But the problem requires **truncation toward zero**: $\text{trunc}(-1.5) = -1$! Using `int(a / b)` correctly truncates toward zero for both positive and negative results.
 - **Negative Integer Tokens:** A token like `"-11"` is a negative number, not the subtraction operator `"-"`! Checking `if token in {"+", "-", "*", "/"}:` prevents misinterpreting negative numerals as operators.
+
+Writing each quotient with its exact rational value separates the required rule from the floor rule that Python's `//` implements:
+
+| Quotient | Exact rational value | Required result, truncated toward zero | Floor result | Where the two rules disagree |
+|:---:|:---:|:---:|:---:|:---|
+| $13 / 5$ | $2.6$ | $2$ | $2$ | They agree whenever the quotient is non-negative, which is why the trap hides until a negative appears |
+| $7 / (-3)$ | $-2.333\ldots$ | $-2$ | $-3$ | On a negative quotient, truncation moves toward $0$ while the floor moves further from it |
+| $(-7) / 3$ | $-2.333\ldots$ | $-2$ | $-3$ | Moving the sign to the numerator or the denominator changes nothing: the required rule discards the fractional part of the magnitude |
+| $6 / (-132)$ | $-0.045\ldots$ | $0$ | $-1$ | The true quotient lies strictly between $-1$ and $0$, so truncation returns the signed zero $0$ while the floor returns $-1$ |
+
+The second row is the package case `["7", "-3", "/"]`, whose required answer is $-2$, and the fourth is the instance in the header: reading either one through a floor rule yields the wrong value rather than merely a different formatting of the same answer.
 
 ---
 

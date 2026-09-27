@@ -145,6 +145,32 @@ Step 3:        [L     R]               2 +  7 =  9 == 9 -> MATCH!
 | 2 | 0 | 2 | 2 | 11 | 13 | $13 > 9$ | $R \leftarrow R - 1$ |
 | **3** | **0** | **1** | **2** | **7** | **9** | **$9 == 9$** | **Return $[L+1, R+1] = [1, 2]$** |
 
+### Every Pair the Two Steps Eliminate
+
+With $N = 4$ there are only $\binom{4}{2} = 6$ unordered pairs. Listing all of them shows exactly why one pointer move can retire a whole family of candidates at once:
+
+| Pair (1-indexed) | Values | Sum | Compared with target $9$ | Status after the step |
+|:---:|:---:|:---:|:---|:---|
+| $(1, 4)$ | $2 + 15$ | 17 | Too large | Eliminated at Step 1 by moving $R$ from index $4$ to index $3$ |
+| $(2, 4)$ | $7 + 15$ | 22 | Too large | Eliminated by the same move: every pair containing $15$ exceeds the target |
+| $(3, 4)$ | $11 + 15$ | 26 | Too large | Eliminated by the same move, since $11$ only pushes the sum higher |
+| $(1, 3)$ | $2 + 11$ | 13 | Too large | Eliminated at Step 2 by moving $R$ from index $3$ to index $2$ |
+| $(2, 3)$ | $7 + 11$ | 18 | Too large | Eliminated by the same move |
+| $(1, 2)$ | $2 + 7$ | **9** | **Exact match** | **Survives as the answer $[1, 2]$** |
+
+The two pointer moves retire $3 + 2 = 5$ candidate pairs without ever evaluating them individually, and the surviving pair is the one the invariant promised could not be pruned.
+
+### Boundary Scenarios This Instance Sits Next To
+
+| Scenario | Input condition | Expected | What the pointer walk does | Trap if handled naively |
+|:---|:---|:---:|:---|:---|
+| Array shorter than two elements | a single element, e.g. $[2]$ with target $9$ | No pair exists | The walk never runs, because $L = 0$ already equals $R$ and the loop requires $L < R$ | A naive inner loop can index past the end of the array instead of recognising that no valid pair can exist |
+| Pair uses both extremes | $[2, 3, 4]$ with target $6$ | $[1, 3]$ | Step 1 computes $2 + 4 = 6$ and returns immediately | Reporting $[2, 3]$ (the middle pair $3 + 3$) would reuse one element twice, which the distinct-index rule forbids |
+| Negative values | $[-1, 0]$ with target $-1$ | $[1, 2]$ | $-1 + 0 = -1$ matches; target sign never enters the comparison | Assuming the target is positive, or clamping values to non-negative, breaks the very first comparison |
+| Equal values at distinct positions | $[1, 2, 2, 3]$ with target $4$ | $[1, 4]$ | The extremes $1 + 3 = 4$ already match, so the walk stops before the duplicate middle pair is ever considered | Returning the two copies of $2$ is tempting but wrong: their 0-indexed positions are $1$ and $2$, and the guarantee names the unique pair |
+| Both extremes must be discarded | $[-10, -4, 1, 4, 8, 20]$ with target $5$ | $[3, 4]$ | Too-large sums shrink $R$ twice down to index $3$, then a too-small sum advances $L$ twice up to index $2$, and $1 + 4 = 5$ matches | A walk that moves only one pointer, or that resets the interval each step, loses the $O(N)$ bound |
+| Large range, all values distinct | e.g. $[1, 2, \dots, 10^{4}]$ with a fixed target inside the range | One pair near the middle | Each iteration removes exactly one index, so at most $N - 1$ iterations are ever needed | A nested scan over all pairs is $O(N^{2})$ and times out well before the pointer walk would finish |
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -160,6 +186,16 @@ Step 3:        [L     R]               2 +  7 =  9 == 9 -> MATCH!
 - **Zero-Indexed vs One-Indexed:** Returning `[0, 1]` results in a wrong answer. The problem explicitly specifies a 1-indexed output: `[L + 1, R + 1]`.
 - **Using Hash Map (Space Violation):** While a hash table solves this in $O(N)$ time, it requires $O(N)$ auxiliary memory. The problem explicitly mandates constant $O(1)$ extra space.
 - **Using Binary Search ($O(N \log N)$):** Searching for `target - nums[i]` with binary search for each element takes $O(N \log N)$ time, which is strictly inferior to two-pointer $O(N)$ time.
+
+### Alternative Approaches on This Array
+
+| Approach | Iterations on $[2, 7, 11, 15]$ with target $9$ | Time | Auxiliary space | Tradeoff for this contract |
+|:---|:---|:---:|:---:|:---|
+| Brute-force pair enumeration | Evaluates all $6$ pairs and finds $(1, 2)$ last | $O(N^{2})$ | $O(1)$ | Correct but quadratic; the sortedness that the problem hands you is thrown away |
+| Hash map of complements | Inserts $2$, looks for $7$, and returns $[1, 2]$ on the second element | $O(N)$ | $O(N)$ | Matches the time bound but violates the explicit constant-space requirement, and ignores that the input is already sorted |
+| Binary search for `target - numbers[i]` | Runs a search for $7$ after fixing $2$ and finds it at index $2$ | $O(N \log N)$ | $O(1)$ | Uses no extra memory but still pays a logarithmic factor per index |
+| Two pointers moving inward | Rejects $15$, then $11$, then matches $2 + 7$ in three steps | $O(N)$ | $O(1)$ | Reaches both optimal bounds at once; the only cost is that it depends on the array being sorted |
+| Two pointers on an unsorted array | Would prune the wrong element, because the extremes are no longer the range's minimum and maximum | Undefined bound | $O(1)$ | The pruning proof collapses: with $[15, 2, 11, 7]$ the first sum $15 + 7 = 22$ wrongly blames index $4$ |
 
 ---
 

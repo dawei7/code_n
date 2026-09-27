@@ -127,6 +127,20 @@ Revision 1:
 | 0 | `"1"` | 1 | `"1"` | 1 | $1 == 1$ | Skip dot, continue |
 | **1** | **`"2"`** | **2** | **`"10"`** | **10** | **$2 < 10$** | **Return -1** |
 
+### Character-Level Streaming Trace
+
+The two pointers advance independently, which is what lets the scan stay $O(1)$ in auxiliary space. Every read either folds a digit into the accumulator or ends the current revision:
+
+| Step | Character read from `version1` | $a$ after the step | Character read from `version2` | $b$ after the step | Why this read happens |
+|:---:|:---:|:---:|:---:|:---:|:---|
+| 1 | `'1'` at $i = 0$ | $0 \times 10 + 1 = 1$ | `'1'` at $j = 0$ | $0 \times 10 + 1 = 1$ | Both strings open with the same digit, so neither revision can decide the order yet |
+| 2 | `'.'` at $i = 1$ | $1$ (unchanged) | `'.'` at $j = 1$ | $1$ (unchanged) | A delimiter ends revision $0$; the accumulated values are compared and found equal |
+| 3 | — | $i \leftarrow 2$ | — | $j \leftarrow 2$ | Both pointers step past the delimiter, aligning the next revision for both strings at once |
+| 4 | `'2'` at $i = 2$ | $0 \times 10 + 2 = 2$ | `'1'` at $j = 2$ | $0 \times 10 + 1 = 1$ | Revision $1$ starts; `version2` still has another digit to consume, so the comparison must wait |
+| 5 | — ($i = 3 = M$) | $2$ (final) | `'0'` at $j = 3$ | $1 \times 10 + 0 = 10$ | `version1` is exhausted while `version2` is mid-revision; the already-finished value $a = 2$ is held |
+| 6 | — | — | — ($j = 4 = N$) | $10$ (final) | `version2` reaches its end, so revision $1$ is now fully known on both sides |
+| 7 | — | — | — | — | Compare $2 < 10$ and return $-1$; later revisions never need to be read |
+
 ### Contrast: Unequal Length with Trailing Zeroes (`"1.0"` vs `"1.0.0"`)
 - Rev 0: $a = 1, b = 1 \implies 1 == 1$.
 - Rev 1: $a = 0, b = 0 \implies 0 == 0$.
@@ -148,6 +162,27 @@ Revision 1:
 - **Lexicographical Comparison Hazard:** Directly comparing strings `"1.2"` vs `"1.10"` yields `"1.2" > "1.10"` because `'2' > '1'`. Parsing integers $2 < 10$ is mandatory.
 - **Leading Zeros in Revisions:** Revisions like `"01"` and `"001"` both evaluate to integer $1$. The Horner accumulators $a \times 10 + d$ absorb arbitrary runs of leading zeros naturally.
 - **Asymmetric Revision Counts:** `"1.0"` and `"1.0.0.0"` represent the same version. Simply comparing token array lengths would falsely claim they differ.
+
+### Alternative Approaches on This Pair
+
+| Approach | What it does with `"1.2"` versus `"1.10"` | Time | Comparison time | Auxiliary space | Why it fails or costs more |
+|:---|:---|:---:|:---|:---:|:---|
+| Raw lexicographic string compare | Compares character `'2'` against `'1'` at the third position and declares `"1.2"` larger | $O(\min(M, N))$ | $O(1)$ per character | $O(1)$ | Wrong answer: character order disagrees with numeric order whenever revisions differ in digit count |
+| Split both strings on `'.'`, convert every token, then compare | Produces $[1, 2]$ and $[1, 10]$, then walks the two lists | $O(M + N)$ | $O(1)$ per revision | $O(M + N)$ for the token lists and substrings | Correct but allocates a token list proportional to the input, breaking the constant-space requirement |
+| Pad the shorter token list with zeros, then compare | Pads `"1.0"` into $[1, 0, 0, 0]$ so list lengths match before walking | $O(M + N)$ | $O(1)$ per revision | $O(M + N)$ | Padding is a symptom, not a fix: the streaming scan already reads a missing revision as $0$ with no list at all |
+| Stream revisions on demand with two pointers | Reads `"2"` and `"10"` in place and returns at the first unequal pair | $O(M + N)$ | $O(1)$ per revision | $O(1)$ | None for this contract; digits are folded into $a$ and $b$ without ever materialising a substring |
+| Manual digit-string compare with leading-zero stripping | Strips zeros from both revisions, then compares digit by digit | $O(M + N)$ | $O(K)$ for a revision of $K$ digits | $O(1)$ | Correct but re-implements arithmetic comparison; the streaming accumulator gets the same result in one pass |
+
+### Boundary Scenarios Behind the Four Control Inputs
+
+| Input pair | Condition exercised | Expected | Why the streaming scan produces it |
+|:---|:---|:---:|:---|
+| `"1.01"` vs `"1.001"` | Leading zeros inside a revision | 0 | Both accumulators build $0 \times 10 + 1 = 1$ from different character counts, so leading zeros cannot influence the values |
+| `"1.0"` vs `"1.0.0.0"` | One string runs out of revisions first | 0 | Once $i = M$, the next revision of `version1` is read with $a$ reset to $0$ without reading any character, matching the explicit `"0"` of the longer string |
+| `"1"` vs `"1.10"` | Prefix string versus dotted string | $-1$ | Revision $0$ ties at $1$; revision $1$ then pairs `version1`'s phantom $0$ with `version2`'s $10$ |
+| `"111"` vs `"1.10"` | Revision with more digits than the whole rival prefix | 1 | Horner accumulation yields $a = 111$ for the single revision, and $111 > 1$ decides the order at revision $0$ before any padding question arises |
+| `"2.0.1"` vs `"1.999.999"` | Later revisions are numerically far larger | 1 | The first revision already satisfies $2 > 1$, so the scan returns immediately and never inspects `"999.999"` |
+| `"1.0000000000000000000000002"` vs `"1.0000000000000000000000003"` | Revisions of tens of digits, far longer than a fixed-width conversion would tolerate | $-1$ | Accumulation is exact integer arithmetic over arbitrarily many digits, so the long revision still yields a true value rather than an approximated one |
 
 ---
 

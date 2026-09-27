@@ -169,6 +169,33 @@ Step 4: Remainder = 4 -> Already seen at index 2!
 | 3 | 67 | 4 | 670 | 2 | 4 | `["0", ".", "0", "1", "2"]` |
 | **4** | **4** | **Found at 2** | - | - | - | **`"0.(012)"` (Enclosed)** |
 
+### The Remainder Ledger
+
+The hash map is the whole algorithm: it stores the answer position where each remainder's quotient digit will land. Reading the ledger backwards from the repeated remainder gives the exact period:
+
+| Order of first appearance | Remainder $R$ | $\text{seen}[R]$ (answer index) | Next $R \times 10$ | Digit $\lfloor R \times 10 / 333 \rfloor$ | Digit position in the final string |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1st | 4 | 2 | 40 | 0 | 2 (first digit inside the parentheses) |
+| 2nd | 40 | 3 | 400 | 1 | 3 |
+| 3rd | 67 | 4 | 670 | 2 | 4 (last digit inside the parentheses) |
+| repeat | 4 | already 2 | not evaluated | not evaluated | cycle closes; `")"` lands at index 6 |
+
+Only three distinct remainders ever appear, so the ledger has three rows and the period is $3$ digits. The repeated remainder $4$ re-enters at exactly the index where the first `'0'` was appended, which is why `"("` is inserted at index $2$ and not at index $0$ or $1$ (which hold `"0"` and `"."`).
+
+### Cycle and Termination Behaviour Across Control Inputs
+
+| Fraction | Sign | Integer part $Q$ | Remainder after $Q$ | Remainders visited | Period | Result |
+|:---|:---:|:---:|:---:|:---|:---:|:---|
+| $1/2$ | `""` | 0 | 1 | $1 \to 0$ (terminates) | none | `"0.5"` |
+| $2/3$ | `""` | 0 | 2 | $2 \to 2$ (repeats immediately) | 1 | `"0.(6)"` |
+| $4/333$ | `""` | 0 | 4 | $4 \to 40 \to 67 \to 4$ | 3 | `"0.(012)"` |
+| $2/1$ | `""` | 2 | 0 | none needed | none | `"2"` |
+| $1/1$ | `""` | 1 | 0 | none needed | none | `"1"` |
+| $-50/8$ | `"-"` | 6 | 2 | $2 \to 4 \to 0$ (terminates) | none | `"-6.25"` |
+| $0/-7$ | suppressed | 0 | 0 | none needed | none | `"0"` |
+
+Two independent things decide the shape of the answer: whether the remainder ever hits $0$ (terminating versus recurring) and where the first repeated remainder was recorded (where the parentheses open). The $1/2$ and $2/3$ rows are the smallest witnesses of each outcome, and the $0/-7$ row shows that the sign rule is never consulted when the numerator is $0$.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -184,6 +211,16 @@ Step 4: Remainder = 4 -> Already seen at index 2!
 - **32-Bit Overflow on Integer Negation:** In languages like C++, negating $-2^{31}$ causes integer overflow! Casting to 64-bit integer (`long long`) before taking absolute values prevents overflow crashes.
 - **Zero Numerator Sign:** When `numerator = 0` and `denominator = -5`, returning `"-0"` is incorrect. Check `if numerator == 0: return "0"` first.
 - **Zero Digits in Quotient:** In $\frac{4}{333}$, $40 < 333$, generating digit $0$. Omitting the zero would yield wrong answer `"0.(12)"` instead of `"0.(012)"`.
+
+### Alternative Approaches on This Fraction
+
+| Approach | What it produces for $4/333$ | Time | Auxiliary space | Failure mode or tradeoff |
+|:---|:---|:---:|:---:|:---|
+| Floating-point division, then formatting | A rounded value such as $0.012012012\dots$ truncated to the formatter's precision | $O(1)$ | $O(1)$ | Cannot decide where a period starts or ends, and cannot distinguish $1/2$ from a decimal that merely looks short |
+| Fixed-digit truncation with a hard-coded width | The first $K$ digits of $0.012012\dots$ | $O(K)$ | $O(K)$ | Guessing $K$ is impossible in advance: the period of $1/97$ already has $96$ digits, and the required output must be exact |
+| Exact rational comparison with scaled big integers | Multiply the numerator by a huge power of ten and compare digits arithmetically | $O(D)$ digits produced | $O(D)$ for the scaled integer | Correct but builds an enormous intermediate number when it only needs the next remainder, which is always below $D$ |
+| Long division with a remainder-to-index hash map | `"0.(012)"` after three recorded remainders | $O(D)$ | $O(D)$ | None for this contract; the period is discovered rather than assumed, and each remainder is processed once |
+| Floyd cycle detection without a map | Finds that a cycle exists but not where it opens | $O(D)$ | $O(1)$ | Cannot place `"("`: the answer needs the index of the first occurrence of the repeated remainder, which the map retains and a two-pointer detector does not |
 
 ---
 

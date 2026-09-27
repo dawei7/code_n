@@ -43,6 +43,16 @@ $$
 $$
 Level-order output: $[4, 5, 2, \text{null}, \text{null}, 3, 1]$.
 
+Every node keeps its value and its identity; only its position in the parent/child relation moves. The table records the exact new neighbourhood of each node of this instance, which is precisely what the final level order must encode:
+
+| Original node | Role in the input tree | New left child | New right child | Position in `[4, 5, 2, null, null, 3, 1]` |
+|:---|:---|:---|:---|:---|
+| 4 | deepest node of the left spine | 5, its former right sibling | 2, its former parent | index 0, the new root |
+| 2 | middle node of the left spine | 3, the sibling carried down from node 1 | 1, its former parent | index 2, right child of 4 |
+| 1 | original root, parent of 2 and of 3 | `null` | `null` | index 6, a leaf |
+| 5 | right leaf of node 2 | `null` | `null` | index 1, left child of 4 and still a leaf |
+| 3 | right leaf of node 1 | `null` | `null` | index 5, left child of 2 and still a leaf |
+
 A top-down recursive solution uses $O(H)$ stack frames.
 The transformation can be understood as an iterative single-linked list reversal along the left spine: as we descend down the left children ($1 \to 2 \to 4$), we reverse the spine pointers while wiring the right siblings into left positions in $O(1)$ space.
 
@@ -188,9 +198,28 @@ Initial Tree:                         Inverted Tree:
 - **Original Root Children:** The original root (Node 1) must have both `left` and `right` set to null; failing to nullify them creates a cycle ($1 \to 2$ and $2 \to 1$).
 - **Single Node or Empty Tree:** If `root is None` or `root.left is None`, the loop terminates immediately and returns `root` unchanged.
 
+The authored instances show that one loop covers every degenerate shape without a special branch; the last two rows also show that the protocol is robust on spine shapes that violate the stated 0-or-2-children guarantee:
+
+| Instance | Input | What is degenerate about it | Result | Why the loop-carried pointers still produce it |
+|:---|:---|:---|:---|:---|
+| Empty tree | `root = []` | no node exists at all | `[]` | `curr` is null before the first iteration, so the body never runs and `prev` is still the null root it was initialised to |
+| Single node | `root = [1]` | node 1 has no left child | `[1]` | the root is itself the deepest left node, so it is processed first with `prev` and `prev_right` both null and keeps two null children |
+| Left chain | `root = [1, 2, null, 3]` | no right sibling anywhere in the tree | `[3, null, 2, null, 1]` | every cached `next_right` is null, so each new left child is null and each new right child is the previously processed spine node |
+| Three paired levels | `root = [1, 2, 3, 4, 5, null, null, 6, 7]` | four spine nodes, three siblings to carry | `[6, 7, 4, null, null, 5, 2, null, null, 3, 1]` | sibling 7 attaches to the deepest spine node 6, sibling 5 to node 4 and sibling 3 to node 2, each one step below its former parent |
+| Longest spine | `root = [1, 2, 3, 4, 5, null, null, 6, 7, null, null, 8, 9, null, null, 10]` | five spine nodes; deepest node has no sibling | `[10, null, 8, 9, 6, null, null, 7, 4, null, null, 5, 2, null, null, 3, 1]` | node 8 has no right child, so node 10 receives a null left child and takes `prev = 8` as its right child |
+
 ---
 
 ## 7. Complexity Derivation
+
+Four formulations produce this same tree. Comparing them shows why the loop-carried pointer walk is the one worth learning for an input whose guarantee bounds the *shape* of the spine but not its length:
+
+| Formulation | Mechanism | Auxiliary space | Tradeoff or failure mode |
+|:---|:---|:---|:---|
+| Recursive descent that rewires while returning | reach the deepest left node, then give each node its sibling and its parent as children as the calls unwind | $O(H)$ call frames | correct and compact, but $H$ can reach $N/2$ spine nodes, so the longest instance consumes linear stack |
+| Loop-carried pointer walk, traced above | carry `prev` and `prev_right` down the spine and rewire each node before stepping to its cached left child | $O(1)$ | both forward links must be cached first, because assigning the new left child destroys the pointer to the remaining spine |
+| Materialise the spine, then re-link it | collect the spine nodes in an array and rebuild the parent/child relations by index afterwards | $O(H)$ array | the array buys no clarity over recursion and still needs a rule for which sibling belongs to which spine node |
+| Detach every right sibling, then reverse the spine | null the right links in a first pass, reverse the spine, then re-attach the stored siblings | $O(H)$ sibling storage | the displaced siblings still have to live somewhere, and a two-pass order makes the attachment step order-sensitive |
 
 - **Time Complexity:** $O(H) = O(N)$ time, where $H$ is the height of the left spine (which is bounded by $N/2$ nodes). Each step performs $O(1)$ pointer swaps.
 - **Auxiliary Space Complexity:** $O(1)$ constant auxiliary memory, using only scalar pointer references without recursion or heap allocations.

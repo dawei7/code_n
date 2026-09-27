@@ -154,6 +154,35 @@ Reversed: "ZY"
 - Iter 2: $N = 1 \to 0$. $0 \pmod{26} = 0 \implies \text{'A'}$. $N = 0 // 26 = 0$.
 - Reversed: $\mathbf{\text{"AB"}}$ ($1 \times 26 + 2 = 28$).
 
+### Boundary Scenarios This Instance Sits Next To
+
+The interesting numbers are the ones where the offset decides an entire extra digit, because those are the columns where ordinary base-26 arithmetic breaks:
+
+| $\text{columnNumber}$ | $N - 1$ on iteration 1 | Iteration 1 remainder | Iteration 1 quotient | Continuing quotients | Expected title | Why this value is a boundary |
+|:---:|:---:|:---:|:---:|:---|:---:|:---|
+| 1 | 0 | 0 $\to$ `'A'` | 0 | loop ends | `"A"` | Smallest legal input; the remaining prefix is already empty |
+| 26 | 25 | 25 $\to$ `'Z'` | 0 | loop ends | `"Z"` | Last one-letter title; an ordinary modulo of $26$ would yield digit $0$ with no letter to map |
+| 27 | 26 | 0 $\to$ `'A'` | 1 | $1 - 1 = 0 \to$ `'A'` $\to$ quotient $0$ | `"AA"` | First two-letter title, reached only because the offset turned $26$'s carry into a legal digit |
+| 28 | 27 | 1 $\to$ `'B'` | 1 | $1 - 1 = 0 \to$ `'A'` $\to$ quotient $0$ | `"AB"` | Shows the carry is a separate digit rather than a change to the low digit |
+| 52 | 51 | 25 $\to$ `'Z'` | 1 | $1 - 1 = 0 \to$ `'A'` $\to$ quotient $0$ | `"AZ"` | Last title beginning with `'A'`, closing the first block of $26$ |
+| 676 | 675 | 25 $\to$ `'Z'` | 25 | $25 - 1 = 24 \to$ `'Y'` $\to$ quotient $0$ | `"YZ"` | Largest two-letter title with a nonzero leading digit below the final block |
+| 701 | 700 | 24 $\to$ `'Y'` | 26 | $26 - 1 = 25 \to$ `'Z'` $\to$ quotient $0$ | `"ZY"` | The second iteration receives exactly $26$, so it needs the offset again to land on `'Z'` |
+| 702 | 701 | 25 $\to$ `'Z'` | 26 | $26 - 1 = 25 \to$ `'Z'` $\to$ quotient $0$ | `"ZZ"` | Last two-letter title; both digits sit at the maximum value |
+| 703 | 702 | 0 $\to$ `'A'` | 27 | $27 - 1 = 26$: remainder $0 \to$ `'A'`, quotient $1$; then $1 - 1 = 0 \to$ `'A'`, quotient $0$ | `"AAA"` | First three-letter title; two consecutive zero remainders prove the offset applies at every iteration, not once |
+
+Notice that $27$, $52$, $676$, $702$, and $703$ are all values where the low remainder is $0$ or the low digit sits at $25$. Those are precisely the positions where the decrement is load-bearing; the remaining values decode correctly even by coincidence, which is why a single hand-checked example is not enough evidence that the offset is applied correctly.
+
+### How Many Iterations the Value Buys
+
+Each iteration strips exactly one base-26 digit, so the loop count is the title length. Under the stated input ceiling the count is capped at seven:
+
+| Value range | Base-26 digits | Iterations | Example |
+|:---|:---:|:---:|:---|
+| $1 \le N \le 26$ | 1 | 1 | $26 \to \text{"Z"}$ |
+| $27 \le N \le 26^{2} = 676$ | 2 | 2 | $701$ is outside this band, but $676 \to \text{"YZ"}$ takes 2 |
+| $677 \le N \le 26^{3} = 17576$ | 3 | 3 | $703 \to \text{"AAA"}$ |
+| $26^{6} + 1 \le N \le 26^{7} \approx 8.03 \times 10^{9}$ | 7 | 7 | Any $N$ up to $2^{31} - 1 \approx 2.14 \times 10^{9}$ still fits |
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -169,6 +198,16 @@ Reversed: "ZY"
 - **Failing to Decrement by 1 ($N \pmod{26}$):** If $N = 26$, $26 \pmod{26} = 0$. Without decrementing, 0 maps before `'A'` or requires an awkward special-case check. Decrementing $N - 1$ unifies all numbers uniformly.
 - **Decrementing Only Once:** The subtraction $N - 1$ must be performed **at every iteration**, not just before the while loop! Higher-order digits also participate in bijective base-26.
 - **Order of Letters:** Modulus extracts the least significant character first. Forgetting to reverse `title` at the end produces inverted output `"YZ"` instead of `"ZY"`.
+
+### Alternative Approaches on These Instances
+
+| Approach | $26$ | $28$ | $701$ | $703$ | Why it breaks or costs more |
+|:---|:---:|:---:|:---:|:---:|:---|
+| Plain base-26 with `'A'` mapped to $0$ and no offset | `"A0"` (no letter for digit $0$) | `"AB"` | `"ZY"` | `"A0A"` | There is no zero symbol to emit; the failures at $26$ and $703$ are exactly the wrap points, while the two middle columns happen to agree |
+| Decrement the input once, then convert in plain base-26 | `"Z"` | `"AB"` | `"ZY"` | `"BBA"` | Correct only while the input has one digit; from $703$ on, the higher-order digits keep their own $1$-offset and the title gains a phantom leading letter |
+| Decrement once and repair the result with a manual carry | `"Z"` | `"AB"` | `"ZY"` | Carry propagation cascades through two positions | The repair is the per-iteration offset written badly: every zero digit forces a borrow, so the loop is both simpler and provably uniform |
+| Per-iteration offset with `divmod`-style extraction | `"Z"` | `"AB"` | `"ZY"` | `"AAA"` | Matches every boundary in the table because each digit is converted in the same $1$-indexed frame |
+| Precomputed lookup table over all columns | `"Z"` | `"AB"` | `"ZY"` | `"AAA"` | The legal input reaches $2^{31} - 1$, so enumerating titles is far larger than the $7$ arithmetic steps the loop needs |
 
 ---
 

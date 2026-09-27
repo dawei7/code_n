@@ -50,6 +50,16 @@ $$
    $$
 Canonical slope key: $(dx, dy)$.
 
+The four normalization situations, each instantiated with a pair that actually occurs in this input, show why the canonical key and not the raw difference must be hashed:
+
+| Geometry | Pair from this instance | Raw $(\Delta x, \Delta y)$ | What the raw measure gets wrong | Canonical key |
+|:---|:---|:---:|:---|:---:|
+| Vertical | $P_0(1, 1) \to P_5(1, 4)$ | $(0, 3)$ | A float slope is undefined because the division by $\Delta x = 0$ has no value | $(0, 1)$ |
+| Horizontal | $P_0(1, 1) \to P_3(4, 1)$ | $(3, 0)$ | Slope $0$ collapses every horizontal direction into one number and still needs a separate sentinel from the vertical case | $(1, 0)$ |
+| Reducible fraction | $P_0(1, 1) \to P_2(5, 3)$ | $(4, 2)$ | Unreduced, $(4, 2)$ and $(2, 1)$ describe the same slope but land in different buckets | $(2, 1)$ |
+| Negative denominator | $P_4(2, 3) \to P_5(1, 4)$ | $(-1, 1)$ | $(-1, 1)$ and $(1, -1)$ are one line, yet they are two distinct tuples | $(1, -1)$ |
+| Reduction and sign together | $P_1(3, 2) \to P_5(1, 4)$ | $(-2, 2)$ | Dividing by $g = 2$ yields $(-1, 1)$, which is still on the wrong side of the denominator rule | $(1, -1)$ |
+
 ### Algorithm Protocol
 If $N \le 2$, return $N$.
 Initialize $\text{max\_pts} = 2$.
@@ -151,6 +161,19 @@ Max for P4: 1 (anchor) + 3 = 4 points collinear on line y = -x + 5
 | **$P_4(2, 3)$** | **$P_3(4, 1)$** | **$(2, -2)$** | **2** | **$(1, -1)$** | **3** | **4 (Global Max)** |
 | $P_4(2, 3)$ | $P_0(1, 1)$ | $(-1, -2)$ | 1 | $(1, 2)$ | 1 | 2 |
 | $P_4(2, 3)$ | $P_2(5, 3)$ | $(3, 0)$ | 3 | $(1, 0)$ | 1 | 2 |
+
+Sweeping every anchor settles maximality rather than assuming it. Any line carrying $5$ points would have to surface as a largest class of size $4$ under the lowest-indexed point on that line, so it is enough to list each anchor's tally:
+
+| Anchor $P_i$ | Slope keys tallied as key and count | Largest class | Local maximum $1 + \text{count}$ | Global $\text{max\_pts}$ afterwards |
+|:---:|:---|:---:|:---:|:---:|
+| $P_0(1, 1)$ | $(2, 1)$ twice, $(1, 0)$ once, $(1, 2)$ once, $(0, 1)$ once | $(2, 1)$ with $2$ | $1 + 2 = 3$ | $3$ |
+| $P_1(3, 2)$ | $(2, 1)$ once, $(1, -1)$ three times | $(1, -1)$ with $3$ | $1 + 3 = 4$ | $4$ |
+| $P_2(5, 3)$ | $(1, 2)$ once, $(1, 0)$ once, $(4, -1)$ once | a three-way tie at $1$ | $1 + 1 = 2$ | $4$ |
+| $P_3(4, 1)$ | $(1, -1)$ twice | $(1, -1)$ with $2$ | $1 + 2 = 3$ | $4$ |
+| $P_4(2, 3)$ | $(1, -1)$ once, from $P_5$ alone, because $P_0$ through $P_3$ all have lower indices and are no longer candidates | $(1, -1)$ with $1$ | $1 + 1 = 2$ | $4$ |
+| $P_5(1, 4)$ | no candidate satisfies $j > 5$, so nothing enters the map | empty map | $1$, the anchor alone | $4$ |
+
+Three facts fall out of the sweep. The protocol of Section 2, which only pairs an anchor with later points, meets the line $x + y = 5$ at $P_1$, its lowest-indexed member, where the slope to $P_3$, $P_4$, and $P_5$ all reduce to $(1, -1)$ and the class reaches $3$. The Section 3 walkthrough reached the same four points from $P_4$ because it compared $P_4$ against *every* other point instead of only later ones; that variant is equally sound, since the completeness argument only requires the maximal line to be found at *some* anchor, and both variants agree on the value $4$. No anchor reaches $5$, so no line carries five points. And the final anchor has no partner at all, which is why an implementation must tolerate an empty tally instead of taking a maximum over it.
 
 ---
 

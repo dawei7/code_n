@@ -170,7 +170,7 @@ distinct strings, because subsequences are counted by position.
 
 | Approach | Idea | Cost | Failure mode or tradeoff |
 |:---|:---|:---|:---|
-| Enumerate all five-position tuples | take every set of five positions and test the palindrome condition directly | $\binom{n}{5}$ tuples | infeasible: for $n = 10^{4}$ this is about $8 \cdot 10^{16}$ tuples |
+| Enumerate all five-position tuples | take every set of five positions and test the palindrome condition directly | $\binom{n}{5}$ tuples | infeasible: for $n = 10^{4}$ this is about $8 \cdot 10^{17}$ tuples |
 | Enumerate all length-five subsequences by value | generate the $\binom{n}{5}$ digit strings and deduplicate them | exponential in practice | wrong as well as slow: the problem counts positions, and deduplication would discard exactly the duplicates that must be counted |
 | General palindromic-subsequence dynamic programming | count palindromic subsequences of every length by interval recursion, then read off length five | $O(n^{2})$ states and transitions | correct but far heavier than needed; it tracks all lengths and all interval boundaries, while only length five with a fixed centre structure matters here |
 | Centre-product with per-position pair tables | store $L_k$ and $R_k$ for every position as tables of $100$ pair counts | $O(100n)$ time, $O(100n)$ space | the method used here when the tables are materialised: simple to verify, and the $O(100n)$ memory is acceptable for $n = 10^{4}$ |

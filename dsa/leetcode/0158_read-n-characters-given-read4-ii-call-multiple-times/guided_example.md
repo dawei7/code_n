@@ -153,6 +153,30 @@ Call 3: read(buf, 1)
 | **Call 2** | 2 | `head=1, tail=3` | Drain existing buffer (no I/O) | `buf[0]='b', buf[1]='c'` | `head=3, tail=3` | **2** |
 | **Call 3** | 1 | `head=3, tail=3` | Refill via `read4` (returns 0) | None (EOF) | `head=0, tail=0` | **0** |
 
+### Queue carry-over on a Second Instance
+
+The same protocol on $\text{file} = \text{"abcdefghij"}$ with requests $[2, 1, 4, 3]$ shows how the queue absorbs the mismatch between three primitive reads and four consumer calls:
+
+| Invocation | Request $n$ | Delivered | Queued on entry | `read4` calls during the call | Queued on exit | Stream offset after the call |
+|:---:|:---:|:---|:---|:---|:---|:---:|
+| `read(buf, 2)` | 2 | `"ab"` | empty | 1, delivering `a b c d` | `buf4[2:4] = "cd"` | 4 |
+| `read(buf, 1)` | 1 | `"c"` | `buf4[2:4] = "cd"` | 0, the queue is drained first | `buf4[3:4] = "d"` | 4 |
+| `read(buf, 4)` | 4 | `"defg"` | `buf4[3:4] = "d"` | 1, delivering `e f g h` | `buf4[3:4] = "h"` | 8 |
+| `read(buf, 3)` | 3 | `"hij"` | `buf4[3:4] = "h"` | 1, delivering `i j` | empty, `head == tail` | 10 |
+
+Three primitive reads deliver all ten characters across four calls: the queue spends the surplus of a four-character block on the requests that follow, and no character is read twice or skipped.
+
+### Boundary Shapes Covered by the Authored Instances
+
+| Boundary shape | Authored instance | Returned values | Why no special case is needed |
+|:---|:---|:---|:---|
+| First request exceeds the file | `"abc"`, requests `[4, 1]` | $3$, then $0$ | the first call drains the three-character block and the next refill reports $0$, which breaks the loop; the second call finds an empty queue and refills to $0$ again |
+| A later call reaches EOF and stays there | `"xy"`, requests $[1, 5, 1]$ | $1$, $1$, $0$ | the second call takes `'y'` from the queue and then pays one refill reporting $0$, so it returns $1$ although $n = 5$ |
+| Requests that exactly partition the file | `"abcdef"`, requests $[1, 3, 2]$ | $1$, $3$, $2$ | each request consumes exactly its own count: the first leaves `'bcd'` queued, the second empties that surplus, the third leaves `head == tail` |
+| A call ending exactly on a block boundary | `"abcde"`, requests $[4, 1]$ | $4$, $1$ | the first call drains the whole block and queues nothing, so the second call must refill and receives the single remaining character |
+| Smallest instance | `"Z"`, requests $[1]$ | $1$ | one refill delivers one character, which is drained at once and leaves `head` and `tail` equal at $1$ |
+| Maximum instance | 500-character file, requests $[1, 3, 4, 7, 8, 15, 31, 63, 128, 500]$ | $1, 3, 4, 7, 8, 15, 31, 63, 128, 240$ | the last request asks for $500$ but only $240$ characters remain, so it returns $240$; the ten calls cost $126$ refills, one more than the $125$ full blocks because the file ends exactly on a block boundary and only a refill returning $0$ proves exhaustion |
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -168,6 +192,16 @@ Call 3: read(buf, 1)
 - **Calling `read4` Before Draining:** If a new `read` call immediately calls `read4` without checking whether `self.head < self.tail`, unconsumed characters from the previous read are permanently overwritten and lost!
 - **Persistent State Scope:** In LeetCode 157, `read` is called once, so local variables suffice. In LeetCode 158, buffer pointers must be stored as object attributes (`self.head`, `self.tail`) to survive between calls.
 - **Multiple Refills in a Single Call:** If a caller asks for $n = 10$, a single call must be able to drain the remaining 2 characters, refill 4 characters, drain them, and refill again. The outer `while copied < n` handles multi-chunk requests naturally.
+
+The alternative designs below all look reasonable in isolation; the sample instance separates them, which is why the queue check has to come before the refill:
+
+| Candidate design | Mechanism | Consequence on `"abc"` with requests `[1, 2, 1]` | Verdict |
+|:---|:---|:---|:---|
+| Discard the unconsumed tail when the call returns | keep the staging array local to the call and forget `head`, `tail` between calls | returns $1$, then $0$, then $0$: `'b'` and `'c'` are unrecoverable | correct for a single invocation, wrong here — two characters are lost |
+| Refill unconditionally at the start of every call | call `read4` before checking whether anything is still queued | the second call sets `tail` to $0$ and makes `'b'`, `'c'` unreachable | survives only when every request is a multiple of four |
+| Hold pending characters in a growable queue | replace the fixed array and two indices with a dynamically sized container | returns the same $1$, $2$, $0$ | identical behaviour, but pending characters can never exceed three, so the growth is never used |
+| Use modular indices in a circular buffer | wrap `head` arithmetically instead of resetting it to $0$ at each refill | returns the same $1$, $2$, $0$ | guards against a refill into a non-empty buffer, which this protocol never performs |
+| Hand the surplus back to the caller | write every character the block delivered, ignoring $n$ | the first call writes `'a'`, `'b'`, `'c'` for $n = 1$ and reports $3$ | breaks the contract twice: the destination is written past the requested length and the return value no longer answers the request |
 
 ---
 

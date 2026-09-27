@@ -1,129 +1,173 @@
 # Guided Example: Minimum Operations to Make Array Equal II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. The Only Move Is a Transfer, So the Total Is Frozen
 
-- **Input:** `{"nums1": [4, 3, 1, 4], "nums2": [1, 3, 7, 1], "k": 3}`
-- **Required output:** `2`
+Two arrays of the same length $n$ are compared index by index, and the single legal move touches
+two indices at once: one index gains exactly $k$ while another loses exactly $k$. The move creates
+nothing and destroys nothing, because the gain and the loss have equal magnitude. Therefore the
+grand total
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+$$\Sigma_1 = \sum_{i=0}^{n-1} \text{nums1}[i]$$
 
----
+is an invariant of every configuration reachable from the starting array. A cheap necessary
+condition appears before any matching or counting is attempted: if the two arrays hold different
+totals, no sequence of moves can ever reconcile them.
 
-## 1. Instance & Teaching Goal
+The remaining work is described by the signed error at each index,
 
-You are given two integer arrays `nums1` and `nums2` of equal length `n` and an integer `k`. You can perform the following operation on `nums1`:
+$$d_i = \text{nums1}[i] - \text{nums2}[i],$$
 
-The objective is to compute `2` from `{"nums1": [4, 3, 1, 4], "nums2": [1, 3, 7, 1], "k": 3}` while avoiding redundant calculations and unnecessary overhead.
+and "equal" means precisely that the vector $d = (d_0, d_1, \dots, d_{n-1})$ is the zero vector.
+The reason the whole problem collapses to a single linear scan is that no index interacts with any
+other index except through the shared quantum $k$.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+## 2. Normalising the Errors into Transfer Units
 
----
+Every move shifts a fixed quantum, so the natural unit of accounting is $k$ itself. For a nonzero
+error define the integer unit count
 
-## 2. Conceptual Foundation & Invariants
+$$t_i = \frac{d_i}{k}.$$
 
-We maintain the core conceptual parameters and state variables:
+Its sign names the role index $i$ plays in the ledger.
 
-| State Parameter | Role & Purpose | Initial State |
+| Sign of $t_i$ | Meaning for index $i$ | Role in a transfer plan |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| $t_i > 0$ | `nums1[i]` is too large by $t_i k$ | supplier: must surrender $t_i$ units |
+| $t_i < 0$ | `nums1[i]` is too small by $\lvert t_i \rvert k$ | consumer: must receive $\lvert t_i \rvert$ units |
+| $t_i = 0$ | index already agrees with `nums2` | inert: an optimal plan never touches it |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Let
 
----
+$$S = \sum_{t_i > 0} t_i, \qquad C = -\sum_{t_i < 0} t_i$$
 
-## 3. Step-by-Step Worked Execution
+be the number of units offered and the number of units demanded. A single move retires exactly one
+offered unit and satisfies exactly one demanded unit, so a plan that succeeds must spend one move
+per unit. When $S = C$ the requested minimum is
 
-### Step 1: Each operation transfers one unit of size `k`
+$$\text{answer} = S = C,$$
 
-An operation adds `k` at one index and subtracts `k` at another. It preserves the total sum of `nums1`.
+and when $S \ne C$ the offers and the requests cannot be paired at all.
 
-For each index, compare current `x=nums1[i]` with target `y=nums2[i]`. Difference
+## 3. The Two Admission Tests and the Degenerate Step Size
 
-$$
-x-y
-$$
+Three questions decide reachability before any counting begins.
 
-must be repaired in exact multiples of `k`.
+1. **Zero step.** If $k = 0$, the move adds and subtracts nothing; the arrays are frozen. The only
+   solvable instance is one where every $d_i$ is already $0$, and its answer is $0$. No division by
+   $k$ is meaningful here, so this case must be settled on its own before unit accounting starts.
+2. **Divisibility.** With $k > 0$, each move changes every index it touches by a multiple of $k$,
+   so every reachable value of index $i$ stays congruent to `nums1[i]` modulo $k$. Any nonzero
+   $d_i$ with $d_i \bmod k \ne 0$ is unreachable forever, regardless of how the other indices are
+   arranged.
+3. **Conservation.** Once divisibility holds, the condition $S = C$ is equivalent to
+   $\sum_i d_i = 0$, which is the frozen-total condition of section 1. A violation again forces the
+   answer $-1$.
 
-If divisible, normalized difference
+The order matters pedagogically: divisibility is a statement about each index alone, whereas
+conservation is a statement about the array as a whole. An instance can pass either test and still
+fail the other, which is exactly what the two worked instances below demonstrate.
 
-`t=(x-y)//k`
+## 4. Worked Instance: `nums1 = [4,3,1,4]`, `nums2 = [1,3,7,1]`, `k = 3`
 
-measures how many `k`-sized units the index has in surplus or deficit.
+Both arrays total $12$, so the invariant survives; the divisibility test is then applied index by
+index.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums1": [4, 3, 1, 4], "nums2": [1, 3, 7, 1], "k": 3}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| $i$ | `nums1[i]` | `nums2[i]` | $d_i$ | $d_i \bmod 3$ | $t_i = d_i / 3$ | role |
+|---|---|---|---|---|---|---|
+| 0 | 4 | 1 | 3 | 0 | 1 | supplier |
+| 1 | 3 | 3 | 0 | 0 | 0 | inert |
+| 2 | 1 | 7 | -6 | 0 | -2 | consumer |
+| 3 | 4 | 1 | 3 | 0 | 1 | supplier |
 
----
+Every nonzero error is a multiple of $3$, so the instance passes divisibility. Summing the roles
+gives $S = 1 + 1 = 2$ and $C = 2$, so the ledger balances and two moves suffice. The pairing below
+is one concrete minimum-length plan; index $1$ is never disturbed because its error is already
+zero.
 
-### Step 2: Interpret positive and negative normalized differences
+| Move | Supplier | Consumer | Units moved | Array after the move |
+|---|---|---|---|---|
+| 1 | index 0 | index 2 | 1 | `[1,3,4,4]` |
+| 2 | index 3 | index 2 | 1 | `[1,3,7,1]` |
 
-If `t>0`, `nums1[i]` is too large by `t*k`. It must be selected as the decrement endpoint in `t` operations. The source adds `t` to `b`, total surplus units.
+Move 1 lowers index $0$ to $4 - 3 = 1$ and raises index $2$ to $1 + 3 = 4$, leaving residual units
+$t = (0, 0, -1, 1)$. Move 2 lowers index $3$ to $4 - 3 = 1$ and raises index $2$ to $4 + 3 = 7$,
+leaving $t = (0,0,0,0)$. The plan is therefore complete in $2 = S$ moves.
 
-If `t<0`, the index needs `-t` increments. The source adds `-t` to `a`, total deficit units.
+```mermaid
+flowchart LR
+  accTitle: Unit transfers for the worked instance
+  accDescr: Index 0 and index 3 each donate one unit of size three to index 2, which needs two units.
+  P0["index 0 -- supplier, t = +1"] -->|"1 unit of size 3"| P2["index 2 -- consumer, t = -2"]
+  P3["index 3 -- supplier, t = +1"] -->|"1 unit of size 3"| P2
+```
 
-Every operation matches one surplus unit with one deficit unit. It decreases `b`'s remaining need and `a`'s remaining need by one simultaneously.
+## 5. Why the Surplus Total Is Both Necessary and Sufficient
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+**Lower bound.** Each move can retire at most one offered unit, because it decrements exactly one
+index by exactly $k$. Retiring all $S$ units therefore needs at least $S$ moves, whatever pairing
+is chosen.
 
----
+**Upper bound.** Units of size $k$ are fungible: the consumer that receives a particular unit only
+cares about the amount, never about which supplier sent it. So take any supplier with $t_i$ units
+and any consumer with $\lvert t_j \rvert$ units and pair them greedily, splitting a supplier across
+several consumers or a consumer across several suppliers whenever the counts differ. Because
+$S = C$, every unit is consumed exactly once, and the total number of pairings constructed this way
+is exactly $S$. Hence $S$ moves are achievable, and the lower bound is tight.
 
-### Step 3: Divisibility is necessary
+This is why the answer does not depend on the *locations* of the errors. Only the multiset of unit
+counts matters, and the answer is a function of one aggregate number per side of the ledger.
 
-At one index, every operation changes the value by either zero, `+k`, or `-k`. Its value modulo `k` can never change.
+## 6. A Rejected Instance: `nums1 = [3,8,5,2]`, `nums2 = [2,4,1,6]`, `k = 1`
 
-Therefore, if `x-y` is not divisible by `k`, no operation sequence can make that index equal its target, and the method returns `-1`.
+Here $k = 1$, so divisibility is free and the conservation test alone decides the outcome.
 
-Python's modulo test also works for negative differences: a multiple of positive `k` has remainder zero in either sign.
+| $i$ | `nums1[i]` | `nums2[i]` | $d_i$ | $t_i$ | role |
+|---|---|---|---|---|---|
+| 0 | 3 | 2 | 1 | 1 | supplier |
+| 1 | 8 | 4 | 4 | 4 | supplier |
+| 2 | 5 | 1 | 4 | 4 | supplier |
+| 3 | 2 | 6 | -4 | -4 | consumer |
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+The offers total $S = 1 + 4 + 4 = 9$ while the requests total $C = 4$. The array has $9$ units of
+excess and only $4$ units of shortfall, and since the grand totals differ ($18$ against $13$) the
+excess can never be discharged. The pairing construction of section 5 would run out of consumers
+after four moves while five offered units remain, so no plan exists and the verdict is $-1$. This
+instance shows that divisibility alone is never enough: every single error here is a clean multiple
+of $k$, and the answer is still $-1$.
 
----
+## 7. Boundary Conditions and Material Traps
 
-## 4. Complete Execution Trace
+| Situation | What the ledger shows | Verdict |
+|---|---|---|
+| Every $d_i = 0$, any $k$ including $k = 0$ | $S = C = 0$; no division is ever attempted | `0` |
+| $k = 0$ with some $d_i \ne 0$ | the move is inert, so no index can ever change | `-1` |
+| Some nonzero $d_i$ with $d_i \bmod k \ne 0$ | index $i$ is stuck at a wrong residue class mod $k$ | `-1` |
+| All errors divisible by $k$ but $S \ne C$ | offered units outnumber or fall short of requests | `-1` |
+| Errors divisible by $k$ and $S = C$ | greedy pairing consumes every unit | `S` |
+| One index with a huge error, many small ones | one supplier is split across several consumers | still `S` |
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums1": [4, 3, 1, 4], "nums2": [1, 3, 7, 1], "k": 3}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
+Three traps deserve explicit naming. First, the all-zero instance with $k = 0$ returns `0`, not
+`-1`; the zero-step rule rejects *changes*, not already-correct arrays. Second, a balanced total is
+not the only thing to check, and neither is divisibility: `nums1 = [2,0]` against
+`nums2 = [0,2]` with $k = 3$ has perfectly balanced totals $2 = 2$ yet fails divisibility because
+$2 \bmod 3 = 2$, while `nums1 = [3,8,5,2]` against `nums2 = [2,4,1,6]` with $k = 1$ passes
+divisibility everywhere yet fails conservation. Third, the arithmetic in an implementation of this
+scan can overflow a 32-bit accumulator on a generous instance: with $n$ up to $10^5$ and entries up
+to $10^9$, an aggregate such as $\sum_i \lvert d_i \rvert$ reaches $10^{14}$, so the running totals
+must be accumulated in a wider signed type than the array elements themselves.
 
----
+## 8. Complexity of the Ledger Scan
 
-## 5. Algorithmic Correctness
+Every index is inspected a constant number of times: one subtraction to form $d_i$, one congruence
+test, one integer division, and one addition into either $S$ or $C$. No index is revisited and no
+pairing is ever materialised, so the running time is
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+$$O(n)$$
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+with the instance's own length as the only growth parameter. The auxiliary space is
 
----
+$$O(1),$$
 
-## 6. Traps This Instance Exposes
-
-- **Compare total sums first:** It quickly rejects imbalance but does not replace per-index divisibility checks.
-- **Explicit operation simulation:** It is unnecessary and could take time proportional to the potentially huge answer.
-- **`k=0` and arrays equal:** Return zero.
-- **`k=0` with any mismatch:** Return `-1`.
-- **Nonmultiple difference:** That index's residue cannot change.
-- **Equal surplus and deficit:** It is sufficient because any index pair may be chosen.
-- **All differences zero:** No operations are needed.
-- **Negative normalized difference:** Its magnitude contributes to deficit `a`.
-- **Positive normalized difference:** It contributes to surplus `b`.
-- **Minimum proof:** One operation can satisfy only one deficit unit.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n)$. The zipped loop visits each of `n` aligned index pairs once and performs constant-time arithmetic. Time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+because the two accumulators plus the scalar for the frozen total are all the memory the method
+needs, independent of $n$. The terminal decision is the comparison $S = C$ together with the two
+rejection flags gathered along the way.

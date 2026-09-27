@@ -123,6 +123,22 @@ Final Result: 701
 - Char 1 (`'A'`): $d = 1 \implies \text{ans} = 0 \times 26 + 1 = 1$.
 - Char 2 (`'B'`): $d = 2 \implies \text{ans} = 1 \times 26 + 2 = \mathbf{28}$.
 
+### Prefix-by-Prefix State for the Longest Valid Input
+
+The invariant is easiest to believe when the input is long enough that no single step can be checked by inspection. Here is the full accumulation for $\text{columnTitle} = \text{"FXSHRXW"}$, the largest title that still fits a 32-bit signed integer:
+
+| Index $i$ | Character | $\text{ord}(c) - \text{ord}(\text{'A'})$ | Digit Value $d$ | Prefix Read So Far | Horner Step $\text{ans} \times 26 + d$ | $\text{ans}$ after the step | Column number the prefix denotes |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 0 | `'F'` | 5 | 6 | `"F"` | $0 \times 26 + 6$ | 6 | 6 |
+| 1 | `'X'` | 23 | 24 | `"FX"` | $6 \times 26 + 24$ | 180 | 180 |
+| 2 | `'S'` | 18 | 19 | `"FXS"` | $180 \times 26 + 19$ | 4699 | 4699 |
+| 3 | `'H'` | 7 | 8 | `"FXSH"` | $4699 \times 26 + 8$ | 122182 | 122182 |
+| 4 | `'R'` | 17 | 18 | `"FXSHR"` | $122182 \times 26 + 18$ | 3176750 | 3176750 |
+| 5 | `'X'` | 23 | 24 | `"FXSHRX"` | $3176750 \times 26 + 24$ | 82595524 | 82595524 |
+| 6 | `'W'` | 22 | 23 | `"FXSHRXW"` | $82595524 \times 26 + 23$ | **2147483647** | **$2^{31} - 1$** |
+
+Two things are worth extracting from the last row. First, every prefix is itself a valid column number, which is exactly what the invariant asserts — the accumulator never holds a partial quantity, only the value of what has been read. Second, the growth factor per character is $26$, so after seven characters the value has grown by $26^{7} \approx 8.03 \times 10^{9}$; the fact that the true result stops at $2.14 \times 10^{9}$ is a property of which digits appear, not of the width of the accumulator.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -138,6 +154,30 @@ Final Result: 701
 - **Failing to Add 1 for 1-Indexed Digits:** Calculating `ord(c) - ord('A')` yields $0$ for `'A'`, which is standard base-26 but incorrect for Excel! `'A'` must map to $1$, `'B'` to $2$, and `'Z'` to $26$.
 - **Right-to-Left Exponentiation Overhead:** Calculating powers $26^0, 26^1, \dots$ from the right requires keeping track of an exponent or calling power functions, which introduces unnecessary arithmetic overhead compared to Horner's left-to-right multiplication.
 - **32-Bit Overflow Considerations:** The maximum input `"FXSHRXW"` corresponds to $2^{31} - 1 = 2147483647$, fitting cleanly inside a 32-bit signed integer.
+
+### Boundary Scenarios This Instance Sits Next To
+
+| Title | Length $L$ | Digit values | Expected | Accumulation | Why the boundary matters |
+|:---|:---:|:---|:---:|:---|:---|
+| `"A"` | 1 | 1 | 1 | $0 \times 26 + 1$ | Smallest legal title; the 1-index offset is the only reason the answer is not $0$ |
+| `"Z"` | 1 | 26 | 26 | $0 \times 26 + 26$ | Largest single-character title; a 0-indexed alphabet would report $25$ here |
+| `"AA"` | 2 | 1, 1 | 27 | $1 \times 26 + 1$ | First two-character title; the leading `'A'` contributes a full $26$, not nothing |
+| `"AB"` | 2 | 1, 2 | 28 | $1 \times 26 + 2$ | Shows the low digit advances while the high digit stays fixed |
+| `"ZY"` | 2 | 26, 25 | 701 | $26 \times 26 + 25$ | Largest two-character title below the final block; both digits sit near their maximum |
+| `"ZZ"` | 2 | 26, 26 | 702 | $26 \times 26 + 26$ | Last two-character title; the entire two-character range is exactly $[1, 702]$ |
+| `"AAA"` | 3 | 1, 1, 1 | 703 | $(1 \times 26 + 1) \times 26 + 1$ | First three-character title, proving the third position is worth $26^{2} = 676$ |
+| `"FXSHRXW"` | 7 | 6, 24, 19, 8, 18, 24, 23 | 2147483647 | Seven Horner steps ending at $2^{31} - 1$ | Largest title the input contract allows; any longer string would exceed the 32-bit column range |
+
+### Alternative Approaches on These Titles
+
+| Approach | `"ZY"` | `"FXSHRXW"` | Time | Auxiliary space | Why it is worse or wrong |
+|:---|:---:|:---:|:---:|:---:|:---|
+| 0-indexed alphabet with $26^{L-1-i}$ weights | 675 | 2147483646 (one short) | $O(L)$ | $O(1)$ | Off by one on every title, because Excel's alphabet has $26$ digits with no zero symbol |
+| Left-to-right Horner accumulation | 701 | 2147483647 | $O(L)$ | $O(1)$ | Correct and never forms a power of 26 explicitly |
+| Right-to-left accumulation with a running power | 701 | 2147483647 | $O(L)$ | $O(1)$ | Correct, but it must maintain and re-multiply a separate $26^{k}$ variable that Horner's shift already provides |
+| Explicit power calls per position | 701 | 2147483647 | $O(L^{2})$ with repeated squaring-by-multiplication | $O(1)$ | Recomputes each $26^{L-1-i}$ from scratch, doing asymptotically more arithmetic than Horner's single running multiply |
+| Lookup table over all valid titles | 701 | 2147483647 | $O(L)$ to look up the whole string | $O(26^{7})$ to store every title | The title space reaches $2^{31} - 1$ entries, so enumeration is not a feasible substitute for seven multiplications |
+| Recursive prefix evaluation | 701 | 2147483647 | $O(L)$ | $O(L)$ call stack | Same arithmetic with a stack that the iterative accumulator avoids entirely |
 
 ---
 

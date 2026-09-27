@@ -71,6 +71,14 @@ Using sentinel $\text{dummy} = \text{Node}(0)$ and pointer `curr`:
 We trace the recursive tree on $\text{head} = [4, 2, 1, 3]$:
 
 ### Level 1: Split at Midpoint
+Before the first iteration the pointers sit at $\text{prev} = \emptyset$ and $\text{slow} = \text{fast} = \text{head}$, so each row below reads the guard first and then the state that the loop body leaves behind:
+
+| Iteration | `fast` at the guard | `fast.next` | Guard | `prev` after | `slow` after | `fast` after |
+|:---:|:---|:---|:---:|:---|:---|:---|
+| 1 | `Node(4)` | `Node(2)` | true | `Node(4)` | `Node(2)` | `Node(1)` |
+| 2 | `Node(1)` | `Node(3)` | true | `Node(2)` | `Node(1)` | $\emptyset$ |
+| 3 | $\emptyset$ | absent | false | `Node(2)` | `Node(1)` | $\emptyset$ |
+
 - `slow` lands on `Node(1)` (index 2).
 - Sever: $\text{prev} = \text{Node}(2) \implies \text{Node}(2).\text{next} = \emptyset$.
 - Left half: $4 \to 2 \to \emptyset$.
@@ -103,6 +111,15 @@ We trace the recursive tree on $\text{head} = [4, 2, 1, 3]$:
 ### Level 1 (Final Merge): Merge $[2, 4]$ and $[1, 3]$
 Initialize $\text{dummy} \to \emptyset, \, \text{curr} = \text{dummy}$.
 - $L_1 = [2, 4], \, L_2 = [1, 3]$.
+
+The same merge read as a decision ledger, where each row names the two remaining sublists and the comparison that selects the node to splice next:
+
+| Step | Remaining $L_1$ | Remaining $L_2$ | Test at the two heads | Node appended | Merged chain so far |
+|:---:|:---|:---|:---|:---|:---|
+| 1 | $[2, 4]$ | $[1, 3]$ | $1 < 2$ | `Node(1)` | `dummy → 1` |
+| 2 | $[2, 4]$ | $[3]$ | $2 \le 3$ | `Node(2)` | `dummy → 1 → 2` |
+| 3 | $[4]$ | $[3]$ | $3 < 4$ | `Node(3)` | `dummy → 1 → 2 → 3` |
+| exhaustion | $[4]$ | $\emptyset$ | guard $L_1 \ne \emptyset \land L_2 \ne \emptyset$ fails | remainder `Node(4)` | `dummy → 1 → 2 → 3 → 4` |
 
 - **Comparison 1 ($2$ vs $1$):**
   - $1 < 2 \implies \text{curr.next} = \text{Node}(1)$.
@@ -169,6 +186,16 @@ Recursion Tree:
 - **Infinite Recursion on Median Split:** If the split does not sever the link ($\text{prev.next} = \emptyset$), the left half will still contain the right half, causing `len(left) == len(head)` and triggering infinite recursion!
 - **Uneven Midpoint Choice:** When $N = 2$ (e.g. $[4, 2]$), `slow` must advance to the second node while `prev` terminates the first node, producing $[4]$ and $[2]$. If `slow` stayed at $[4]$, splitting would fail.
 - **Empty List:** Handled cleanly by `if not head or not head.next: return head`.
+
+The boundary instances in this package's case set, together with the exact property that keeps each one correct:
+
+| Instance | Split produced by the pointers | Why the protocol stays correct | Required result |
+|:---|:---|:---|:---|
+| $\text{head} = [\,]$ | no split; the length-0 base case returns immediately | An empty list is already non-decreasing, so no comparison is owed | $[\,]$ |
+| $\text{head} = [1]$ | no split; the length-1 base case returns immediately | A single node has no second element to order | $[1]$ |
+| $\text{head} = [2, 1]$ | $\text{prev} =$ `Node(2)` terminates the first node, $\text{slow} =$ `Node(1)` | The halves are $\lfloor 2/2 \rfloor = 1$ and $\lceil 2/2 \rceil = 1$: both non-empty and strictly smaller than $N$, which is exactly what makes each recursive call terminate | $[1, 2]$ |
+| $\text{head} = [3, 1, 3, 2, 1]$ | left half $[3, 1]$, right half $[3, 2, 1]$ | Repeated keys survive because the test $L_1.\text{val} \le L_2.\text{val}$ takes the left node on a tie, so the two $1$s and the two $3$s keep their original relative order | $[1, 1, 2, 3, 3]$ |
+| $\text{head} = [-1, 5, 3, 4, 0]$ | left half $[-1, 5]$, right half $[3, 4, 0]$ | An odd length splits as $\lfloor 5/2 \rfloor = 2$ and $\lceil 5/2 \rceil = 3$; unequal halves are safe as long as both shrink, and here $\lceil N/2 \rceil < N$ for every $N \ge 2$ | $[-1, 0, 3, 4, 5]$ |
 
 ---
 
