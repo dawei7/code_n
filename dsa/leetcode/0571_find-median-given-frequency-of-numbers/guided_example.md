@@ -1,211 +1,138 @@
 # Guided Example: Find Median Given Frequency of Numbers
 
-We trace the step-by-step forward cumulative frequency aggregation ($rk_1 = \sum_{x \le num} freq$), reverse cumulative frequency aggregation ($rk_2 = \sum_{x \ge num} freq$), total sample mass normalization ($s = \sum freq$), bidirectional half-mass median intersection predicate ($rk_1 \ge s/2 \land rk_2 \ge s/2$), and 1-decimal rounded mean projection on representative frequency tables:
+`Numbers` is a run-length encoding of an integer sample: each row names one distinct value and how many times it occurs. Expanding those counts into a flat sorted sample is the obvious reading of the task and also the one that fails at scale, so this lesson stays inside the compressed representation. Four rows are ordered instead of twelve values, and the median falls out of two cumulative-mass ranks whose intersection isolates the run of positions straddling the sample's midpoint.
 
-- **Input:**
-  - `Numbers` table:
-    | `num` | `frequency` |
-    |:---:|:---:|
-    | $0$ | $7$ |
-    | $1$ | $1$ |
-    | $2$ | $3$ |
-    | $3$ | $1$ |
-- **Required output:**
-  | `median` |
-  |:---:|
-  | $0.0$ |
-  - Problem contract:
-    - The table represents a compressed multiset of integers where each number `num` appears `frequency` times.
-    - Total expanded dataset: $[0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 3]$ ($12$ total numbers).
-    - Objective: Compute the median of this expanded multiset, rounded to $1$ decimal place.
-- **Bidirectional Cumulative Frequency Window Trace:**
-  - Total mass of all numbers:
-    $$
-    s = \sum frequency = 7 + 1 + 3 + 1 = \mathbf{12}
-    $$
-  - Half-mass threshold:
-    $$
-    \frac{s}{2} = \frac{12}{2} = \mathbf{6}
-    $$
-  - **The Symmetrical Median Criterion:**
-    - In any sorted frequency distribution, the median elements are those that overlap the exact center.
-    - An element `num` covers the center if and only if:
-      1. Cumulative count from the left up to and including `num` is $\ge s/2$ ($rk_1 \ge s/2$).
-      2. Cumulative count from the right down to and including `num` is $\ge s/2$ ($rk_2 \ge s/2$).
-    - If a single number contains both middle indices (e.g. 6th and 7th), it alone satisfies both inequalities.
-    - If two distinct numbers contain the 6th and 7th elements, both numbers satisfy the inequalities, and `AVG(num)` averages them!
-  - **Step 1: Compute Forward and Reverse Running Totals:**
-    - **Row 1 (`num = 0, frequency = 7`):**
-      - Ascending prefix ($rk_1$): $7$
-      - Descending suffix ($rk_2$): $7 + 1 + 3 + 1 = \mathbf{12}$
-      - Test:
-        $$
-        rk_1 = 7 \ge 6 \quad \land \quad rk_2 = 12 \ge 6 \implies \mathbf{True} \quad (\text{Satisfies Median!})
-        $$
-    - **Row 2 (`num = 1, frequency = 1`):**
-      - Ascending prefix ($rk_1$): $7 + 1 = 8 \ge 6$ (True)
-      - Descending suffix ($rk_2$): $1 + 3 + 1 = \mathbf{5} < 6$ (**Fails!**)
-      - Condition fails.
-    - **Row 3 (`num = 2, frequency = 3`):**
-      - Ascending prefix ($rk_1$): $7 + 1 + 3 = 11 \ge 6$ (True)
-      - Descending suffix ($rk_2$): $3 + 1 = \mathbf{4} < 6$ (**Fails!**)
-      - Condition fails.
-    - **Row 4 (`num = 3, frequency = 1`):**
-      - Ascending prefix ($rk_1$): $12 \ge 6$ (True)
-      - Descending suffix ($rk_2$): $1 < 6$ (**Fails!**)
-      - Condition fails.
-  - **Step 2: Collect Qualifying Median Numbers:**
-    - The only number satisfying $rk_1 \ge 6 \land rk_2 \ge 6$ is:
-      $$
-      \text{Numbers} = \{0\}
-      $$
-  - **Step 3: Average and Round:**
-    $$
-    \text{median} = \text{ROUND}(\text{AVG}(0), \; 1) = \mathbf{0.0}
-    $$
-- **Split Median Example (Two Distinct Middle Elements):**
-  - Suppose expanded set is $[1, 2, 3, 4]$ ($s = 4, s/2 = 2$).
-  - For $2$: $rk_1 = 2 \ge 2, \; rk_2 = 3 \ge 2 \implies$ Qualifies!
-  - For $3$: $rk_1 = 3 \ge 2, \; rk_2 = 2 \ge 2 \implies$ Qualifies!
-  - Qualified: $\{2, 3\}$.
-  - $\text{AVG}(2, 3) = \frac{2 + 3}{2} = \mathbf{2.5}$.
-  - Correctly averages the two middle values without procedural logic!
+## 1. The Instance and the Required Outcome
 
-This instance demonstrates cumulative mass balancing over discrete frequency measures, mathematically proves why the intersection of forward and reverse half-mass sets yields the exact median, and derives $O(N \log N)$ execution time and $O(N)$ space bounds.
+| `num` | `frequency` |
+|:---:|:---:|
+| 0 | 7 |
+| 1 | 1 |
+| 2 | 3 |
+| 3 | 1 |
 
----
+Read as a multiset, the table describes the sample $[\,0,0,0,0,0,0,0,\;1,\;2,2,2,\;3\,]$, which holds $T = 7 + 1 + 3 + 1 = 12$ numbers. Because $T$ is even, the median is the mean of the 6th and 7th smallest entries, and both positions lie inside the run of seven zeros, so the median is $0$. The required result is one row:
 
-## 1. Instance & Teaching Goal
+| `median` |
+|:---:|
+| 0.0 |
 
-Given a `Numbers` table containing `num` and its `frequency`:
-Calculate the **median** of the decompressed dataset, rounded to 1 decimal place.
+Two details of the contract shape everything below. The comparison happens on the *expanded* sample, never on the distinct values, so the mean of the four stored values — $1.5$ — is not the answer. And the reported number is rounded to one decimal place, so an integer median must still print as $0.0$ rather than $0$.
 
-```text
-Table:
-  num: 0, frequency: 7
-  num: 1, frequency: 1
-  num: 2, frequency: 3
-  num: 3, frequency: 1
+## 2. Position Blocks in the Compressed Sample
 
-Decompressed:
-  [ 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 3 ]   (Total 12 numbers)
-              ^  ^
-         Indices 5 and 6 (6th and 7th numbers) are both 0.
+Let $R$ be the row count and $T = \sum \text{frequency}$ the sample size. Materialising the sample costs $\Theta(T)$ storage, and the gap between $T$ and $R$ is the entire reason the input has this shape: two rows can describe a sample of a billion numbers. Instead of positions, the compressed view holds intervals. Index the rows $i = 1, \dots, R$ by ascending `num`, and let $f_i$ be the frequency of row $i$. Row $i$ covers the contiguous block
 
-Median = (0 + 0) / 2 = 0.0
-```
-
-### The Dual-Cumulative Frequency Theorem
-- Decompressing the table into individual rows is extremely slow and memory-intensive if frequencies are large (e.g. frequency $= 10^6$).
-- Instead, we work directly on the compressed frequency table using **window functions**:
-  - $rk_1$: Cumulative sum of frequencies ordered ascending by `num`.
-  - $rk_2$: Cumulative sum of frequencies ordered descending by `num`.
-  - $s$: Total sum of all frequencies.
-- A number contains a median point if and only if:
-  $$
-  rk_1 \ge \frac{s}{2} \quad \text{AND} \quad rk_2 \ge \frac{s}{2}
-  $$
-- Taking `AVG(num)` across the qualifying rows automatically handles both odd lengths and even lengths!
-
----
-
-## 2. Conceptual Foundation & Invariants
-
-### 1. Cumulative Frequency Window Functions:
-In CTE `t`:
-```sql
-SELECT
-    *,
-    SUM(frequency) OVER (ORDER BY num ASC) AS rk1,
-    SUM(frequency) OVER (ORDER BY num DESC) AS rk2,
-    SUM(frequency) OVER () AS s
-FROM Numbers
-```
-
-### 2. Median Filter Condition:
 $$
-\text{WHERE } rk_1 \ge \frac{s}{2} \quad \text{AND} \quad rk_2 \ge \frac{s}{2}
+L_i = 1 + \sum_{j<i} f_j, \qquad R_i = L_i + f_i - 1,
 $$
 
-### 3. Aggregation:
-$$
-\text{SELECT ROUND(AVG(num), 1) AS median FROM t}
-$$
+and the blocks $[L_i, R_i]$ partition $\{1, \dots, T\}$ exactly.
 
-> **Mass Centroid Invariant.** The conditions $rk_1 \ge s/2$ and $rk_2 \ge s/2$ define the central interval containing the 50th percentile mass of the cumulative distribution function.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-We trace the sample data:
-
----
-
-### Step 1: Compute Window Values
-Total sum of frequencies:
-$$
-s = 7 + 1 + 3 + 1 = 12 \implies \frac{s}{2} = 6
-$$
-
-| `num` | `frequency` | Ascending Prefix $rk_1$ | Descending Suffix $rk_2$ |
-|:---:|:---:|:---:|:---:|
-| $0$ | $7$ | $7$ | $12$ |
-| $1$ | $1$ | $8$ | $5$ |
-| $2$ | $3$ | $11$ | $4$ |
-| $3$ | $1$ | $12$ | $1$ |
-
----
-
-### Step 2: Evaluate Filter ($rk_1 \ge 6 \land rk_2 \ge 6$)
-- `num = 0`: $7 \ge 6$ and $12 \ge 6 \implies \mathbf{True}$.
-- `num = 1`: $8 \ge 6$ but $5 < 6 \implies \mathbf{False}$.
-- `num = 2`: $11 \ge 6$ but $4 < 6 \implies \mathbf{False}$.
-- `num = 3`: $12 \ge 6$ but $1 < 6 \implies \mathbf{False}$.
-
----
-
-### Step 3: Compute Median
-Only row `num = 0` survives.
-$$
-\text{median} = \text{ROUND}(\text{AVG}(0), 1) = \mathbf{0.0}
-$$
-
----
-
-## 4. Complete Execution Trace
-
-| `num` | `frequency` | $rk_1 \ge 6$? | $rk_2 \ge 6$? | Both Satisfied? | Contribution to Median |
+| Row $i$ | `num` | $f_i$ | First position $L_i$ | Last position $R_i$ | Positions covered |
 |:---:|:---:|:---:|:---:|:---:|:---:|
-| **$0$** | $7$ | **Yes** ($7$) | **Yes** ($12$) | **Yes** | $0$ |
-| $1$ | $1$ | **Yes** ($8$) | No ($5$) | No | — |
-| $2$ | $3$ | **Yes** ($11$) | No ($4$) | No | — |
-| $3$ | $1$ | **Yes** ($12$) | No ($1$) | No | — |
-| **Result** | — | — | — | — | **$\text{ROUND}(0, 1) = \mathbf{0.0}$** |
+| 1 | 0 | 7 | 1 | 7 | 1–7 |
+| 2 | 1 | 1 | 8 | 8 | 8 |
+| 3 | 2 | 3 | 9 | 11 | 9–11 |
+| 4 | 3 | 1 | 12 | 12 | 12 |
 
----
+The central positions of this instance are 6 and 7, both inside row 1's block $[1,7]$. The task is to detect that containment without ever enumerating a position.
 
-## 5. Boundary Cases & Failure Modes
+## 3. The Two Cumulative Mass Ranks
 
-- **Even Count with Two Distinct Medians ($nums = [1, 2], freqs = [1, 1]$):** $s=2, s/2=1$. Both 1 and 2 qualify $\implies \text{AVG}(1, 2) = \mathbf{1.5}$.
-- **Single Row ($num = 5, frequency = 10$):** $rk_1 = 10, rk_2 = 10 \ge 5 \implies \mathbf{5.0}$.
-- **Massive Frequencies ($frequency = 10^9$):** Window sums avoid table row duplication, running in $O(N \log N)$ where $N$ is the number of distinct values.
+Define the forward and backward ranks of row $i$:
 
----
+$$
+rk_1(i) = \sum_{j \le i} f_j = R_i, \qquad rk_2(i) = \sum_{j \ge i} f_j = T - L_i + 1 .
+$$
 
-## 6. Traps & Common Anti-Patterns
+The forward rank is the running total of `frequency` in ascending `num` order; the backward rank is the same running total in descending order. Each is a single ordered pass over the compressed rows, so neither expands anything.
 
-- **Generating Row Numbers via Recursive CTEs:** Generating $10^6$ physical rows from frequencies exhausts database memory. Analytical window functions process cumulative frequencies directly without generating rows.
-- **Using Integer Division on `AVG()`:** Averaging integers $1$ and $2$ in SQL might truncate to $1$ instead of $1.5$. Casting to numeric or using decimal rounding preserves decimal fractions.
-- **Ordering by Frequency Instead of `num`:** Cumulative sums must be ordered by the numerical value `num ASC` / `num DESC`, not by frequency!
+| Row $i$ | `num` | $f_i$ | $rk_1(i)$ | $rk_2(i)$ | Check: $rk_1 + rk_2 = T + f_i$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | 0 | 7 | 7 | 12 | $19 = 19$ |
+| 2 | 1 | 1 | 8 | 5 | $13 = 13$ |
+| 3 | 2 | 3 | 11 | 4 | $15 = 15$ |
+| 4 | 3 | 1 | 12 | 1 | $13 = 13$ |
 
----
+Row $i$ is counted by both ranks while every other row is counted by exactly one, which is why $rk_1(i) + rk_2(i) = T + f_i$. The identity confirms that the two ranks are two views of one total mass, and that no row can sit near the end of both orders unless it holds a large share of that mass.
 
-## 7. Complexity Derivation
+## 4. The Half-Mass Intersection Criterion
 
-- **Time Complexity:**
-  - Sorting by `num` for window functions: $\mathcal{O}(K \log K)$ where $K$ is the number of distinct numbers in the table.
-  - Linear scan and filtering: $\mathcal{O}(K)$.
-  - Total Time: $\mathcal{O}(K \log K)$. For $K = 10^4$, completes in $< 15$ ms.
-- **Auxiliary Space Complexity:**
-  - $\mathcal{O}(K)$ space to store cumulative sums in CTE $t$.
+For the even sample $T = 12$ the central positions are 6 and 7. Consider the candidate condition
+
+$$
+rk_1(i) \ge \frac{T}{2} \quad \text{and} \quad rk_2(i) \ge \frac{T}{2}.
+$$
+
+In terms of block boundaries, $rk_1(i) \ge T/2$ says $R_i \ge T/2$ and $rk_2(i) \ge T/2$ says $T - L_i + 1 \ge T/2$, that is $L_i \le T/2 + 1$. So the condition says exactly that $[L_i, R_i]$ meets the one- or two-position loop of central positions. For this instance that loop is $\{6, 7\}$ and the threshold is $6$:
+
+| Row $i$ | `num` | $rk_1(i)$ | $rk_1 \ge 6$? | $rk_2(i)$ | $rk_2 \ge 6$? | Both hold? | Block meets $\{6,7\}$? |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | 0 | 7 | yes | 12 | yes | **yes** | yes, $[1,7]$ covers both |
+| 2 | 1 | 8 | yes | 5 | no | no | no, $[8,8]$ starts after 7 |
+| 3 | 2 | 11 | yes | 4 | no | no | no, $[9,11]$ starts after 7 |
+| 4 | 3 | 12 | yes | 1 | no | no | no, $[12,12]$ starts after 7 |
+
+Exactly one row survives, and the answer is the mean of the surviving `num` values:
+
+$$
+\mathrm{median} = \mathrm{round}\!\left(\frac{0}{1},\, 1\right) = 0.0 .
+$$
+
+No special case is needed for odd and even sample sizes. The criterion returns one surviving row when a single run covers the centre and two when the centre falls on a run boundary, where the mean of the two `num` values is by definition the mean of the two central order statistics.
+
+> **Central-window invariant.** For any sample, the rows satisfying $rk_1 \ge T/2$ and $rk_2 \ge T/2$ are exactly the runs whose position block meets the loop of central positions, and there are either one or two of them.
+
+## 5. Worked Trace of the Official Instance
+
+| Step | Row inspected | Ascending running total | Descending running total | Threshold $\frac{12}{2}$ | Decision |
+|:---:|:---:|:---:|:---:|:---:|:---|
+| 1 | `num = 0`, `frequency = 7` | $0 + 7 = 7$ | $7 + 1 + 3 + 1 = 12$ | 6 | $7 \ge 6$ and $12 \ge 6$ — retain |
+| 2 | `num = 1`, `frequency = 1` | $7 + 1 = 8$ | $1 + 3 + 1 = 5$ | 6 | $5 < 6$ — discard |
+| 3 | `num = 2`, `frequency = 3` | $8 + 3 = 11$ | $3 + 1 = 4$ | 6 | $4 < 6$ — discard |
+| 4 | `num = 3`, `frequency = 1` | $11 + 1 = 12$ | $1$ | 6 | $1 < 6$ — discard |
+| 5 | surviving set | — | — | — | $\{0\}$, so $\mathrm{mean}\{0\} = 0$ rounded to $0.0$ |
+
+## 6. Correctness of the Intersection Criterion
+
+Let $\mathcal{M}$ be the loop of central positions: $\{T/2, T/2+1\}$ for even $T$ and $\{\lceil T/2 \rceil\}$ for odd $T$. The claim is that row $i$ satisfies both inequalities if and only if $[L_i, R_i] \cap \mathcal{M} \neq \emptyset$.
+
+If both inequalities hold, then $R_i \ge T/2$ and $L_i \le T/2 + 1$, so the non-empty block starts no later than the position after the midpoint and ends no earlier than the midpoint; it must therefore contain a member of $\{T/2, T/2+1\}$, a superset of $\mathcal{M}$. Conversely, if the block meets $\mathcal{M}$, then $R_i \ge \min \mathcal{M} \ge T/2$, giving $rk_1(i) \ge T/2$, and $L_i \le \max \mathcal{M} \le T/2+1$, giving $rk_2(i) = T - L_i + 1 \ge T/2$.
+
+Because the blocks partition all positions, at most two can meet a loop of at most two adjacent positions, which proves the cardinality claim. The median of an expanded sample is the mean of the values at its central positions, so averaging the surviving `num` values returns that quantity; a single survivor owns both central positions, so its value is simply repeated. Three authored checks confirm the criterion outside the official example:
+
+| Instance | Expanded sample | $T$ | Central loop | Surviving rows | Median |
+|:---|:---|:---:|:---:|:---|:---:|
+| `num` 1 and 3, one each | $[1, 3]$ | 2 | $\{1, 2\}$ | both rows | $2$ |
+| `num` 1 twice, `num` 5 twice | $[1,1,5,5]$ | 4 | $\{2, 3\}$ | both rows | $3$ |
+| `num` 1, 2, 3, one each | $[1, 2, 3]$ | 3 | $\{2\}$ | `num = 2` only | $2$ |
+
+## 7. Boundary Cases and Alternative Strategies
+
+| Situation | Behaviour of the criterion | Consequence |
+|:---|:---|:---|
+| Odd $T$, one run covers the centre | exactly one row survives | the median is that `num` |
+| Even $T$, centre on a run boundary | exactly two rows survive | their mean, for example $1.5$ |
+| Even $T$, one run owns both central positions | exactly one row survives | its value, as in the official instance |
+| `Numbers` holding a single row | $rk_1 = rk_2 = T \ge T/2$ | that row always survives, even at `frequency = 100` |
+| Very large `frequency` | both ranks are integers of the same magnitude | cost is unchanged; nothing is expanded |
+| Negative and positive `num` | ordering is numeric, not by appearance | `-5`, `0`, `10` are ordered before the ranks are built |
+
+| Strategy | Relational shape | Cost | Assessment |
+|:---|:---|:---|:---|
+| Expand, sort, index the centre | one row per unit of frequency | $\Theta(T \log T)$ time, $\Theta(T)$ space | correct but unusable |
+| Recursive row generation from `frequency` | iterative expansion by a counter | $\Theta(T)$ time, deep recursion | hits memory and recursion limits |
+| Self-join on position containment | pair every row with its predecessors | $\Theta(R^2)$ | quadratic cost for information one pass already yields |
+| Cumulative ranks plus the intersection test | two ordered running totals | $\Theta(R \log R)$ time, $\Theta(R)$ space | the method traced above |
+
+Two near-misses are worth naming. Ordering the running totals by `frequency` instead of `num` breaks the block partition: the accumulating sequence would no longer follow sample order, and the surviving rows would have nothing to do with the centre. And comparing against a truncated $T/2$ shifts the boundary for odd samples, where the honest test is $rk_1 \ge \lceil T/2 \rceil$; the mean must also be taken over the surviving `num` values alone, since averaging every row happens to look plausible here only because the single survivor is $0$.
+
+## 8. Complexity Derivation
+
+Let $R$ be the number of rows in `Numbers`, which is the number of distinct sample values.
+
+- **Time.** Each rank is a running total over an ordering of `num`, which costs $\Theta(R \log R)$ comparisons to produce and $\Theta(R)$ to accumulate. The intersection test is one comparison per row and the final mean touches only the survivors, so both are $\Theta(R)$. Total: $\Theta(R \log R)$, with no dependence on $T$.
+- **Auxiliary space.** Two integers per row are materialised, so $\Theta(R)$ working memory, and the result is a single row. Nothing proportional to $T$ is ever allocated, which is precisely the advantage the compressed input was designed to give.
+
+For the official instance $R = 4$: four items are ordered and eight rank integers are held, even though the sample they describe contains twelve values. A table whose frequencies sum to a billion costs the same.
