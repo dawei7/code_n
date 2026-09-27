@@ -171,6 +171,20 @@ Result: true
 - Try $i = 2, j = 3$: $a = \text{"10"}, b = 2$. Sum $c = 12$. Suffix `"3"` does not start with `"12"` $\implies$ Fails.
 - All candidate pairs fail $\implies$ Returns `false`.
 
+The failure instance is worth a complete enumeration, because $N = 4$ keeps the
+pair space small enough to write out in full. Every pair the boundary loops can
+form is listed, including the one that dies before any arithmetic happens:
+
+| Pair $(i, j)$ | $a = \text{num}[0:i]$ | $b = \text{num}[i:j]$ | Boundary rule in force | Required sum $c = a + b$ | Text compared | Verdict |
+|:---:|:---|:---|:---|:---:|:---|:---|
+| $(1, 2)$ | `"1"` | `"0"` | Both terms are single digits, so no leading-zero ban applies | 1 | suffix `"23"` against `"1"` | Rejected: the suffix does not begin with `"1"` |
+| $(1, 3)$ | `"1"` | `"02"` | $j - i = 2 > 1$ while $\text{num}[i] = \text{'0'}$ | never formed | none | Rejected before any sum is computed |
+| $(2, 3)$ | `"10"` | `"2"` | Second term is a single digit | 12 | suffix `"3"` against `"12"` | Rejected: fewer digits remain than the sum needs |
+
+With $N = 4$ the first cut is limited to $i \le N // 2 = 2$, so these three pairs
+are the entire search space; exhausting them is what makes the answer `false`
+rather than merely unproven.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -185,7 +199,34 @@ Result: true
 
 - **Leading Zero Invalidation:** Strings like `"02"` or `"03"` cannot be treated as valid numbers in the sequence. Only single-digit `'0'` is permitted. Failing to prune leading zeros allows false positives like `"1023"` ($1, 02, 3$).
 - **Stopping at 3 Numbers:** A sequence must consume the **entire** string. If $a + b$ matches a prefix of the remaining text but leftover characters remain that do not continue the sequence, the candidate is invalid.
-- **Integer Overflow in Other Languages:** In languages like Java or C++, adding two 18-digit numbers can overflow standard 64-bit signed integers. Using string-based addition (or Python's arbitrary-precision integers) prevents arithmetic overflow.
+- **Integer Overflow in Other Languages:** In languages like Java or C++, adding two 19-digit numbers can overflow standard 64-bit signed integers, and $\text{num}$ may be 35 digits long. Using string-based addition (or Python's arbitrary-precision integers) prevents arithmetic overflow.
+
+### Where the leading-zero rule draws the line
+
+The same rule produces opposite verdicts on strings that differ by one digit.
+Each row below is the exact partition the search settles on — or the reason no
+partition survives.
+
+| Input | Partition reached | Rule that decides the verdict | Result |
+|:---|:---|:---|:---:|
+| `"000"` | $[0, 0, 0]$ | Every term is the single digit `'0'`; the ban applies only to multi-digit terms | `true` |
+| `"0000"` | $[0, 0, 0, 0]$ | A required sum of $0$ is allowed to be followed by the term `"0"`, so the propagation never stalls | `true` |
+| `"101"` | $[1, 0, 1]$ | The second term is the single digit `'0'`, which is legal; `"01"` in that position would not be | `true` |
+| `"011"` | $[0, 1, 1]$ | The first term is the single digit `'0'`; the ban on a zero-leading first term only fires when the first term is longer than one digit | `true` |
+| `"199100199"` | $[1, 99, 100, 199]$ | Terms are allowed to change length as they grow: a one-digit term, a two-digit term, then two three-digit terms | `true` |
+| `"1023"` | none | Every pair either mismatches its required sum or needs a multi-digit term that starts with `'0'` | `false` |
+| `"100"` | none | With $N = 3$ the only first cut is the single digit `"1"`, and $1 + 0 = 1$ does not match the trailing `"0"` | `false` |
+| `"12"` | none | $N < 3$, so no pair $(i, j)$ leaves room for the mandatory third term | `false` |
+
+### Approaches this instance eliminates
+
+| Approach | Search organisation | Time | Space | Failure mode or tradeoff |
+|:---|:---|:---:|:---:|:---|
+| Fix the first two terms, then propagate (the method used here) | $O(N)$ choices for $i$, $O(N)$ for $j$, then one forced pass over the remainder | $O(N^3)$ | $O(N)$ | No branch survives after $(a, b)$ is fixed, so the only branching is the pair enumeration |
+| Enumerate every partition into three or more pieces, then test the additive law | all compositions of the digit string | exponential in $N$ | $O(N)$ | Rejects nothing early; at $N = 35$ the cut tree dwarfs the $O(N^2)$ pairs that the propagation method ever forms |
+| Fix only the first term and let the second vary freely | $O(N)$ choices for $i$, unbounded second term | $O(N^3)$ | $O(N)$ | Correct but no cheaper; the pruning benefit comes from the pair being fixed, not from the second term being searched |
+| Sum the terms in fixed-width 64-bit arithmetic | the same pair enumeration | $O(N^3)$ | $O(N)$ | Terms reach 35 digits, and a sum overflows a signed 64-bit accumulator once it passes 19 digits |
+| Track one running total instead of the last two terms | a single accumulator of all digits seen so far | $O(N^3)$ | $O(N)$ | Wrong model: each term is the sum of the previous **two** terms, so a cumulative total accepts strings that are not additive |
 
 ---
 

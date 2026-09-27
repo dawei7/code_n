@@ -65,7 +65,7 @@ The test above tells us the maximum, but a sweep over the sorted array produces 
 
 The first three candidates die on the frontier because a 1 cannot beat a 1. The value 2 finally clears the frontier, and from there each remaining candidate clears the next frontier entry in turn. The pointer ends at $p = 4$, which is the greatness.
 
-Notice which entries were beaten: sorted positions 0, 1, 2 (all value 1) and position 3 (value 2), beaten by 2, 3, 3, 5 respectively. The 5 is the only entry able to beat the 2, and it is used exactly once, which is why the four small entries cannot all be rescued.
+Notice which entries were beaten: sorted positions 0, 1, 2 (all value 1) and position 3 (value 2), beaten by 2, 3, 3, 5 respectively. The 5 is the only entry that can beat a 3, and every beaten position needs a beater greater than the modal value 1; since only the four entries 2, 3, 3, 5 exceed 1, no fifth slot can be rescued.
 
 ## 5. Turning the pairing back into a permutation
 
@@ -81,7 +81,7 @@ The sweep matched values, and the permutation is reconstructed by sending each w
 | 5 | 3 | 1 | false | no |
 | 6 | 1 | 3 | true | yes |
 
-The result is `perm = [2,1,1,5,3,1,3]`, whose multiset is again $1, 1, 1, 2, 3, 3, 5$, so it is a legal permutation, and it wins at slots 0, 3, 4, 6 for a greatness of 4. Other optimal arrangements exist, for instance the one that places 2 and 5 in the first two slots; the pairing fixes which values win, not which order the losing values appear in. What no arrangement can do is push past 4, because slots 1, 2, 5 hold values whose only strictly larger partner is the single 5.
+The result is `perm = [2,1,1,5,3,1,3]`, whose multiset is again $1, 1, 1, 2, 3, 3, 5$, so it is a legal permutation, and it wins at slots 0, 3, 4, 6 for a greatness of 4. Other optimal arrangements exist, for instance the one that places 2 and 5 in the first two slots; the pairing fixes which values win, not which order the losing values appear in. What no arrangement can do is push past 4: five beaten slots would force the five smallest entries to be beaten by the five largest, and that split compares `1` with `1` at the first position, so it fails.
 
 ## 6. Invariant and correctness of the frontier
 
@@ -111,7 +111,7 @@ Three consequences make the sweep safe.
 | `[1,1]` | 2 | 2 | 0 | The comparison is strict, so equal values never win |
 | `[10,10,10]` | 3 | 3 | 0 | Three free slots buy nothing when the pile holds one repeated value |
 | `[1,1,1,2]` | 4 | 3 | 1 | One large value supports exactly one win however many small copies wait |
-| `[0,0,1,2,3]` | 5 | 2 | 3 | The most frequent value need not be the smallest one |
+| `[0,0,1,2,3]` | 5 | 2 | 3 | The most frequent value is the smallest one here, and it still caps the answer at $n - m$ |
 | `[1000000000,0]` | 2 | 1 | 1 | Values near $10^{9}$ matter only through their order relations |
 
 Two further traps are worth naming. First, the answer is unchanged if the input is shuffled, since the multiset is what the method inspects; a solution that depends on input order is testing the wrong property. Second, boundary values are not special: $0$ and $10^{9}$ are ordinary entries, and an entry equal to $0$ still cannot beat another $0$.

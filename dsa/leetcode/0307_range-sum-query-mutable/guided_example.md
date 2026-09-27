@@ -66,6 +66,24 @@ x = 3 (011): lowbit = 1 -> covers [3, 3] (nums[2])
 x = 4 (100): lowbit = 4 -> covers [1, 4] (nums[0] + nums[1] + nums[2] + nums[3])
 ```
 
+For the traced array $[1, 3, 5]$ only nodes $0 \dots 3$ exist, and their
+coverage is fixed before any operation runs. The final column tracks how each
+node reacts to the single replacement in the trace:
+
+| Node $x$ | Binary | $\operatorname{lowbit}(x)$ | Interval covered | Array elements held | $c[x]$ after the build | $c[x]$ after `update(1, 2)` |
+|:---:|:---:|:---:|:---:|:---|:---:|:---:|
+| 0 | 000 | 0 | none — the empty prefix | none | 0 | 0 |
+| 1 | 001 | 1 | $[1, 1]$ | nums[0] = 1 | 1 | 1 |
+| 2 | 010 | 2 | $[1, 2]$ | nums[0] + nums[1] | 4 | **3** |
+| 3 | 011 | 1 | $[3, 3]$ | nums[2] = 5 | 5 | 5 |
+
+Node 0 is a sentinel, not storage: `query` stops there immediately because
+$0 > 0$ is already false, while an update launched from node 0 would spin
+forever since $0 + \operatorname{lowbit}(0) = 0$. Only node 2 changes, because
+element index 1 lives in the 1-based block $[1, 2]$ and in no other block that
+this tree materialises; nodes 1 and 3 cover elements that the update never
+touched, which is exactly why their values stay put.
+
 ### Operations Protocol:
 
 #### 1. Prefix Sum `query(x)`: $\sum_{i=1}^x \text{nums}[i-1]$
@@ -196,6 +214,32 @@ Results: [9, 8]
 | 2 | `update(1, 2)` | $\text{idx}=1, v=2$ | $\Delta = 2 - 3 = -1$; update node 2 | **`[0, 1, 3, 5]`** | - |
 | **3** | **`sumRange(0, 2)`** | $L=0, R=2$ | $\text{query}(3) - \text{query}(0) = 8 - 0$ | `[0, 1, 3, 5]` | **8** |
 
+Every operation above is one while-loop over node indices, so the whole trace
+can be written as the individual pointer walks. Each row is one loop iteration;
+the "next" column shows where the peel-off or climb-up rule sends the pointer,
+and `s` is the running sum inside a query.
+
+| Called operation | Phase | $x$ | $\operatorname{lowbit}(x)$ | Value read or added | Accumulator or node state | Next $x$ |
+|:---|:---|:---:|:---:|:---:|:---|:---|
+| Build, insert 1 | climb | 1 | 1 | $+1$ | $c[1] = 1$ | 2 |
+| Build, insert 1 | climb | 2 | 2 | $+1$ | $c[2] = 1$ | $4 > 3$, stop |
+| Build, insert 3 | climb | 2 | 2 | $+3$ | $c[2] = 4$ | $4 > 3$, stop |
+| Build, insert 5 | climb | 3 | 1 | $+5$ | $c[3] = 5$ | $4 > 3$, stop |
+| `sumRange(0, 2)` | query(3) | 3 | 1 | $c[3] = 5$ | $s = 5$ | 2 |
+| `sumRange(0, 2)` | query(3) | 2 | 2 | $c[2] = 4$ | $s = 9$ | $0$, stop |
+| `sumRange(0, 2)` | query(0) | 0 | — | none | $s = 0$, loop never entered | — |
+| `update(1, 2)` | query(2) | 2 | 2 | $c[2] = 4$ | $s = 4$ | $0$, stop |
+| `update(1, 2)` | query(1) | 1 | 1 | $c[1] = 1$ | $s = 1$ | $0$, stop |
+| `update(1, 2)` | climb | 2 | 2 | $\Delta = -1$ | $c[2]: 4 \to 3$ | $4 > 3$, stop |
+| `sumRange(0, 2)` after | query(3) | 3 | 1 | $c[3] = 5$ | $s = 5$ | 2 |
+| `sumRange(0, 2)` after | query(3) | 2 | 2 | $c[2] = 3$ | $s = 8$ | $0$, stop |
+
+The two directions are visible side by side: a query clears the lowest set bit
+and therefore only ever moves to a smaller index, while an update adds it and
+only ever moves to a larger one. Neither walk performs more than
+$\lfloor \log_2 N \rfloor + 1 = 2$ iterations at $N = 3$, and the update visits
+just the single node whose block contains element index 1.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -211,6 +255,23 @@ Results: [9, 8]
 - **Replacing vs Adding Delta:** The Fenwick tree `update` adds `delta` to existing node values. Passing `val` directly would compute $\text{old} + \text{val}$ instead of setting the cell to `val`. The difference $\Delta = val - \text{prev}$ must be computed.
 - **Zero-Based Indexing Trap:** Calling `update(0, val)` or `lowbit(0)` fails because $0 \ \& \ (-0) = 0$, creating an infinite loop. Fenwick trees must use 1-based indexing ($1$ to $N$).
 - **Single Element Query ($left == right$):** Evaluating $\text{sumRange}(i, i)$ returns $\text{query}(i + 1) - \text{query}(i) = \text{nums}[i]$, isolating the exact current value without a separate tracking array.
+
+### Structures this instance rules out
+
+The trace above needs two operations to stay fast at the same time: `update`
+must not touch more than a few nodes, and `sumRange` must not walk the array.
+Only one of the structures below satisfies both, and the stated limits make the
+difference decisive — up to $3 \cdot 10^4$ calls over an array of up to
+$3 \cdot 10^4$ elements.
+
+| Structure or strategy | `update(index, val)` | `sumRange(left, right)` | Auxiliary space | Consequence for this problem |
+|:---|:---:|:---:|:---:|:---|
+| Plain array | $O(1)$: overwrite the cell | $O(N)$: add the slice | $O(N)$ | Correct, but one full-range query costs $3 \cdot 10^4$ additions, and tens of thousands of such queries are permitted |
+| Prefix sums, rebuilt on every update | $O(N)$: rewrite the table | $O(1)$ | $O(N)$ plus the array | The mirror image: cheap queries become expensive updates, because a single cell change invalidates every later prefix |
+| Fenwick tree (the structure used here) | $O(\log N)$ | $O(\log N)$ | $O(N)$ for $c$ | Each operation stays within $\lfloor \log_2 N \rfloor + 1$ iterations — at most 2 for $[1, 3, 5]$ — and negative deltas such as $\Delta = -1$ need no special case |
+| Segment tree | $O(\log N)$ | $O(\log N)$ | about $4N$ nodes | The same two bounds with a larger constant and a recursive descent; it also answers range minimum or maximum, which this problem never asks for |
+| Square-root decomposition | $O(1)$ cell plus its block | $O(\sqrt N)$ | $O(N)$ | Cheaper updates than the Fenwick tree at the cost of $\sqrt{N} \approx 173$ block-boundary work per query at the limit, against 15 bit steps |
+| A mirror copy of the array for `prev` | $O(1)$ read plus the same climb | unchanged | $O(N)$ extra | Removes the two extra queries that `sumRange(index, index)` performs, but duplicates state that the Fenwick query already reconstructs exactly |
 
 ---
 

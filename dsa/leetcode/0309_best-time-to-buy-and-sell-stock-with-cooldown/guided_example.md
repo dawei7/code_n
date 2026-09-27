@@ -155,13 +155,36 @@ Day 4 (price=2): hold =  1, sold = 3,    reset = 2  <- Sell at 2 -> Profit = 3
 Optimal Profit = 3
 ```
 
-| Day $i$ | Price | Transition Decision | $\text{hold}[i]$ | $\text{sold}[i]$ | $\text{reset}[i]$ | Optimal Cash Balance |
+| Day $i$ | Price | Transition Decision | $\text{hold}[i]$ | $\text{sold}[i]$ | $\text{reset}[i]$ | Best Unheld Profit $\max(\text{sold}, \text{reset})$ |
 |:---:|:---:|:---|:---:|:---:|:---:|:---:|
-| 0 | 1 | Buy at 1 | **-1** | $-\infty$ | 0 | -1 |
+| 0 | 1 | Buy at 1 | **-1** | $-\infty$ | 0 | 0 |
 | 1 | 2 | Sell at 2 | -1 | **+1** | 0 | +1 |
 | 2 | 3 | Cooldown active | -1 | +2 | **+1** | +2 |
 | **3** | **0** | **Buy at 0 (from reset 1)** | **+1** | -1 | +2 | +2 |
 | **4** | **2** | **Sell at 2 (from hold 1)** | +1 | **+3** | +2 | **+3 (Global Max)** |
+
+The last column is the DP's own best realized profit by the end of each day,
+$\max(\text{sold}[i], \text{reset}[i])$, which is $0$ on day $0$ because doing
+nothing is always available. It is *not* the running cash of the traced plan:
+that plan stands at $+1$ on days 2 and 3, while the DP value is already $+2$
+there because selling at the day-2 peak remains a legal alternative.
+
+Each state value above is the outcome of one explicit comparison, and the losing
+candidate is what explains the cooldown's cost. `sold` is never a choice — it is
+forced by yesterday's `hold` — so only `hold` and `reset` are listed here:
+
+| Day $i$ | Comparison | Continue / rest candidate | Buy / cool-down candidate | Winner | Why the loser is discarded |
+|:---:|:---|:---:|:---:|:---:|:---|
+| 0 | `hold` | none (no earlier state) | $0 - 1 = -1$ | $-1$ | the first share can only be bought out of a zero balance |
+| 0 | `reset` | $0$ (do nothing) | $\text{sold}[-1] = -\infty$ | $0$ | no share has been sold, so no cooldown can be waited out |
+| 1 | `hold` | $-1$ (keep the day-0 share) | $0 - 2 = -2$ | $-1$ | buying at a higher price with the same cash is dominated |
+| 1 | `reset` | $0$ | $\text{sold}[0] = -\infty$ | $0$ | as on day 0, the cooldown route carries nothing |
+| 2 | `hold` | $-1$ | $0 - 3 = -3$ | $-1$ | entering at the peak is worse than riding the day-0 share |
+| 2 | `reset` | $0$ | $\text{sold}[1] = 1$ | $1$ | day 2 *is* the cooldown day that day 1's sale created, and by its end the position is free again |
+| 3 | `hold` | $-1$ | $1 - 0 = 1$ | $1$ | the dip is reachable **only** because the sale happened on day 1 |
+| 3 | `reset` | $1$ | $\text{sold}[2] = 2$ | $2$ | the day-2 sale spends day 3 as its cooldown day, which elapses here |
+| 4 | `hold` | $1$ | $2 - 2 = 0$ | $1$ | the day-3 share bought at $0$ is still the cheapest position held |
+| 4 | `reset` | $2$ | $\text{sold}[3] = -1$ | $2$ | selling at price $0$ would have destroyed value |
 
 ---
 
@@ -178,6 +201,35 @@ Optimal Profit = 3
 - **Selling at Peak vs Selling Early for Dip:** Greedily holding from day 0 to day 2 achieves profit $3 - 1 = 2$. However, selling on day 1 for profit $2 - 1 = 1$ allows buying on day 3 at price $0$, netting total profit $(2-1) + (2-0) = 3$. Local greed fails; global DP is necessary.
 - **Ending in `hold` State:** Ending the simulation holding stock represents unrealized cost rather than profit. The final answer must always be taken over unheld states ($\max(\text{sold}, \text{reset})$).
 - **Index Bounds in $i + 2$ Recurrence:** When implementing via DFS, jumping to $i + 2$ upon selling can exceed array length $N$. The base case must guard with `if i >= len(prices): return 0`.
+
+### Strategies compared on this instance
+
+Every strategy below is judged on $\text{prices} = [1, 2, 3, 0, 2]$. The two
+plans that a greedy trader would defend are both beaten or blocked by the rest
+day, and the table shows exactly which of the two happens.
+
+| Strategy | Trades | Profit | Feasible? | What the cooldown does to it |
+|:---|:---|:---:|:---:|:---|
+| Do nothing | none | 0 | Yes | the baseline that every state must beat |
+| Ride the day-0 share to the peak | buy 0, sell 2 | 2 | Yes | the sale makes day 3 a rest day, so the price-$0$ dip is unreachable |
+| Buy the dip only | buy 3, sell 4 | 2 | Yes | legal, and it needs no cooldown bookkeeping, but it forgoes the cheap day-0 entry |
+| Sell the peak, then buy the dip | buy 0, sell 2, buy 3 | — | **No** | day 3 is the cooldown day created by the day-2 sale, so no purchase is allowed there |
+| Sell early, then re-enter the dip (optimal) | buy 0, sell 1, rest 2, buy 3, sell 4 | **3** | Yes | the rest day is spent on day 2, whose price of $3$ is the one this plan gives up |
+| Hold two shares at once | buy 0 and buy 3, sell 4 | — | **No** | at most one share may be held at a time, so the two entries cannot coexist |
+
+### Where the cooldown rule binds
+
+The same recurrence answers each instance below; the middle column is the
+optimal profit and the last column names the single rule that fixes it.
+
+| Instance | Optimal profit | Which rule decides it |
+|:---|:---:|:---|
+| $[1]$ | 0 | a sale needs a strictly later day, and the horizon holds only one |
+| $[1, 2]$ | 1 | the only sale is on the final day, so the cooldown it creates is never spent |
+| $[2, 2, 2]$ | 0 | every buy-sell pair is flat, and flat trades cannot be stacked |
+| $[5, 4, 3, 2, 1]$ | 0 | prices only fall, so no buy-sell pair is profitable and the optimum is to abstain |
+| $[1, 4, 0, 4]$ | 4 | buying the day-2 dip at $0$ and selling at $4$ beats cashing the day-1 spike for $3$, and no sale is made early enough to create a rest day |
+| $[1, 4, 2, 3]$ | 3 | selling on day 1 realises $3$ immediately and the rest day falls on day 2, so re-entry is possible on day 3 but nothing is left to sell |
 
 ---
 

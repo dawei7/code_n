@@ -95,6 +95,24 @@ $$
 
 > **Invariant.** For each row $r$, `tree[r]` correctly reflects all point updates made to row $r$. The summation across rows $r \in [row_1, row_2]$ equals the exact subgrid area sum.
 
+Row $3$ is the only row the trace modifies, so its tree is worth writing out in
+full. Each node owns a fixed column interval; the last two columns show how the
+single replacement of cell $(3, 2)$ moves exactly the nodes whose interval
+contains column $2$ and nothing else.
+
+| Node $x$ | Binary | $\operatorname{lowbit}(x)$ | Columns covered (1-based) | Cells held | $c[x]$ before | $c[x]$ after `update(3, 2, 2)` |
+|:---:|:---:|:---:|:---:|:---|:---:|:---:|
+| 1 | 001 | 1 | $[1, 1]$ | matrix[3][0] = 4 | 4 | 4 |
+| 2 | 010 | 2 | $[1, 2]$ | matrix[3][0] + matrix[3][1] = 5 | 5 | 5 |
+| 3 | 011 | 1 | $[3, 3]$ | matrix[3][2] = 0 | 0 | **2** |
+| 4 | 100 | 4 | $[1, 4]$ | matrix[3][0..3] = 6 | 6 | **8** |
+| 5 | 101 | 1 | $[5, 5]$ | matrix[3][4] = 7 | 7 | 7 |
+
+The propagation path is read straight off the table: node $3$ holds the changed
+column, and its single ancestor is $3 + \operatorname{lowbit}(3) = 4$, whose
+interval $[1, 4]$ contains column $2$. Nodes $1$, $2$ and $5$ hold intervals that
+exclude column $2$, so their stored sums must not move — and they do not.
+
 ---
 
 ## 3. Step-by-Step Worked Execution
@@ -215,6 +233,33 @@ Results: [8, 10]
 - **Overwriting Instead of Delta:** Fenwick tree `update` performs an addition. An assignment operation must calculate $\Delta = val - \text{prev}$.
 - **Full 2D Static Prefix Sums:** Rebuilding a 2D static prefix table after each point update takes $O(M N)$, causing Time Limit Exceeded when updates are frequent. Row-wise Fenwick trees restrict update time to $O(\log N)$.
 - **1-Based Slicing:** When querying columns $col_1$ to $col_2$, the 1-based bounds are $col_2 + 1$ and $col_1$. Using $col_2$ omits the rightmost column.
+
+### Column bounds, translated exactly
+
+The row slice $[col_1, col_2]$ becomes the difference of two 1-based prefix
+queries. Every value below is taken from row $2$, whose entries are
+$[1, 2, 0, 1, 5]$, so the arithmetic can be checked cell by cell.
+
+| What is wanted | Prefix expression | Row 2 evaluation | Meaning |
+|:---|:---|:---:|:---|
+| Prefix of the first column only | $\text{query}(1)$ | 1 | columns $[0, 0]$ |
+| Prefix through the left edge of the slice | $\text{query}(col_1) = \text{query}(1)$ | 1 | the part that must be cancelled |
+| Prefix through the right edge, inclusive | $\text{query}(col_2 + 1) = \text{query}(4)$ | 4 | columns $[0, 3]$ |
+| The slice itself | $\text{query}(4) - \text{query}(1)$ | $4 - 1 = 3$ | columns $[1, 3]$: cells $2, 0, 1$ |
+| Dropping the $+1$ by mistake | $\text{query}(3) - \text{query}(1)$ | $3 - 1 = 2$ | silently loses the rightmost column, whose value is $1$ |
+| A slice starting at column $0$ | $\text{query}(col_2 + 1) - \text{query}(0)$ | $\text{query}(4) - 0 = 4$ | the empty prefix makes the cancellation vanish harmlessly |
+| A slice ending at the last column | $\text{query}(n) = \text{query}(5)$ | 9 | all five columns of row 2 |
+| A single cell $(r, c)$ | $\text{query}(c + 1) - \text{query}(c)$ | $(2, 2) \to 3 - 3 = 0$ | the cell's current value, which is the $\text{prev}$ used by `update` |
+
+### Structures this instance rules out
+
+| Structure | `update(row, col, val)` | `sumRegion(...)` | Auxiliary space | Consequence here |
+|:---|:---:|:---:|:---:|:---|
+| Naive matrix | $O(1)$: overwrite the cell | $O(H W)$ | $O(M N)$ | A full $200 \times 200$ region costs $40{,}000$ additions per query, and up to $5000$ calls are allowed |
+| 2D prefix table rebuilt after each update | $O(M N)$: every cell below and right is invalidated | $O(1)$ | $O(M N)$ | The mirror image; with frequent updates it degenerates to rebuilding the table $5000$ times |
+| Row-wise Fenwick trees (the structure used here) | $O(\log N)$, touching one row | $O(H \log N)$ | $O(M N)$: $M$ trees of $N + 1$ nodes | Updates never leave row $r$; a query pays about 8 bit steps per row at $n = 200$, and at most $200 \times 8 = 1600$ steps for a full-height region |
+| Full 2D Fenwick tree | $O(\log M \log N)$ | $O(\log M \log N)$ | $O(M N)$ | Strictly better query asymptotics for tall regions, but the index climb happens in two dimensions at once, which is exactly the rebalancing complexity this row-wise design avoids |
+| Column-wise Fenwick trees | $O(\log M)$: one column of trees | $O(W \log M)$ | $O(M N)$ | The transpose of the chosen design; it wins only when regions are wide and short, and loses on the tall region traced here |
 
 ---
 
