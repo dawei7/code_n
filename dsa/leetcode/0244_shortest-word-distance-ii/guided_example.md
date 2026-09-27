@@ -27,6 +27,15 @@ In this problem, `shortest` will be called repeatedly (up to $5,000$ times). Run
 - **Constructor ($O(N)$ Time & Space):** Map each distinct word to the sorted list of indices where it appears (a posting list).
 - **Query ($O(L_1 + L_2)$ Time):** With two sorted index lists $A$ and $B$, find the minimum absolute difference $|a - b|$ in linear time using two pointers.
 
+### Design Alternatives Compared
+
+| Design | One-time preprocessing | Cost per `shortest` call | Auxiliary space | When it wins, and how it fails |
+|:---|:---|:---|:---|:---|
+| Rescan the dictionary on every call (the single-query design) | none | $O(N \cdot L)$ word comparisons | $O(1)$ | Optimal when exactly one query is ever asked; with $5000$ queries over $30000$ words it performs about $1.5 \times 10^8$ comparisons and times out |
+| Posting lists plus two-pointer merge (chosen) | $O(N \cdot L)$ to bucket every word | $O(L_1 + L_2)$ pointer steps | $O(N)$ for all posting lists | Every call is linear in the two occurrence counts rather than in $N$; the only price is that the whole index is held in memory |
+| Posting lists plus binary search of the shorter list | $O(N \cdot L)$ | $O(\min(L_1, L_2) \cdot \log \max(L_1, L_2))$ | $O(N)$ | Wins when one target occurs once and the other occurs very often; loses to the merge when both lists are long, because each probe pays a logarithm |
+| Precomputed distance for every word pair | $O(N^2)$ pairs, both time and space | $O(1)$ lookup | $O(N^2)$ | Would make each call constant time, but at $N = 30000$ it needs on the order of $9 \times 10^8$ table entries before any deduplication |
+
 ---
 
 ## 2. Conceptual Foundation & Invariants
@@ -143,7 +152,22 @@ p2 reaches end -> Stop -> Return 1
 
 **Soundness.** Every difference $|A[p_1] - B[p_2]|$ is formed by indices where `wordsDict` contains `word1` and `word2` respectively.
 
-**Completeness.** Let $(a^*, b^*)$ be a globally optimal pair with $a^* \in A, b^* \in B$. Without loss of generality, assume $a^* < b^*$. In the two-pointer traversal, $p_1$ can only advance past $a^*$ when $A[p_1] \ge B[p_2]$. If $p_2$ had not reached $b^*$ yet, $B[p_2] \le a^* < b^*$, meaning $p_1$ does not advance past $a^*$ until $p_2$ catches up. The pair $(a^*, b^*)$ is guaranteed to be evaluated during the walk, ensuring the true minimum is found.
+**Completeness.** Let $(a^*, b^*)$ be a globally optimal pair with $a^* \in A$, $b^* \in B$, and assume without loss of generality that $a^* < b^*$. No index of either list lies strictly between $a^*$ and $b^*$: an $A$-index $c$ with $a^* < c < b^*$ would pair with $b^*$ at distance $b^* - c < b^* - a^*$, and a $B$-index $c$ in that same range would pair with $a^*$ at distance $c - a^* < b^* - a^*$. Either case contradicts optimality, so the smallest $B$-index strictly greater than $a^*$ must be $b^*$ itself.
+
+Now watch the walk at the step where $p_1$ first holds $a^*$. A cursor only leaves an element when the *other* cursor is strictly larger, so $p_2$ cannot have moved beyond $b^*$ while $p_1$ was still left of $a^*$; at this step $p_2$ therefore sits either below $a^*$ or exactly on $b^*$. If it sits below $a^*$, the merge holds $p_1$ fixed (because $A[p_1] > B[p_2]$) and advances $p_2$ until it reaches the first $B$-index above $a^*$, which is $b^*$. That step scores the pair $(a^*, b^*)$ before $p_1$ is allowed to move past $a^*$, so the true minimum is always among the evaluated pairs.
+
+### Which Candidate Pairs the Merge Actually Scores
+
+Take the lists produced by $\text{wordsDict} = [\text{"a"}, \text{"x"}, \text{"b"}, \text{"x"}, \text{"a"}, \text{"b"}, \text{"x"}, \text{"b"}]$: for the query `shortest("a", "b")` we have $A = [0, 4]$ and $B = [2, 5]$. There are $L_1 \cdot L_2 = 4$ pairs in principle, but the merge can only ever score $L_1 + L_2 - 1 = 3$ of them:
+
+| Candidate pair | Distance | Scored by the walk? | What the frontier rule decides |
+|:---:|:---:|:---|:---|
+| $(0, 2)$ | 2 | At step 1 | Both cursors begin here; $0 < 2$, so the pair is scored and $A$-index $0$ is consumed |
+| $(0, 5)$ | 5 | Never | Once $p_1$ leaves index $0$ it never returns, and the walk only ever pairs the current cursor values, so this combination becomes unreachable |
+| $(4, 2)$ | 2 | At step 2 | $p_1$ now holds $4$ and $4 > 2$, so the merge holds $p_1$ and advances $p_2$ instead of consuming the larger $A$-index |
+| $(4, 5)$ | 1 | At step 3 | The last reachable pair; it lowers the incumbent to $1$, after which $p_1$ runs off the end of $A$ |
+
+The skipped pair carries distance $5$, comfortably worse than the $2$ already banked, and the dominance rule explains why this is not luck: when $A[p_1] < B[p_2]$, every later $B$-index is at least as far from $A[p_1]$ as $B[p_2]$ already is, so that pair is the best one involving $A[p_1]$ and the index can be discarded. The walk replaces $L_1 \cdot L_2$ pair tests with at most $L_1 + L_2 - 1$ pointer steps.
 
 ---
 
@@ -152,6 +176,16 @@ p2 reaches end -> Stop -> Return 1
 - **Nested $O(L_1 \cdot L_2)$ Loops:** If a word appears $10,000$ times, a nested loop checking all pairs evaluates $10^8$ operations per query. The two-pointer merge checks at most $L_1 + L_2$ steps.
 - **Short-Circuit on Minimum Possible Distance:** The smallest possible distance between two distinct words is $1$. If $\text{min\_dist} == 1$, returning $1$ immediately provides an early exit optimization.
 - **Binary Search Alternative:** If one list has size $1$ and the other has size $10,000$, binary searching for the single element inside the large list takes $O(\log L_2)$ time instead of $O(L_2)$. The two-pointer method is $O(L_1 + L_2)$ and universally optimal across general queries.
+
+### Boundary Behaviour of the Structure
+
+| Boundary scenario | Concrete input | Required result | Why the structure returns it |
+|:---|:---|:---|:---|
+| Constructed but never queried | $\text{wordsDict} = [\text{"a"}]$ with an empty query sequence | an empty result sequence | The constructor only buckets indices, so it must tolerate a dictionary of length $1$ and must not assume that any `shortest` call follows |
+| Smallest queryable dictionary | $\text{wordsDict} = [\text{"x"}, \text{"y"}]$, one query `shortest("x", "y")` | $1$ | Each posting list holds a single index, so the merge scores exactly one pair and terminates immediately |
+| Symmetric query order with a repeated word | $\text{wordsDict} = [\text{"a"}, \text{"b"}, \text{"a"}, \text{"c"}]$, posting list `"a"` $= [0, 2]$ | `shortest("a", "c")` $= 1$ and `shortest("c", "a")` $= 1$ | The walk is symmetric in its two lists and the difference is an absolute value, so swapping the arguments cannot change the answer; the two-element list is reused from the constructor rather than rebuilt |
+| Optimum found mid-merge, not at the first scored pair | $\text{wordsDict} = [\text{"a"}, \text{"x"}, \text{"b"}, \text{"x"}, \text{"a"}, \text{"b"}, \text{"x"}, \text{"b"}]$ | `shortest("a", "b")` $= 1$ and `shortest("x", "b")` $= 1$ | For `"x"` versus `"b"` the walk needs all $4$ of its steps and the minimum appears only on the last of them, so an early exit that trusts the first scored pair would be wrong |
+| Maximum scale with a repeated query | $30000$ words with one distinct query pair requested $5000$ times | $29999$ on every one of the $5000$ calls | The index is built once; each call merges two single-element lists in one step, whereas rescanning per call would cost $5000 \times 30000 = 1.5 \times 10^8$ comparisons |
 
 ---
 

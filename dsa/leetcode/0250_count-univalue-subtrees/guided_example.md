@@ -46,6 +46,17 @@ A subtree rooted at `node` is a uni-value subtree **if and only if** all four co
 3. If `node.left` exists, $\text{node.val} == \text{node.left.val}$.
 4. If `node.right` exists, $\text{node.val} == \text{node.right.val}$.
 
+Both child evaluations complete before the parent decides, so every witness below is already known when the conjunction is tested:
+
+| # | Necessary condition | What it inspects | Witness in this instance | Verdict at that node |
+|:---:|:---|:---|:---|:---|
+| 1 | left subtree is univalue | the boolean returned by the left child's own evaluation | root `(node 1)`: its left child `(node 2)` returned `False` | fails, so the root cannot be univalue |
+| 2 | right subtree is univalue | the boolean returned by the right child's own evaluation | root `(node 1)`: its right child `(node 3)` returned `True` | holds |
+| 3 | left edge agrees | `node.val` against `node.left.val` | `(node 2)`: $1 \ne 5$, where the left child `(node 4)` holds $5$ | fails, so `(node 2)` is not univalue |
+| 4 | right edge agrees | `node.val` against `node.right.val` | `(node 2)`: $1 \ne 5$, where the right child `(node 5)` holds $5$ | fails for the same reason |
+
+A leaf satisfies all four conditions vacuously: both child subtrees are empty, hence uniformly valued, and there is no edge left to test. That is exactly why `(node 4)`, `(node 5)` and `(node 6)` each add one to the count without a single value comparison being performed.
+
 ### Post-Order Bottom-Up Traversal Contract `dfs(node)`
 `dfs(node)` returns a boolean indicating whether the subtree rooted at `node` is uni-value:
 1. **Base Case:**
@@ -179,9 +190,38 @@ Total Count: 4
 - **Top-Down $O(N^2)$ Recomputation:** Running a `is_univalue(node)` function from every node from the top down checks the same descendants repeatedly, degrading performance to $O(N^2)$. Bottom-up post-order DFS aggregates status in a single pass of $O(N)$ time.
 - **Null Child Handling:** A null child must return `True` so it acts as a neutral element in the boolean conjunction without falsely failing leaf nodes.
 
+### Boundary instances of the same rule
+
+Each row below is a separate input for the same contract; the last two columns state what the rule returns and which misunderstanding it punishes.
+
+| Instance | Shape | Subtrees that qualify | Result | Naive reading it defeats |
+|:---|:---|:---|:---:|:---|
+| `root = []` | empty tree | none | 0 | the empty subtree answers `True` to its parent, but it is not itself a subtree of the input and is never counted |
+| `root = [-1000]` | one leaf at the minimum node value | the leaf itself | 1 | a non-positive value is still a value; uniformity does not require positivity |
+| `root = [1, 1, null, 2]` | an equal child sitting above an unequal grandchild | only the leaf holding $2$ | 1 | the edge from the root to its left child agrees, yet the descendant $2$ still destroys uniformity, so the whole left subtree is rejected |
+| `root = [1, 2, 3]` | root differs from two unequal leaves | both leaves | 2 | a root that fails does not retroactively disqualify the subtrees beneath it |
+| `root = [1000, null, 1000, null, 1000]` | right-skewed chain of equal maximum values | all three nodes | 3 | the single-child chain must still be followed down to full depth before the root can answer |
+| uniform `root` with $N$ nodes | every node holds the same value | every node | $N$ | the answer is the node count, not $1$: for the six-node uniform instance above it is $6$, and for one thousand equal nodes it is $1000$ |
+
+Reading the second and fifth rows together gives the boundary behaviour that matters: a leaf always qualifies, and a maximal chain of equal values qualifies at every one of its nodes, so both the smallest and the most degenerate inputs return the number of nodes rather than zero.
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(N)$, where $N$ is the number of nodes in the binary tree. Each node is visited exactly once during the post-order depth-first search. At each node, constant-time operations ($O(1)$) perform equality checks and state aggregation.
 - **Auxiliary Space Complexity:** $O(H)$ auxiliary call-stack memory, where $H$ is the height of the tree ($O(\log N)$ for balanced trees, $O(N)$ for skewed trees).
+
+### What the rejected alternatives cost on this instance
+
+Counting inspections as the number of nodes whose recursive body actually runs on `root = [5, 1, 5, 5, 5, null, 5]` (six nodes, height $3$) separates the strategies sharply:
+
+| Strategy | Mechanism at each node | Node inspections here | Result here | Defect it avoids, or risk it carries |
+|:---|:---|:---:|:---:|:---|
+| Bottom-up post-order with a boolean return (the method used) | both children are evaluated, then the four conditions are tested | 6 | 4 | none; every subtree is judged exactly once |
+| Eager boolean chain that stops at the first `False` | a `False` from the left child prevents the right child from ever being evaluated | 3 | 2 | undercounts badly: `(node 3)` and `(node 6)` are never reached from the root, so two qualifying subtrees are lost |
+| Top-down uniformity test restarted at every node | each node re-asks whether its entire subtree is uniform | 14 | 4 | correct but quadratic: the visits are the subtree sizes $6+3+2+1+1+1$, and a skewed tree degrades to $O(N^2)$ |
+| Bottom-up carrying a uniform flag together with a representative value | the parent reads the propagated representative instead of a child's stored value | 6 | 4 | same linear cost and one extra value per stack frame; it removes the reliance on the child's stored value |
+| Level-order sweep that collects every value first | all values are gathered breadth-first, then each node's subtree is tested against the collected values | 20 | 4 | the sweep alone does not record subtree membership, so it collapses back into the quadratic restarted test: $6$ nodes collected plus the same $14$ subtree inspections |
+
+The comparisons confirm the two bounds above: keeping both child results before testing the conjunction is what holds the inspection count at $N = 6$ instead of the $14$ that repeated testing needs, and it is precisely the same discipline that keeps the traversal correct by never abandoning a branch that still holds countable subtrees.

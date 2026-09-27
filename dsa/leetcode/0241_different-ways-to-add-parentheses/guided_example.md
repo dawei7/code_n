@@ -135,6 +135,18 @@ $$
 \text{Total Results} = [2] \cup [0] = \mathbf{[2, 0]} \quad (\text{or } [0, 2])
 $$
 
+### The Catalan Instance: All Five Trees of `2*3-4*5`
+
+The two-operator instance has a single value on each side of every split, so its cross-product never multiplies anything. The mixed-operator instance is where the product earns its name: choosing the first operator as the root forces the right side to contribute two values, and choosing the last operator forces the left side to contribute two. Summing the contributions of the three possible roots accounts for exactly $C_3 = 5$ trees.
+
+| Root operator (string index) | Left values | Right values | Cross-product under the root operator | Trees contributed |
+|:---|:---:|:---:|:---|:---|
+| `'*'` at index 1 | $\{2\}$ | $\{-5, -17\}$ | $2 \times (-5) = -10$ and $2 \times (-17) = -34$ | $(2 \times ((3 - 4) \times 5))$ and $(2 \times (3 - (4 \times 5)))$ |
+| `'-'` at index 3 | $\{6\}$ | $\{20\}$ | $6 - 20 = -14$ | $((2 \times 3) - (4 \times 5))$ |
+| `'*'` at index 5 | $\{2, -2\}$ | $\{5\}$ | $2 \times 5 = 10$ and $(-2) \times 5 = -10$ | $(((2 \times 3) - 4) \times 5)$ and $((2 \times (3 - 4)) \times 5)$ |
+
+Read down the last column: five trees, five entries, and the value $-10$ arrives twice from trees whose shapes are genuinely different.
+
 ---
 
 ## 4. Complete Execution Trace
@@ -180,7 +192,33 @@ Combined Output: [2, 0] (or [0, 2])
 ## 6. Traps This Instance Exposes
 
 - **Duplicate Numerical Results:** Different parenthesizations can yield the exact same numerical value (e.g. $((2 \times (3 - 4)) \times 5) = -10$ and $(2 \times ((3 - 4) \times 5)) = -10$). The problem requires returning **all** results including duplicates; do not filter with a set!
+
+The length of the returned list is always the Catalan number $C_N$, never the number of distinct values, so multiplicity is part of the contract rather than an accident of the arithmetic.
+
+| Expression | Operators | Trees ($C_N$) | Values returned | Distinct values and their multiplicities | Why the duplicate entry survives |
+|:---|:---:|:---:|:---|:---|:---|
+| `"11"` | $0$ | $C_0 = 1$ | $[11]$ | $11$ once | A literal has exactly one tree, so there is nothing to merge |
+| `"2-1-1"` | $2$ | $C_2 = 2$ | $[0, 2]$ | $0$ once, $2$ once | The two trees differ in which subtraction is evaluated last, and they agree on no value |
+| `"1+1+1"` | $2$ | $C_2 = 2$ | $[3, 3]$ | $3$ twice | Both groupings evaluate to $3$, and the list keeps one entry per tree |
+| `"2*3-4*5"` | $3$ | $C_3 = 5$ | $[-34, -14, -10, -10, 10]$ | $-34$ once, $-14$ once, $-10$ twice, $10$ once | The trees $(2 \times ((3 - 4) \times 5))$ and $((2 \times (3 - 4)) \times 5)$ collapse to the same number, and both entries remain |
 - **Exponential Overlapping Subproblems:** In an expression with $N$ operators, there are Catalan $C_N = \frac{1}{N+1}\binom{2N}{N}$ evaluation trees. Without memoization, substrings like `"1-1"` are recomputed exponentially many times. Using a hash map cache `memo` keeps the number of distinct states to $O(N^2)$.
+
+Counting invocations on `"2*3-4*5"` shows the blow-up before it becomes fatal: the same handful of substrings is requested again and again, while the number of *distinct* states stays at ten. Each state below is a contiguous substring of digits and operators, and each is solved once when the cache is in place.
+
+| Sub-expression | Operators | Invocations without memoization | Invocations with memoization | Values returned by that state |
+|:---|:---:|:---:|:---:|:---|
+| `"2*3-4*5"` | $3$ | $1$ | $1$ | $\{-34, -14, -10, -10, 10\}$ |
+| `"2*3-4"` | $2$ | $1$ | $1$ | $\{-2, 2\}$ |
+| `"3-4*5"` | $2$ | $1$ | $1$ | $\{-5, -17\}$ |
+| `"2*3"` | $1$ | $2$ | $1$ | $\{6\}$ |
+| `"3-4"` | $1$ | $2$ | $1$ | $\{-1\}$ |
+| `"4*5"` | $1$ | $2$ | $1$ | $\{20\}$ |
+| `"2"` | $0$ | $4$ | $1$ | $\{2\}$ |
+| `"3"` | $0$ | $5$ | $1$ | $\{3\}$ |
+| `"4"` | $0$ | $5$ | $1$ | $\{4\}$ |
+| `"5"` | $0$ | $4$ | $1$ | $\{5\}$ |
+
+The uncached column totals $27$ recursive calls for ten distinct states, and the gap widens with every added operator, because the number of trees grows like $4^N$ while the number of substrings grows like $N^2$.
 - **Multi-Digit Numbers:** Numbers can be multiple digits (e.g. `"15-2*10"`). Splitting strictly on non-digit characters (`+`, `-`, `*`) ensures multi-digit integers are not parsed incorrectly.
 
 ---

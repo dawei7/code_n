@@ -133,6 +133,18 @@ Early exit: return False
    - $3 \le 3$ holds! (Meeting ends at 3, next starts at 3; no overlap).
 3. Loop completes $\implies$ **`true`**.
 
+### Full Sweep Without Early Exit ($\text{intervals} = [[4, 1000000], [1, 3], [0, 1], [3, 4]]$)
+
+This instance is the complement of the primary one: it never returns early, so every adjacent test runs and each of them lands exactly on an endpoint equality.
+
+| Sweep position $i$ | $I_i$ after sorting | $I_{i+1}$ after sorting | $\text{end}_i$ | $\text{start}_{i+1}$ | Test $\text{end}_i \le \text{start}_{i+1}$ | Conclusion for this step |
+|:---:|:---|:---|:---:|:---:|:---|:---|
+| 0 | $[0, 1]$ | $[1, 3]$ | 1 | 1 | $1 \le 1$ holds | $I_0$ cannot overlap any interval of the remaining suffix |
+| 1 | $[1, 3]$ | $[3, 4]$ | 3 | 3 | $3 \le 3$ holds | the suffix from $I_2$ on is still clear of $I_1$ |
+| 2 | $[3, 4]$ | $[4, 1000000]$ | 4 | 4 | $4 \le 4$ holds | final pair cleared, so the answer is `true` |
+
+Sorting turns the raw input $[[4, 1000000], [1, 3], [0, 1], [3, 4]]$ into $[[0, 1], [1, 3], [3, 4], [4, 1000000]]$, which is why three separate endpoint equalities become the decisive tests. Every one of them passes because the conflict condition is the strict inequality $\text{end}_i > \text{start}_{i+1}$; a chain of meetings that touch at $1$, $3$ and $4$ is fully compatible, and the large maximum time $1000000$ never even has to be compared against anything.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -149,9 +161,36 @@ Early exit: return False
 - **Unsorted Assumption:** Comparing adjacent elements without sorting first fails immediately if input intervals are scrambled (e.g. $[[7, 10], [2, 4]]$).
 - **Tie-Breaking Start Times:** If two intervals have identical start times (e.g. $[1, 5]$ and $[1, 2]$), sorting places them consecutively. Since both meetings have positive duration ($\text{start} < \text{end}$), the first interval's end will exceed $1$, triggering conflict detection regardless of which is ordered first.
 
+### Boundary instances of the same rule
+
+Each row is a separate input evaluated by the identical protocol; the "first test" column reports the very first adjacent comparison the sorted sweep performs, which is often not the pair a reader would expect.
+
+| Instance | First adjacent test after sorting | Verdict | What the boundary establishes |
+|:---|:---|:---:|:---|
+| `intervals = []` | none: there is no pair to test | `true` | an empty schedule is vacuously free of conflicts |
+| `intervals = [[0, 1000000]]` | none: $N - 1 = 0$ | `true` | one meeting cannot conflict with itself, however long it lasts |
+| `[[1, 3], [3, 5]]` | $3 \le 3$ holds | `true` | equality at a shared endpoint is allowed, so the conflict test must be strict |
+| `[[5, 10], [5, 6]]` | sorted to $[[5, 6], [5, 10]]$: $6 \le 5$ fails | `false` | equal starts overlap even when one meeting lies entirely inside the other's span |
+| `[[100, 101], [20, 30], [0, 100]]` | sorted to $[0, 100]$ then $[20, 30]$: $100 \le 20$ fails | `false` | containment is a genuine conflict, while the touching pair $[0, 100]$ and $[100, 101]$ is a distractor the sweep never needs to reach |
+| `[[10, 12], [1, 5], [4, 8], [13, 15]]` | sorted to $[1, 5]$ then $[4, 8]$: $5 \le 4$ fails | `false` | the decisive pair can be created by the sort rather than appearing adjacent in the input order |
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(N \log N)$, where $N$ is the number of intervals. Sorting $N$ intervals takes $O(N \log N)$ time. The linear sweep takes at most $N - 1$ comparisons ($O(N)$ time). Sorting dominates the total running time.
 - **Auxiliary Space Complexity:** $O(1)$ auxiliary space if sorted in-place (or $O(N)$ for sorting implementations like Timsort in Python that allocate auxiliary memory for merge runs).
+
+### Cost of the rejected alternatives
+
+The columns count the elementary work each strategy performs on the two traced instances, so the comparison is concrete rather than asymptotic.
+
+| Approach | Decision rule | Work on the primary instance ($N = 3$) | Work on the touching chain ($N = 4$) | Cost or caveat |
+|:---|:---|:---|:---|:---|
+| All-pairs overlap test | intersect every unordered pair with no sorting at all | 3 pair tests | 6 pair tests | correct and $O(1)$ auxiliary, but $\binom{N}{2}$ tests, and it examines pairs that the transitivity lemma already proves redundant |
+| Sort by start, then test adjacent pairs (the method used) | check $\text{end}_i \le \text{start}_{i+1}$ and stop at the first failure | 1 comparison | 3 comparisons, no early exit | $O(N \log N)$ dominated by the sort, with $O(1)$ work beyond it |
+| Sort by end, then test the same inequality | sweep the mirrored order $[[5, 10], [15, 20], [0, 30]]$ identically | 2 comparisons | 3 comparisons | also correct — an exhaustive comparison against all-pairs agrees on every interval set of up to four meetings over a small time domain — but the decisive pair is reached one comparison later because $[0, 30]$ ends last |
+| Merge overlapping intervals, then compare counts | merge the sorted list and declare failure as soon as two intervals merge | 1 comparison, then the merge | 3 comparisons, then three merges | identical comparison count with an early exit, yet it materializes the merged list, raising auxiliary memory to $O(N)$ |
+| Endpoint event sweep with a concurrency counter | sort the $2N$ endpoints and keep a running count of open meetings | 6 events | 8 events | answers the stronger question of the maximum number of simultaneous meetings, which this problem never asks, and costs $O(N)$ memory plus a counter |
+
+Only the first two rows answer the actual question with the information the input already provides; the last three either pay more comparisons, more memory, or answer a different question.

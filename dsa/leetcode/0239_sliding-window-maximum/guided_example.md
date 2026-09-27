@@ -46,6 +46,18 @@ If $\text{nums}[j] \le \text{nums}[i]$:
 Therefore, $\text{nums}[j]$ **can never be the maximum of the current window or any future window**!
 Index $j$ is permanently dominated and can be discarded immediately.
 
+Every eviction in the worked trace can be checked against that criterion. With window length $k$, an index $j$ popped for a later index $i$ satisfies $\text{nums}[j] \le \text{nums}[i]$, and the gap $i - j < k$ guarantees that each window which can still occur and contains $j$ must also contain $i$; since $\text{nums}[i]$ is at least as large, $j$ cannot be the maximum of any of them.
+
+| Evicted index $j$ | $\text{nums}[j]$ | Evicting index $i$ | $\text{nums}[i]$ | Gap $i - j$ | Why every still-reachable window containing $j$ also contains $i$ | Verdict |
+|:---:|:---:|:---:|:---:|:---:|:---|:---|
+| $0$ | $1$ | $1$ | $3$ | $1$ | The only window containing index $0$ is $[0, 2]$, and it includes index $1$ | $1$ can never be a window maximum again |
+| $3$ | $-3$ | $4$ | $5$ | $1$ | Windows containing index $3$ start at $1$, $2$, or $3$; the ones that can still occur start at $2$ or $3$, and both include index $4$ | $-3$ is dominated by the newer, larger $5$ |
+| $2$ | $-1$ | $4$ | $5$ | $2$ | Windows containing index $2$ start at $0$, $1$, or $2$; only start $2$ can still occur, giving $[2, 4]$ | $-1$ cannot outlive $5$ |
+| $5$ | $3$ | $6$ | $6$ | $1$ | Windows containing index $5$ start at $3$, $4$, or $5$; the reachable ones start at $4$ or $5$ and both include index $6$ | $3$ is dominated by the later $6$ |
+| $4$ | $5$ | $6$ | $6$ | $2$ | Windows containing index $4$ start at $2$, $3$, or $4$; only start $4$ can still occur, giving $[4, 6]$ | $5$ is dominated |
+| $6$ | $6$ | $7$ | $7$ | $1$ | Windows containing index $6$ start at $4$, $5$, or $6$; start $6$ would run past the array, so only $[5, 7]$ remains | $6$ is dominated |
+| $1$ | $4$ | $3$ | $4$ | $2$ | On the duplicate case $[4, 4, 2, 4, 1]$, windows containing index $1$ start at $0$, $1$, or $2$; the reachable ones are $[1, 3]$ and $[2, 4]$, and both include index $3$ | Equal values still dominate, because the newer index leaves every future window later |
+
 ### Deque Maintenance Protocol
 Store **indices** in a double-ended queue $Q$:
 For each index $i$ from $0$ to $N - 1$:
@@ -182,6 +194,15 @@ Final Output: [3, 3, 5, 5, 6, 7]
 | **6** | **6** | None | Pop 5 ($3 \le 6$), Pop 4 ($5 \le 6$) | `[6]` | **6** |
 | **7** | **7** | None | Pop 6 ($6 \le 7$) | `[7]` | **7** |
 
+Across the authored cases the deque's total work never approaches the $2N$ bound: each index is appended exactly once, and the two eviction sites together can remove at most one entry per index. The strictly decreasing case never evicts from the back — its entries leave only through expiry — while the duplicate case is the one that exercises the non-strict comparison.
+
+| Instance | $N$ | $k$ | Appends | Back (domination) pops | Front (expiry) pops | Peak deque length | Output |
+|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| $[1, 3, -1, -3, 5, 3, 6, 7]$ | $8$ | $3$ | $8$ | $6$ | $1$ | $3$ | $[3, 3, 5, 5, 6, 7]$ |
+| $[1]$ | $1$ | $1$ | $1$ | $0$ | $0$ | $1$ | $[1]$ |
+| $[9, 8, 7, 6]$ | $4$ | $2$ | $4$ | $0$ | $2$ | $2$ | $[9, 8, 7]$ |
+| $[4, 4, 2, 4, 1]$ | $5$ | $3$ | $5$ | $3$ | $0$ | $2$ | $[4, 4, 4]$ |
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -196,7 +217,18 @@ Final Output: [3, 3, 5, 5, 6, 7]
 
 - **Storing Values Instead of Indices in Deque:** Storing raw values makes it impossible to determine when an element has expired from the window! Storing **indices** allows testing $Q[0] < i - k + 1$ in $O(1)$ time.
 - **Strict vs Non-Strict Inequality in Domination:** Using $\le$ rather than $<$ when popping from the back discards duplicate values. Since the newer duplicate has a larger index and will survive longer, discarding the older duplicate is completely safe and keeps the deque as small as possible.
-- **Heap Inefficiency:** While a max-heap with lazy deletion achieves $O(N \log N)$, it consumes $O(N)$ space in the worst case (when elements are strictly decreasing and never reach the root to trigger deletion). The monotonic deque strictly bounds auxiliary memory to $O(k)$.
+- **Heap Inefficiency:** While a max-heap with lazy deletion achieves $O(N \log N)$, it consumes $O(N)$ space in the worst case, which occurs when the values are strictly increasing: the newest element is then always the heap maximum, no expired entry ever reaches the root, and stale entries accumulate. The monotonic deque strictly bounds auxiliary memory to $O(k)$.
+
+Each alternative below reaches a correct answer, and each pays in either time or working memory compared with the deque.
+
+| Approach | Mechanism | Time | Auxiliary space | Failure mode or tradeoff |
+|:---|:---|:---:|:---:|:---|
+| Rescan every window | Read all $k$ values of each window and take their maximum | $O(N \cdot k)$ | $O(1)$ beyond the output | For $N = k = 10^{5}$ this is on the order of $10^{10}$ comparisons, far outside a practical budget |
+| Max-heap with lazy deletion | Push every index with its negated value and pop expired roots | $O(N \log N)$ | $O(N)$ in the worst case | On strictly increasing input the newest maximum sits at the root, so expired entries are never popped and the heap grows with $N$ |
+| Monotonic deque of indices (this lesson) | Keep candidate indices in decreasing value order; evict expired fronts and dominated backs | $O(N)$ amortized | $O(k)$ | Requires a deque with operations at both ends; evicting on the wrong side breaks the invariant immediately |
+| Sparse table of range maxima | Precompute maxima for all power-of-two ranges, then answer each window with two lookups | $O(N \log N)$ to build, $O(1)$ per window | $O(N \log N)$ | Pays a large constant to answer a query pattern that only ever slides forward by one |
+| Block prefix and suffix maxima | Precompute maxima inside blocks of length $k$ and combine two block fragments per window | $O(N)$ | $O(N)$ for the two precomputed arrays | Same asymptotic time as the deque but keeps two full arrays instead of $k$ candidate slots |
+| Two-stack queue with running maxima | Maintain a pair of stacks whose maxima are tracked on push | $O(1)$ amortized per operation | $O(k)$ | Meets the same bound with more moving parts, because each element transfers between the stacks once |
 
 ---
 

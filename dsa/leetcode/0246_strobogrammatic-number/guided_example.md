@@ -7,7 +7,7 @@ We trace the step-by-step 180-degree glyph rotation mapping, two-pointer inward 
 - **Self-Symmetric Instance:** $\text{num} = \text{"88"} \implies \text{true}$ (Both `'8'`s rotate into themselves)
 - **Invalid Digit Instance:** $\text{num} = \text{"962"} \implies \text{false}$ (Digit `'2'` is unreadable when inverted 180 degrees)
 - **Odd Length Valid Instance:** $\text{num} = \text{"818"} \implies \text{true}$ (Center element `'1'` is self-symmetric)
-- **Odd Length Center Mismatch:** $\text{num} = \text{"696"} \implies \text{false}$ (Center element `'9'` rotates to $\text{'6'} \ne \text{'9'}$)
+- **Odd Length Mirror Mismatch:** $\text{num} = \text{"696"} \implies \text{false}$ (The outer pair compares `'6'` with `'6'`, and $\rho(\text{'6'}) = \text{'9'} \ne \text{'6'}$, so the rejection happens before the center is reached)
 
 This instance demonstrates 180-degree rotational symmetry on decimal glyphs, identifies the five valid invertible digits ($\{0, 1, 6, 8, 9\}$) and the three self-symmetric center digits ($\{0, 1, 8\}$), details the two-pointer inward check ($L \le R$), and operates in $O(N)$ time with $O(1)$ auxiliary space.
 
@@ -44,6 +44,17 @@ $$
 \rho(\text{'0'}) = \text{'0'}, \quad \rho(\text{'1'}) = \text{'1'}, \quad \rho(\text{'8'}) = \text{'8'}, \quad \rho(\text{'6'}) = \text{'9'}, \quad \rho(\text{'9'}) = \text{'6'}
 $$
 For any other character $c$, $\rho(c) = \text{invalid}$.
+
+The complete alphabet, with the position each glyph is allowed to occupy:
+
+| Digit $c$ | Image $\rho(c)$ | Class | Positions it may occupy in a strobogrammatic numeral |
+|:---:|:---:|:---|:---|
+| `'0'` | `'0'` | Self-symmetric | Anywhere, including the center of an odd-length numeral; as the leading character only for the single-digit numeral `"0"` allowed by the contract |
+| `'1'` | `'1'` | Self-symmetric | Anywhere, including the center |
+| `'8'` | `'8'` | Self-symmetric | Anywhere, including the center |
+| `'6'` | `'9'` | Reciprocal pair | Only as the left member of a mirror pair whose right member is `'9'`; never alone at the center of an odd-length numeral |
+| `'9'` | `'6'` | Reciprocal pair | Only as the left member of a mirror pair whose right member is `'6'`; never alone at the center |
+| `'2'`, `'3'`, `'4'`, `'5'`, `'7'` | invalid | Not rotatable | Nowhere: one occurrence at any index forces the answer `false` |
 
 ### Two-Pointer Inward Matching Protocol:
 Initialize $L = 0, \quad R = \text{len}(\text{num}) - 1$:
@@ -129,6 +140,22 @@ L advances to 1, R to 0 -> L > R -> Return True
   - $\rho(\text{'9'}) = \text{'6'} \ne \text{'2'}$.
   - Fails on step 1! Returns **`false`**.
 
+### Position-Pair Comparison Across Four Numerals
+
+Reading one row per pointer step shows that the same check explains four different outcomes, and that the center step is the only place where a lone digit is compared with itself:
+
+| Numeral | Pair $(L, R)$ | `num[L]` | `num[R]` | $\rho(\text{num}[L])$ | Decision |
+|:---|:---:|:---:|:---:|:---:|:---|
+| `"818"` | $(0, 2)$ | `'8'` | `'8'` | `'8'` | Images agree; pointers advance |
+| `"818"` | $(1, 1)$ | `'1'` | `'1'` | `'1'` | Lone center digit maps to itself, so the whole numeral is `true` |
+| `"629"` | $(0, 2)$ | `'6'` | `'9'` | `'9'` | Images agree; pointers advance to the center |
+| `"629"` | $(1, 1)$ | `'2'` | `'2'` | invalid | `'2'` has no 180-degree image at all, so the center alone forces `false` |
+| `"696"` | $(0, 2)$ | `'6'` | `'6'` | `'9'` | `'9' \ne '6'`; rejected before the center is ever examined |
+| `"9006"` | $(0, 3)$ | `'9'` | `'6'` | `'6'` | Reciprocal pair matches; pointers advance |
+| `"9006"` | $(1, 2)$ | `'0'` | `'0'` | `'0'` | Interior zero maps to itself; all pairs consumed, so `true` |
+
+The `"629"` rows are the instructive ones: its outer pair `'6'` and `'9'` is perfectly legal, and only the inclusive loop condition $L \le R$ exposes the unrotatable `'2'` sitting at the center.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -144,6 +171,18 @@ L advances to 1, R to 0 -> L > R -> Return True
 - **Skipping Center Digit ($L < R$ vs $L \le R$):** Using $L < R$ skips the center digit of odd-length strings! For example, $\text{"898"}$ has center digit `'9'`. When rotated, $\text{"898"}$ becomes $\text{"868"} \ne \text{"898"}$. Using $L \le R$ tests $\rho(\text{'9'}) == \text{'9'}$ (which evaluates to $\text{'6'} == \text{'9'} \implies \text{false}$), catching the error.
 - **Symmetric Pairs Trap:** `'6'` must pair with `'9'`, never with another `'6'`. $\text{"66"}$ rotated is $\text{"99"} \ne \text{"66"}$.
 - **Unnecessary String Allocations:** Reversing the string and mapping characters requires allocating a new string of length $N$. The two-pointer check uses $O(1)$ auxiliary space.
+
+### Boundary Behaviour of the Mirror Check
+
+| Boundary scenario | Concrete input | Required result | Why the check decides correctly |
+|:---|:---|:---:|:---|
+| Single self-symmetric digit | $\text{num} = \text{"0"}$ | `true` | The step $L = R = 0$ compares `'0'` with $\rho(\text{'0'}) = \text{'0'}$; this is also the only numeral the contract permits to begin with a zero |
+| Single reciprocal digit | $\text{num} = \text{"6"}$ | `false` | At the center the same glyph occupies both sides, so $\rho(\text{'6'}) = \text{'9'} \ne \text{'6'}$; a reciprocal digit needs a partner, not a reflection of itself |
+| Unrotatable digit at the center only | $\text{num} = \text{"629"}$ | `false` | The outer pair `'6'` and `'9'` matches, so only the inclusive condition $L \le R$ reaches the `'2'`, which has no image |
+| Rotatable digits paired with the wrong partner | $\text{num} = \text{"89"}$ | `false` | Both glyphs rotate, but $\rho(\text{'8'}) = \text{'8'} \ne \text{'9'}$; rotatability of each digit is necessary and nowhere near sufficient |
+| Interior zeros | $\text{num} = \text{"9006"}$ | `true` | The reverse pair `'9'` and `'6'` matches, and the interior `'0'` maps to itself, so the whole numeral is its own rotation |
+| Trailing zero | $\text{num} = \text{"10"}$ | `false` | A final `'0'` would have to be the image of an initial `'0'`, which the contract forbids except for `"0"` itself; here $\rho(\text{'1'}) = \text{'1'} \ne \text{'0'}$ |
+| Maximum length | $50$ copies of `'1'` | `true` | Even length means no center step is needed: the pointers execute exactly $25$ matching pairs and stop when they cross |
 
 ---
 

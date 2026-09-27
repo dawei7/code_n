@@ -112,6 +112,18 @@ Start with $\text{suffix} = 1$.
 
 **Final Result:** $\text{ans} = [24, 12, 8, 6]$.
 
+### The Same Two Passes on the Single-Zero Instance
+
+Running the identical two passes on $\text{nums} = [-1, 1, 0, -3, 3]$ shows how the scalar accumulators absorb a zero with no special branch. Once the forward prefix meets the zero it is pinned at $0$ for every later index, and the backward suffix carries the zero to every earlier index, so the two factors can both be nonzero only at the zero's own position.
+
+| Index $i$ | $\text{nums}[i]$ | Prefix stashed into $\text{ans}[i]$ | Prefix after index $i$ | Suffix when index $i$ is reached | $\text{ans}[i]$ after multiplication | Why the entry has that value |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| **0** | $-1$ | $1$ | $-1$ | $0$ | **$0$** | The single zero lies to the right, so the suffix factor is $0$ |
+| **1** | $1$ | $-1$ | $-1$ | $0$ | **$0$** | The zero is still to the right of index $1$ |
+| **2** | $0$ | $-1$ | $0$ | $-9$ | **$9$** | The only index whose left and right factors both exclude the zero, so $(-1)(1)(-3)(3) = 9$ survives |
+| **3** | $-3$ | $0$ | $0$ | $3$ | **$0$** | The zero now sits inside the prefix factor, which stays $0$ for every later index |
+| **4** | $3$ | $0$ | $0$ | $1$ | **$0$** | The prefix factor is still $0$; the empty right side (product $1$) cannot rescue it |
+
 ---
 
 ## 4. Complete Execution Trace
@@ -157,6 +169,25 @@ Final Output: [24, 12, 8, 6]
 - **Using the Division Operator (`/` or `//`):** Even when passing test cases locally, using division violates the core interview constraint. Furthermore, if `nums` contains `0`, division by zero crashes or requires cumbersome branch handling. The two-pass multiplication naturally handles single or multiple zeroes without any conditional branching.
 - **Accidental Inclusion of Self:** Stashing `ans[i] = prefix` must occur **before** updating `prefix *= nums[i]`. If reversed, $\text{ans}[i]$ includes $\text{nums}[i]$, which violates the "except self" requirement.
 - **Space Overhead:** Creating both `left = [0]*n` and `right = [0]*n` takes $2N$ auxiliary space. Reusing `ans` for the prefix and folding the suffix on-the-fly reduces auxiliary space to $O(1)$.
+
+The number and position of the zeros decide the entire output shape before a single multiplication runs, which is why the method never needs to test for them.
+
+| Instance | Zeros in `nums` | Indices whose left and right factors are both nonzero | Values at those indices | Why every other entry is $0$ |
+|:---|:---|:---|:---|:---|
+| $[1, 2, 3, 4]$ | none | all four indices | $[24, 12, 8, 6]$ | No factor anywhere is zero, so no entry can collapse |
+| $[-1, 1, 0, -3, 3]$ | exactly one, at index $2$ | only index $2$ | $9$ at index $2$ | Every other index excludes a nonzero element, so its factor list still contains the zero at index $2$ |
+| $[0, 4, 0, -2]$ | two, at indices $0$ and $2$ | none | none | Each index can exclude at most one element, so at least one zero factor always remains |
+| $[2, 3]$ | none | both indices | $[3, 2]$ | The two factors are each the other element, and neither is zero |
+
+The two-pass multiplication is not the only way to compute exclusion products, but it is the only one that satisfies the no-division rule while keeping the extra space constant.
+
+| Approach | Mechanism | Time | Auxiliary space | Failure mode or tradeoff |
+|:---|:---|:---:|:---:|:---|
+| Divide the total product by each element | One forward pass for the product, then one division per index | $O(N)$ | $O(1)$ | Forbidden by the statement, and it collapses on any zero entry, where the needed total product is $0$ |
+| Keep explicit prefix and suffix arrays | Fill two arrays of length $N$, then multiply them entrywise | $O(N)$ | $O(N)$ | Correct and easy to reason about, but it stores exactly the information the reused output array already holds |
+| Reuse the output array, fold the suffix with a scalar (this lesson) | Pass 1 stores left products; pass 2 multiplies by a running right product | $O(N)$ | $O(1)$ | Requires stashing the prefix before updating it; reversing those two actions folds the element itself into its own answer |
+| Sum logarithms and subtract one term | Work with $\log$ magnitudes so that products become sums | $O(N)$ | $O(1)$ | Undefined on zeros and on negative values, and floating-point rounding destroys exact integer answers |
+| Segment tree of products | Build a product tree; query the product over the two ranges outside each index | $O(N)$ to build, $O(\log N)$ per index | $O(N)$ | Division-free and exact, but it answers range queries that a single full-array pass already resolves |
 
 ---
 

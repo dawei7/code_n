@@ -1,125 +1,148 @@
 # Guided Example: Count the Number of Beautiful Subarrays
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. The instance we will count
 
-- **Input:** `{"nums": [4, 3, 1, 2, 4]}`
-- **Required output:** `2`
+Take the first official instance:
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+$$
+\texttt{nums} = [4, 3, 1, 2, 4],
+$$
 
----
+so $n = 5$ and the array has $\frac{5 \cdot 6}{2} = 15$ non-empty contiguous subarrays. The required outcome is `2`, and the two qualifying subarrays are `nums[1..3] = [3, 1, 2]` and the whole array `nums[0..4] = [4, 3, 1, 2, 4]`.
 
-## 1. Instance & Teaching Goal
+The operation is unusual enough to deserve restating carefully. One move chooses two *different* indices $i$ and $j$ together with a bit position $k$ such that the $k$-th bit is `1` in **both** $\text{nums}[i]$ and $\text{nums}[j]$, then subtracts $2^k$ from each of the two values. Subtracting $2^k$ from a value whose $k$-th bit is `1` is exactly clearing that bit, so one move clears the same bit position in two different elements at once. A subarray is **beautiful** when some sequence of such moves zeroes every one of its elements; zero moves are allowed, which is why an all-zero subarray is beautiful by definition.
 
-You are given a **0-indexed** integer array `nums`. In one operation, you can:
+## 2. What a move does, in bits
 
-The objective is to compute `2` from `{"nums": [4, 3, 1, 2, 4]}` while avoiding redundant calculations and unnecessary overhead.
+Because a move always touches one bit position in exactly two elements, it never changes any bit's *counting parity*. Look at the bit positions of the two chosen elements before and after the move, using the official reduction of `[3, 1, 2]`.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+| Value (decimal) | Binary (bits `2,1,0`) | Bit `2` | Bit `1` | Bit `0` |
+|---|---|---|---|---|
+| `3` | `011` | 0 | 1 | 1 |
+| `1` | `001` | 0 | 0 | 1 |
+| `2` | `010` | 0 | 1 | 0 |
+| Count of set bits per position | — | 0 | 2 | 2 |
+| Parity of that count | — | even | even | even |
 
----
+The move that the statement applies first chooses $k = 1$ and the elements `3` and `2`, subtracting $2^1 = 2$ from each: the subarray becomes `[1, 1, 0]`. Bit `1` was set in both of those elements and is now cleared in both, so the count of elements with bit `1` set fell from $2$ to $0$ — it changed by two, so its parity did not change. Every other bit position is untouched, and the other elements are untouched as well. The second move chooses $k = 0$ and the two elements equal to `1`, producing `[0, 0, 0]`, which again lowers a per-bit count by exactly two.
 
-## 2. Conceptual Foundation & Invariants
+## 3. The invariant, and the condition it forces
 
-We maintain the core conceptual parameters and state variables:
+Define, for a fixed subarray and a fixed bit position $k$,
 
-| State Parameter | Role & Purpose | Initial State |
+$$
+c_k \;=\; \bigl\lvert\{\, \text{element } x \text{ of the subarray} : \text{bit } k \text{ of } x \text{ is } 1 \,\}\bigr\rvert .
+$$
+
+A move either leaves $c_k$ unchanged (when bit $k$ is not the chosen position) or decreases it by exactly $2$ (when bit $k$ is chosen, since both participants had the bit set). Hence
+
+$$
+c_k \bmod 2 \quad \text{is invariant under every move},
+$$
+
+for each bit position $k$. Reaching the all-zero subarray would make every $c_k$ equal to $0$, which is even, so a subarray can only be beautiful if **every** $c_k$ is even to begin with. The parity vector $(c_2 \bmod 2, c_1 \bmod 2, c_0 \bmod 2, \dots)$ is an invariant of the move system, and the all-zero target has the parity vector of all zeros.
+
+The parity vector has a familiar name: the bitwise XOR of the subarray has, at position $k$, the parity of the number of set bits at position $k$. Therefore
+
+$$
+\text{subarray XOR} \;=\; \text{nums}[l] \oplus \text{nums}[l+1] \oplus \dots \oplus \text{nums}[r] \;=\; 0
+$$
+
+is exactly the statement that every $c_k$ is even. The necessary condition is a single integer test.
+
+## 4. Why the condition is also sufficient
+
+Even parities are not merely necessary; they are enough. Suppose every $c_k$ is even. If some element is nonzero, it has a set bit at some position $k$; since $c_k$ is even and at least $1$, some *other* element also has bit $k$ set, so a legal move with that $k$ exists. Apply it: two elements lose the same bit, so the sum of the elements strictly decreases while every parity is preserved.
+
+The argument closes by induction on the total sum $T = \sum x$ of the subarray, a non-negative integer that drops by $2^{k+1} > 0$ on each move. If $T = 0$ the subarray is already all zeros. Otherwise a legal move exists, as just shown, and after it the sum is smaller while all parities are still even — so by induction the remaining configuration can be zeroed. The construction produces at most $\tfrac{1}{2}\sum_k c_k$ moves, and it never needs a bit position to be chosen twice.
+
+Combining the two directions gives the characterisation that the whole solution rests on:
+
+$$
+\text{subarray } \text{nums}[l..r] \text{ is beautiful} \iff \text{nums}[l] \oplus \dots \oplus \text{nums}[r] = 0 .
+$$
+
+Individual positions are irrelevant: only the XOR of the range matters.
+
+## 5. Counting zero-XOR ranges with prefix XORs
+
+Testing each of the $\Theta(n^2)$ subarrays separately is too slow for $n \le 10^5$, so the XOR condition is rewritten in terms of prefix values. Let
+
+$$
+P_0 = 0, \qquad P_i = \text{nums}[0] \oplus \text{nums}[1] \oplus \dots \oplus \text{nums}[i-1] \quad (1 \le i \le n).
+$$
+
+Then the XOR of the range $\text{nums}[l..r]$ telescopes as $P_l \oplus P_{r+1}$, because every element strictly inside the range appears in both prefix values and cancels under XOR. So
+
+$$
+\text{nums}[l] \oplus \dots \oplus \text{nums}[r] = 0 \iff P_l = P_{r+1}.
+$$
+
+Counting beautiful subarrays becomes counting pairs of *equal prefix values*: choose two distinct indices $u < v$ among $0, 1, \dots, n$ with $P_u = P_v$, and the pair corresponds to exactly one non-empty subarray, namely $\text{nums}[u..v-1]$. When a prefix value occurs $m$ times, it contributes $\binom{m}{2}$ such pairs. This is a pure counting identity, so no enumeration of subarrays is needed.
+
+| Prefix index $i$ | Values included | Prefix XOR $P_i$ |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| 0 | none | `0` |
+| 1 | `4` | `4` |
+| 2 | `4, 3` | `7` |
+| 3 | `4, 3, 1` | `6` |
+| 4 | `4, 3, 1, 2` | `4` |
+| 5 | `4, 3, 1, 2, 4` | `0` |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Reading the equal pairs off this table gives the answer immediately: $P_0 = P_5 = 0$ contributes the whole array, and $P_1 = P_4 = 4$ contributes $\text{nums}[1..3] = [3, 1, 2]$. Every other prefix value occurs once and contributes nothing. The two pairs match the two beautiful subarrays named in Section 1, and the total is $\binom{2}{2} + \binom{2}{2} = 1 + 1 = 2$.
 
----
+## 6. Executing the one-pass sweep
 
-## 3. Step-by-Step Worked Execution
+A single left-to-right pass computes the prefix XORs and counts, for each new prefix value, how many equal prefix values were seen before it. That count is exactly the number of beautiful subarrays ending at the current position. The working state is one running XOR (the mask) plus a multiset of earlier prefix values; the empty prefix contributes the initial entry for `0`, because the empty prefix is a legitimate partner for any later prefix equal to `0`.
 
-### Step 1: Analyze each bit independently
+| Step | `nums[i]` | Mask after XOR | Earlier prefixes equal to the mask | Added to answer | Answer | Multiplicity stored for the mask |
+|---|---|---|---|---|---|---|
+| start | — | `0` | — | — | 0 | `0` seen once, before any element |
+| 1 | `4` | `4` | none | 0 | 0 | `4` seen once |
+| 2 | `3` | `7` | none | 0 | 0 | `7` seen once |
+| 3 | `1` | `6` | none | 0 | 0 | `6` seen once |
+| 4 | `2` | `4` | `P_1 = 4` | 1 | 1 | `4` seen twice |
+| 5 | `4` | `0` | `P_0 = 0` | 1 | 2 | `0` seen twice |
 
-An operation chooses a bit position $k$ that is one in two different elements and subtracts $2^k$ from both.
+Step 4 pairs the new prefix $P_4 = 4$ with the earlier $P_1 = 4$, which certifies the subarray `nums[1..3]`. Step 5 pairs $P_5 = 0$ with the initial $P_0 = 0$, which certifies the whole array. The final answer is `2`, as required. Note that the sweep never needs the subarray boundaries: the multiplicity of the mask *is* the number of valid left endpoints, and it is read before the mask is inserted so that a prefix is never paired with itself.
 
-When bit $k$ of a nonnegative integer is one, subtracting $2^k$ clears exactly that bit without borrowing from higher bits or changing lower bits. Therefore, every operation removes two occurrences of one from the same bit position across the subarray.
+## 7. Where the tempting alternatives break
 
-For all values to become zero, every set-bit occurrence must be paired with another occurrence at the same position. A subarray is beautiful exactly when the number of ones is even at every bit position.
+| Alternative | Complexity | Why it is not used here |
+|---|---|---|
+| Enumerate all $\Theta(n^2)$ subarrays and XOR each range by an inner loop | $O(n^3)$ | The triple loop re-derives the same XORs repeatedly; hopeless at $n = 10^5$ |
+| Precompute prefix XORs, then test every pair $(u, v)$ directly | $O(n^2)$ | Still $\Theta(n^2)$ pairs, around $5 \times 10^9$ tests at the maximum length |
+| Sort the prefix values and count equal neighbours | $O(n \log n)$ | Correct and deterministic, but it discards the streaming structure and stores the whole prefix array |
+| Simulate the moves to decide beauty | exponential in the worst case | Unnecessary: Section 4 replaced simulation with a parity argument |
+| Count only subarrays whose elements are nonzero and cancel pairwise | $O(n)$ but wrong | Ranges such as `[1, 1]` and `[1, 2, 3]` qualify for reasons that pairwise equality does not describe |
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+The last row is the trap this instance is chosen to expose. Subarray `[3, 1, 2]` contains no repeated value at all, yet it is beautiful because bit `1` appears twice (in `3` and `2`) and bit `0` appears twice (in `3` and `1`); the pairing is over *bits*, not over equal values. Any reasoning that looks for duplicate elements, or for a zero element, will miss it.
+
+## 8. Boundary conditions and traps
+
+| Situation | Instance | Outcome | Why |
 |---|---|---|---|
-| Input Slice | `{"nums": [4, 3, 1, 2, 4]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Single zero element | `nums = [0]` | `1` | $P_0 = P_1 = 0$, one pair; the note states that no operation is needed |
+| Single nonzero element | `nums = [7]` | `0` | A move needs two different indices and the subarray has one, so a nonzero element can never be cleared |
+| Two equal values | `nums = [1, 1]` | `1` | $P_0 = 0$, $P_1 = 1$, $P_2 = 0$: the pair $(P_0, P_2)$ certifies the whole array |
+| Three equal values | `nums = [5, 5, 5]` | `2` | Prefixes are `0, 5, 0, 5`; the overlapping ranges `[5,5]` at offsets $0$ and $1$ are counted separately |
+| Unknown values that cancel | `nums = [1, 2, 3]` | `1` | $1 \oplus 2 \oplus 3 = 0$ although all three values differ |
+| A zero in the middle | `nums = [1, 0, 1]` | `2` | $P_0 = 0$, $P_1 = 1$, $P_2 = 1$, $P_3 = 0$: the range `[0]` alone and the whole array qualify |
+| All elements zero | `nums = [0, 0, 0, 0]` | `10` | All five prefixes equal `0`, giving $\binom{5}{2} = 10$ ranges, i.e. every non-empty subarray |
+| Values at the maximum | `nums = [1000000, 1000000]` | `1` | Equal values cancel; the prefix mask stays below $2^{20}$, so no overflow concept applies |
 
----
+Three traps stand out. First, the answer counts pairs of equal prefix values *including* pairs whose common value is nonzero: the pair $P_1 = P_4 = 4$ in Section 5 is what certifies `[3, 1, 2]`, so restricting attention to prefixes equal to `0` would return `1` instead of `2`. Second, the prefix index range is $0 \le i \le n$, which is $n + 1$ values, one more than the number of elements; forgetting the empty prefix loses exactly those subarrays that start at index $0$. Third, subarrays are non-empty and are counted as distinct ranges: overlapping subarrays that share the same values, such as the two `[5, 5]` ranges inside `[5, 5, 5]`, are counted separately, so no deduplication of values is ever performed.
 
-### Step 2: Why even bit counts are also sufficient
+## 9. Why the reasoning is correct
 
-If every bit position contains an even number of ones, take any bit $k$ and pair its set occurrences arbitrarily. Apply one operation to each pair. This clears bit $k$ from every element.
+**Soundness (every counted subarray is beautiful).** If the sweep pairs a new prefix $P_v$ with an earlier prefix $P_u$ of the same value, then the subarray $\text{nums}[u..v-1]$ has XOR $P_u \oplus P_v = 0$, because XOR is associative, commutative, and self-inverse, so each element of the range cancels against its own occurrence in the two prefixes. By Section 4, zero XOR means every per-bit count is even, which means a zeroing sequence exists. Every pair the sweep counts therefore certifies a genuinely beautiful subarray, and distinct pairs $(u, v)$ correspond to distinct ranges, so no range is counted twice.
 
-Operations for one bit do not change other bit positions, so repeat independently for every bit. Eventually every set bit is cleared and all elements become zero.
+**Completeness (every beautiful subarray is counted).** If $\text{nums}[l..r]$ is beautiful, its XOR is $0$, hence $P_l = P_{l} \oplus 0 = P_{r+1}$, and the two prefix indices $l$ and $r+1$ satisfy $l < r + 1$ because the range is non-empty. When the sweep reaches index $r+1$, the earlier prefix $P_l$ has already been inserted — insertion happens at the end of each step — so the multiplicity of the mask includes it, and the pair is added to the answer. No beautiful subarray is missed.
 
-Thus even parity at every bit is both necessary and sufficient, not merely a useful test.
+**Invariant of the sweep.** After processing element $i$, the multiset held by the sweep contains each prefix value $P_0, \dots, P_i$ as many times as it occurs among those indices, and the accumulated answer equals the number of pairs $u < v \le i$ with $P_u = P_v$. Both parts are established by induction: the update inserts the new mask exactly once, and the answer grows by the number of earlier occurrences, which is precisely the number of new equal pairs created by appending index $i$. At the end, $i = n$, so the accumulated count is the number of equal-prefix pairs over $0 \le u < v \le n$ — the number of beautiful subarrays.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+## 10. Complexity: time and auxiliary space
 
----
+**Time.** The sweep performs exactly $n$ steps, each doing one XOR, one multiset lookup, one insertion, and one addition, so the counting work is $\Theta(n)$ plus the cost of the multiset operations. With a hash table those operations are $O(1)$ expected, giving $\Theta(n)$ expected total time; with a balanced search tree they are $O(\log n)$ each, giving $O(n \log n)$ worst case. The alternative of enumerating subarrays costs $\Theta(n^2)$ or worse, which is why the prefix reformulation is decisive at $n = 10^5$. Note that a single sweep replaces the whole $\Theta(n^2)$ family of range-XOR queries.
 
-### Step 3: XOR stores all bit parities at once
-
-At each bit position, XOR is one exactly when an odd number of operands have that bit set. Therefore, the XOR of all elements in a subarray is zero exactly when every bit has even parity.
-
-The operational definition of beautiful subarrays collapses to:
-
-$$
-\text{subarray is beautiful}
-\quad\Longleftrightarrow\quad
-\text{subarray XOR}=0.
-$$
-
-This transformation is the main insight. No operation sequence needs to be simulated.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [4, 3, 1, 2, 4]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Simulate operations:** Choosing bit pairs explicitly is unnecessary and combinatorial; parity completely characterizes feasibility.
-- **Check every subarray:** Computing XOR for all $O(n^2)$ subarrays is too slow for $10^5$ elements.
-- **Track parity per bit:** A vector of bit parities works, but XOR packs the same state into one integer.
-- **Single zero:** Its XOR is zero, so the one-element subarray is beautiful.
-- **Single nonzero:** At least one bit has odd parity, so it is not beautiful.
-- **All zeros:** Every subarray counts, producing the maximum $n(n+1)/2$.
-- **Repeated prefix XOR:** Each prior occurrence gives a distinct starting boundary and must be counted.
-- **Empty prefix seed:** Omitting `cnt[0] = 1` would miss beautiful subarrays starting at index zero.
-- **Nonempty requirement:** Updating the answer before the frequency prevents pairing a prefix with itself.
-- **Expected hashing:** Linear time assumes standard expected constant-time Counter lookup.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n)$. Let $n$ be the array length. The loop performs one XOR and expected constant-time Counter operations per element, giving expected $O(n)$ time. There can be up to $n+1$ distinct prefix XOR values, so the Counter uses $O(n)$ space.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+**Auxiliary space.** The multiset stores at most $n + 1$ prefix values, so the auxiliary space is $O(n)$; the answer counter, the running mask, and the loop index are $O(1)$. Because the mask is a prefix XOR of values bounded by $10^6 < 2^{20}$, every stored key fits in $20$ bits, and the total number of beautiful subarrays can reach $\binom{10^5+1}{2} \approx 5 \times 10^{9}$, so the answer accumulator must be wide enough for values far beyond a 32-bit signed integer.

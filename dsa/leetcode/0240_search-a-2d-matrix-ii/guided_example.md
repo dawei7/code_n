@@ -158,6 +158,20 @@ Step 5: (r=1, c=1), val=5 == 5 -> MATCH FOUND! Return True
 - $(4, 1) = 21 > 20 \implies c = 0$
 - $(4, 0) = 18 < 20 \implies r = 5 > 4$ (Out of bounds $\implies$ **`false`**).
 
+The absent search is worth counting, because the number of cells still compatible with the invariant collapses far faster than the walk's length suggests. The surviving region is always the product of its row band and its column band, and each step removes a whole line from one of the two factors.
+
+| Step | Cell $(r, c)$ | Value | Comparison with $20$ | Action taken | Cells still compatible with the invariant |
+|:---:|:---:|:---:|:---:|:---|:---:|
+| 1 | $(0, 4)$ | $15$ | $15 < 20$ | Eliminate row 0 ($r \leftarrow 1$) | $4 \times 5 = 20$ |
+| 2 | $(1, 4)$ | $19$ | $19 < 20$ | Eliminate row 1 ($r \leftarrow 2$) | $3 \times 5 = 15$ |
+| 3 | $(2, 4)$ | $22$ | $22 > 20$ | Eliminate column 4 ($c \leftarrow 3$) | $3 \times 4 = 12$ |
+| 4 | $(2, 3)$ | $16$ | $16 < 20$ | Eliminate row 2 ($r \leftarrow 3$) | $2 \times 4 = 8$ |
+| 5 | $(3, 3)$ | $17$ | $17 < 20$ | Eliminate row 3 ($r \leftarrow 4$) | $1 \times 4 = 4$ |
+| 6 | $(4, 3)$ | $26$ | $26 > 20$ | Eliminate column 3 ($c \leftarrow 2$) | $1 \times 3 = 3$ |
+| 7 | $(4, 2)$ | $23$ | $23 > 20$ | Eliminate column 2 ($c \leftarrow 1$) | $1 \times 2 = 2$ |
+| 8 | $(4, 1)$ | $21$ | $21 > 20$ | Eliminate column 1 ($c \leftarrow 0$) | $1 \times 1 = 1$ |
+| 9 | $(4, 0)$ | $18$ | $18 < 20$ | Eliminate row 4 ($r \leftarrow 5$, past the last row) | $0 \times 1 = 0$ |
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -173,6 +187,29 @@ Step 5: (r=1, c=1), val=5 == 5 -> MATCH FOUND! Return True
 - **Matrix Flattening Fallacy:** Unlike LeetCode 74 (where the first element of row $i+1$ is strictly greater than the last element of row $i$), here the rows and columns overlap in values. The matrix cannot be flattened into a 1D sorted array for a single $O(\log(MN))$ binary search.
 - **Starting at Top-Left:** Starting at $(0, 0)$ offers no pruning direction when $\text{matrix}[0][0] < \text{target}$. The top-right $(0, N-1)$ or bottom-left $(M-1, 0)$ corners are the only two valid starting points.
 - **Boundary Conditions:** The loop condition must check both upper and lower index boundaries (`r < M and c >= 0`).
+
+The boundary shapes below are the ones that decide whether the loop condition and the start corner were chosen correctly. In each row, either the starting corner is already illegal, or the walk leaves the matrix through exactly one side.
+
+| Scenario | Concrete input | Starting cell and its value | Moves taken | Cells examined | Result and reason |
+|:---|:---|:---|:---|:---:|:---|
+| Empty matrix | `matrix = []`, target `1` | none exists | none; the boundary test fails before the first comparison | $0$ | `false`: the row index already equals $M = 0$ |
+| Single cell that matches | `matrix = [[-5]]`, target `-5` | $(0, 0) = -5$ | none; the starting cell matches | $1$ | `true`: the start corner is also the only cell |
+| Target below every entry | $3 \times 3$ matrix `[[1, 4, 7], [2, 5, 8], [3, 6, 9]]`, target `0` | $(0, 2) = 7$ | three "too large" steps: $c = 1$, then $c = 0$, then $c = -1$ | $3$ | `false`: the walk leaves through the left boundary |
+| Target above every entry | the same $3 \times 3$ matrix, target `10` | $(0, 2) = 7$ | three "too small" steps: $r = 1$, then $r = 2$, then $r = 3$ | $3$ | `false`: the walk leaves through the bottom boundary |
+| Smallest value in the matrix | the $5 \times 5$ matrix, target `1` | $(0, 4) = 15$ | four "too large" steps, arriving at $(0, 0)$ | $5$ | `true`: the corner cell is reached last |
+| Largest value in the matrix | the $5 \times 5$ matrix, target `30` | $(0, 4) = 15$ | five "too small" steps down column 4, arriving at $(4, 4)$ | $5$ | `true`: the walk ends on the bottom-right cell, where the value matches |
+| Starting from the top-left instead | the $5 \times 5$ matrix, target `5` | $(0, 0) = 1$ | no move is forced: both neighbours are larger | not defined | Invalid start: with two increasing directions available, a wrong choice can hide the target in the discarded region |
+
+The walk is not the only correct search; the alternatives exploit less of the structure or pay in working memory.
+
+| Approach | Mechanism | Time | Auxiliary space | Failure mode or tradeoff |
+|:---|:---|:---:|:---:|:---|
+| Scan every cell | Compare each entry with the target | $O(MN)$ | $O(1)$ | Uses none of the ordering, and for a $1000 \times 1000$ matrix it costs a million comparisons instead of two thousand |
+| Binary search each row | Search every row independently | $O(M \log N)$ | $O(1)$ | Honours row order only; on a square matrix this is $O(N \log N)$ where the walk is $O(N)$ |
+| Binary search each column | Search every column independently | $O(N \log M)$ | $O(1)$ | Honours column order only; it is the mirror of the previous row and is preferable exactly when $N$ is much smaller than $M$ |
+| Staircase walk from the top-right (this lesson) | Discard one full row or column per comparison | $O(M + N)$ | $O(1)$ | Requires a corner whose two neighbours move in opposite directions; starting anywhere else destroys the pruning guarantee |
+| Flatten, then binary search once | Treat the grid as one sorted array of $MN$ entries | $O(\log(MN))$ | $O(1)$ | Only valid when every row starts above the previous row's maximum, which this problem does not promise; here it reports false negatives |
+| Expand a min-heap from the top-left | Push the smallest frontier cell, pop it, push its right and down neighbours, and stop at the target | $O(K \log K)$ for the $K$ cells no larger than the target | $O(K)$ | Degenerates towards a full traversal when the target is close to the maximum, and it stores a frontier the walk never needs |
 
 ---
 

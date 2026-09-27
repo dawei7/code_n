@@ -1,130 +1,109 @@
 # Guided Example: Check Knight Tour Configuration
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. The grid stores visit times, not moves
 
-- **Input:** `{"grid": [[0, 3, 6], [5, 8, 1], [2, 7, 4]]}`
-- **Required output:** `false`
+Take the three-by-three configuration of official example 2, whose answer is `false`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+| Row \ Col | 0 | 1 | 2 |
+|:---:|:---:|:---:|:---:|
+| 0 | 0 | 3 | 6 |
+| 1 | 5 | 8 | 1 |
+| 2 | 2 | 7 | 4 |
 
----
+Each entry is a time stamp: `grid[row][col]` is the step at which the knight stood on that cell, and the moves are 0-indexed. So the table above is not the knight's route in reading order; reading it left to right gives the sequence $(0,0) \to (0,1) \to (0,2) \to \dots$, which is a description of the board, not of the journey. The journey is recovered by inverting the numbering: the cell visited at time $t$ is wherever the value $t$ sits.
 
-## 1. Instance & Teaching Goal
+Because the constraints promise that the entries are distinct and lie in $[0, n^2-1]$, the numbering is a bijection from the $n^2$ cells onto the times $0, \dots, n^2-1$. Every time occurs exactly once, so the inverse map is total and well defined, and validity becomes a property of one concrete sequence of cells.
 
-There is a knight on an `n x n` chessboard. In a valid configuration, the knight starts **at the top-left cell** of the board and visits every cell on the board **exactly once**.
+## 2. Inverting the numbering recovers the path
 
-The objective is to compute `false` from `{"grid": [[0, 3, 6], [5, 8, 1], [2, 7, 4]]}` while avoiding redundant calculations and unnecessary overhead.
+| Cell $(row, col)$ | (0,0) | (0,1) | (0,2) | (1,0) | (1,1) | (1,2) | (2,0) | (2,1) | (2,2) |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Time stamp | 0 | 3 | 6 | 5 | 8 | 1 | 2 | 7 | 4 |
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Reading the same data the other way round produces the knight's itinerary:
 
----
+| Time $t$ | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Cell `pos[t]` | (0,0) | (1,2) | (2,0) | (0,1) | (2,2) | (1,0) | (0,2) | (2,1) | (1,1) |
 
-## 2. Conceptual Foundation & Invariants
+Two observations follow at once. Time 0 sits at the top-left cell, exactly as the contract demands. And the nine cells are all different, so if every consecutive pair of these positions is a legal knight move, the sequence is a genuine visit-every-cell-once route — a Hamiltonian path of the board's knight graph.
 
-We maintain the core conceptual parameters and state variables:
+## 3. What counts as a knight move
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+A knight move changes the row by two and the column by one, or the row by one and the column by two, in either direction and with any signs. Signs are irrelevant to legality, so only the two absolute offsets matter, and they must form the unordered pair $\{1, 2\}$.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+| Offset pair $(\lvert \Delta row\rvert, \lvert \Delta col\rvert)$ | (1, 2) | (2, 1) | (1, 1) | (1, 0) | (0, 1) | (2, 2) | (2, 0) | (3, 1) |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Knight move? | yes | yes | no | no | no | no | no | no |
+| Squared length of the offset vector | 5 | 5 | 2 | 1 | 1 | 8 | 4 | 10 |
 
----
+The two legal shapes are mirror images of each other, and testing only one of them rejects half of all legal moves. The squared length 5 is a convenient equivalent signature for this particular problem, since the only integer vectors with $a^2 + b^2 = 5$ are the eight signed copies of $(1,2)$ and $(2,1)$.
 
-## 3. Step-by-Step Worked Execution
+## 4. Checking the path one transition at a time
 
-### Step 1: The grid gives visit times, not a path directly
+Walk the itinerary and compare each cell with its predecessor.
 
-Each cell stores when the knight visited it. To validate the tour, the useful order is the reverse mapping:
+| Step $t$ | `pos[t]` | `pos[t-1]` | $\lvert \Delta row\rvert$ | $\lvert \Delta col\rvert$ | Shape | Legal knight move? |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | (1,2) | (0,0) | 1 | 2 | 1 by 2 | yes |
+| 2 | (2,0) | (1,2) | 1 | 2 | 1 by 2 | yes |
+| 3 | (0,1) | (2,0) | 2 | 1 | 2 by 1 | yes |
+| 4 | (2,2) | (0,1) | 2 | 1 | 2 by 1 | yes |
+| 5 | (1,0) | (2,2) | 1 | 2 | 1 by 2 | yes |
+| 6 | (0,2) | (1,0) | 1 | 2 | 1 by 2 | yes |
+| 7 | (2,1) | (0,2) | 2 | 1 | 2 by 1 | yes |
+| 8 | (1,1) | (2,1) | 1 | 0 | 1 by 0 | **no** |
 
-`visit number -> cell coordinates`.
+The first seven transitions are impeccable, and the configuration still fails, because the eighth move slides one square down the column from (2,1) to (1,1). The answer is `false`, and the failing transition is the last one, which is precisely why a checker cannot sample transitions or give up after the first few successes: the verdict is a conjunction over all $n^2 - 1$ moves, and this instance hides its only defect in the final conjunct.
 
-The solution builds array `pos` of length $n^2$. When it sees `grid[i][j] = t`, it stores `pos[t] = (i,j)`. Because the matrix contains every distinct integer from zero through $n^2-1$, every position in `pos` is filled exactly once.
+## 5. Invariant and correctness of the pairwise check
 
-After inversion, `pos[0]` is the starting cell, `pos[1]` is the next cell, and so on. The tour can be validated by checking consecutive coordinate pairs.
+**Model.** Let $C$ be the $n^2$ cells and let $\tau(c)$ be the time stamp of cell $c$. The constraints make $\tau$ a bijection, so the inverse sequence `pos[0], pos[1], …, pos[n²−1]` lists every cell exactly once. A configuration is valid exactly when that sequence is a walk in the knight graph $K_n$ — the graph on $C$ whose edges join cells whose absolute offsets are $\{1,2\}$ — that begins at the top-left cell and covers every vertex. Valid configurations are therefore Hamiltonian paths starting at a fixed vertex.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"grid": [[0, 3, 6], [5, 8, 1], [2, 7, 4]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+**Invariant.** After examining transitions $1$ through $t$, the accumulated verdict is positive exactly when $\text{pos}[0]$ is the top-left cell, $\text{pos}[0], \dots, \text{pos}[t]$ are distinct, and each of those $t$ transitions is an edge of $K_n$. Because the numbering is a bijection, the distinctness part is inherited from the input and never has to be re-established; the only obligation is the edge test on each consecutive pair.
 
----
+**Completeness.** Every transition is examined, so no illegal move can slip through; the instance above shows that a single unchecked transition is enough to turn `false` into `true`. **Soundness.** Each accepted transition is verified against the exact offset pair, so a chain of accepted transitions really is a legal knight walk, and since the walk visits $n^2$ distinct cells it visits all of them — no cell is skipped and none is visited twice. **The start condition is separate.** The transition test can only speak about differences of positions; it is blind to which absolute cell carries time 0. Only a direct check that the top-left entry is 0 enforces the requirement that the knight begins there, and a configuration whose numbering is a perfect knight path but shifted in time would otherwise pass while violating the contract.
 
-### Step 2: Check the required starting cell first
+## 6. Which rules survive this instance
 
-A valid tour must begin at the top-left cell. Since visit numbers are zero-indexed, `grid[0][0]` must equal zero.
+```mermaid
+flowchart LR
+  A["grid: cell to visit time"] --> B["invert the numbering into the sequence pos[0..n*n-1]"]
+  B --> C{"is grid[0][0] zero?"}
+  C -- "no" --> F["return false"]
+  C -- "yes" --> D["for every consecutive pair: absolute row and column offsets"]
+  D --> E{"do the offsets form the pair 1 and 2?"}
+  E -- "no" --> F
+  E -- "yes, for all pairs" --> G["return true"]
+```
 
-The condition `if grid[0][0]: return false` uses Python truthiness: zero is false, while every positive visit number is true. Thus any nonzero top-left label is rejected immediately.
+| Candidate rule applied to the grid of section 1 | First transition rejected | Verdict |
+|:---|:---:|:---|
+| Offsets form the unordered pair $\{1, 2\}$ | none, so the grid is accepted as far as the moves go, and the answer is `false` on the final transition | correct |
+| Offsets equal $(1, 2)$ in that fixed order | transition 3, which is a legitimate move | wrong: rejects half of all legal knight moves |
+| Chebyshev distance 1, the king's step | none, so the invalid grid would be accepted | wrong: the (2,1) to (1,1) slide is a king move, not a knight move |
+| Cells merely adjacent in the grid, sharing a side or corner | none | wrong: it would accept the broken final move |
+| Squared offset length equal to 5 | none until transition 8 | equivalent on integer offsets, and it is the same test in disguise |
+| Only the first and last cells of the itinerary | none | wrong: interior moves are the substance of the check |
 
-The distinct complete-label guarantee then ensures visit zero appears nowhere else when this check passes.
+## 7. Boundary instances
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Instance | $n$ | Feature | Answer |
+|:---|:---:|:---|:---:|
+| Official five-by-five tour | 5 | all 24 transitions are knight moves and time 0 is at (0,0) | `true` |
+| Alternate five-by-five tour | 5 | tours are far from unique; validity is a property of the numbering, not of one pattern | `true` |
+| Values in reading order `0 1 2` in the first row | 3 | the offset from (0,0) to (0,1) is (0,1), so it fails on move 1 | `false` |
+| `[[1,0,2],[3,4,5],[6,7,8]]` | 3 | time 0 is not at the top-left cell, so the start condition alone decides | `false` |
+| The grid of section 1 | 3 | distinct values in range, and yet the last move is illegal | `false` |
+| Official seven-by-seven tour | 7 | the largest dimension, 48 transitions, and the tightest test of the bound | `true` |
 
----
+A subtle point appears in the smallest case: with $n = 3$ the knight graph has eight edges and no Hamiltonian path starting at a corner at all, so every valid-looking three-by-three numbering must fail somewhere, and the useful skill is locating the failure rather than patching it.
 
-### Step 3: Recognize one legal knight move
+## 8. Time and auxiliary space complexity
 
-A knight changes one coordinate by two cells and the other by one. Direction signs do not matter, so the code computes absolute differences:
+Let $n$ be the side length, so the board has $N = n^2$ cells and there are $N - 1$ transitions.
 
-`dx = abs(x1 - x2)` and `dy = abs(y1 - y2)`.
-
-The move is legal exactly when
-
-$$
-(dx,dy)=(1,2)
-\quad\text{or}\quad
-(dx,dy)=(2,1).
-$$
-
-These two cases cover all eight directional moves: each coordinate change can be positive or negative, and the one-step and two-step roles may be exchanged.
-
-A move such as $(2,2)$ is diagonal but not a knight move. A move such as $(0,1)$ is adjacent but also invalid.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `false` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"grid": [[0, 3, 6], [5, 8, 1], [2, 7, 4]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `false` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Search for each next label:** Repeatedly scanning the grid for visit $t+1$ would take $O(n^4)$ time; inversion makes every lookup direct.
-- **Sort coordinate-label triples:** Sorting all cells by label also works in $O(n^2\log n)$ time but ignores the dense complete label range.
-- **Wrong starting label:** Any nonzero `grid[0][0]` fails before other work.
-- **Illegal final move:** `pairwise` includes the transition to label $n^2-1$, so it is checked.
-- **All labels unique:** The contract makes a separate duplicate-cell or missing-label check unnecessary.
-- **Reversed knight displacement:** Both $(1,2)$ and $(2,1)$ are accepted.
-- **Direction signs:** Absolute differences cover left, right, up, and down variants.
-- **Nonconsecutive cells:** They need not be a knight move and are intentionally not compared.
-- **Input preservation:** Only the new `pos` array is written.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n^2)$. There are $n^2$ cells. Building `pos` visits each once in $O(n^2)$ time. `pairwise` produces $n^2-1$ transitions, each checked in constant time, so total time is $O(n^2)$.
-- **Auxiliary Space Complexity:** $O(n^2)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Building the inverse map** reads each of the $N$ entries once and writes one position per time: $O(N) = O(n^2)$.
+- **Scanning the transitions** compares each consecutive pair exactly once, using constant work for the two absolute offsets: $O(N)$.
+- **The total running time** is therefore $O(n^2)$, which is optimal in the comparison model because every entry of the grid can influence the answer; with $3 \le n \le 7$ this is at most 49 entries and 48 transitions.
+- **Auxiliary space** is $O(n^2)$ for the inverse map, which is what allows each transition to be examined in constant time. A checker that repeatedly scanned the grid for the next time stamp instead would still use $O(1)$ extra space but would pay $O(n^4)$ time, a real regression at $n = 7$.
