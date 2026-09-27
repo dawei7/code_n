@@ -1,206 +1,222 @@
-# Guided Example: Second-Degree Follower
+# Guided Example: Second Degree Follower
 
-We trace the step-by-step 2-hop directed graph path expansion (`Follow f1 JOIN Follow f2 ON f1.follower = f2.followee`), dual-role condition verification (acting both as a follower and as a followee), distinct follower degree aggregation (`COUNT(DISTINCT followee)`), and alphabetical ordering on representative social network follow graphs:
+The `Follow` table stores directed follow relationships: each row records one user (the
+`follower`) following another user (the `followee`). A **second-degree follower** is a user
+who follows at least one user *and* is followed by at least one user, and for every such
+user we must report the name and the number of that user's own followers, ordered
+alphabetically by name.
 
-- **Input:**
-  - `Follow` table:
-    | `followee` | `follower` |
-    |:---:|:---:|
-    | `Alice` | `Bob` |
-    | `Bob` | `Cena` |
-    | `Bob` | `Donald` |
-    | `Donald` | `Edward` |
-- **Required output:**
-  | `follower` | `num` |
-  |:---:|:---:|
-  | `Bob` | $2$ |
-  | `Donald` | $1$ |
-  - Business definition of a **second-degree follower**:
-    - A user $u$ who:
-      1. Follows at least one user ($u$ exists in the `follower` column).
-      2. Is followed by at least one user ($u$ exists in the `followee` column).
-    - For each such qualifying user, count the number of users who follow them (`num`).
-    - Output schema: Label the qualifying user's name under column header `follower`, and their follower count under `num`.
-    - Ordering: Sort by `follower ASC`.
-- **2-Hop Relational Path Formulation:**
-  - If user $u$ is a second-degree follower:
-    - There exists an edge: $u$ follows someone $\implies (X, u) \in Follow$.
-    - There exists an edge: someone follows $u \implies (u, Y) \in Follow$.
-  - Joining `Follow f1` with `Follow f2` on `f1.follower = f2.followee`:
-    - `f1.followee` is the person that $u$ follows ($X$).
-    - `f1.follower` is the target user $u$ (our candidate).
-    - `f2.followee` is also $u$.
-    - `f2.follower` is the person who follows $u$ ($Y$).
-  - This join matches only users who simultaneously satisfy both criteria!
-- **Step-by-Step Worked Execution Trace:**
-  - Given directed edges $(followee, follower)$:
-    - $e_1 = (\text{Alice}, \text{Bob})$
-    - $e_2 = (\text{Bob}, \text{Cena})$
-    - $e_3 = (\text{Bob}, \text{Donald})$
-    - $e_4 = (\text{Donald}, \text{Edward})$
-  - **Step 1: Perform Self-Join on $f_1.follower = f_2.followee$:**
-    - Match $e_1$ (`follower = Bob`) with $e_2$ (`followee = Bob`):
-      - Path: Alice $\leftarrow$ **Bob** $\leftarrow$ Cena
-      - Record: `(follower: Bob, followee: Cena)`
-    - Match $e_1$ (`follower = Bob`) with $e_3$ (`followee = Bob`):
-      - Path: Alice $\leftarrow$ **Bob** $\leftarrow$ Donald
-      - Record: `(follower: Bob, followee: Donald)`
-    - Match $e_3$ (`follower = Donald`) with $e_4$ (`followee = Donald`):
-      - Path: Bob $\leftarrow$ **Donald** $\leftarrow$ Edward
-      - Record: `(follower: Donald, followee: Edward)`
-    - What about `Alice`?
-      - Alice is in `followee`, but never appears in `follower` (she follows no one).
-      - Zero join matches for Alice $\implies$ Correctly omitted.
-    - What about `Cena` and `Edward`?
-      - They follow people, but nobody follows them (never appear in `followee`).
-      - Zero join matches $\implies$ Correctly omitted.
-  - **Step 2: Aggregate Follower Counts per Second-Degree User:**
-    - Intermediate pairs:
-      - `Bob`: `Cena`, `Donald`
-      - `Donald`: `Edward`
-    - **Group `follower = 'Bob'`:**
-      - Distinct people following Bob: $\{\text{Cena}, \text{Donald}\}$
-      - Count:
-        $$
-        num = \mathbf{2}
-        $$
-    - **Group `follower = 'Donald'`:**
-      - Distinct people following Donald: $\{\text{Edward}\}$
-      - Count:
-        $$
-        num = \mathbf{1}
-        $$
-  - **Step 3: Sort Alphabetically by `follower`:**
-    1. `Bob` with count $2$
-    2. `Donald` with count $1$
-- **Isolated Directed Chains:**
-  - A user at the root of a follow tree (followed by others but following nobody) or a leaf (following others but followed by nobody) is excluded.
-- **Cycles in Following ($A \to B \to A$):**
-  - Both $A$ and $B$ follow and are followed $\implies$ both qualify as second-degree followers.
+The problem is an intersection of two roles that one user can hold simultaneously. Its two
+failure modes are dropping the outgoing-role test — which admits popular users who follow
+nobody — and counting followers without deduplication, which multiplies the answer by how
+many people the subject follows.
 
-This instance demonstrates 2-hop path aggregation over directed relational graphs, mathematically proves why joining predecessor and successor relations isolates vertices with both in-degree $\ge 1$ and out-degree $\ge 1$, and derives $O(E \log V)$ execution time and $O(E)$ space bounds.
+## 1. The Instance and the Eligibility Contract
 
----
+`Follow` holds two `varchar` columns, `followee` and `follower`. Together they form the
+primary key, so a relationship is stored at most once, and the statement guarantees that no
+user follows themself.
 
-## 1. Instance & Teaching Goal
+Input relation:
 
-Given a `Follow` table tracking directed follow edges:
-Find all **second-degree followers** (users who follow at least one person AND are followed by at least one person).
-Report each user's name (`follower`) and how many people follow them (`num`).
-Order alphabetically by user name.
+| `followee` | `follower` |
+|---|---|
+| Alice | Bob |
+| Bob | Cena |
+| Bob | Donald |
+| Donald | Edward |
 
-```text
-Follow Graph:
-  Alice <--- Bob <--- Cena
-              ^
-              |
-            Donald <--- Edward
+Required output relation:
 
-Roles:
-  Alice:  Followed by Bob, but follows no one -> Excluded
-  Bob:    Follows Alice, Followed by Cena & Donald -> QUALIFIED! (num = 2)
-  Donald: Follows Bob, Followed by Edward -> QUALIFIED! (num = 1)
-  Cena:   Follows Bob, followed by no one -> Excluded
-  Edward: Follows Donald, followed by no one -> Excluded
+| `follower` | `num` |
+|---|---|
+| Bob | 2 |
+| Donald | 1 |
 
-Output:
-  Bob: 2
-  Donald: 1
+The output naming is deliberately inverted with respect to the input: the subject — the
+second-degree follower itself — is emitted under the column name `follower`, while `num`
+counts that subject's own followers. The output column therefore names the role the subject
+plays in the stored `follower` column, not the role being counted.
+
+## 2. The Two Roles as In-Degree and Out-Degree
+
+Read the relation as the edge set of a directed graph: the row $(a, b)$ with $a$ in
+`followee` and $b$ in `follower` is the edge $b \to a$, meaning "$b$ follows $a$". Let $V$
+be the set of names occurring in either column. Two degree functions decide everything:
+
+$$
+\text{out}(u) = \bigl|\{\, a : (a, u) \in \text{Follow} \,\}\bigr|
+\ \text{(users } u \text{ follows)},
+\qquad
+\text{in}(u) = \bigl|\{\, b : (u, b) \in \text{Follow} \,\}\bigr|
+\ \text{(users following } u\text{)} .
+$$
+
+Eligibility is then a pure degree condition, and the reported count is the in-degree:
+
+$$
+u \text{ is reported} \iff \text{out}(u) \ge 1 \ \land \ \text{in}(u) \ge 1,
+\qquad
+\text{num} = \text{in}(u).
+$$
+
+Applying it to the five names of the instance:
+
+| User $u$ | Users $u$ follows | $\text{out}(u)$ | Followers of $u$ | $\text{in}(u)$ | Eligible? | `num` |
+|---|---|---|---|---|---|---|
+| `Alice` | none | 0 | `Bob` | 1 | no — follows nobody | — |
+| `Bob` | `Alice` | 1 | `Cena`, `Donald` | 2 | yes | 2 |
+| `Cena` | `Bob` | 1 | none | 0 | no — nobody follows them | — |
+| `Donald` | `Bob` | 1 | `Edward` | 1 | yes | 1 |
+| `Edward` | `Donald` | 1 | none | 0 | no — nobody follows them | — |
+
+`Alice` is the instructive rejection: she has a follower, so a test based only on "is
+followed by at least one user" would report her with `num = 1`, yet she follows nobody and
+must be omitted. Only `Bob` and `Donald` hold both roles.
+
+```mermaid
+flowchart LR
+    accTitle: Follow digraph of the four stored relationships
+    accDescr: Edges point from a follower to the user being followed, so Cena and Donald point at Bob, Bob points at Alice, and Edward points at Donald.
+    Cena --> Bob
+    Donald --> Bob
+    Bob --> Alice
+    Edward --> Donald
 ```
 
-### Clarifying the Output Schema
-- Note the schema convention: the subject user being reported is placed under the column name `follower`.
-- The count of distinct incoming followers is named `num`.
+## 3. Intersecting the Two Roles with a Key Equality
 
----
+The eligible set is the intersection of the names appearing in the `follower` column and
+the names appearing in the `followee` column:
 
-## 2. Conceptual Foundation & Invariants
-
-### 1. The 2-Hop Self-Join:
-```sql
-WITH T AS (
-    SELECT f1.follower AS follower, f2.follower AS followee
-    FROM Follow AS f1
-    JOIN Follow AS f2 ON f1.follower = f2.followee
-)
-SELECT follower, COUNT(DISTINCT followee) AS num
-FROM T
-GROUP BY follower
-ORDER BY follower;
-```
-
-### 2. Graph Invariant:
-A user $u$ is included if and only if:
 $$
-\text{in-degree}(u) \ge 1 \quad \text{AND} \quad \text{out-degree}(u) \ge 1
+A = \{\, b : (a, b) \in \text{Follow} \,\},
+\qquad
+B = \{\, a : (a, b) \in \text{Follow} \,\},
+\qquad
+\text{Eligible} = A \cap B .
 $$
-Their reported `num` equals $\text{in-degree}(u)$.
 
-> **Two-Sided Degree Invariant.** An entity is an interior node in a directed path of length $\ge 2$ if and only if its incident in-edge and out-edge intersection is non-empty.
+An intersection of two relations over the same identity is realized by an equi-join on that
+identity. The identity is the user name, and the two relations are two views of the same
+table, so the join pairs an outgoing row $(X, u)$, which certifies that $u$ follows
+somebody, with an incoming row $(u, Y)$, which certifies that somebody follows $u$. Every
+surviving pairing is the two-hop path
 
----
+$$
+Y \to u \to X ,
+$$
 
-## 3. Step-by-Step Worked Execution
+whose middle vertex $u$ is the candidate being classified. The far end $X$ proves the
+outgoing role, and the near end $Y$ is one of $u$'s followers and therefore one unit of
+`num`.
 
-We trace the sample data:
+| Middle user $u$ | Outgoing row | Incoming rows | Two-hop paths produced |
+|---|---|---|---|
+| `Bob` | `(Alice, Bob)` | `(Bob, Cena)`, `(Bob, Donald)` | `Cena → Bob → Alice`, `Donald → Bob → Alice` |
+| `Donald` | `(Bob, Donald)` | `(Donald, Edward)` | `Edward → Donald → Bob` |
+| `Alice`, `Cena`, `Edward` | — | — | none; each lacks one of the two roles |
 
----
+## 4. Worked Aggregation and the Multiplication Trap
 
-### Step 1: Join on `f1.follower = f2.followee`
-- `f1` edge `(Alice, Bob)` has `follower = Bob`.
-  - Matches `f2` edge `(Bob, Cena)` where `followee = Bob` $\implies$ `(Bob, Cena)`.
-  - Matches `f2` edge `(Bob, Donald)` where `followee = Bob` $\implies$ `(Bob, Donald)`.
-- `f1` edge `(Bob, Donald)` has `follower = Donald`.
-  - Matches `f2` edge `(Donald, Edward)` where `followee = Donald` $\implies$ `(Donald, Edward)`.
+Grouping the matched rows by their middle vertex and counting gives the answer, provided
+the count runs over *distinct* followers. The number of matched rows belonging to $u$ is
+not $\text{in}(u)$ but the product
 
----
+$$
+\text{out}(u) \times \text{in}(u),
+$$
 
-### Step 2: Group by Target User
-- `Bob`: followers are `Cena` and `Donald` $\implies num = 2$.
-- `Donald`: follower is `Edward` $\implies num = 1$.
+because every outgoing row of $u$ pairs with every incoming row of $u$; counting matched
+rows overstates the follower count by a factor of $\text{out}(u)$.
 
----
+| Middle user $u$ | $\text{out}(u)$ | $\text{in}(u)$ | Matched rows $=\text{out}\cdot\text{in}$ | Distinct followers | `num` |
+|---|---|---|---|---|---|
+| `Bob` (this instance) | 1 | 2 | 2 | `{Cena, Donald}` | 2 |
+| `Donald` (this instance) | 1 | 1 | 1 | `{Edward}` | 1 |
+| a user following `A` and `X` while followed by `C` and `D` | 2 | 2 | 4 | `{C, D}` | 2 |
 
-### Step 3: Sort Alphabetically
-- Bob
-- Donald
+The third row is a neighbouring instance where the two quantities diverge: four matched
+rows but only two followers, so an undeduplicated count answers `4` instead of `2`, and the
+error grows with how many people the subject follows. For the official instance the trace
+is: pair on the shared name, obtaining `(Bob, Cena)`, `(Bob, Donald)`, `(Donald, Edward)`;
+group by the middle user, giving `Bob → {Cena, Donald}` and `Donald → {Edward}`;
+deduplicate and count, giving `Bob → 2` and `Donald → 1`; then order by name, giving `Bob`
+before `Donald`. The emitted relation is the required output.
 
----
+## 5. Correctness of the Intersection
 
-## 4. Complete Execution Trace
+> **Invariant.** A user $u$ reaches the output precisely when both degrees are positive,
+> and the reported value equals the number of distinct users following $u$.
 
-| Edge $f_1$ (`followee`, `follower`) | Edge $f_2$ (`followee`, `follower`) | Matched User | Person Following User | Aggregated `num` |
-|:---:|:---:|:---:|:---:|:---:|
-| `(Alice, Bob)` | `(Bob, Cena)` | `Bob` | `Cena` | — |
-| `(Alice, Bob)` | `(Bob, Donald)` | `Bob` | `Donald` | **$2$** |
-| `(Bob, Donald)` | `(Donald, Edward)` | `Donald` | `Edward` | **$1$** |
-| **Output** | — | **`Bob (2), Donald (1)`** | — | — |
+*Soundness.* If $u$ is reported, at least one pair of rows was joined through $u$, so an
+outgoing row $(X, u)$ and an incoming row $(u, Y)$ both exist. The first gives
+$\text{out}(u) \ge 1$, the second $\text{in}(u) \ge 1$, so $u$ satisfies the definition. The
+count is taken over distinct incoming endpoints $Y$, each a distinct stored row whose
+`followee` is $u$; since the primary key makes distinct followers distinct rows, the count
+is exactly $u$'s follower count.
 
----
+*Completeness.* If $u$ is a second-degree follower, some outgoing row $(X, u)$ and some
+incoming row $(u, Y)$ exist. The join predicate compares the same value $u$ on both sides,
+and equality of a value with itself is decidable, so those two rows pair. Hence $u$ yields
+at least one matched row, enters a group, and cannot be dropped.
 
-## 5. Boundary Cases & Failure Modes
+*Role symmetry.* The join is a symmetric equality, so either view may drive it; the only
+asymmetry is in what the ends of the path are used for — one proves eligibility, the other
+is counted. Two input guarantees keep the argument clean: a user never follows themself, so
+no self-edge inflates both degrees at once, and the primary key prevents a duplicate row
+from making one follower count twice.
 
-- **Nobody Follows Anybody Who Follows Others (Disjoint Stars):** Join yields 0 rows $\implies$ empty table.
-- **Multiple Redundant Follows:** Deduplicated by `COUNT(DISTINCT followee)`.
-- **Single Mutual Follow Pair ($A \leftrightarrow B$):** Both $A$ and $B$ are reported with count $1$.
-- **Large Social Graph:** Indexed join on `followee` and `follower` completes in linear time.
+## 6. Boundary Structures and Traps
 
----
+| Structure | Stored relationships | Output | Why |
+|---|---|---|---|
+| Two-user cycle | `B` follows `A`, `A` follows `B` | `A 1`, `B 1` | Both users hold both roles, each with one follower |
+| Broadcast hub only | `A` and `B` both follow `Hub` | empty relation | `Hub` follows nobody; `A` and `B` are followed by nobody |
+| Directed chain | `B → A`, `C → B`, `D → C` | `B 1`, `C 1` | Interior vertices hold both roles; source and sink do not |
+| Three-user cycle with extra followers | `B → A`, `C → B`, `A → C`, `D → A`, `E → C` | `A 2`, `B 1`, `C 2` | The count is the in-degree, which differs across the cycle |
+| Lowercase identifiers | `amy → zoe`, `mike → amy`, `zoe → mike`, `nina → mike` | `amy 1`, `mike 2`, `zoe 1` | Ordering is by name text, not by degree |
 
-## 6. Traps & Common Anti-Patterns
-
-- **Misinterpreting the Column Headers:** Putting the follower count on the followee instead of the target user creates reversed relationships.
-- **Not Counting `DISTINCT` Followers:** If a duplicate row exists in the source, `COUNT(followee)` can overcount without `DISTINCT`.
-- **Filtering with Subqueries Instead of Joins:** `WHERE follower IN (SELECT followee FROM Follow)` works, but joining directly produces a cleaner execution plan.
-
----
+- **Testing only the incoming role.** Reporting everyone with at least one follower admits
+  `Alice` with `num = 1`. The outgoing test is the easy one to forget, because the reported
+  quantity is a count of incoming edges.
+- **Counting matched rows instead of distinct followers.** As Section 4 shows, that count is
+  $\text{out}(u) \cdot \text{in}(u)$; the error is invisible exactly when every eligible
+  user follows a single person.
+- **Misreading the output columns.** The subject belongs in `follower` and its follower
+  count in `num`. Emitting the subject under `followee`, or counting whom the subject
+  follows, reverses the relationship.
+- **Omitting the ordering.** The result must be ordered by the reported name ascending; a
+  grouping with no explicit ordering may be emitted in any engine-chosen order.
+- **Discarding the counts when testing membership.** Deciding eligibility by membership in
+  both columns is valid and avoids the multiplicative intermediate, but that test alone
+  produces no counts; the counts still require grouping the incoming rows.
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:**
-  - Self-join on indexed columns: $\mathcal{O}(E)$.
-  - Hash grouping and counting: $\mathcal{O}(V)$.
-  - Sorting results: $\mathcal{O}(K \log K)$ where $K \le V$.
-  - Total Time: $\mathcal{O}(E + K \log K)$. Completes in $< 10$ ms.
-- **Auxiliary Space Complexity:**
-  - $\mathcal{O}(E)$ space for intermediate 2-hop edges.
+Let $E$ be the number of stored relationships and $V$ the number of distinct names. Each
+row contributes one outgoing and one incoming appearance, so
+$\sum_u \text{out}(u) = \sum_u \text{in}(u) = E$ and $V \le 2E$.
+
+**Key-equality pairing.** Hashing the incoming view on the user name lets each of the $E$
+outgoing rows perform one expected $O(1)$ probe and match all incoming rows with that key.
+The number of matched rows is
+
+$$
+M = \sum_{u \in V} \text{out}(u) \cdot \text{in}(u),
+$$
+
+which is $O(E)$ for small degrees but reaches $\Theta(E^2)$ when one hub follows many users
+and is followed by many users. The join is therefore $O(E)$ expected time with an $O(M)$
+result spool, $M \le E^2$. Grouping the $M$ rows by middle vertex, deduplicating followers,
+and counting costs $O(M)$ expected time, and ordering the $K \le V$ reported rows costs
+$\Theta(K \log K)$. In total: $O(E + M + K\log K)$ expected time and $O(M + V)$ space, with
+the multiplicative intermediate — not the join itself — dominating.
+
+**Avoiding the quadratic intermediate.** Eligibility needs existence, not multiplicity.
+Materializing the distinct names in the `followee` column lets each outgoing row decide
+eligibility with one membership probe, and the counts come from grouping the original
+incoming rows by `followee` while counting distinct `follower` values. That formulation runs
+in $O(E + K \log K)$ expected time and $O(V)$ space, replacing the $M$ term with the input
+size $E$. The join formulation of Section 3 is taught here because it exposes the two-hop
+path structure that makes the eligibility condition evident.

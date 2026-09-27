@@ -1,180 +1,132 @@
 # Guided Example: Second Highest Salary
 
-We trace the step-by-step SQL relational execution of distinct ranking, offset extraction, and scalar subquery null coercion on representative employee salary tables:
+`Employee` stores one row per employee and lets salary values repeat across rows. The request is for the second highest **distinct** salary, emitted as exactly one row in a single column named `SecondHighestSalary`; when fewer than two different salary values exist, the emitted value is `null`, and an empty result table is *not* an acceptable answer.
 
-- **Input Table `Employee`:**
-  - `[(1, 100), (2, 200), (3, 300)]`
-- **Required output:**
-  - `{"columns": ["SecondHighestSalary"], "rows": [[200]]}`
-- **Duplicate Salaries Instance:** `Employee = [(1, 300), (2, 300), (3, 200)] \implies 200` (`DISTINCT` collapses duplicate maximums)
-- **Insufficient Distinct Salaries Instance:** `Employee = [(1, 100)] \implies \text{null}` (Scalar subquery evaluates empty set as `NULL`)
+## 1. The Instance and the Required Result
 
-This instance demonstrates handling SQL empty-set vs `NULL` semantics, explains why raw `LIMIT 1 OFFSET 1` returns 0 rows (failing the 1-row requirement), wraps the query in a scalar expression or `MAX` filter to guarantee a 1-row `NULL` output, and achieves $O(N)$ execution time.
+The worked instance is the three-employee relation from the statement.
 
----
+| `id` | `salary` |
+|:---:|:---:|
+| 1 | 100 |
+| 2 | 200 |
+| 3 | 300 |
 
-## 1. Instance & Teaching Goal
+Read as a multiset, the salary column is $\{100, 200, 300\}$. Emitting the salary attached to the second row in insertion order would also produce $200$, but that coincidence is exactly what the next section must eliminate: the positions of the rows carry no meaning here, only the values do.
 
-Given the `Employee` table:
-$$
-\begin{array}{|c|c|}
-\hline
-\textbf{id} & \textbf{salary} \\
-\hline
-1 & 100 \\
-2 & 200 \\
-3 & 300 \\
-\hline
-\end{array}
-$$
-Find the second highest distinct salary. If there is no second highest salary (e.g. fewer than 2 distinct values exist), return `null` as a single-row result table named `SecondHighestSalary`.
+The required result is one row of one column:
 
-### The SQL "0 Rows" vs "1 Row with NULL" Trap
-If one naively executes:
-```sql
-SELECT DISTINCT salary 
-FROM Employee 
-ORDER BY salary DESC 
-LIMIT 1 OFFSET 1;
-```
-- On the table above, it correctly returns `200`.
-- But if the table has only one employee `[(1, 100)]`, the query returns **0 rows (Empty Set)**!
-- The problem requirement explicitly demands **1 row containing `null`**:
-  $$
-  \begin{array}{|c|}
-  \hline
-  \textbf{SecondHighestSalary} \\
-  \hline
-  \text{null} \\
-  \hline
-  \end{array}
-  $$
-An empty result set evaluates to a wrong answer.
-Wrapping the query inside a **scalar subquery** (`SELECT (...) AS SecondHighestSalary`) guarantees that if the inner query returns 0 rows, the scalar expression evaluates to SQL `NULL`, emitting exactly 1 row.
+| `SecondHighestSalary` |
+|:---:|
+| 200 |
 
----
+The degenerate instance matters just as much, because it is where most attempts break:
 
-## 2. Conceptual Foundation & Invariants
+| `id` | `salary` | Required output |
+|:---:|:---:|:---|
+| 1 | 100 | one row containing `null` |
 
-### Method A: Scalar Subquery with Distinct Offset (Optimal)
-```sql
-SELECT (
-    SELECT DISTINCT salary 
-    FROM Employee 
-    ORDER BY salary DESC 
-    LIMIT 1 OFFSET 1
-) AS SecondHighestSalary;
-```
+## 2. Distinct Values Form a Strictly Ordered Set
 
-#### Why Method A Works:
-1. `DISTINCT salary`: Collapses identical salaries so rank 2 is strictly smaller than rank 1 (handling duplicate maximums like `[300, 300, 200]`).
-2. `ORDER BY salary DESC`: Sorts unique values in descending order ($300 \to 200 \to 100$).
-3. `LIMIT 1 OFFSET 1`: Skips the highest salary (offset 1) and fetches the next single value.
-4. `SELECT (...) AS SecondHighestSalary`: In ANSI SQL, a subquery used in place of an expression in a `SELECT` list is a **scalar subquery**. If the subquery produces no rows, the scalar expression evaluates to `NULL`, producing a single output row containing `null`.
+Deduplication turns the salary multiset into a set $S$ of distinct values. Because salary is numeric, $S$ inherits a strict total order, so it can be enumerated from largest to smallest:
 
-### Method B: Aggregate `MAX` Exclusion Filter
-```sql
-SELECT MAX(salary) AS SecondHighestSalary
-FROM Employee
-WHERE salary < (
-    SELECT MAX(salary) 
-    FROM Employee
-);
-```
-Here, the subquery finds the global maximum $300$. The outer query filters for `salary < 300` and takes `MAX(salary)`. If no salary satisfies `< 300`, `MAX()` over an empty group naturally aggregates to `NULL`.
+$$ S = \{ s_1 > s_2 > \dots > s_d \}, \qquad d = \lvert S \rvert . $$
 
-> **Invariant.** The query must emit exactly one row with column title `SecondHighestSalary`, containing the second largest element of the distinct salary set $\mathcal{S}$, or `null` if $|\mathcal{S}| < 2$.
+The familiar "second highest" is then simply $s_2$, whose rank in the dense descending order is
 
----
+$$ \operatorname{rank}(s) = 1 + \lvert\{\, u \in S : u > s \,\}\rvert . $$
 
-## 3. Step-by-Step Worked Execution
+The two definitions agree: $\operatorname{rank}(s_k) = k$ for every $k$, because exactly $k-1$ distinct values exceed $s_k$. This equivalence matters because it shows the answer depends on neither the row order nor the `id` values nor how many employees share a salary.
 
-We trace the query on `Employee` with salaries $[100, 200, 300]$:
+| Distinct value $s$ | Values strictly greater than $s$ | $\operatorname{rank}(s)$ | Available? |
+|:---:|:---:|:---:|:---:|
+| 300 | none | 1 | yes (highest) |
+| 200 | 300 | 2 | yes — the requested rank |
+| 100 | 300, 200 | 3 | yes |
 
-### Step 1: Extract Distinct Salaries
-- Source rows: `100, 200, 300`.
-- Distinct projection:
-  $$
-  \mathcal{S} = \{100, 200, 300\}
-  $$
+So the answer for this instance is the value at rank 2, namely $200$.
 
----
+## 3. Deriving the Answer Step by Step
 
-### Step 2: Sort Descending
-- Sort $\mathcal{S}$ descending:
-  $$
-  [300, \, 200, \, 100]
-  $$
-  - Row 0 (Rank 1): $300$
-  - Row 1 (Rank 2): $200$
-  - Row 2 (Rank 3): $100$
+The derivation is four relational stages. Each stage is described by what it does to the relation, not by any particular syntax.
 
----
+| Stage | Operation | Input state | Output state |
+|:---:|:---|:---|:---|
+| 1 | Deduplicate the salary column into a set | $[100, 200, 300]$ | $S = \{100, 200, 300\}$ |
+| 2 | Order $S$ from largest to smallest | $\{100, 200, 300\}$ | $[300, 200, 100]$ |
+| 3 | Skip the first ranked value and retain the next one | $[300, 200, 100]$ | $200$ |
+| 4 | Coerce the surviving value into a scalar projection | $200$ | one row holding $200$ |
 
-### Step 3: Apply `LIMIT 1 OFFSET 1`
-- `OFFSET 1`: Skip row 0 ($300$).
-- `LIMIT 1`: Select row 1 ($200$).
-- Inner query result: a single tuple with value `200`.
+Stage 3 is rank-offset pagination: rank $k$ lives at zero-based position $k - 1$, so rank 2 is reached by skipping one row and retaining one row. Stage 4 is the step most attempts omit, and section 4 explains why it is not optional.
 
----
+The same four stages on the degenerate instance:
 
-### Step 4: Scalar Subquery Coercion
-- The outer `SELECT (200) AS SecondHighestSalary` wraps the scalar value.
-- Emits 1 row: `[[200]]`.
+| Stage | Operation | Input state | Output state |
+|:---:|:---|:---|:---|
+| 1 | Deduplicate | $[100]$ | $S = \{100\}$ |
+| 2 | Order from largest to smallest | $\{100\}$ | $[100]$ |
+| 3 | Skip one row, retain one row | $[100]$ | no value remains |
+| 4 | Coerce the exhausted lookup into a scalar projection | no value | one row holding `null` |
 
----
+## 4. The Empty-Set Trap: Zero Rows Versus One Null Row
 
-### Contrast Trace: Single Employee Table `[(1, 100)]`
-1. Distinct salary: $\{100\}$.
-2. Order descending: $[100]$.
-3. `LIMIT 1 OFFSET 1`: Skips $100$. No rows remain. Inner query produces $\emptyset$ (0 rows).
-4. Outer scalar wrapper evaluates $\emptyset$ as `NULL`.
-5. Emits 1 row: `[[null]]`.
+A filter-then-paginate formulation produces *no rows* when the requested rank does not exist. That is a different answer from *one row whose value is* `null`, and the statement demands the latter. The remedy is to place the paginated lookup in an expression position, where the engine treats "no value found" as the scalar `NULL` and still emits exactly one row.
 
----
-
-## 4. Complete Execution Trace
-
-```text
-Table: Employee (salaries: 100, 200, 300)
-
-Step 1: SELECT DISTINCT salary -> { 100, 200, 300 }
-Step 2: ORDER BY salary DESC   -> [ 300, 200, 100 ]
-Step 3: LIMIT 1 OFFSET 1       -> [ 200 ]
-Step 4: Scalar Subquery Output:
-+---------------------+
-| SecondHighestSalary |
-+---------------------+
-| 200                 |
-+---------------------+
+```mermaid
+flowchart TD
+    accTitle: Second highest salary resolution path
+    accDescr: The deduplicated salary list ordered from largest to smallest either holds a value at rank two, which the scalar expression emits, or it does not, in which case the scalar expression evaluates to null and still emits exactly one row.
+    A["Distinct salaries, ordered largest to smallest"] --> B{"At least two distinct values?"}
+    B -- yes --> C["A value exists at rank 2"]
+    B -- no --> D["No value exists at rank 2"]
+    C --> E["Scalar expression yields that salary"]
+    D --> F["Scalar expression yields null"]
+    E --> G["Exactly one row emitted"]
+    F --> G
 ```
 
-| Execution Stage | Input Rows Evaluated | Operation Applied | Intermediate State | Output Contribution |
-|:---:|:---|:---:|:---:|:---:|
-| 1 | `[100, 200, 300]` | `DISTINCT` | $\{100, 200, 300\}$ | Deduplicated |
-| 2 | $\{100, 200, 300\}$ | `ORDER BY DESC` | $[300, 200, 100]$ | Sorted descending |
-| 3 | $[300, 200, 100]$ | `OFFSET 1 LIMIT 1` | `200` | Second distinct picked |
-| **4** | **`200`** | **Scalar `SELECT`** | **Single row `[[200]]`** | **`SecondHighestSalary = 200`** |
+Three candidate formulations of the same idea differ only in their behaviour on the empty case:
 
----
+| Formulation | Rank 2 present | Rank 2 absent | Meets the contract? |
+|:---|:---|:---|:---|
+| Paginate the distinct ordered list | yields $200$ | yields **0 rows** | no |
+| Aggregate the maximum below the global maximum | yields $200$ | maximum over an empty group yields `null` | yes |
+| Scalar-wrapped paginated lookup | yields $200$ | scalar over an empty lookup yields `null` | yes |
 
-## 5. Algorithmic Correctness
+The aggregate variant replaces stage 3 with an exclusion argument: keep only salaries strictly below the global maximum, then take the maximum of what remains. Its correctness rests on the aggregate convention that a maximum over an empty group is `null` rather than an error.
 
-**Soundness.** `DISTINCT` partitions the salary domain into unique equivalence classes. Ordering descending places the true distinct maxima at index 0 and the second distinct maximum at index 1.
+## 5. Why the Reasoning Is Correct
 
-**Completeness.** When fewer than 2 distinct salaries exist, `LIMIT 1 OFFSET 1` returns 0 rows. By the ANSI SQL standard for scalar subqueries, an empty subquery used as an expression evaluates to `NULL`. Wrapping it in an outer `SELECT` without a `FROM` clause guarantees exactly 1 row with `NULL` is returned.
+**Invariant.** Let $S$ be the set of distinct salaries and let $d = \lvert S \rvert$. For every requested rank $k$ with $1 \le k \le d$, the value at zero-based position $k-1$ of the descending ordering of $S$ is exactly the $k$-th highest distinct salary.
 
----
+*Soundness.* Ordering a finite set from largest to smallest lists $s_1 > s_2 > \dots > s_d$, so position $k-1$ holds a value exceeded by exactly the $k-1$ earlier entries and by nothing else in $S$. That is precisely the definition of the $k$-th highest distinct salary, hence the value returned for $k = 2$ is $s_2$.
 
-## 6. Traps This Instance Exposes
+*Completeness.* Every salary that appears anywhere in `Employee` enters $S$ exactly once, so no distinct value can be skipped by the ordering, and deduplication guarantees that a repeated maximum consumes only rank 1. When $d < 2$ the descending list has no position $1$; the lookup then yields no value, and the scalar coercion of that empty lookup produces the `null` the contract requires.
 
-- **Returning Empty Set Instead of NULL:** Without the outer `SELECT (...)` scalar wrapper, `LIMIT 1 OFFSET 1` produces an empty result set on 1-row tables, which fails tests.
-- **Ignoring `DISTINCT`:** If an employer has multiple employees earning 300 (e.g. `[300, 300, 200]`), omitting `DISTINCT` causes `LIMIT 1 OFFSET 1` to return 300 as the "second" salary instead of 200.
-- **Incorrect Column Alias:** LeetCode validates column header names verbatim. The alias must match `SecondHighestSalary` exactly.
+**Why the derivation is order-independent.** The stages consult only the value set, so shuffling rows or renumbering `id` values cannot change the answer. No stage reads a positional attribute of the relation.
 
----
+## 6. Boundary Conditions This Instance Exposes
+
+| Scenario | Instance | Correct answer | Reason |
+|:---|:---|:---|:---|
+| Duplicate maximum | `[(1,200),(2,200),(3,100)]` | `100` | The two $200$ rows form one distinct value occupying rank 1, so rank 2 holds $100$. |
+| All values equal | `[(1,50),(2,50)]` | `null` | $d = 1$, so rank 2 does not exist. |
+| Single employee | `[(1,100)]` | `null` | $d = 1$; an exhausted lookup must still project one row. |
+| Negative salaries | `[(-10),(-30),(-20)]` | `-20` | Ordering is defined on the numeric domain; the second largest of $\{-30,-20,-10\}$ is $-20$. |
+| Exactly two distinct values | `[(1,5),(2,9)]` | `5` | Rank 2 is the smaller value, and no empty case arises. |
+| Non-consecutive identifiers | `id` values $7, 40, 91$ | unaffected | The derivation never reads `id`. |
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N \log N)$ or $O(N)$ with an index on `salary`. Scanning $N$ rows and selecting the top 2 distinct values takes $O(N)$ using quickselect or max-heap tracking.
-- **Auxiliary Space Complexity:** $O(U) \le O(N)$ memory to buffer unique salary values during sorting.
+Let $N$ be the number of rows in `Employee` and $d \le N$ the number of distinct salary values.
+
+| Stage | Work | Cost |
+|:---|:---|:---|
+| Deduplication | one pass over $N$ rows grouping equal salaries | $O(N)$ expected with hashing, $O(N \log N)$ if ordering is used to collapse duplicates |
+| Ordering $d$ values from largest to smallest | comparison sort, or an index scan that already delivers the order | $O(d \log d)$, or $O(d)$ with a usable index |
+| Rank-offset skip and scalar coercion | constant work once the ordered sequence exists | $O(1)$ |
+| Total | ordering dominates | $O(N \log N)$ worst case, $O(N)$ expected with hash deduplication plus a top-two selection |
+
+The last row deserves emphasis: only the two extreme values are needed, so a single pass that tracks the largest value and the largest value strictly below it answers the question in $O(N)$ time without materialising a sorted list at all.
+
+**Auxiliary space.** The generic formulation buffers the $d$ distinct values, giving $O(d) \le O(N)$ auxiliary memory. The streaming top-two refinement needs $O(1)$ auxiliary state. The emitted result is one row and is not counted as auxiliary space.

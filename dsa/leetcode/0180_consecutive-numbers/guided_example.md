@@ -1,191 +1,142 @@
 # Guided Example: Consecutive Numbers
 
-We trace the step-by-step SQL window consecutive evaluation via `LEAD()` lookahead and three-way self-join matching on representative database log tables:
+`Logs` records a value per row, and the row identifiers define the sequence in which those values were written. A number qualifies when it appears on at least three rows that follow one another in that sequence. The result is one row per qualifying number under the column `ConsecutiveNums`, in any order, and an empty result is the correct answer when nothing qualifies.
 
-- **Input Table `Logs`:**
-  - `[(1, "1"), (2, "1"), (3, "1"), (4, "2"), (5, "1"), (6, "2"), (7, "2")]`
-- **Required output:**
-  - `{"columns": ["ConsecutiveNums"], "rows": [["1"]]}`
-- **Insufficient Length Instance:** `Logs = [(1, "5"), (2, "5")] \implies \text{Empty Set}` (Only 2 occurrences, minimum required is 3)
-- **Overlapping Triples Instance:** `Logs = [(1, "1"), (2, "1"), (3, "1"), (4, "1")] \implies [["1"]]` (`DISTINCT` collapses multiple overlapping windows)
+## 1. The Instance and the Meaning of "Consecutive"
 
-This instance demonstrates identifying consecutive sequences using SQL window lookahead functions (`LEAD`), explains why `DISTINCT` is required to prevent duplicate emissions from extended runs ($\ge 4$ rows), handles non-adjacent recurrences of the same value, and analyzes query performance in $O(N)$ time.
+The worked instance is the official seven-row log.
 
----
+| `id` | `num` |
+|:---:|:---:|
+| 1 | 1 |
+| 2 | 1 |
+| 3 | 1 |
+| 4 | 2 |
+| 5 | 1 |
+| 6 | 2 |
+| 7 | 2 |
 
-## 1. Instance & Teaching Goal
+Two readings of "consecutive" are possible, and only one of them is correct here:
 
-Given the `Logs` table:
-$$
-\begin{array}{|c|c|}
-\hline
-\textbf{id} & \textbf{num} \\
-\hline
-1 & \text{"1"} \\
-2 & \text{"1"} \\
-3 & \text{"1"} \\
-4 & \text{"2"} \\
-5 & \text{"1"} \\
-6 & \text{"2"} \\
-7 & \text{"2"} \\
-\hline
-\end{array}
-$$
-Find all numbers that appear **at least three times consecutively** in order of `id`.
+| Reading | Definition used | Status for this problem |
+|:---|:---|:---|
+| Sequence-adjacent | Position $i$ and position $i+1$ in `id` order carry the same value | This is the intended meaning. |
+| Arithmetically adjacent | Identifiers differ by exactly 1, so rows $i$ and $i+1$ pair up | Equivalent only while the identifiers happen to be dense. |
 
-In this table:
-- Value `"1"` appears at IDs $1, 2, 3$ $\implies$ consecutive count is $3 \ge 3$. Valid!
-- Value `"2"` appears at ID $4$ (count 1), and then at IDs $6, 7$ (count 2). Neither run reaches 3.
-- Value `"1"` reappears at ID $5$, but it is isolated from the previous run by ID $4$.
-The query must return a single unique column `ConsecutiveNums` containing `"1"`.
+The distinction matters because the identifiers are described as an autoincrementing primary key, but a sequence is defined by its order rather than by the literal gap between successive key values. Section 4 shows a concrete case where the two readings disagree.
 
----
+## 2. Maximal Runs in `id` Order
 
-## 2. Conceptual Foundation & Invariants
+A **run** of a value $v$ is a maximal block of consecutive positions in the `id`-ordered sequence whose `num` equals $v$. Maximising the block is what makes runs a clean model: every position belongs to exactly one run, and the runs partition the whole sequence.
 
-### Method A: Window Lookahead `LEAD()` (Recommended & Gap-Tolerant)
-```sql
-SELECT DISTINCT num AS ConsecutiveNums
-FROM (
-    SELECT 
-        num,
-        LEAD(num, 1) OVER (ORDER BY id) AS next_1,
-        LEAD(num, 2) OVER (ORDER BY id) AS next_2
-    FROM Logs
-) sub
-WHERE num = next_1 AND num = next_2;
-```
+| Run | Value | Positions (`id`) | Length | Length $\ge 3$? |
+|:---:|:---:|:---|:---:|:---:|
+| 1 | 1 | 1, 2, 3 | 3 | yes |
+| 2 | 2 | 4 | 1 | no |
+| 3 | 1 | 5 | 1 | no |
+| 4 | 2 | 6, 7 | 2 | no |
 
-#### Why `LEAD()` Is Structurally Sound:
-1. `ORDER BY id`: Orders log records chronologically.
-2. `LEAD(num, 1)`: Peeks at the immediately following row's value.
-3. `LEAD(num, 2)`: Peeks at the row two steps ahead.
-4. Filter `num = next_1 AND num = next_2`: Identifies any row that initiates a consecutive run of length $\ge 3$.
-5. Handles ID Gaps: Unlike arithmetic `id + 1 = next_id`, `LEAD` evaluates row ordering directly, remaining correct even if historical rows were deleted.
+The run lengths sum to $3 + 1 + 1 + 2 = 7 = \lvert \texttt{Logs} \rvert$, which confirms that the four runs partition the sequence.
 
-### Method B: Three-Way Self Join
-```sql
-SELECT DISTINCT l1.num AS ConsecutiveNums
-FROM Logs l1
-JOIN Logs l2 ON l1.id = l2.id - 1 AND l1.num = l2.num
-JOIN Logs l3 ON l2.id = l3.id - 1 AND l2.num = l3.num;
-```
-Matches contiguous ID triples $(i, i+1, i+2)$ where values are identical.
+Only run 1 reaches the threshold, so the qualifying value set is $\{1\}$. Notice that value $1$ appears on four rows in total yet still qualifies through one run of length 3; the recurrence at position 5 is a separate run of length 1 and neither extends nor rescues the earlier run. Likewise value $2$ appears three times overall, but split into runs of lengths 1 and 2, so it never qualifies — a total count of three is not the same as three consecutive occurrences.
 
-> **Invariant.** A row qualifies if and only if $\text{num}_{i} = \text{num}_{i+1} = \text{num}_{i+2}$. Wrapping with `DISTINCT` guarantees that runs of length $\ge 3$ emit each qualifying number exactly once.
+| Value | Total occurrences | Maximal run length | Qualifies? | Why |
+|:---:|:---:|:---:|:---:|:---|
+| 1 | 4 | 3 | yes | One run of length 3 satisfies the threshold. |
+| 2 | 3 | 2 | no | Occurrences are split across runs of lengths 1 and 2. |
 
----
+## 3. Sliding Triple Lookahead Over the Sequence
 
-## 3. Step-by-Step Worked Execution
+A run of length at least 3 exists for a value exactly when some position $i$ satisfies
 
-We trace the rows in `Logs` using the lookahead window evaluation:
+$$ \text{num}_i = \text{num}_{i+1} = \text{num}_{i+2}, $$
 
-### Row 1: ID 1, `num = "1"`
-- Next row (ID 2): $\text{next\_1} = \text{"1"}$.
-- Next-next row (ID 3): $\text{next\_2} = \text{"1"}$.
-- Evaluate condition:
-  $$
-  \text{"1"} == \text{"1"} \land \text{"1"} == \text{"1"} \implies \mathbf{True}
-  $$
-- Value `"1"` qualifies! Added to candidate set: `{"1"}`.
+so a single ordered sweep that inspects each position together with its two successors detects every qualifying value. Writing $\text{next}_1(i) = \text{num}_{i+1}$ and $\text{next}_2(i) = \text{num}_{i+2}$, the sweep behaves as follows.
 
----
+| `id` $i$ | `num`$_i$ | next$_1$ | next$_2$ | $\text{num}_i = \text{next}_1 = \text{next}_2$? | Verdict |
+|:---:|:---:|:---:|:---:|:---:|:---|
+| 1 | 1 | 1 | 1 | true | Run of length 3 anchored at positions 1–3 |
+| 2 | 1 | 1 | 2 | false | Triple breaks at position 4 |
+| 3 | 1 | 2 | 1 | false | Triple breaks immediately |
+| 4 | 2 | 1 | 2 | false | Value changes at the next position |
+| 5 | 1 | 2 | 2 | false | Value changes at the next position |
+| 6 | 2 | 2 | past the end | unsatisfiable | Fewer than three positions remain |
+| 7 | 2 | past the end | past the end | unsatisfiable | Fewer than three positions remain |
 
-### Row 2: ID 2, `num = "1"`
-- Next row (ID 3): $\text{next\_1} = \text{"1"}$.
-- Next-next row (ID 4): $\text{next\_2} = \text{"2"}$.
-- Evaluate condition:
-  $$
-  \text{"1"} == \text{"1"} \land \text{"1"} == \text{"2"} \implies \mathbf{False}
-  $$
+Every position that anchors a qualifying run produces a `true` in column five; here only position 1 does. The candidate values collected during the sweep are therefore $\{1\}$, and one projection step emits a single row:
 
----
+| `ConsecutiveNums` |
+|:---:|
+| 1 |
 
-### Row 3: ID 3, `num = "1"`
-- Next row (ID 4): $\text{next\_1} = \text{"2"}$.
-- Next-next row (ID 5): $\text{next\_2} = \text{"1"}$.
-- Condition: $\text{"1"} == \text{"2"} \implies \mathbf{False}$.
+The two trailing positions deserve a comment. There is no successor value for them, so the equality cannot be satisfied. This is a property of comparing against an absent value rather than a special case that needs its own branch: an absent value is never equal to a present one, so the anchor condition simply fails.
 
----
+## 4. Fixed-Offset Triple Matching and Its Fragility
 
-### Row 4: ID 4, `num = "2"`
-- Next row (ID 5): $\text{next\_1} = \text{"1"}$.
-- Condition: $\text{"2"} == \text{"1"} \implies \mathbf{False}$.
+A three-way match over ordered positions can also be expressed by pairing each row with the row one step ahead and the row two steps ahead on the sequence. That formulation is conceptually identical to the lookahead sweep, but the two differ in how they obtain the successor positions.
 
----
+| Aspect | Successor located by key arithmetic | Successor located by sequence order |
+|:---|:---|:---|
+| Depends on identifiers being dense | yes | no |
+| Correct after rows were deleted | no | yes |
+| Cost with a unique index | one probe per pairing, $O(N)$ total | one ordered pass, $O(N)$ total |
+| Cost without a usable index | nested or hash pairing over all rows | an ordering step plus one pass |
+| Behaviour at the end of the sequence | no partner row exists, so the pairing simply yields nothing | successor value is absent, so the comparison is unsatisfied |
+| Duplicate suppression still required | yes | yes |
 
-### Row 5: ID 5, `num = "1"`
-- Next row (ID 6): $\text{next\_1} = \text{"2"}$.
-- Condition: $\text{"1"} == \text{"2"} \implies \mathbf{False}$.
+A concrete instance separates the two. Consider a table whose identifiers are $1, 3, 4$ and whose values are all $9$:
 
----
+| `id` | `num` | Formal successor by order | Successor by key arithmetic |
+|:---:|:---:|:---:|:---:|
+| 1 | 9 | `id` 3 has value 9 | no row with `id` 2 exists |
+| 3 | 9 | `id` 4 has value 9 | row with `id` 4 exists and carries 9 |
+| 4 | 9 | no further row | no row with `id` 5 exists |
 
-### Row 6: ID 6, `num = "2"`
-- Next row (ID 7): $\text{next\_1} = \text{"2"}$.
-- Next-next row: End of table $\implies \text{next\_2} = \text{NULL}$.
-- Condition: $\text{"2"} == \text{NULL} \implies \mathbf{False}$.
+By sequence order the three rows form one run of a single value and it qualifies; by key arithmetic the identifiers are not dense and the run is invisible. The order-based reading is the one the contract describes, so the lookahead formulation is the robust choice.
 
----
+## 5. Why the Reasoning Is Correct
 
-### Row 7: ID 7, `num = "2"`
-- No subsequent rows $\implies \text{next\_1} = \text{NULL}, \text{next\_2} = \text{NULL} \implies \mathbf{False}$.
+**Invariant.** For a value $v$, the following three statements are equivalent: $v$ occurs on at least three consecutive positions; the maximal run of $v$ has length at least 3; and there exists a position $i$ with $\text{num}_i = \text{num}_{i+1} = \text{num}_{i+2} = v$.
 
----
+*Soundness.* If the anchor condition holds at position $i$, then positions $i$, $i+1$ and $i+2$ are consecutive, carry the same value, and form a block of length at least 3, so $v$ genuinely occurs at least three times consecutively. The lookahead never reports a value that fails the requirement.
 
-### Finalization
-- Candidate set: `{"1"}`.
-- Emitted output table: `[["1"]]`.
+*Completeness.* Suppose the maximal run of $v$ has length $L \ge 3$ and starts at position $j$. Then positions $j$, $j+1$ and $j+2$ all carry $v$, so the anchor condition holds at $j$ and the sweep detects the run at its first position. Values whose maximal run is shorter than 3 have no position whose two successors still carry the same value, so they are never reported.
 
----
+*Why duplicate suppression is mandatory.* One run of length $L \ge 3$ satisfies the anchor condition at $L - 2$ different positions, so without projection onto distinct values the same number would be emitted several times.
 
-## 4. Complete Execution Trace
+| Maximal run length $L$ | Anchoring positions, $\max(0, L-2)$ | Required emissions after deduplication |
+|:---:|:---:|:---:|
+| 2 | 0 | 0 |
+| 3 | 1 | 1 |
+| 4 | 2 | 1 |
+| 5 | 3 | 1 |
+| $L$ | $\max(0, L-2)$ | 1 when $L \ge 3$, otherwise 0 |
 
-```text
-Table: Logs
-id:   1    2    3    4    5    6    7
-num: "1"  "1"  "1"  "2"  "1"  "2"  "2"
+## 6. Boundary Conditions This Instance Exposes
 
-Window Evaluation:
-Row 1: num="1", next_1="1", next_2="1" -> MATCH! (Value "1")
-Row 2: num="1", next_1="1", next_2="2" -> No match
-Row 3: num="1", next_1="2", next_2="1" -> No match
-Row 4: num="2", next_1="1", next_2="2" -> No match
-Row 5: num="1", next_1="2", next_2="2" -> No match
-Row 6: num="2", next_1="2", next_2=NULL-> No match
-Row 7: num="2", next_1=NULL,next_2=NULL-> No match
-
-Deduplicated Output: "1"
-```
-
-| ID | `num` | `next_1` (LEAD 1) | `next_2` (LEAD 2) | Match Condition ($\text{num} = \text{next\_1} = \text{next\_2}$) | Action |
-|:---:|:---:|:---:|:---:|:---:|:---:|
-| **1** | **`"1"`** | **`"1"`** | **`"1"`** | **`True`** | **Emit `"1"`** |
-| 2 | `"1"` | `"1"` | `"2"` | `False` | Discard |
-| 3 | `"1"` | `"2"` | `"1"` | `False` | Discard |
-| 4 | `"2"` | `"1"` | `"2"` | `False` | Discard |
-| 5 | `"1"` | `"2"` | `"2"` | `False` | Discard |
-| 6 | `"2"` | `"2"` | `NULL` | `False` | Discard |
-| 7 | `"2"` | `NULL` | `NULL` | `False` | Discard |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** A value qualifies if and only if there exists an anchor index $i$ such that $\text{num}_i = \text{num}_{i+1} = \text{num}_{i+2}$. By checking each row against its immediate two successors in ID order, any sequence of length 3 or greater is detected at its starting position.
-
-**Completeness.** Applying `DISTINCT` eliminates duplicates caused by runs longer than 3 (e.g., a run of 5 consecutive values produces 3 overlapping windows) or runs occurring at separate intervals, ensuring each qualifying number appears exactly once.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Missing `DISTINCT`:** If a number appears four times in a row, rows 1 and 2 both satisfy the condition, causing the number to be emitted twice if `DISTINCT` is omitted.
-- **ID Gaps in Table:** A self-join on `l1.id = l2.id - 1` assumes IDs are strictly sequential integers without gaps. If records were deleted (e.g. IDs $1, 3, 4$), the self-join fails to detect consecutive rows. Window functions like `LEAD()` solve this cleanly.
-- **Null Safety:** `LEAD` at the boundary returns `NULL`. In SQL, `num = NULL` evaluates to `UNKNOWN` (falsy), correctly disqualifying trailing rows.
-
----
+| Scenario | Instance | Result | Reason |
+|:---|:---|:---|:---|
+| Exactly two consecutive occurrences | `id` 1 and 2 both carry value 5 | empty result | The maximal run has length 2, below the threshold. |
+| Exactly three consecutive occurrences | `id` 1, 2, 3 all carry value 1 | one row, value 1 | The threshold is inclusive. |
+| Four consecutive occurrences | `id` 1 to 4 all carry value 2 | one row, value 2 | Overlapping triples collapse under deduplication. |
+| Two separate qualifying values | three consecutive 3s, then three consecutive 4s | rows for 3 and 4 | Each value qualifies through its own run. |
+| Recurrence after a break | three consecutive 1s, then a single 1 later | one row, value 1 | The later occurrence is a separate run of length 1 and neither extends nor merges. |
+| Fewer than three rows in the table | `id` 1 and 2 only | empty result | No position can anchor a triple. |
+| Positions near the end | the last two `id` values | never reported | Their successors are absent, so the equality is unsatisfied. |
+| Empty result is legal | nothing qualifies | zero rows | The contract asks for one row per qualifying value, so an empty relation is a correct answer, not a `null`. |
+| Output order | any qualifying set | any order | The statement accepts any order, so no ordering step is required for correctness. |
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(N \log N)$ or $O(N)$ with an index on `id`. Ordering the rows takes $O(N \log N)$, and computing `LEAD()` takes a single linear sweep $O(N)$.
-- **Auxiliary Space Complexity:** $O(N)$ working memory to buffer the window frame.
+Let $N = \lvert \texttt{Logs} \rvert$ and let $K \le N$ be the number of distinct values in the relation.
+
+| Stage | Work | Cost |
+|:---|:---|:---|
+| Obtain rows in sequence order | ordering by `id`, if the stored order is not already usable | $O(N \log N)$, or $O(N)$ when the primary-key order can be read directly |
+| Sweep once, comparing each position with its two successors | two comparisons per position | $O(N)$ |
+| Collect candidate values and project them onto distinct values | hashing the candidates, or ordering the at most $N$ candidates | $O(N)$ expected, $O(K \log K)$ if ordered |
+| Total | ordering dominates | $O(N \log N)$ worst case; $O(N)$ when sequence order comes for free |
+
+The sweep alone needs only the two successor values of the current position, so it is a streaming computation: it can decide each anchor as soon as the two following rows have been read. It cannot, however, decide the final answer before reading the whole relation, because the last rows of the table are precisely the ones whose successor values are absent.
+
+**Auxiliary space.** Keeping only the current value and its two successors requires $O(1)$ state, while retaining the distinct qualifying values costs $O(K)$ memory for the output set. A windowed implementation that materialises the successors for every row at once uses $O(N)$ buffer space; the streaming variant trades that buffer for a constant amount of state without changing the time bound.

@@ -1,184 +1,141 @@
 # Guided Example: Reverse Words in a String II
 
-We trace the step-by-step two-pass in-place array reversal and word-boundary un-reversal on representative character array instances:
+We trace an in-place word-order reversal on a fifteen-character array, tracking every swap, and then prove why reversing the whole buffer and then reversing each word inside it is the same as moving words without touching their spelling.
 
-- **Input:** $s = [\text{'t'}, \text{'h'}, \text{'e'}, \text{' '}, \text{'s'}, \text{'k'}, \text{'y'}, \text{' '}, \text{'i'}, \text{'s'}, \text{' '}, \text{'b'}, \text{'l'}, \text{'u'}, \text{'e'}]$
-- **Required output:** $[\text{'b'}, \text{'l'}, \text{'u'}, \text{'e'}, \text{' '}, \text{'i'}, \text{'s'}, \text{' '}, \text{'s'}, \text{'k'}, \text{'y'}, \text{' '}, \text{'t'}, \text{'h'}, \text{'e'}]$
-- **Two-Word Instance:** $s = [\text{'a'}, \text{' '}, \text{'b'}] \implies [\text{'b'}, \text{' '}, \text{'a'}]$
-- **Single Word Instance:** $s = [\text{'w'}, \text{'o'}, \text{'r'}, \text{'d'}] \implies [\text{'w'}, \text{'o'}, \text{'r'}, \text{'d'}]$ (Double reversal returns word unchanged)
+- **Representative input:** the character array spelling `"the sky is blue"`, namely `["t","h","e"," ","s","k","y"," ","i","s"," ","b","l","u","e"]`.
+- **Required outcome:** the same array, mutated in place, spelling `"blue is sky the"`, namely `["b","l","u","e"," ","i","s"," ","s","k","y"," ","t","h","e"]`.
+- **Contrasting instances used later:** the single-element array `["a"]`, which must come back unchanged, and a single-word array such as `["c","o","d","e"]`, which also must come back unchanged.
 
-This instance demonstrates in-place sentence word reversal without string allocations, proves why composing a global reversal with intra-word local reversals inverts word order while restoring character order, and operates in strictly $O(N)$ time with $O(1)$ auxiliary space.
+## 1. Instance and Required Outcome
 
----
+The input is a mutable array `s` of single characters of length $N$, here $N = 15$. Words are maximal runs of non-space characters, and the words in `s` are guaranteed to be separated by a single space, with no leading or trailing space and at least one word present. The function returns nothing; its entire effect is the mutation of `s`. The array is indexed $0 \dots N-1$:
 
-## 1. Instance & Teaching Goal
+| Index | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 |
+|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| `s[i]` | `t` | `h` | `e` | ␣ | `s` | `k` | `y` | ␣ | `i` | `s` | ␣ | `b` | `l` | `u` | `e` |
+| Role | word 1 | · | · | separator | word 2 | · | · | separator | word 3 | · | separator | word 4 | · | · | · |
 
-Given a mutable array of characters:
+The requested output keeps the four words, keeps the three separators at positions $3, 7, 10$, and replaces the words in place:
+
+| Index | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 |
+|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| `s[i]` | `b` | `l` | `u` | `e` | ␣ | `i` | `s` | ␣ | `s` | `k` | `y` | ␣ | `t` | `h` | `e` |
+
+A tempting reading of "without allocating extra space" is that the answer should be built somewhere else and copied back. That is not the requirement: the mutation must be achieved by rearranging the existing characters, so the auxiliary state must not grow with $N$.
+
+## 2. The Double-Reversal Identity
+
+Write the array as a sequence of words and separators,
+
 $$
-s = [\text{'t'}, \text{'h'}, \text{'e'}, \text{' '}, \text{'s'}, \text{'k'}, \text{'y'}, \text{' '}, \text{'i'}, \text{'s'}, \text{' '}, \text{'b'}, \text{'l'}, \text{'u'}, \text{'e'}]
-$$
-Reverse the order of words in-place such that $s$ becomes:
-$$
-s = [\text{'b'}, \text{'l'}, \text{'u'}, \text{'e'}, \text{' '}, \text{'i'}, \text{'s'}, \text{' '}, \text{'s'}, \text{'k'}, \text{'y'}, \text{' '}, \text{'t'}, \text{'h'}, \text{'e'}]
-$$
-The problem explicitly requires in-place modification with strictly $O(1)$ extra space.
-
-### The Double-Reversal Principle
-In standard string manipulation, reversing the entire array reverses both the sequence of words **and** the characters inside each word:
-$$
-\text{"the sky is blue"} \xrightarrow{\text{reverse all}} \text{"eulb si yks eht"}
-$$
-Notice:
-- The words are now in the correct global positions (`"blue"` is first, `"the"` is last).
-- However, each individual word is reversed internally (`"blue"` is spelled `"eulb"`).
-If we now reverse each individual word locally:
-$$
-\text{"eulb"} \to \text{"blue"}, \quad \text{"si"} \to \text{"is"}, \quad \text{"yks"} \to \text{"sky"}, \quad \text{"eht"} \to \text{"the"}
-$$
-The words retain their reversed positions while their internal characters return to original left-to-right spelling!
-
----
-
-## 2. Conceptual Foundation & Invariants
-
-### In-Place Two-Pointer Reversal Protocol
-Define a helper function $\text{reverse}(L, R)$ that swaps characters from both ends inward until pointers meet:
-```python
-def reverse(L, R):
-    while L < R:
-        s[L], s[R] = s[R], s[L]
-        L += 1
-        R -= 1
-```
-
-### Execution Pipeline:
-1. **Pass 1: Reverse Entire Array ($0 \dots N - 1$):**
-   $$
-   \text{reverse}(0, N - 1)
-   $$
-2. **Pass 2: Reverse Each Word:**
-   Maintain word boundary pointer $\text{start} = 0$.
-   Iterate $\text{end}$ from $0$ to $N$:
-   - If $\text{end} == N$ or $s[\text{end}] == \text{' '}$:
-     The current word spans $[ \text{start}, \, \text{end} - 1 ]$.
-     $$
-     \text{reverse}(\text{start}, \, \text{end} - 1)
-     $$
-     $$
-     \text{start} \leftarrow \text{end} + 1
-     $$
-
-> **Invariant.** After Pass 1, word positions are fully inverted, but words are mirrored internally. After Pass 2, each individual word is un-mirrored, restoring genuine English word order.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-We trace $s = [\text{'t','h','e',' ','s','k','y',' ','i','s',' ','b','l','u','e'}]$ ($N = 15$):
-
-### Pass 1: Global Array Reversal
-Call $\text{reverse}(0, 14)$:
-- Swapping $(0, 14)$: `'t'` $\leftrightarrow$ `'e'`
-- Swapping $(1, 13)$: `'h'` $\leftrightarrow$ `'u'`
-- Swapping $(2, 12)$: `'e'` $\leftrightarrow$ `'l'`
-- Swapping $(3, 11)$: `' '` $\leftrightarrow$ `'b'`
-- Swapping $(4, 10)$: `'s'` $\leftrightarrow$ `' '`
-- Swapping $(5, 9)$: `'k'` $\leftrightarrow$ `'s'`
-- Swapping $(6, 8)$: `'y'` $\leftrightarrow$ `'i'`
-- Index $7$ (`' '`) remains at center.
-
-Result after Pass 1:
-$$
-s = [\text{'e','u','l','b',' ','s','i',' ','y','k','s',' ','e','h','t'}]
-$$
-*(Notice: word positions are blue, is, sky, the, but characters are mirrored!)*
-
----
-
-### Pass 2: Un-reverse Individual Words
-
-#### Word 1: Indices $[0, 3]$ (`"eulb"`)
-- Detected space at index $4$.
-- Call $\text{reverse}(0, 3)$:
-  - Swap $(0, 3)$: `'e'` $\leftrightarrow$ `'b'`
-  - Swap $(1, 2)$: `'u'` $\leftrightarrow$ `'l'`
-  - Becomes: `"blue"`.
-- Next word start: $\text{start} = 4 + 1 = 5$.
-
-#### Word 2: Indices $[5, 6]$ (`"si"`)
-- Detected space at index $7$.
-- Call $\text{reverse}(5, 6)$:
-  - Swap $(5, 6)$: `'s'` $\leftrightarrow$ `'i'`
-  - Becomes: `"is"`.
-- Next word start: $\text{start} = 7 + 1 = 8$.
-
-#### Word 3: Indices $[8, 10]$ (`"yks"`)
-- Detected space at index $11$.
-- Call $\text{reverse}(8, 10)$:
-  - Swap $(8, 10)$: `'y'` $\leftrightarrow$ `'s'`
-  - Index $9$ (`'k'`) stays in place.
-  - Becomes: `"sky"`.
-- Next word start: $\text{start} = 11 + 1 = 12$.
-
-#### Word 4: Indices $[12, 14]$ (`"eht"`)
-- Detected end of array at $\text{end} = 15$.
-- Call $\text{reverse}(12, 14)$:
-  - Swap $(12, 14)$: `'e'` $\leftrightarrow$ `'t'`
-  - Index $13$ (`'h'`) stays in place.
-  - Becomes: `"the"`.
-
-Final in-place state of $s$:
-$$
-[\text{'b','l','u','e',' ','i','s',' ','s','k','y',' ','t','h','e'}]
+s = W_1 \;\text{␣}\; W_2 \;\text{␣}\; \dots \;\text{␣}\; W_k ,
 $$
 
----
+with $k = 4$ in this instance and word lengths $\lvert W_1 \rvert = 3$, $\lvert W_2 \rvert = 3$, $\lvert W_3 \rvert = 2$, $\lvert W_4 \rvert = 4$. Let $\mathrm{rev}(L, R)$ denote the operation that swaps the characters at positions $L$ and $R$, then $L+1$ and $R-1$, and so on until the two indices meet or cross. Applied to a substring $W$, it produces the character-wise reverse $W^{R}$.
 
-## 4. Complete Execution Trace
+Two facts drive the whole method.
 
-```text
-Initial Array:
-"the sky is blue"
+1. **Reversal is an involution.** Applying $\mathrm{rev}$ twice to the same range restores the original order, because every swap is undone by itself: $(W^{R})^{R} = W$.
+2. **A global reversal reverses the word sequence too.** The separators are single characters and hence their own reverses, and their positions are symmetric about the centre of the array, so
 
-Pass 1 (Reverse All):
-"eulb si yks eht"
+$$
+\mathrm{rev}(0, N-1)\bigl(W_1 \;\text{␣}\; \dots \;\text{␣}\; W_k\bigr) = W_k^{R} \;\text{␣}\; \dots \;\text{␣}\; W_1^{R}.
+$$
 
-Pass 2 (Reverse Words):
-  reverse(0, 3):   "eulb" -> "blue"   --> "blue si yks eht"
-  reverse(5, 6):   "si"   -> "is"     --> "blue is yks eht"
-  reverse(8, 10):  "yks"  -> "sky"    --> "blue is sky eht"
-  reverse(12, 14): "eht"  -> "the"    --> "blue is sky the"
+Composing the two operations reverses each word block again, and by fact 1 every spelling is restored:
 
-Result: "blue is sky the"
-```
+$$
+\bigl(\text{global reversal}\bigr) \;\text{then}\; \bigl(\text{reversal of each word block}\bigr) \;=\; W_k \;\text{␣}\; \dots \;\text{␣}\; W_1 .
+$$
 
-| Pass | Target Range $[L, R]$ | Substring Before | Action Taken | Substring After | Full Array State |
+That is the requested outcome: the word *sequence* is inverted while every word's *internal* order is preserved.
+
+> **Invariant.** After pass one the words occupy their final positions but are mirrored internally. After pass two every word block is un-mirrored, so the final state is the word-reversed sentence with all characters in their original spelling.
+
+## 3. Pass One: Reversing the Whole Array
+
+Pass one applies $\mathrm{rev}(0, 14)$. The two indices approach the centre, so exactly $\lfloor N/2 \rfloor = 7$ swaps occur and index $7$ is never touched.
+
+| Swap | Left index $L$ | Right index $R$ | Exchanged characters | Array after the swap (spaces shown as ␣) |
+|:---:|:---:|:---:|:---|:---|
+| 1 | 0 | 14 | `t` ↔ `e` | `e h e ␣ s k y ␣ i s ␣ b l u t` |
+| 2 | 1 | 13 | `h` ↔ `u` | `e u e ␣ s k y ␣ i s ␣ b l h t` |
+| 3 | 2 | 12 | `e` ↔ `l` | `e u l ␣ s k y ␣ i s ␣ b e h t` |
+| 4 | 3 | 11 | ␣ ↔ `b` | `e u l b s k y ␣ i s ␣ ␣ e h t` |
+| 5 | 4 | 10 | `s` ↔ ␣ | `e u l b ␣ k y ␣ i s s ␣ e h t` |
+| 6 | 5 | 9 | `k` ↔ `s` | `e u l b ␣ s y ␣ i k s ␣ e h t` |
+| 7 | 6 | 8 | `y` ↔ `i` | `e u l b ␣ s i ␣ y k s ␣ e h t` |
+| — | 7 | 7 | none (indices meet) | `e u l b ␣ s i ␣ y k s ␣ e h t` |
+
+After pass one the array is `eulb si yks eht`. The words are already in the right order — `blue`, `is`, `sky`, `the` — but each reads backwards. The separators have moved too, yet they land exactly where they belong, because reversing a sentence reverses the gaps between words along with the words themselves.
+
+## 4. Pass Two: Restoring Each Word's Spelling
+
+Pass two scans the buffer from left to right, finds each maximal non-space block, and reverses that block. Because the separator positions are now fixed, the blocks are contiguous and disjoint.
+
+| Block | Detected range | Content before | Reversal applied | Content after | Array state (spaces shown as ␣) |
 |:---:|:---:|:---:|:---:|:---:|:---|
-| **1** | $[0, 14]$ | `"the sky is blue"` | Global Reversal | `"eulb si yks eht"` | `"eulb si yks eht"` |
-| 2a | $[0, 3]$ | `"eulb"` | Word Reversal | `"blue"` | `"blue si yks eht"` |
-| 2b | $[5, 6]$ | `"si"` | Word Reversal | `"is"` | `"blue is yks eht"` |
-| 2c | $[8, 10]$ | `"yks"` | Word Reversal | `"sky"` | `"blue is sky eht"` |
-| **2d** | **$[12, 14]$** | **`"eht"`** | **Word Reversal** | **`"the"`** | **`"blue is sky the"` (Final)** |
+| 1 | $[0, 3]$ | `eulb` | $\mathrm{rev}(0,3)$: `e`↔`b`, `u`↔`l` | `blue` | `blue ␣ si ␣ yks ␣ eht` |
+| 2 | $[5, 6]$ | `si` | $\mathrm{rev}(5,6)$: `s`↔`i` | `is` | `blue ␣ is ␣ yks ␣ eht` |
+| 3 | $[8, 10]$ | `yks` | $\mathrm{rev}(8,10)$: `y`↔`s`, `k` unmoved | `sky` | `blue ␣ is ␣ sky ␣ eht` |
+| 4 | $[12, 14]$ | `eht` | $\mathrm{rev}(12,14)$: `e`↔`t`, `h` unmoved | `the` | `blue ␣ is ␣ sky ␣ the` |
 
----
+Each block costs $\lfloor \lvert W_j \rvert / 2 \rfloor$ swaps: 1, 1, 1 and 1 respectively here. Odd-length blocks leave their middle character untouched, which is why `k` and `h` never move during pass two.
 
-## 5. Algorithmic Correctness
+## 5. Finding the Word Boundaries With Constant Extra State
 
-**Soundness.** Let the sentence be composed of $k$ words $W_1, W_2, \dots, W_k$. Reversing the whole array transforms the sequence into $W_k^R, \dots, W_2^R, W_1^R$, where $W^R$ denotes the reverse of word $W$. Reversing each word locally applies the identity $(W^R)^R = W$, restoring the spelling while preserving the inverted order $W_k, \dots, W_1$.
+Pass two needs no delimiter list and no token copies. It keeps a single integer, the start index of the current block, and advances an end index one position at a time. A block ends in one of two ways, and both must be handled:
 
-**Completeness.** Since words are strictly single-space delimited and there are no leading or trailing spaces, every non-space interval is parsed and un-reversed. The trailing word is handled at $\text{end} = N$.
+- a separator character is met at position `end`, in which case the block is $[\text{start}, \text{end}-1]$ and the next block begins at `end + 1`; or
+- the end of the array is reached, in which case the block is $[\text{start}, N-1]$ and the scan stops.
 
----
+The second case is the one that is easy to omit, and omitting it leaves only the last word of every sentence reversed. It fires here for the block `eht` at $[12, 14]$, the only block not terminated by a space. Because the statement guarantees single-space separation with no leading or trailing space, no empty block can be produced.
 
-## 6. Traps This Instance Exposes
+| Boundary condition | Guarantee used | Consequence if the code assumed otherwise |
+|:---|:---|:---|
+| Last word not followed by a space | none needed — the end of the array terminates it | The final word stays mirrored |
+| No leading or trailing spaces | stated explicitly | An empty first or last block would be reversed pointlessly |
+| Exactly one space between words | stated explicitly | Runs of spaces would create empty blocks and could break the skip |
+| At least one word present | stated explicitly | An all-space buffer would produce no blocks at all |
 
-- **Missing the Final Word:** Because the last word is terminated by the end of the array rather than a space character, failing to check `end == N` leaves the final word backwards.
-- **Using External Memory:** Calling `s = " ".join(s.split()[::-1])` allocates a new string and list of tokens, violating the $O(1)$ extra memory requirement.
-- **Single Word Array:** If $s = [\text{'a'}, \text{'b'}, \text{'c'}]$, Pass 1 produces `cba`, and Pass 2 un-reverses it back to `abc`, returning the correct unchanged single word.
+## 6. Correctness of the Composition
 
----
+**Soundness.** Let the input be $W_1 \dots W_k$ with single-space separators. Pass one produces $\mathrm{rev}(0, N-1)(s) = W_k^{R} \dots W_1^{R}$ by the identity of section 2. Pass two reverses each maximal non-space block, which is exactly the range occupied by some $W_j^{R}$, turning it into $(W_j^{R})^{R} = W_j$. The final array is therefore $W_k \dots W_1$, the word order the task asks for.
 
-## 7. Complexity Derivation
+**Completeness.** Every non-space character lies in exactly one maximal block, and every block is visited because the scan runs to the end of the array and the two termination cases cover both ways a block can end. No word is left mirrored.
 
-- **Time Complexity:** $O(N)$, where $N$ is the length of array $s$. Pass 1 performs $\lfloor N / 2 \rfloor$ swaps. Pass 2 touches each character exactly once during word reversals. Total operations are strictly bounded by $2N = O(N)$.
-- **Auxiliary Space Complexity:** $O(1)$ strictly constant memory, operating purely in-place on $s$.
+**Purity and degenerate lengths.** Both passes only swap characters inside the buffer, so the result is a permutation of the input multiset: separators stay separators and word lengths are unchanged. A word of length one is its own reverse, so single-character words are unaffected; a single-word array is reversed twice overall and returns to its original spelling.
+
+## 7. Boundary and Trap Analysis
+
+| Instance | Input | Expected result | Why it matters |
+|:---|:---|:---|:---|
+| Single character | `["a"]` | `["a"]` | Pass one has $\lfloor 1/2 \rfloor = 0$ swaps and pass two one trivial block |
+| Single word | `["c","o","d","e"]` | `["c","o","d","e"]` | Global reversal followed by a local reversal is an exact cancellation |
+| Every word one character | `["a"," ","b"," ","c"]` | `["c"," ","b"," ","a"]` | Blocks of length one cost no swaps; only the word order changes |
+| Two words of unequal length | `["h","i"," ","w","o","r","l","d"]` | `["w","o","r","l","d"," ","h","i"]` | The global pass moves characters across the whole buffer, not word by word |
+| Digits and capitals | `["A","1"," ","b","2"]` | `["b","2"," ","A","1"]` | The method is purely positional and never inspects character classes |
+| Trailing word of the buffer | any sentence | last word correctly spelled | The block terminated by the array end must be reversed too |
+| Token-based rewrite | any sentence | correct string, wrong cost | Splitting into tokens and rejoining allocates $O(N)$ extra space and violates the in-place requirement |
+
+The last row is the one to internalize: a token-splitting rewrite is easy to write and produces the right answer, but its auxiliary space grows linearly with the input, so it fails the stated constraint regardless of its output.
+
+## 8. Complexity Derivation
+
+Let $N = \lvert s \rvert$ and let the word lengths be $\ell_1, \dots, \ell_k$, with $\sum_j \ell_j = N - (k-1)$ because $k-1$ positions are separators.
+
+**Time.** Pass one performs exactly $\lfloor N/2 \rfloor$ swaps, and pass two performs $\sum_{j=1}^{k} \lfloor \ell_j / 2 \rfloor$ swaps. The boundary scan visits each index once. Hence
+
+$$
+T(N) = \left\lfloor \frac{N}{2} \right\rfloor + \sum_{j=1}^{k} \left\lfloor \frac{\ell_j}{2} \right\rfloor + O(N) = O(N),
+$$
+
+and more sharply the total number of character writes is at most $N$: each character is touched a constant number of times, and no ordering comparison is ever performed.
+
+**Auxiliary space.** The only state beyond the buffer itself is the pair of indices used by the reversal plus the block start and end indices — a constant number of integers:
+
+$$
+S(N) = O(1).
+$$
+
+This is why the method satisfies the in-place requirement. The token-splitting rewrite instead stores a list of $k$ tokens plus a fresh output buffer, giving $S(N) = O(N)$ and failing the constraint even though its time bound is the same.

@@ -1,153 +1,301 @@
 # Guided Example: Customer Placing the Largest Number of Orders
 
-We trace the step-by-step order grouping by customer ID (`GROUP BY customer_number`), order cardinality counting (`COUNT(1)`), descending frequency ranking (`ORDER BY COUNT(1) DESC`), top-1 singular winner slicing (`LIMIT 1`), and customer number projection on representative transaction tables:
+We trace one aggregation whose result is a single scalar drawn from a ranking. The
+instance is chosen because it exposes the difference between a *count* and the
+*identity of the thing that was counted*: one customer wins with two orders while
+the remaining two customers are tied at one, so the answer is decided by a strict
+margin but the ordering of everything below the winner is not.
 
-- **Input:**
-  - `orders` table:
+- **Input relation** `Orders`, keyed by `order_number`:
+
     | `order_number` | `customer_number` |
     |:---:|:---:|
     | $1$ | $1$ |
     | $2$ | $2$ |
-    | $3$ | $2$ |
-    | $4$ | $1$ |
-    | $5$ | $2$ |
-- **Required output:**
-  | `customer_number` |
-  |:---:|
-  | $2$ |
-  - Business query contract: Identify the `customer_number` of the customer who has placed the **largest total number of orders**.
-  - Problem guarantee: Exactly one customer has strictly more orders than all other customers in all test cases.
-- **Relational Aggregation & Top-1 Ranking Trace:**
-  - **Step 1: Group Orders by `customer_number`:**
-    - Scan the `orders` relation and partition rows into buckets:
-      - **Bucket `customer_number = 1`:**
-        - Contains order $1$ and order $4$.
-        - Order count:
-          $$
-          \text{COUNT}(1) = 1 + 1 = \mathbf{2}
-          $$
-      - **Bucket `customer_number = 2`:**
-        - Contains order $2$, order $3$, and order $5$.
-        - Order count:
-          $$
-          \text{COUNT}(1) = 1 + 1 + 1 = \mathbf{3}
-          $$
-  - **Step 2: Order Aggregated Groups by Frequency (DESC):**
-    - Sort group totals in descending order:
-      1. `customer_number = 2`: $3$ orders (**Highest!**)
-      2. `customer_number = 1`: $2$ orders
-  - **Step 3: Extract Leading Customer with `LIMIT 1`:**
-    - Taking the first row of the sorted stream yields:
-      $$
-      customer\_number = \mathbf{2}
-      $$
-- **High-Volume Customer Instance:**
-  - If Customer 5 places 100 orders and Customer 1 places 1 order $\implies$ Customer 5 is extracted.
-- **Single Order Table ($N = 1$):**
-  - Group size is 1 $\implies$ that single customer is returned immediately.
+    | $3$ | $3$ |
+    | $4$ | $3$ |
 
-This instance demonstrates hash-based categorical group aggregation and descending plurality extraction in relational databases, mathematically proves why top-1 truncation isolates the unique mode of a discrete distribution, and derives $O(N \log K)$ execution time and $O(K)$ space bounds.
+- **Required output** — the identifier of the customer with the most orders:
+
+    | `customer_number` |
+    |:---:|
+    | $3$ |
+
+The contract adds a guarantee that makes the answer unique: the test data are
+generated so that **exactly one** customer has placed more orders than any other
+customer. This instance realises that guarantee with a margin of exactly one
+order, which is the tightest margin the guarantee permits.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-Given an `orders` table with `order_number` and `customer_number`:
-Find the `customer_number` of the customer who placed the **most orders**.
+Report the `customer_number` of the customer who has placed the largest number of
+orders. The contract is guaranteed to admit a unique winner, so the result is a
+single row containing a single identifier.
 
-```text
-Orders Breakdown:
-  Customer 1: Orders [1, 4]       -> Total = 2 orders
-  Customer 2: Orders [2, 3, 5]    -> Total = 3 orders  <-- Most!
+The lesson is the two-step nature of the problem. The count of orders is
+computed *per customer*, which requires grouping; the selection of the winner is
+then a *maximum over the group sizes*, which requires a ranking. A method that
+performs only the first step has a table of counts and no answer, and a method
+that performs only the second has nothing to rank.
 
-Winner: Customer 2
-```
+### Counting and identifying are different columns
 
-### The Group-Count-Limit Pattern
-- The relational pipeline follows standard SQL group-by analytics:
-  1. `GROUP BY customer_number` aggregates all transactions belonging to each customer.
-  2. `COUNT(1)` tallies the number of rows in each group.
-  3. `ORDER BY COUNT(1) DESC` ranks customers from highest order volume to lowest.
-  4. `LIMIT 1` extracts the singular highest-volume customer.
+It is essential to keep the grouping key and the aggregate separate:
+
+| Quantity | Meaning | Value for customer $1$ | Value for customer $2$ | Value for customer $3$ | Role in the answer |
+|:---|:---|:---:|:---:|:---:|:---|
+| `customer_number` | the group identity | $1$ | $2$ | $3$ | what must be returned |
+| group size | number of orders in the group | $1$ | $1$ | $2$ | what must be compared |
+| `order_number` values | the members of the group | $1$ | $2$ | $3, 4$ | witness that the count is right |
+
+The returned value is a label, not a quantity. A method that ranks correctly but
+projects the group size returns $2$ instead of $3$ — a plausible-looking number
+that fails the schema.
 
 ---
 
-## 2. Conceptual Foundation & Invariants
+## 2. The Grouping and Ranking Invariant
 
-### 1. The Relational Query:
-```sql
-SELECT customer_number
-FROM orders
-GROUP BY customer_number
-ORDER BY COUNT(1) DESC
-LIMIT 1;
-```
+Let $G_k = \{\, o \in \texttt{Orders} : o.\texttt{customer\_number} = k \,\}$ be
+the set of orders belonging to customer $k$, and let $n_k = \lvert G_k \rvert$ be
+that customer's order count.
 
-### 2. Guarantees:
-- By problem contract, the maximum order count is strictly unique; no tie-breaking logic is necessary.
+> **Partition-and-rank invariant.** Grouping by `customer_number` partitions
+> `Orders` into disjoint sets, one per distinct customer, so
+> $\sum_k n_k = N$ where $N = \lvert \texttt{Orders} \rvert$. The maximum order
+> count is therefore $\max_k n_k$, and the winner is the unique $k^\star$ with
+> $n_{k^\star} = \max_k n_k$.
 
-> **Mode Isolation Invariant.** Grouping by discrete entity identifiers and ordering by group size descending isolates the unique mathematical mode of the transaction stream.
+Three properties of this invariant drive the whole method.
+
+1. **The partition is exhaustive and disjoint.** Every order belongs to exactly
+   one customer, so every order is counted once and no order is counted twice.
+   This is why the sum of the group sizes recovers the input size exactly.
+2. **The comparison is over group sizes, not over the rows.** The ranking must be
+   applied after aggregation; comparing raw `order_number` values would compare
+   transaction identifiers, which carry no information about volume.
+3. **The maximiser is unique by contract.** Because exactly one customer attains
+   the maximum, the ranking is a total order at its head and any tie-breaking
+   policy is vacuous. Without that guarantee the answer would be a *set* of
+   customers, and the method would have to change.
+
+### Why the maximum must be a strict maximum here
+
+The instance has two customers tied at one order each. That tie is below the
+winner, so it does not threaten the answer — but it does illustrate the
+boundary. If the guarantee were removed and two customers both had two orders,
+then selecting the first row of a count-ordered list would return an arbitrary
+one of them, and the choice could depend on scan order. Under the stated
+guarantee, no such ambiguity exists:
+
+| Distribution of order counts | Unique maximiser? | Correct output shape |
+|:---|:---:|:---|
+| $(2, 1, 1)$ — this instance | Yes, customer $3$ | one row |
+| $(3, 1, 1, 1)$ | Yes, the customer with $3$ | one row |
+| $(2, 2, 1)$ | No | every customer attaining the maximum |
+| $(1)$ | Yes, the sole customer | one row |
+
+### Relational formulation
+
+Two stages suffice. The first groups the order relation by the customer
+identifier and computes, per group, the number of member rows — a cardinality
+aggregate over the grouping key. The second orders those aggregated groups by
+their cardinality from greatest to least and retains only the leading group,
+projecting the customer identifier and discarding the count. In prose: *partition
+by customer, count rows per partition, take the argmax*. The concrete spelling of
+the aggregation and the truncation belongs to the Reference workflow.
+
+An equivalent single-pass formulation tracks, for each customer, a running count
+in a map and remembers the best-so-far key. That view makes the linear-time
+character of the computation explicit, since it never materialises the sorted
+list of groups.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-We trace the sample data:
+### Step 1 — Partition the orders by customer
+
+| Scan order | `order_number` | `customer_number` | Destination group |
+|:---:|:---:|:---:|:---|
+| $1$ | $1$ | $1$ | $G_1$ |
+| $2$ | $2$ | $2$ | $G_2$ |
+| $3$ | $3$ | $3$ | $G_3$ |
+| $4$ | $4$ | $3$ | $G_3$ |
+
+After the scan the partition is
+
+$$
+G_1 = \{1\}, \qquad G_2 = \{2\}, \qquad G_3 = \{3, 4\}.
+$$
+
+### Step 2 — Compute the cardinality of each group
+
+| Customer $k$ | Group $G_k$ | $\lvert G_k \rvert = n_k$ |
+|:---:|:---|:---:|
+| $1$ | $\{1\}$ | $1$ |
+| $2$ | $\{2\}$ | $1$ |
+| $3$ | $\{3, 4\}$ | $2$ |
+
+The counts sum to $1 + 1 + 2 = 4 = N$, confirming that the partition accounts for
+every order exactly once.
+
+### Step 3 — Rank the groups by cardinality, descending
+
+| Rank | Customer $k$ | $n_k$ | Retained? |
+|:---:|:---:|:---:|:---|
+| $1$ | $3$ | $2$ | Yes — the maximiser |
+| $2$ | $1$ | $1$ | No — truncated |
+| $3$ | $2$ | $1$ | No — truncated |
+
+Customers $1$ and $2$ are tied; the secondary order between them is immaterial
+because the truncation keeps only rank $1$, and the guarantee ensures rank $1$ is
+not shared.
+
+### Step 4 — Project the group identity
+
+The leading group's identity is customer $3$, and the count $2$ is working state
+rather than output:
+
+| `customer_number` |
+|:---:|
+| $3$ |
 
 ---
 
-### Step 1: Bucket Orders
-- Customer 1: orders 1, 4 $\to$ count = 2.
-- Customer 2: orders 2, 3, 5 $\to$ count = 3.
+## 4. Why the Reasoning Is Correct
+
+**Every customer's count is exact.** Grouping compares `customer_number` by
+equality, so two orders fall in the same group precisely when their customer
+identifiers are equal. Each group therefore contains exactly the orders placed by
+one customer, and its cardinality is that customer's order volume. The partition
+is disjoint, so no order contributes to two groups, and exhaustive, so no order
+is left uncounted.
+
+**The ranked head is the maximum.** Ordering the groups by cardinality from
+greatest to least places a group with the largest count first. If several groups
+shared the largest count, they would occupy adjacent leading positions, and the
+guarantee that the maximiser is unique makes the leading position unambiguous.
+
+**The projected value is the winner's identifier.** The retained group is the one
+belonging to the maximiser, and its grouping key is the winning
+`customer_number`. Projecting the key rather than the cardinality yields the
+required identifier; this is the step where a correct ranking can still produce a
+wrong answer if the wrong column is projected.
+
+**The method does not depend on order of appearance.** The count of a group is a
+set cardinality, invariant under permutation of the input rows, and the ranking
+compares counts rather than positions. A winner that appears only in the final
+row of the relation is found exactly as quickly, which matters because the
+generator may place the winner anywhere.
+
+**Ties below the winner are harmless.** The instance contains a genuine tie at
+one order. Because the truncation keeps only the leading position and the
+maximiser is strictly ahead, the tie never reaches the output. Under the stated
+guarantee this is sound; without it, a single-row output would be unjustified.
 
 ---
 
-### Step 2: Sort by Count Descending
-1. Customer 2 (count: 3)
-2. Customer 1 (count: 2)
+## 5. Boundary and Degenerate Cases
+
+| Instance | Group cardinalities | Output | Teaching point |
+|:---|:---|:---|:---|
+| Single order in the relation | $(1)$ | the only `customer_number` | Aggregation over one group is still aggregation; the ranking is vacuous |
+| Several customers, all with one order each | all $1$ | ill-defined under a single-row contract | The guarantee forbids this input; the method relies on it |
+| One customer with $2$ orders, all others with $1$ | $(2, 1, \dots, 1)$ | the customer with $2$ | The guarantee is satisfied with the smallest possible margin |
+| One dominant customer ahead by many orders | $(m, 1, \dots, 1)$ | the dominant customer | Margin size is irrelevant to correctness |
+| Customer identifiers sparse, e.g. `2`, `40`, `100` | unchanged | the largest-count key, whatever its numeric size | Keys are labels; magnitude carries no meaning and creates no bias |
+| Winner placed last in the relation | unchanged | the winner | Counting is order-insensitive |
+| A tie for the maximum | two or more equal maxima | contract violated | The correct general method must return all tied customers |
+
+The follow-up question in the source asks exactly about the last row: what if more
+than one customer has the largest number of orders. The answer is that the
+truncation step must be replaced by a comparison against the computed maximum —
+retain every group whose cardinality equals $\max_k n_k$. That change turns a
+top-one selection into a selection by value and makes the output cardinality
+data-dependent.
 
 ---
 
-### Step 3: Apply `LIMIT 1`
-- Customer 2 is selected.
-- Project `customer_number`:
-  $$
-  \mathbf{2}
-  $$
+## 6. Traps This Instance Exposes
 
----
-
-## 4. Complete Execution Trace
-
-| `customer_number` | Order Numbers | Aggregated `COUNT(1)` | Sorted Rank | Selected by `LIMIT 1`? |
-|:---:|:---:|:---:|:---:|:---:|
-| **$2$** | $2, 3, 5$ | **$3$** | **$1$** | **Yes (`2`)** |
-| $1$ | $1, 4$ | $2$ | $2$ | No |
-
----
-
-## 5. Boundary Cases & Failure Modes
-
-- **Single Order in Table:** Count is 1; customer is returned.
-- **Many Customers with 1 Order Each Except One with 2:** The single customer with 2 orders is placed at rank 1 and returned.
-- **Large Dataset ($10^5$ rows):** Hash-grouping aggregates all orders in a single linear pass over the table.
-
----
-
-## 6. Traps & Common Anti-Patterns
-
-- **Subquery with `MAX(COUNT(*))` ($O(N^2)$):** Writing nested subqueries to compute the maximum count before filtering requires multiple passes. Direct `ORDER BY COUNT(1) DESC LIMIT 1` is handled in a single pass using a size-1 heap.
-- **Projecting `COUNT(1)` Instead of `customer_number`:** The query must return the customer's ID, not the number of orders they placed.
-- **Sorting Ascending:** Forgetting `DESC` returns the customer with the *fewest* orders.
+- **Projecting the count instead of the customer:** Ranking correctly and then
+  returning the group size yields $2$, not $3$. The schema requires an
+  identifier.
+- **Ordering ascending:** Ranking by cardinality from least to greatest puts the
+  winner last and, after a single-row truncation, returns a customer with one
+  order.
+- **Ranking raw rows instead of groups:** Comparing `order_number` values
+  compares transaction identifiers, not volumes, and would be right on this
+  instance only by coincidence.
+- **Grouping by the wrong column:** Grouping by `order_number` makes every group
+  a singleton, so every customer appears to have one order and the winner cannot
+  be found at all.
+- **Computing the maximum in a nested aggregate:** Deriving the maximum count in
+  one pass and then filtering the groups in a second is correct but easy to write
+  in a way that rescans the relation per group, degrading a linear aggregation
+  into quadratic work on large inputs.
+- **Relying on `LIMIT 1` without a deterministic order:** Truncation without a
+  ranking keeps an arbitrary group, so the answer would depend on plan choice
+  rather than on the data.
+- **Assuming the winner is the numerically largest identifier:** Customer $3$
+  wins here while customer $2$ does not; identifier magnitude is unrelated to
+  order volume.
+- **Distinct-counting the orders:** Every order number is unique because it is the
+  primary key, so counting distinct values of either column gives the wrong
+  quantity — the requirement is the number of order rows per customer.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:**
-  - Let $N$ be the number of rows in `orders` and $K$ be the number of distinct customers.
-  - Grouping and counting: $\mathcal{O}(N)$ using hash aggregation.
-  - Slicing top 1 with `ORDER BY ... DESC LIMIT 1`: $\mathcal{O}(K \log K)$ (or $\mathcal{O}(K)$ with top-1 min-heap).
-  - Total Time: $\mathcal{O}(N + K \log K)$. For $N = 10^5, K = 1000$, completes in $< 15$ ms.
-- **Auxiliary Space Complexity:**
-  - $\mathcal{O}(K)$ space to maintain the hash map of customer order counts.
+Let $N = \lvert \texttt{Orders} \rvert$ and let $K$ be the number of distinct
+`customer_number` values, so $K \le N$.
+
+**Aggregation.** A hash-based grouping maintains one counter per distinct
+customer and updates it once per order row, so it costs expected $\Theta(N)$ and
+never inspects any customer twice. A comparison-sort-based grouping instead
+orders the relation by the grouping key and then collapses runs, costing
+$\Theta(N \log N)$.
+
+**Ranking and truncation.** The aggregated relation has $K$ rows. A full
+comparison sort of those $K$ rows costs $\Theta(K \log K)$. Because only the
+leading row survives, a top-one selection needs no full sort: a single scan that
+tracks the best count seen so far costs $\Theta(K)$ and uses $\Theta(1)$ extra
+state.
+
+**Total.** With hash aggregation and a top-one scan,
+
+$$
+T(N, K) \;=\; \underbrace{\Theta(N)}_{\text{group and count}} \;+\;
+\underbrace{\Theta(K)}_{\text{top-one scan}} \;=\; \Theta(N + K) \;=\; \Theta(N),
+$$
+
+since $K \le N$. If the engine sorts both stages, the bound rises to
+
+$$
+T(N, K) = \Theta(N \log N + K \log K) = \Theta(N \log N),
+$$
+
+which is the conservative bound quoted for the relational formulation because
+window and ordering operators are typically sort-based. Either way the growth is
+at most quasi-linear in the input size, and there is no inner scan over groups:
+the method never compares a group against every other group, so it never reaches
+$\Theta(N^2)$.
+
+On the worked instance $N = 4$ and $K = 3$: four counter updates, three group
+comparisons for the maximum.
+
+**Auxiliary space.** The grouping keeps one accumulator per distinct customer, so
+the map holds $K$ entries. A full sort of the groups buffers $K$ rows, whereas
+the top-one scan keeps only the current best pair:
+
+$$
+M(N, K) \;=\; \Theta(K) \le \Theta(N) \quad \text{(map)}, \qquad
+M = \Theta(1) \quad \text{(beyond the map, top-one scan)} .
+$$
+
+The output is a single row, so it contributes constant space and does not affect
+the bound.

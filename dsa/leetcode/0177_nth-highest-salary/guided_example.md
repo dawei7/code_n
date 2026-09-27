@@ -1,179 +1,121 @@
 # Guided Example: Nth Highest Salary
 
-We trace the step-by-step SQL function execution of parameter offset translation, distinct salary ordering, and scalar subquery null fallback on representative employee salary tables:
+This request generalises the rank question: a database routine receives a positive integer $N$ and must return the $N$-th highest **distinct** salary, or `null` when fewer than $N$ distinct salaries exist. Because the routine returns a single scalar value, both the missing-rank case and the short-table case produce `null` rather than an empty relation.
 
-- **Input Table `Employee`:**
-  - `[(1, 100), (2, 200), (3, 300)]`
-  - Parameter: $N = 2$
-- **Required output:**
-  - `{"columns": ["getNthHighestSalary(2)"], "rows": [[200]]}`
-- **Insufficient Records Instance:** `Employee = [(1, 100)], N = 2 \implies \text{null}` (Empty set from offset overflow evaluates to SQL `NULL`)
-- **Duplicate Salary Instance:** `Employee = [(1, 300), (2, 300), (3, 200)], N = 2 \implies 200` (`DISTINCT` collapses duplicate salaries)
+## 1. The Instance and the Requested Rank
 
-This instance demonstrates stored routine variable arithmetic (`SET N = N - 1`), maps 1-based rank queries onto 0-based MySQL `LIMIT 1 OFFSET N` operators, guarantees automatic `NULL` return when $N > |\text{distinct salaries}|$ or $N \le 0$, and executes in $O(M \log M)$ time.
+The worked call uses the three-employee relation with $N = 2$.
 
----
+| `id` | `salary` |
+|:---:|:---:|
+| 1 | 100 |
+| 2 | 200 |
+| 3 | 300 |
 
-## 1. Instance & Teaching Goal
+The distinct salary set is $\{100, 200, 300\}$, and the value at rank 2 is $200$, emitted under the column label `getNthHighestSalary`.
 
-Given the `Employee` table and an integer parameter $N = 2$:
-$$
-\begin{array}{|c|c|}
-\hline
-\textbf{id} & \textbf{salary} \\
-\hline
-1 & 100 \\
-2 & 200 \\
-3 & 300 \\
-\hline
-\end{array}
-$$
-Write a SQL function `getNthHighestSalary(N INT) RETURNS INT` that returns the $N^{\text{th}}$ highest distinct salary, or `null` if fewer than $N$ distinct salaries exist.
+Four contrasting instances sharpen the contract, and every one of them is a case the routine must handle without special-casing:
 
-### 1-Based Ranks vs 0-Based SQL Offsets
-In user requirements:
-- The 1st highest salary has rank 1 ($N = 1$).
-- The 2nd highest salary has rank 2 ($N = 2$).
-In MySQL pagination:
-- `LIMIT 1 OFFSET k` skips the first $k$ rows.
-- To obtain rank 1, we skip $0$ rows (`OFFSET 0`).
-- To obtain rank 2, we skip $1$ row (`OFFSET 1`).
-Therefore, the rank parameter must be decremented:
-$$
-\text{offset} = N - 1
-$$
-Executing `SET N = N - 1` before the query aligns user ranks with SQL offset mechanics.
+| Instance | $N$ | Distinct values, largest first | Required result |
+|:---|:---:|:---|:---|
+| `[(1,100),(2,200),(3,300)]` | 2 | $[300, 200, 100]$ | `200` |
+| `[(1,100)]` | 2 | $[100]$ | `null` |
+| `[(1,300),(2,300),(3,200)]` | 2 | $[300, 200]$ | `200` |
+| `[(1,10),(2,30),(3,20)]` | 1 | $[30, 20, 10]$ | `30` |
 
----
+## 2. One-Based Ranks and Zero-Based Skip Counts
 
-## 2. Conceptual Foundation & Invariants
+Requested ranks are one-based, while positional access into an ordered sequence is zero-based. The two conventions must be reconciled before any lookup happens, because the arithmetic of the correction depends on which convention each step uses.
 
-### Stored Function Implementation
-```sql
-CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
-BEGIN
-  SET N = N - 1;
-  RETURN (
-      SELECT DISTINCT salary
-      FROM Employee
-      ORDER BY salary DESC
-      LIMIT 1 OFFSET N
-  );
-END
-```
+| Rank requested $N$ | Meaning | Distinct values strictly greater | Rows to skip before reading | Zero-based position read |
+|:---:|:---|:---:|:---:|:---:|
+| 1 | highest | 0 | 0 | 0 |
+| 2 | second highest | 1 | 1 | 1 |
+| 3 | third highest | 2 | 2 | 2 |
+| $k$ | $k$-th highest | $k-1$ | $k-1$ | $k-1$ |
 
-### Alternative: Window Function `DENSE_RANK`
-```sql
-CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
-BEGIN
-  RETURN (
-      SELECT salary
-      FROM (
-          SELECT salary, DENSE_RANK() OVER (ORDER BY salary DESC) as rnk
-          FROM Employee
-      ) t
-      WHERE rnk = N
-      LIMIT 1
-  );
-END
-```
+The translation is therefore a single shift:
 
-#### Why `DISTINCT` + `OFFSET` Is Preferred
-1. **Deduplication:** `DISTINCT salary` ensures identical salaries share the exact same rank.
-2. **Deterministic Ordering:** `ORDER BY salary DESC` sorts unique values from largest to smallest.
-3. **Scalar Return:** Wrapping the query in `RETURN (...)` naturally coerces an empty set (e.g. when $N$ exceeds available distinct salaries) into SQL `NULL`.
+$$ \text{skip} = N - 1, \qquad \text{position} = N - 1 . $$
 
-> **Invariant.** For any valid positive rank $N \le |\mathcal{S}|$, the query returns the element at 0-indexed position $N - 1$ in the descending sorted set of distinct salaries. For any $N > |\mathcal{S}|$ or $N \le 0$, it returns `null`.
+Treating the routine as "decrement the requested rank once, then read one value at that skip distance" keeps one source of truth for the off-by-one correction. Two independent adjustments — one while counting distinct values and one while reading — are the classic source of the error this instance exposes.
 
----
+## 3. Dense Ordering of the Distinct Salary Set
 
-## 3. Step-by-Step Worked Execution
+Duplicates must collapse before the rank is read; otherwise a repeated salary consumes several rank slots and every later rank shifts.
 
-We trace `getNthHighestSalary(2)` on `Employee` with salaries $[100, 200, 300]$:
+| `id` | `salary` | Enters the distinct set? | Distinct set after this row | Dense rank of this row's value |
+|:---:|:---:|:---:|:---|:---:|
+| 1 | 100 | yes | $[100]$ | 3 |
+| 2 | 200 | yes | $[200, 100]$ | 2 |
+| 3 | 300 | yes | $[300, 200, 100]$ | 1 |
 
-### Step 1: Adjust Offset
-- Parameter received: $N = 2$.
-- Execute adjustment:
-  $$
-  N \leftarrow 2 - 1 = \mathbf{1}
-  $$
-- The query will skip $1$ row.
+The same reading on a table whose maximum is duplicated shows why deduplication is a semantic requirement rather than an optimisation.
 
----
+| `id` | `salary` | Enters the distinct set? | Distinct set after this row | Dense rank of this row's value |
+|:---:|:---:|:---:|:---|:---:|
+| 1 | 300 | yes | $[300]$ | 1 |
+| 2 | 300 | no — already present | $[300]$ | 1 |
+| 3 | 200 | yes | $[300, 200]$ | 2 |
 
-### Step 2: Extract and Sort Distinct Salaries
-- Scan `Employee`: values are $100, 200, 300$.
-- Deduplicate and sort descending:
-  $$
-  \mathcal{S} = [300, \, 200, \, 100]
-  $$
-  - Index 0: $300$ (Rank 1)
-  - Index 1: $200$ (Rank 2)
-  - Index 2: $100$ (Rank 3)
+In the second table rank 2 belongs to $200$, not to the duplicate $300$. Skipping deduplication would fill rank 2 with a second copy of $300$, and the routine would silently answer a different question.
 
----
+## 4. Step-by-Step Evaluation of the Call
 
-### Step 3: Apply `LIMIT 1 OFFSET 1`
-- `OFFSET 1`: Skip index 0 ($300$).
-- `LIMIT 1`: Select index 1 ($200$).
-- Value extracted: $200$.
+Tracing $N = 2$ over `[(1,100),(2,200),(3,300)]`:
 
----
+| Step | Requested rank and state | Operation on the relation | Result |
+|:---:|:---|:---|:---|
+| 1 | $N = 2$ | shift the requested rank once: $N \leftarrow N - 1$ | skip distance $1$ |
+| 2 | skip distance $1$ | deduplicate the salary column | $S = \{100, 200, 300\}$ |
+| 3 | skip distance $1$ | order $S$ from largest to smallest | $[300, 200, 100]$ |
+| 4 | skip distance $1$ | skip 1 row, retain 1 row | $200$ |
+| 5 | — | return the retained value as the routine's scalar result | `200` |
 
-### Step 4: Return Scalar Value
-- `RETURN (200)` emits scalar integer $\mathbf{200}$.
+Both the ordering and the retention are independent of the parameter; only the skip distance is derived from $N$. That is precisely why the shift can be performed once, before the lookup, instead of being recomputed inside it.
 
----
+## 5. Out-of-Range Requests and the Null Fallback
 
-### Contrast Trace: Out-of-Bounds Query $N = 4$
-1. $N \leftarrow 4 - 1 = 3$.
-2. Distinct sorted salaries: $[300, 200, 100]$ (only 3 elements, indices 0, 1, 2).
-3. `LIMIT 1 OFFSET 3`: Attempts to skip 3 rows. No rows remain. Subquery returns $\emptyset$ (0 rows).
-4. `RETURN (Empty Set)` coerces to SQL `NULL`.
-5. Emits $\mathbf{\text{null}}$.
+| Requested $N$ | Distinct values available | Rows skipped | Value found | Emitted |
+|:---:|:---|:---:|:---:|:---:|
+| 1 | $[300, 200, 100]$ | 0 | $300$ | `300` |
+| 2 | $[300, 200, 100]$ | 1 | $200$ | `200` |
+| 3 | $[300, 200, 100]$ | 2 | $100$ | `100` |
+| 4 | $[300, 200, 100]$ | 3 | none | `null` |
+| 2 | $[100]$ | 1 | none | `null` |
 
----
+The last two rows describe the same situation: the skip distance walks past the end of the ordered sequence, the lookup yields no value, and the routine's scalar return type converts "no value" into `null`. This is why the routine must return through an expression rather than through a filtered relation — a relation would produce zero rows, while the contract demands a single `null` scalar.
 
-## 4. Complete Execution Trace
+## 6. Why the Reasoning Is Correct
 
-```text
-Function Call: getNthHighestSalary(N = 2)
+**Invariant.** Let $S = \{s_1 > s_2 > \dots > s_d\}$ be the distinct salaries ordered from largest to smallest, and let $N \ge 1$. The routine returns $s_N$ when $N \le d$, and `null` when $N > d$.
 
-Step 1: SET N = 2 - 1 = 1 (offset to skip)
-Step 2: SELECT DISTINCT salary -> { 100, 200, 300 }
-Step 3: ORDER BY salary DESC   -> [ 300, 200, 100 ]
-Step 4: LIMIT 1 OFFSET 1       -> Value 200
+*Soundness.* Position $N - 1$ of the descending sequence holds $s_N$ by construction, and $s_N$ is exceeded by exactly $N - 1$ distinct values, which is the definition of the $N$-th highest distinct salary. The shifted skip distance names that position exactly, so the value read is the value requested.
 
-Result: 200
-```
+*Completeness.* Deduplication is applied before the rank is read, so every distinct value occupies exactly one position and no rank is consumed twice. The skip-then-retain lookup reads the demanded position whenever that position exists; when it does not exist, the scalar coercion of the empty lookup produces the required `null`. Hence every legal $N$ is answered, and no illegal $N$ produces a spurious salary.
 
-| Execution Step | Function State | SQL Operation | Result Set Evaluated | Output Return |
-|:---:|:---:|:---:|:---:|:---:|
-| 1 | $N = 2$ | `SET N = N - 1` | $N = 1$ | Internal variable set |
-| 2 | $N = 1$ | `DISTINCT salary` | $\{100, 200, 300\}$ | Unique set formed |
-| 3 | $N = 1$ | `ORDER BY salary DESC` | $[300, 200, 100]$ | Ordered descending |
-| 4 | $N = 1$ | `LIMIT 1 OFFSET 1` | `200` | 2nd highest isolated |
-| **Final** | - | **`RETURN (200)`** | **`200`** | **`200`** |
+## 7. Boundary Conditions This Instance Exposes
 
----
+| Scenario | Instance | Required result | Reason |
+|:---|:---|:---|:---|
+| $N$ exceeds the number of distinct values | `[(1,100)]`, $N = 2$ | `null` | A skip distance of 1 exists in no sequence of length 1. |
+| Duplicate maximum | `[(1,300),(2,300),(3,200)]`, $N = 2$ | `200` | The duplicate shares rank 1, so rank 2 is $200$. |
+| $N = 1$ | `[(1,10),(2,30),(3,20)]`, $N = 1$ | `30` | A skip distance of 0 reads the largest value. |
+| $N$ equals the number of distinct values | `[(1,9),(2,7),(3,8),(4,9)]`, $N = 3$ | `7` | The distinct set is $\{9, 8, 7\}$ and the final position holds $7$. |
+| $N$ is not positive | any table, $N \le 0$ | `null` or an explicit rejection | Positional access is undefined for negative skip distances, so the value must be validated before the lookup. |
+| Single row, $N = 1$ | `[(1,42)]` | `42` | The only distinct value occupies rank 1. |
 
-## 5. Algorithmic Correctness
+## 8. Complexity Derivation
 
-**Soundness.** Sorting distinct salaries in descending order maps the $k$-th distinct value to zero-based array index $k - 1$. Setting offset $N - 1$ ensures that the $N^{\text{th}}$ largest distinct salary is selected.
+Let $M$ be the number of rows in `Employee` and $d \le M$ the number of distinct salaries.
 
-**Completeness.** When $N > |\mathcal{S}|$, the `OFFSET` skips past all available rows, producing an empty result set. In SQL, evaluating an empty subquery as a scalar expression returns `NULL`. Thus, `null` is returned for all out-of-bounds queries.
+| Stage | Cost |
+|:---|:---|
+| Deduplicate $M$ rows | $O(M)$ expected with hashing, $O(M \log M)$ if the ordering itself is used to collapse duplicates |
+| Order $d$ distinct values from largest to smallest | $O(d \log d)$, or $O(d)$ when an index on `salary` already supplies the order |
+| Read one position at skip distance $N - 1$ | $O(1)$ once the ordered sequence exists |
+| Total | $O(M \log M)$ worst case; $O(M)$ expected with hashing plus a bounded-size selection |
 
----
+Every row must be inspected at least once to know whether its salary is a new distinct value, so $\Omega(M)$ is a genuine lower bound for the deduplication step alone.
 
-## 6. Traps This Instance Exposes
-
-- **Failing to Decrement $N$:** Executing `LIMIT 1 OFFSET N` without decrementing causes $N = 2$ to skip 2 rows, incorrectly returning the 3rd highest salary ($100$) instead of the 2nd ($200$).
-- **Non-Positive Values of $N$ ($N \le 0$):** If $N = 0$, $N - 1 = -1$, which causes a MySQL syntax error in `LIMIT`. In databases with strict mode, handling $N \le 0$ by validating `IF N < 1 THEN RETURN NULL;` prevents negative offset exceptions.
-- **Duplicate Salaries:** Without `DISTINCT`, multiple employees with the same maximum salary occupy ranks 1, 2, etc., causing duplicate values to consume rank slots.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(M \log M)$, where $M$ is the number of rows in `Employee`. Extracting unique salaries and sorting takes $O(M \log M)$. If an index exists on `salary`, index traversal achieves $O(N)$ time.
-- **Auxiliary Space Complexity:** $O(U) \le O(M)$ temporary working memory to store distinct salary entries.
+**Auxiliary space.** The straightforward formulation buffers the $d$ distinct ordered values, giving $O(d) \le O(M)$ auxiliary memory. A streaming implementation that keeps only the largest $N$ distinct values needs $O(N)$ auxiliary memory, which is strictly better when the requested rank is small and fixed, as in the sample call $N = 2$.

@@ -1,185 +1,152 @@
 # Guided Example: Customers Who Never Order
 
-We trace the step-by-step SQL anti-join evaluation and set difference mechanics on representative customer and transaction tables:
+We trace a relational anti-join on a four-customer registration table and a two-order ledger, then compare the three standard formulations that express "present in one relation, absent from another" and pin down the exact place where the third of them breaks.
 
-- **Input Tables:**
-  - `Customers`: `[(1, "Joe"), (2, "Henry"), (3, "Sam"), (4, "Max")]`
-  - `Orders`: `[(1, 1), (2, 3)]`
-- **Required output:**
-  - `{"columns": ["Customers"], "rows": [["Henry"], ["Max"]]}` (Customers 2 and 4 have no registered orders)
-- **All Customers Ordered Instance:** `Orders = [(1, 1), (2, 2), (3, 3), (4, 4)] \implies \text{Empty Set}`
-- **No Orders Placed Instance:** `Orders = [] \implies \text{All Customers}`
+- **Representative relations:** `Customers` = `(1, "Joe")`, `(2, "Henry")`, `(3, "Sam")`, `(4, "Max")`; `Orders` = `(1, 3)`, `(2, 1)`.
+- **Required result:** a single-column relation named `Customers` containing `"Henry"` and `"Max"`.
+- **Contrasting instances used later:** a ledger covering every customer, which must return no rows, and an empty ledger, which must return all four names.
 
-This instance demonstrates relational anti-joins, analyzes the three foundational SQL patterns (`LEFT JOIN ... WHERE IS NULL`, `NOT EXISTS`, and `NOT IN`), exposes the three-valued logic null poisoning hazard of `NOT IN`, and executes in $O(C + O)$ linear time.
+## 1. Instance and Required Outcome
 
----
+`Customers(id, name)` holds one row per registered customer, with `id` as the primary key (a column of unique values). `Orders(id, customerId)` holds one row per order, with `id` as its primary key and `customerId` a foreign key referencing `Customers.id`.
 
-## 1. Instance & Teaching Goal
+| `Customers.id` | `Customers.name` |
+|:---:|:---|
+| 1 | `"Joe"` |
+| 2 | `"Henry"` |
+| 3 | `"Sam"` |
+| 4 | `"Max"` |
 
-Given two relational tables:
-1. `Customers`:
-   $$
-   \begin{array}{|c|c|}
-   \hline
-   \textbf{id} & \textbf{name} \\
-   \hline
-   1 & \text{Joe} \\
-   2 & \text{Henry} \\
-   3 & \text{Sam} \\
-   4 & \text{Max} \\
-   \hline
-   \end{array}
-   $$
-2. `Orders`:
-   $$
-   \begin{array}{|c|c|}
-   \hline
-   \textbf{id} & \textbf{customerId} \\
-   \hline
-   1 & 1 \\
-   2 & 3 \\
-   \hline
-   \end{array}
-   $$
-Find all customers who have **never placed an order**.
+| `Orders.id` | `Orders.customerId` |
+|:---:|:---:|
+| 1 | 3 |
+| 2 | 1 |
 
-Cross-referencing customer IDs against orders:
-- Customer 1 (`"Joe"`): found in `Orders` (Order 1) $\implies$ Has ordered.
-- Customer 2 (`"Henry"`): absent from `Orders` $\implies$ Never ordered.
-- Customer 3 (`"Sam"`): found in `Orders` (Order 2) $\implies$ Has ordered.
-- Customer 4 (`"Max"`): absent from `Orders` $\implies$ Never ordered.
-The result must be a single-column table named `Customers` reporting `Henry` and `Max`.
+The task is to report the name of every customer with no matching order row. Note which relation supplies the *universe of rows to report*: `Customers`, not `Orders`. A customer who ordered twice still produces one output row if reported at all, and a customer who never ordered must not be dropped merely because the right-hand relation has nothing to contribute. The output header must be `Customers`, which differs from the source attribute name `name`.
 
----
+## 2. The Anti-Join as a Complement of a Semi-Join
 
-## 2. Conceptual Foundation & Invariants
+Write $C$ and $O$ for the two relations. The natural join on the shared key, projected back onto the customers that do participate, is the *semi-join*
 
-### The Relational Anti-Join ($\mathbin{\bar{\ltimes}}$)
-In relational algebra, finding elements in relation $C$ with no match in relation $O$ is an **anti-join**:
 $$
-C \mathbin{\bar{\ltimes}} O = C \setminus \pi_{\text{attrs}(C)}(C \bowtie O)
+C \ltimes O = \pi_{\text{attrs}(C)}\!\left(C \bowtie_{C.\text{id} = O.\text{customerId}} O\right),
 $$
 
-### Pattern 1: Left Anti-Join (Recommended)
-```sql
-SELECT c.name AS Customers
-FROM Customers c
-LEFT JOIN Orders o 
-    ON c.id = o.customerId
-WHERE o.id IS NULL;
-```
-- A `LEFT JOIN` preserves all rows of `Customers`.
-- If customer $c$ has an order, $o.\text{id}$ is populated with the order ID.
-- If customer $c$ has no order, $o.\text{id}$ is populated with `NULL`.
-- Filtering for `WHERE o.id IS NULL` isolates customers who have never ordered.
+the set of customer tuples that have at least one partner. Selecting the customers who never ordered is then exactly the set difference
 
-### Pattern 2: Correlated `NOT EXISTS`
-```sql
-SELECT c.name AS Customers
-FROM Customers c
-WHERE NOT EXISTS (
-    SELECT 1 
-    FROM Orders o 
-    WHERE o.customerId = c.id
-);
-```
-Semi-join optimization stops scanning `Orders` as soon as the first matching order is found.
+$$
+C \;\bar{\ltimes}\; O = C \setminus \left(C \ltimes O\right).
+$$
 
-### Pattern 3: Set Difference `NOT IN`
-```sql
-SELECT c.name AS Customers
-FROM Customers c
-WHERE c.id NOT IN (
-    SELECT customerId 
-    FROM Orders
-);
-```
+This definition is the whole specification. The answer is drawn from $C$, so its cardinality is at most $\lvert C \rvert$ however many orders exist. And membership in $C \ltimes O$ is a *boolean* property of a customer, so the number of orders behind a customer is irrelevant to the complement.
 
-> **Invariant.** A customer row $c$ is emitted if and only if the set $\{ o \in \text{Orders} \mid o.\text{customerId} = c.\text{id} \}$ is strictly empty ($\emptyset$).
+An equivalent way to say the same thing uses a count of partners. For a customer $c$, let
 
----
+$$
+m(c) = \lvert \{\, o \in O \mid o.\text{customerId} = c.\text{id} \,\} \rvert .
+$$
 
-## 3. Step-by-Step Worked Execution
+Then $c \in C \ltimes O$ if and only if $m(c) \ge 1$, so $c \in C \,\bar{\ltimes}\, O$ if and only if $m(c) = 0$.
 
-We trace the Left Anti-Join across all customer rows:
+> **Invariant.** A customer tuple $c$ is emitted if and only if the partner set $\{\, o \in \text{Orders} \mid o.\text{customerId} = c.\text{id} \,\}$ is empty, and each such customer is emitted exactly once regardless of $m(c)$.
 
-### Step 1: Perform `LEFT JOIN Orders ON c.id = o.customerId`
-Join each customer with `Orders`:
-- **Customer 1 (Joe):** Matches Order 1 ($o.\text{id} = 1$).
-  Joined tuple: `(c.id: 1, c.name: "Joe", o.id: 1, o.customerId: 1)`.
-- **Customer 2 (Henry):** No matching order. Padded with `NULL`.
-  Joined tuple: `(c.id: 2, c.name: "Henry", o.id: NULL, o.customerId: NULL)`.
-- **Customer 3 (Sam):** Matches Order 2 ($o.\text{id} = 2$).
-  Joined tuple: `(c.id: 3, c.name: "Sam", o.id: 2, o.customerId: 3)`.
-- **Customer 4 (Max):** No matching order. Padded with `NULL`.
-  Joined tuple: `(c.id: 4, c.name: "Max", o.id: NULL, o.customerId: NULL)`.
+## 3. Presence Testing: Building and Probing the Order Key Set
 
----
+Before any customer can be classified, the engine must be able to answer "does an order exist for this customer?" quickly. A hash set built from the right-hand key column answers that in expected constant time per probe.
 
-### Step 2: Filter `WHERE o.id IS NULL`
-Examine the right-side attribute `o.id`:
-- Joe: $o.\text{id} = 1 \implies$ `1 IS NULL` is `False`. Discarded.
-- Henry: $o.\text{id} = \text{NULL} \implies$ `NULL IS NULL` is `True`. **Retained!**
-- Sam: $o.\text{id} = 2 \implies$ `2 IS NULL` is `False`. Discarded.
-- Max: $o.\text{id} = \text{NULL} \implies$ `NULL IS NULL` is `True`. **Retained!**
+| Step | Operation | Resulting key set / state |
+|:---:|:---|:---|
+| 0 | Start with an empty probe structure | $\{\}$ |
+| 1 | Insert `Orders.customerId` = 3 | $\{3\}$ |
+| 2 | Insert `Orders.customerId` = 1 | $\{1, 3\}$ |
+| 3 | Probe each `Customers.id` against the finished set | probes for 1, 2, 3, 4 |
 
----
+The construction is complete only after both order rows are read, which is why the classification of a customer cannot be decided while the ledger is still being scanned. The probe results are what the complement test consumes:
 
-### Step 3: Project `c.name AS Customers`
-- Emitted rows: `[["Henry"], ["Max"]]`.
+| `Customers.id` | Probe against $\{1, 3\}$ | Membership $m(c) \ge 1$ | Complement condition $m(c) = 0$ |
+|:---:|:---:|:---:|:---:|
+| 1 | present | true | false |
+| 2 | absent | false | **true** |
+| 3 | present | true | false |
+| 4 | absent | false | **true** |
 
----
+## 4. Worked Trace of the Retaining Outer Join
 
-## 4. Complete Execution Trace
+The reference formulation keeps every left tuple and pads the right-hand attributes with an unknown marker when no partner exists. Walking the customers in key order shows exactly how the padding arises and how the filter isolates it.
 
-```text
-Customers Table:            Orders Table:
-1: Joe                      1: (custId: 1)
-2: Henry                    2: (custId: 3)
-3: Sam
-4: Max
+| Customer tuple | Probe for `customerId = id` | Paired order tuple | Right-hand attributes after pairing | Retained by the unknown test |
+|:---|:---|:---|:---|:---:|
+| `(1, "Joe")` | order `(2, 1)` found | `(2, 1)` | `Orders.id` = 2, `Orders.customerId` = 1 | no — paired, so the right side is known |
+| `(2, "Henry")` | no order references 2 | none | `Orders.id` = unknown, `Orders.customerId` = unknown | **yes** |
+| `(3, "Sam")` | order `(1, 3)` found | `(1, 3)` | `Orders.id` = 1, `Orders.customerId` = 3 | no — paired |
+| `(4, "Max")` | no order references 4 | none | `Orders.id` = unknown, `Orders.customerId` = unknown | **yes** |
 
-Left Outer Join:
-  1: Joe   <-> Order 1      (o.id = 1)    -> Excluded
-  2: Henry <-> [NO MATCH]   (o.id = NULL) -> INCLUDED (Henry)
-  3: Sam   <-> Order 2      (o.id = 2)    -> Excluded
-  4: Max   <-> [NO MATCH]   (o.id = NULL) -> INCLUDED (Max)
+The reason the unknown test is sound depends on a fact stated in the contract: `Orders.id` is a primary key, so it is guaranteed present in every genuine order tuple. A padded row is therefore the only way an unknown value can appear in the right-hand `id` attribute, and the test "the right-hand key is unknown" is exactly the test "no partner was found". Projecting `Customers.name` under the header `Customers` yields:
 
-Output Table:
-+-----------+
-| Customers |
-+-----------+
-| Henry     |
-| Max       |
-+-----------+
-```
+| `Customers` |
+|:---|
+| `"Henry"` |
+| `"Max"` |
 
-| Customer ID | Customer Name | Order ID Matched | Filter `o.id IS NULL` | Decision | Emitted Output |
-|:---:|:---|:---:|:---:|:---:|:---|
-| 1 | Joe | 1 | `False` | Has ordered | - |
-| **2** | **Henry** | **`NULL`** | **`True`** | **Never ordered** | **`"Henry"`** |
-| 3 | Sam | 2 | `False` | Has ordered | - |
-| **4** | **Max** | **`NULL`** | **`True`** | **Never ordered** | **`"Max"`** |
+The retaining join pairs each left tuple only with matching right tuples, so a customer with three orders contributes three paired rows here and fails the unknown test every time. The complement formulation below avoids that multiplier.
 
----
+## 5. Three Equivalent Formulations and Their Failure Modes
 
-## 5. Algorithmic Correctness
+| Formulation | How absence is detected | Work per customer | Failure mode to know |
+|:---|:---|:---|:---|
+| Retaining outer join, then an unknown test on a right-hand key | Unmatched left tuples are padded, and the padded key is the sentinel for "no partner" | One probe, one row emitted | Needs a key column guaranteed present in real right-hand rows; testing a nullable attribute that can legitimately be unknown would misclassify paired rows |
+| Correlated existence test | A search of the right relation is requested per customer, and the result is negated | One probe, with early exit at the first partner found | Correct in all cases, but re-executing it per customer repeats index traversal; a semi-join plan removes the repetition |
+| Complement membership test against the projected right-hand key set | The customer key is tested for absence from the set of ordering customer keys | One set probe, $O(1)$ expected | Three-valued logic: if the projected set contains even one unknown value, every absence test becomes unknown rather than true and the answer silently collapses to the empty relation |
 
-**Soundness.** In a relational left join, any row from the left table that finds no match in the right table has all right-table attributes set to SQL `NULL`. Because `Orders.id` is a primary key, it is guaranteed non-null in any genuine order record. Thus, $o.\text{id} \text{ IS NULL}$ is true if and only if no matching order exists for that customer.
+The third formulation hides the sharpest trap. Under SQL's three-valued logic a comparison against an unknown value is neither true nor false but *unknown*, and a row filter keeps a row only when its condition is definitely true. If `Orders.customerId` were ever unknown, the projected set would resemble $\{1, 3, \text{unknown}\}$; every absence test would then evaluate to unknown and the answer would collapse to the empty relation, even for customers that plainly never ordered. The foreign-key contract keeps the column known, so the hazard is latent rather than active — but the other two formulations are preferred because they do not rely on that guarantee.
 
-**Completeness.** The left join retains every customer in `Customers`. All customers without orders are preserved and emitted.
+## 6. Why Exactly the Order-Free Customers Are Emitted
 
----
+**Soundness.** Suppose a customer name is emitted. The tuple it came from survived a test that is true only when no order row carries its `id` as `customerId`, established by primary-key non-nullness in the outer-join formulation or by a direct existence probe in the other two. Hence $m(c) = 0$.
 
-## 6. Traps This Instance Exposes
+**Completeness.** The retaining outer join emits every tuple of the left relation at least once, so no customer is discarded before the test is applied; only the paired ones are removed, and paired means $m(c) \ge 1$. Every customer with $m(c) = 0$ therefore reaches the projection.
 
-- **The `NOT IN` NULL Poisoning Hazard:** In SQL three-valued logic, if the subquery returns even a single `NULL` value (e.g. `customerId = NULL` in `Orders`), the expression `id NOT IN (1, 3, NULL)` evaluates to `UNKNOWN` for all rows, returning an **empty result set**! Using `LEFT JOIN ... WHERE IS NULL` or `NOT EXISTS` avoids this trap entirely.
-- **Wrong Column Name in Alias:** The source table column is `name`, but the output table schema requires header `Customers`. Forgetting `AS Customers` fails verification.
-- **Multiple Orders Per Customer:** If customer 1 had placed 5 orders, an inner join would duplicate customer 1 five times. However, for customers who never ordered, exactly one row with `NULL` is generated, ensuring no spurious duplicate names for non-ordering customers.
+**No spurious duplication.** A left tuple with no partner is padded exactly once, so a never-ordering customer contributes exactly one output row. Right-hand multiplicity only affects customers that the filter then removes, which is why the answer's cardinality is bounded by $\lvert C \rvert$ rather than by $\lvert O \rvert$. Every condition also compares a fixed customer key against a fixed set of order keys, so the result is a set and any presentation order is acceptable.
 
----
+## 7. Boundary Instances and Logic Traps
 
-## 7. Complexity Derivation
+| Instance | Input shape | Expected result | Why it matters |
+|:---|:---|:---|:---|
+| Everyone ordered | `Orders.customerId` covers 1, 2, 3, 4 | empty relation | The complement of a semi-join is empty exactly when the semi-join is the whole left relation |
+| Nobody ordered | `Orders` is empty | all four names | An empty right relation must not eliminate the left universe; an inner join would wrongly return nothing |
+| One customer with many orders | customer 1 has five orders | customer 1 still absent from the result | Absence is decided by the boolean $m(c) \ge 1$, not by any count of rows |
+| Order for an unknown customer | `Orders.customerId` = 99 with no such customer | unchanged result | The join direction is anchored on `Customers`; an orphan right-hand tuple can never create an output row |
+| Right-hand key can be unknown | `customerId` unknown in some order | risks an empty result under the complement formulation | Presence of a single unknown in the projected key set turns every absence test into unknown |
+| Repeated customer names | two customers share a name | both names reported when both never ordered | Output identity is the customer row, not the string; the two rows are distinct primary keys |
 
-- **Time Complexity:** $O(C + O)$, where $C$ is the number of rows in `Customers` and $O$ is the number of rows in `Orders`. The query planner performs a hash anti-join or index look-up in $O(1)$ amortized time per customer.
-- **Auxiliary Space Complexity:** $O(O)$ hash table memory to store active customer IDs from `Orders`.
+The fourth row is the join-direction trap, and the fifth separates a robust formulation from a fragile one.
+
+## 8. Complexity Derivation
+
+Let $C = \lvert \text{Customers} \rvert$ and $O = \lvert \text{Orders} \rvert$, and let $K \le O$ be the number of distinct ordering customer keys.
+
+**Time.** Building the probe structure from the order keys costs
+
+$$
+T_{\text{build}} = O(O)
+$$
+
+with one insertion per order row. Classifying customers costs one expected-constant probe each, giving
+
+$$
+T_{\text{probe}} = O(C),
+$$
+
+and the projection costs at most $O(C)$ because at most one row per customer is produced. The expected total is
+
+$$
+T(C, O) = O(C) + O(O) = O(C + O),
+$$
+
+which is linear in the combined input size and therefore optimal up to the cost of reading the input. Without a hash structure the probes degrade: $O(C \log O)$ if each is a binary search over sorted order keys, $O(C \cdot O)$ if each performs a full ledger scan — the correlated formulation's naive cost.
+
+**Auxiliary space.** The probe structure stores one entry per distinct ordering key, and the result buffer holds at most one row per customer, so
+
+$$
+S(C, O) = O(K) + O(C) = O(C + O).
+$$
