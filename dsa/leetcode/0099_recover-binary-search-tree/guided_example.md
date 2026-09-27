@@ -125,6 +125,22 @@ Tree successfully repaired.
 
 ---
 
+### The Same Traversal with Morris Threads
+
+The detection above needs only `first`, `second`, and `prev`, so the $O(1)$ version weaves temporary right-pointers instead of pushing a stack. For this tree the predecessor of the root is the rightmost node of its left subtree: starting at node $3$, the walk follows right pointers as far as possible, and $3$'s right child is node $2$, which has no right child of its own.
+
+| Visit | Active `cur` | `cur.left` | Predecessor found | Thread action | Emitted value | Inorder so far |
+|:---:|:---:|:---:|:---|:---|:---:|:---|
+| 1 | $\text{Node}(1)$ | $\text{Node}(3)$ | $\text{Node}(2)$ | Set `2.right = 1` | none | `[]` |
+| 2 | $\text{Node}(3)$ | `None` | Not needed | None | `3` | `[3]` |
+| 3 | $\text{Node}(2)$ | `None` | Not needed | None | `2` | `[3, 2]` |
+| 4 | $\text{Node}(1)$ | $\text{Node}(3)$ | $\text{Node}(2)$, reached through the thread | Restore `2.right = None` | `1` | `[3, 2, 1]` |
+| 5 | `None` | — | Not needed | None | Halt | `[3, 2, 1]` |
+
+Visits 2 and 3 are the two comparisons that raise the drops, and visit 4 both undoes the thread and completes the traversal. The tree is structurally identical at the end of visit 4, and the two misplaced nodes are then exchanged in place, so no link is ever rewritten permanently.
+
+---
+
 ## 4. Complete Execution Trace
 
 ### Non-Adjacent Swap Trace ($[1, 3, \text{null}, \text{null}, 2]$)
@@ -153,6 +169,18 @@ Tree successfully repaired.
 
 ## 6. Traps This Instance Exposes
 
+Two elements are out of place, so the inorder sequence differs from sorted order in a very specific way. Each row below states the sequence that is actually observed, the drops it contains, and the pair the algorithm selects:
+
+| Scenario | Observed inorder sequence | Inversions detected | `first` / `second` | Repair performed |
+|:---|:---|:---|:---|:---|
+| Traced non-adjacent instance | $[3, 2, 1]$ | $3 > 2$, then $2 > 1$ | node holding $3$ / node holding $1$ | Exchange $3 \leftrightarrow 1$, giving $[1, 2, 3]$. |
+| Adjacent instance `[3, 1, 4, null, null, 2]` | $[1, 3, 2, 4]$ | one drop, $3 > 2$ | node holding $3$ / node holding $2$, assigned at that same drop | Exchange $3 \leftrightarrow 2$, giving $[1, 2, 3, 4]$ and the serialization `[2, 1, 4, null, null, 3]`. |
+| Root children exchanged `[2, 3, 1]` | $[3, 2, 1]$ | $3 > 2$, then $2 > 1$ | node holding $3$ / node holding $1$ | Exchange $3 \leftrightarrow 1$; the root keeps its value and the serialization becomes `[2, 1, 3]`. |
+| Smallest legal tree `[1, 2]` | $[2, 1]$ | one drop, $2 > 1$ | node holding $2$ / node holding $1$ | Exchange $2 \leftrightarrow 1$, giving the serialization `[2, 1]`; the minimum size of $2$ nodes is handled by the same rule. |
+| Extreme stored values | A strictly increasing run interrupted at exactly one or two places | detected by direct comparison only | whichever nodes hold the two extreme values | Safe over the whole range $-2^{31} \le \text{val} \le 2^{31} - 1$, because the test compares two stored values and never forms their difference. |
+
+The single-drop row is the trap: if the second node were only recorded on a *second* drop, an adjacent swap would leave `second` unset and no repair would happen.
+
 - **Adjacent Inversion Trap:** If the two swapped nodes are adjacent in inorder traversal (e.g. $[1, 3, 2, 4]$), only a single inversion occurs ($3 > 2$). Initializing $\text{second} = \text{cur}$ at the first inversion ensures that adjacent swaps are resolved even when no second drop occurs.
 - **Modifying Pointers vs Values:** The problem requires fixing the tree without altering its topology (i.e. keep node links identical and swap only the `val` attributes).
 - **Constant Memory Guarantee:** Using recursion or an explicit stack takes $O(H)$ auxiliary memory. To satisfy the optimal $O(1)$ memory requirement, Morris Inorder Traversal can be used to weave and unweave temporary threads without call-stack overhead.
@@ -160,6 +188,15 @@ Tree successfully repaired.
 ---
 
 ## 7. Complexity Derivation
+
+Every strategy below finds the same two nodes; only the memory they spend to do it changes:
+
+| Strategy | Auxiliary space | How the two nodes surface | Failure mode to guard against |
+|:---|:---|:---|:---|
+| Copy values, sort, write back | $O(N)$ for the copied list | The sorted list is compared position by position with a second inorder pass, and the positions that differ are the two corrupted nodes | Correct and simple, but it needs a second full traversal to push the sorted values back and it violates the constant-space follow-up. |
+| Recursive inorder | $O(H)$ call frames | Each recursive visit compares its value with the value recorded by the previous visit | The depth tracks the tree height, so a chain of $1000$ nodes consumes $1000$ frames. |
+| Explicit stack inorder | $O(H)$ stack entries | Each popped node is compared with the last value emitted | On a fully skewed tree $H = N$, so this is no better than the copied list. |
+| Morris inorder | $O(1)$ | The same predecessor comparison, evaluated while the temporary threads are woven and unwoven | A thread left in place on the second visit corrupts the tree that the caller still owns — here it would also break the validation pass that serializes the repaired root. |
 
 - **Time Complexity:** $O(N)$, where $N$ is the number of nodes in the tree. Each node is visited at most twice during Morris traversal (or once during standard inorder recursion).
 - **Auxiliary Space Complexity:** $O(1)$ when implemented with Morris traversal, or $O(H)$ when using stack/recursive traversal.

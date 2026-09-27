@@ -122,6 +122,27 @@ We trace computing $G[0 \dots 3]$:
 
 ---
 
+### Step 4: The Same Values from the Multiplicative Closed Form
+
+The combination formula can be evaluated without ever forming a factorial, by chaining the ratio between consecutive Catalan numbers:
+$$
+\frac{C_k}{C_{k-1}} = \frac{4k - 2}{k + 1}
+$$
+Starting from $C_0 = 1$ and applying one multiplication and one division per step reproduces every DP entry, and the two columns must agree at every row:
+
+| Step $k$ | Multiplier $\frac{4k - 2}{k + 1}$ | Previous value $C_{k-1}$ | Product | $C_k$ | DP value $G[k]$ |
+|:---:|:---:|:---:|:---|:---:|:---:|
+| 1 | $\frac{2}{2} = 1$ | $C_0 = 1$ | $1 \times 1$ | 1 | 1 |
+| 2 | $\frac{6}{3} = 2$ | $C_1 = 1$ | $1 \times 2$ | 2 | 2 |
+| 3 | $\frac{10}{4} = \frac{5}{2}$ | $C_2 = 2$ | $2 \times \frac{5}{2}$ | 5 | 5 |
+| 4 | $\frac{14}{5}$ | $C_3 = 5$ | $5 \times \frac{14}{5}$ | 14 | 14 |
+| 5 | $\frac{18}{6} = 3$ | $C_4 = 14$ | $14 \times 3$ | 42 | 42 |
+| 6 | $\frac{22}{7}$ | $C_5 = 42$ | $42 \times \frac{22}{7}$ | 132 | 132 |
+
+Every row divides exactly, which is the point of this formulation: the factor $\frac{4k-2}{k+1}$ is never an integer on its own, yet it always cancels against the previous Catalan value, so the running product stays integral and no factorial term is ever materialised.
+
+---
+
 ## 4. Complete Execution Trace
 
 | Tree Size $n$ | Root Loop $i$ | Left Subtree Nodes ($i - 1$) | Right Subtree Nodes ($n - i$) | Term $G[i-1] \times G[n-i]$ | Running Sum $G[n]$ |
@@ -146,6 +167,16 @@ We trace computing $G[0 \dots 3]$:
 ---
 
 ## 6. Traps This Instance Exposes
+
+The boundaries below are all consequences of the recurrence or of the arithmetic used to evaluate it:
+
+| Boundary | Input | Result | Why it behaves that way |
+|:---|:---|:---|:---|
+| Smallest legal input | $n = 1$ | 1 | The only term is $G[0] \cdot G[0] = 1 \times 1$, so the answer is the single node. |
+| Degenerate base case | $n = 3$ with $G[0]$ set to $0$ instead of $1$ | 0 instead of 5 | The two skewed root choices $i = 1$ and $i = 3$ each multiply by $G[0]$, so a zero base case erases $4$ of the $5$ trees. |
+| Term symmetry | $n = 4$ | $5 + 2 + 2 + 5 = 14$ | $F(i, n) = G[i-1]\,G[n-i]$ satisfies $F(i, n) = F(n+1-i, n)$, so the root loop is palindromic and the terms pair up around the middle. |
+| Constraint ceiling | $n = 19$ | 1767263190 | The largest legal answer is below $2^{31} - 1 = 2147483647$, so a signed 32-bit return type still holds it. |
+| Factorial-first evaluation | $n = 19$ | $(2n)! = 38!$ | The intermediate value is about $5.23 \times 10^{44}$, which overflows any 64-bit integer long before the division by $(n+1)!\,n!$ can shrink it back. |
 
 - **Base Case $G[0] = 0$ instead of $1$:** If $G[0]$ is set to $0$, any choice where one child is empty (such as $i = 1$ or $i = n$) would multiply by $0$, incorrectly zeroing out all valid skewed trees. $G[0]$ must be $1$ representing the unique empty tree.
 - **Integer Overflow with Closed Form:** While $C_n = \frac{(2n)!}{(n+1)! n!}$, computing $(2n)!$ directly in languages with 32-bit or 64-bit integers overflows quickly. Computing using iterative multiplication $C = C \times \frac{4k - 2}{k + 1}$ or using Python's arbitrary-precision integers avoids overflow.

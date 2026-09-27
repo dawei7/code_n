@@ -62,6 +62,16 @@ Hence, $G(i)$ and $G(i+1)$ differ at exactly one bit position!
 
 > **Invariant.** At each step, every consecutive pair and the cyclic end-to-start pair share Hamming distance exactly 1.
 
+### Comparing the Two Paradigms
+
+The two constructions exploit different structure, so their honest comparison is not about speed but about what each one has to prove and what each one can avoid materialising:
+
+| Strategy | Mechanism | Time | Space beyond the returned sequence | Tradeoff |
+|:---|:---|:---|:---|:---|
+| Direct XOR formula | Evaluates $G(i) = i \oplus (i \gg 1)$ independently for every index $i$ | $O(2^n)$ | $O(1)$ | Values can be produced lazily and in any order, but the one-bit property must be proved algebraically rather than observed. |
+| Reflected doubling | At level $k$, appends the reverse of the current prefix with bit $k$ set | $O(2^n)$ | $O(1)$ when the prefix is read backwards by index | The one-bit property is structural and needs only one seam check per level, but the whole sequence must be materialised before the next level begins. |
+| Exhaustive Hamiltonian search | Walks vertex-to-vertex moves on the $n$-cube until a closed tour over all $2^n$ vertices is found | Factorial in $2^n$ in the worst case | $O(2^n)$ for the visited set and the partial tour | Correct in principle and usable only for tiny $n$; it also needs an explicit wraparound check on the final vertex. |
+
 ---
 
 ## 3. Step-by-Step Worked Execution
@@ -91,6 +101,17 @@ Output list: $[0, 1, 3, 2, 6, 7, 5, 4]$.
   - Reverse: `[1, 0]`. Add $2 \implies [1+2, 0+2] = [3, 2]$.
   - Concatenate: `[0, 1] + [3, 2] = [0, 1, 3, 2]`.
 
+Doubling the construction once more at each level reproduces exactly the sequence the direct formula produced, and the table records the one adjacency the doubling creates from scratch:
+
+| Level $k$ | Sequence before doubling $S_k$ | Reverse of $S_k$ | Offset added $2^k$ | Appended half | New sequence $S_{k+1}$ | Seam pair and differing bit |
+|:---:|---|---|:---:|---|---|---|
+| 0 | `[0]` | `[0]` | 1 | `[1]` | `[0, 1]` | `0` vs `1` — bit 0 |
+| 1 | `[0, 1]` | `[1, 0]` | 2 | `[3, 2]` | `[0, 1, 3, 2]` | `01` vs `11` — bit 1 |
+| 2 | `[0, 1, 3, 2]` | `[2, 3, 1, 0]` | 4 | `[6, 7, 5, 4]` | `[0, 1, 3, 2, 6, 7, 5, 4]` | `010` vs `110` — bit 2 |
+| 3 | `[0, 1, 3, 2, 6, 7, 5, 4]` | `[4, 5, 7, 6, 2, 3, 1, 0]` | 8 | `[12, 13, 15, 14, 10, 11, 9, 8]` | `[0, 1, 3, 2, 6, 7, 5, 4, 12, 13, 15, 14, 10, 11, 9, 8]` | `0100` vs `1100` — bit 3 |
+
+The **seam pair** is the junction where the reversed, offset copy meets the original prefix. It is the only adjacency the doubling introduces that was not already present in $S_k$: adjacencies strictly inside the first half are inherited unchanged, and adjacencies strictly inside the second half are inherited from the reverse of $S_k$. One seam check per level therefore accounts for the entire new sequence.
+
 ---
 
 ## 4. Complete Execution Trace
@@ -118,6 +139,17 @@ Output list: $[0, 1, 3, 2, 6, 7, 5, 4]$.
 ---
 
 ## 6. Traps This Instance Exposes
+
+The boundaries below decide whether a construction is accepted, and each one is checked against the instance values traced above:
+
+| Boundary | Instance | Concrete outcome | Why it stays correct |
+|:---|:---|:---|:---|
+| Smallest legal width | $n = 1$ | `[0, 1]` | The forward step and the wraparound step are the same pair: `0` and `1` differ only in bit 0, so the two-vertex cycle closes. |
+| Wraparound closure | $n = 3$, last versus first | `4` versus `0`, that is `100` versus `000` | $G(7) \oplus G(0) = 4 \oplus 0 = 4 = 2^2$, a single set bit at position 2. |
+| Largest legal width | $n = 16$ | $2^{16} = 65{,}536$ distinct values covering $[0, 65{,}535]$ | The last index $i = 65{,}535$ gives $65{,}535 \oplus 32{,}767 = 32{,}768$, which differs from `0` only in bit 15, so the cycle still closes at the ceiling. |
+| Numeric order is not the invariant | $n = 3$, $i = 3$ | Value `2` follows value `3` | The sequence decreases numerically at that step; adjacency is defined by Hamming distance, so any scan that looks for the next larger value is invalid. |
+| No repeats permitted | $n = 2$ | `[0, 1, 3, 2]` | The map $i \mapsto i \oplus (i \gg 1)$ is invertible on $[0, 2^n - 1]$, so the $2^n$ indices yield $2^n$ distinct values and none repeats. |
+| Valid sequences are not unique | $n = 2$ | `[0, 1, 3, 2]` and `[0, 2, 3, 1]` | Both trace Hamiltonian cycles of the four-vertex hypercube, `00`–`01`–`11`–`10` and `00`–`10`–`11`–`01`; the judge accepts either, so a fixed expected list must not be assumed. |
 
 - **Bitwise Precedence in Python:** Writing `i ^ i >> 1` evaluates `>>` before `^`, so `i ^ (i >> 1)` is correct. Writing explicit parentheses prevents operator precedence bugs.
 - **Multiple Valid Gray Codes:** Gray codes are not unique; any Hamiltonian cycle on the hypercube is valid. Both the direct formula and reflected doubling produce valid sequences accepted by LeetCode.

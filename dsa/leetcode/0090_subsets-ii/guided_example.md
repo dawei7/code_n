@@ -52,6 +52,23 @@ We define $\text{backtrack}(\text{start}, \text{path})$:
 
 > **Invariant.** For any unique integer $v$, only the first available occurrence at index $\text{start}$ may head a new subtree branch at the current recursion depth.
 
+### What the Prune Removes, Element by Element
+
+Treating the three positions as distinguishable turns the multiset into a genuine set with $2^3 = 8$ index selections. The duplicate rule does not delete distinct values; it deletes the *second way of writing the same value multiset*. The table below lists all eight index selections, the subset they spell, and whether the pruned search ever reaches them:
+
+| Index-tagged selection | Subset it spells | Outcome in the pruned search | Branch responsible |
+|:---|:---|:---|:---|
+| `{}` | `[]` | Recorded | root node, emitted before any candidate is explored |
+| `{0}` | `[1]` | Recorded | root $\to j = 0$ (vertical, $j = \text{start}$) |
+| `{1}` | `[2]` | Recorded | root $\to j = 1$ (horizontal but $\text{nums}[1] \ne \text{nums}[0]$) |
+| `{2}` | `[2]` | Pruned | root $\to j = 2$ repeats sibling $j = 1$ |
+| `{0, 1}` | `[1, 2]` | Recorded | node `[1]` $\to j = 1$ (vertical, $j = \text{start}$) |
+| `{0, 2}` | `[1, 2]` | Pruned | node `[1]` $\to j = 2$ repeats sibling $j = 1$ |
+| `{1, 2}` | `[2, 2]` | Recorded | node `[2]` $\to j = 2$ (vertical reuse of the second copy) |
+| `{0, 1, 2}` | `[1, 2, 2]` | Recorded | node `[1, 2]` $\to j = 2$ (vertical reuse of the second copy) |
+
+Exactly two of the eight index selections are pruned, and both are the *second* copy of a value that a sibling at the same depth already chose — which is why the surviving count is $8 - 2 = 6$.
+
 ---
 
 ## 3. Step-by-Step Worked Execution
@@ -140,6 +157,19 @@ Search terminates. Exactly 6 subsets generated.
 ---
 
 ## 6. Traps This Instance Exposes
+
+For an input with distinct values $v$ of multiplicity $c_v$, the number of surviving subsets is $\prod_v (c_v + 1)$, because each value contributes an independent choice of "take $k$ copies" for $k \in [0, c_v]$. The boundaries below all follow from that product:
+
+| Boundary | Input | Distinct subsets | Why the count is exactly that |
+|:---|:---|:---|:---|
+| Smallest legal length | `[0]` | 2 | One distinct value with $c = 1$, so $1 + 1$: the value is absent or present. |
+| All values equal, length 2 | `[1, 1]` | 3 | One distinct value with $c = 2$, giving $2 + 1$; `[1]` is emitted once even though two siblings could spell it. |
+| Duplicates plus a distinct value | `[1, 2, 2]` | 6 | $2 \times 3$, the traced instance: two choices for the `1` and three for the pair of `2`s. |
+| Three equal copies | `[1, 2, 2, 2]` | 8 | $2 \times 4$; the multisets `[2]`, `[2, 2]`, `[1, 2]` and `[1, 2, 2]` each appear exactly once. |
+| Negative duplicates | `[-1, -1, 2]` | 6 | Ascending order places `-1` before `2`, so the equal negatives stay adjacent and the adjacency test still fires: $3 \times 2$. |
+| Maximum length, one distinct value | Ten copies of the same integer | 11 | $c = 10$ for the only value, so the eleven subsets run from `[]` up to the ten-copy multiset. |
+| Maximum length, all distinct | Ten distinct integers | 1024 | No collision exists at all, so nothing is pruned and the count is the full power set $2^{10}$. |
+| Unsorted input | `[2, 1, 2]` | 6, but only once sorted | The test compares adjacent slots, so the two `2`s must first be made neighbours; sorting costs $O(N \log N)$ and is mandatory. |
 
 - **Forgetting to Sort First:** The condition $\text{nums}[j] == \text{nums}[j-1]$ relies entirely on identical elements being adjacent. If $\text{nums} = [2, 1, 2]$ is not sorted, the two $2$s will be separated, generating duplicate $[2]$ subsets. Sorting is strictly mandatory.
 - **Checking $j > 0$ Instead of $j > \text{start}$:** Writing $j > 0$ mistakenly prunes vertical depth recursion, preventing valid multisets like $[2, 2]$ from ever being generated. It must strictly be $j > \text{start}$.

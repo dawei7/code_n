@@ -23,6 +23,17 @@ Given $s = \text{"25525511135"}$ ($|s| = 11$):
   - $(3, 3, 2, 3) \implies \text{"255.255.11.135"}$
   - $(3, 3, 3, 2) \implies \text{"255.255.111.35"}$
 
+Every 4-part composition of $11$ with parts in $\{1, 2, 3\}$ must leave a total deficit of $12 - 11 = 1$ from the all-threes case, so exactly one octet has length $2$ and the other three have length $3$. That gives only four candidate partitions, and evaluating each one shows why the search must reject half of them:
+
+| Composition $(L_1, L_2, L_3, L_4)$ | Octets produced | Offending octet | Verdict |
+|:---|:---|:---|:---|
+| $(2, 3, 3, 3)$ | `25`, `525`, `511`, `135` | `525` is above the ceiling $255$ | Rejected |
+| $(3, 2, 3, 3)$ | `255`, `25`, `511`, `135` | `511` is above the ceiling $255$ | Rejected |
+| $(3, 3, 2, 3)$ | `255`, `255`, `11`, `135` | none | **Valid: `255.255.11.135`** |
+| $(3, 3, 3, 2)$ | `255`, `255`, `111`, `35` | none | **Valid: `255.255.111.35`** |
+
+The two survivors differ only in the trailing digit budget: spending two digits on octet 3 forces three on octet 4, and vice versa. This is why the answer is a small set of layouts rather than a single one, and why an implementation must exhaust the length loop instead of stopping at the first hit.
+
 A brute-force loop without length pruning explores invalid partitions.
 By tracking the number of remaining segments $4 - k$ and comparing against remaining character count, candidate branches outside the range $[4 - k, \, 3(4 - k)]$ are pruned instantly.
 
@@ -148,6 +159,17 @@ Output: `["255.255.11.135", "255.255.111.35"]`.
 ---
 
 ## 6. Traps This Instance Exposes
+
+The length window $4 \le |s| \le 12$ and the leading-zero rule together decide almost every boundary, and each case below is checked against its accepted output:
+
+| Boundary | Input | Output | Why exactly that many addresses survive |
+|:---|:---|:---|:---|
+| Too few digits | `"111"` | `[]` | Four octets need at least one digit each, so a three-character string has no 4-part partition at all. |
+| Exactly four digits | `"0000"` | `["0.0.0.0"]` | The only composition is $(1, 1, 1, 1)$; each single `"0"` is legal, while every two-digit grouping would begin with `0` and be illegal. |
+| Too many digits | Any string of $13$ or more characters | `[]` | Four octets of at most three digits cover at most $12$ characters, so no partition can consume the whole string. |
+| Leading zero must stand alone | `"010010"` | `["0.10.0.10", "0.100.1.0"]` | `"01"`, `"00"` and `"010"` are all illegal, so the first `0` can only be a one-digit octet; only two arrangements honour that everywhere. |
+| Many layouts from few digits | `"101023"` | `["1.0.10.23", "1.0.102.3", "10.1.0.23", "10.10.2.3", "101.0.2.3"]` | Ten compositions of six digits exist; five are killed by a leading-zero group (`"023"`, `"010"`, `"01"`, `"01"`, `"02"`) and five are valid. |
+| Inclusive value ceiling | Octet reading exactly `255`, as in `"25525511135"` | `255` accepted | The bound is $0 \le \text{val} \le 255$, so `255` passes while `256` — and any longer prefix of a three-digit group above it — is rejected. |
 
 - **Global String Length Filtering:** If $|s| < 4$ or $|s| > 12$, an IPv4 address is mathematically impossible. Returning `[]` before initiating backtracking saves execution overhead.
 - **Leading Zero Rejection:** `"01"` is numerically $1$, but as an IP octet it is illegal. The rule must be: if $\text{len} > 1$ and $\text{part}[0] == \text{'0'}$, reject!

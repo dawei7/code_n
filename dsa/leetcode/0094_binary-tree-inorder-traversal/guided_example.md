@@ -73,6 +73,16 @@ While `cur` is not null:
 
 > **Invariant.** A node's value is emitted if and only if its entire left subtree has already been completely visited and emitted.
 
+### Choosing Between the Three Inorder Machines
+
+Recursion, an explicit stack, and Morris threading produce the same sequence but pay for it in different currencies. The `root = [1, null, 2, 3]` instance below is small enough that all three agree, so the choice is made entirely by the last two columns:
+
+| Approach | Auxiliary space | Temporarily rewrites the tree? | Failure mode to guard against |
+|:---|:---|:---|:---|
+| Recursive call | $O(H)$ for the call frames | No | A degenerate skew tree of height $H$ consumes $H$ frames, so the recursion depth tracks the tree shape rather than a constant. |
+| Explicit pointer stack | $O(H)$ for the stack array | No | Advancing the active pointer without moving to the popped node's right child re-pushes the same node endlessly. |
+| Morris predecessor threads | $O(1)$ | Yes: `pred.right` is temporarily pointed at `cur` | A thread that is not severed on the second visit leaves a cycle in the tree and breaks every later traversal of the same object. |
+
 ---
 
 ## 3. Step-by-Step Worked Execution
@@ -129,6 +139,22 @@ We trace the explicit stack execution on $\text{root} = [1, \text{null}, 2, 3]$:
 
 ---
 
+### Method 2 on the Same Instance: Morris Threading
+
+The tree $1 \to$ (right) $2 \to$ (left) $3$ has exactly one node with a left child, namely node $2$, so Morris traversal threads and unthreads a single pointer and still needs no stack. The predecessor of a node is the rightmost node of its left subtree, which is why the search below stops at node $3$ both times:
+
+| Visit | Active `cur` | `cur.left` | Predecessor found | Thread action | Emitted value | Output |
+|:---:|:---:|:---:|:---|:---|:---:|:---|
+| 1 | $\text{Node}(1)$ | $\emptyset$ | Not needed | None | `1` | `[1]` |
+| 2 | $\text{Node}(2)$ | $\text{Node}(3)$ | $\text{Node}(3)$ | Set `3.right = 2` | none | `[1]` |
+| 3 | $\text{Node}(3)$ | $\emptyset$ | Not needed | None | `3` | `[1, 3]` |
+| 4 | $\text{Node}(2)$ | $\text{Node}(3)$ | $\text{Node}(3)$, reached through the new thread | Restore `3.right = None` | `2` | `[1, 3, 2]` |
+| 5 | $\emptyset$ | — | Not needed | None | Halt | `[1, 3, 2]` |
+
+Visit 3 reaches node $3$ and then follows the thread `3.right = 2` back to node $2$; that second arrival at node $2$ is precisely the signal that its left subtree is finished, so the value `2` is emitted and the tree is restored before moving right. One thread is created, one thread is destroyed, and the output matches the stack trace exactly.
+
+---
+
 ## 4. Complete Execution Trace
 
 | Step | Active Node $\text{cur}$ | Stack State (Bottom to Top) | Action Taken | Emitted Output |
@@ -152,6 +178,17 @@ We trace the explicit stack execution on $\text{root} = [1, \text{null}, 2, 3]$:
 ---
 
 ## 6. Traps This Instance Exposes
+
+Tree shape drives everything that can go wrong here, because the sequence itself is uniquely determined by the structure. Each boundary below states the shape, the accepted output, and why the machinery still behaves:
+
+| Boundary | Instance | Inorder output | Structural reason |
+|:---|:---|:---|:---|
+| Empty tree | `[]` | `[]` | The active pointer is null and the stack is empty at entry, so no push, pop, or visit ever occurs. |
+| Single node | `[1]` | `[1]` | The node has no left child, so it is emitted before any descent and the right move lands on null. |
+| Left-skewed chain | `[4, 3, null, 2, null, 1]` | `[1, 2, 3, 4]` | Every node is a left child, so the left spine descends four levels and the pops then emit the chain from the bottom up. |
+| Perfect seven-node tree | `[4, 2, 6, 1, 3, 5, 7]` | `[1, 2, 3, 4, 5, 6, 7]` | Left and right spines both have height $3$, so the stack peaks at three entries and the ascending result reflects the search-tree ordering. |
+| Right subtree holding a left grandchild | `[1, null, 2, 3]` | `[1, 3, 2]` | The root is emitted first because its left child is empty, but node $3$ is a left child of node $2$ and must still precede it. |
+| Maximum height | A $100$-node left-skewed chain, the constraint ceiling | Values emitted in reverse of the descent order | Here $H = 100$, so the explicit stack holds $100$ pointers at its peak while Morris threading holds none. |
 
 - **Infinite Loops with `cur`:** Failing to set `cur = None` after popping from the stack causes the left-descent loop to re-push the popped node endlessly. Setting `cur = cur.right` ensures the algorithm advances to the right subtree.
 - **Empty Tree Handling:** If $\text{root} == \emptyset$, `cur` is initially null and `stack` is empty, safely returning `[]` immediately.

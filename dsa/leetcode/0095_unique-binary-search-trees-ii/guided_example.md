@@ -71,6 +71,17 @@ We trace the generation for $n = 3$ ($start = 1, end = 3$):
   - $[2, 2] \implies \text{Node}(2, \text{None}, \text{None})$.
   - $[3, 3] \implies \text{Node}(3, \text{None}, \text{None})$.
 
+Because a subproblem is identified only by the *size* of its interval, not by the particular values inside it, the whole recursion collapses onto the Catalan recurrence. The four sizes that occur for $n = 3$ are listed below with the exact products the Cartesian stage forms at each size:
+
+| Interval size $m$ | Intervals that occur for $n = 3$ | Root choices and their products | Trees returned | Catalan value |
+|:---:|:---|:---|:---:|:---:|
+| 0 | `[1, 0]`, `[2, 1]`, `[3, 2]`, `[4, 3]` | No root exists | 1, namely `[None]` | $C_0 = 1$ |
+| 1 | `[1, 1]`, `[2, 2]`, `[3, 3]` | The sole value is the root: $1 \times 1$ | 1 | $C_1 = 1$ |
+| 2 | `[1, 2]`, `[2, 3]` | Smaller value as root: $1 \times 1$; larger value as root: $1 \times 1$ | 2 | $C_2 = 2$ |
+| 3 | `[1, 3]` | Root $1$: $1 \times 2$; root $2$: $1 \times 1$; root $3$: $2 \times 1$ | $2 + 1 + 2 = 5$ | $C_3 = 5$ |
+
+The size-$2$ row already contains the reason the count is not $m!$ or $2^m$: the two root choices consume *different* intervals, so the products do not overlap and no structural duplicate can be built.
+
 ---
 
 ### Root Choice $i = 1$ ($start = 1, end = 3$)
@@ -151,6 +162,17 @@ Tree 1:        Tree 2:        Tree 3:        Tree 4:        Tree 5:
 ---
 
 ## 6. Traps This Instance Exposes
+
+The Catalan growth below is the real trap of this problem: the answer set explodes long before the input becomes large, and the constraint stops at $n = 8$ for exactly that reason. Each row gives the number of trees returned by the recursion on the full interval $[1, n]$:
+
+| $n$ | Catalan value $C_n = \frac{1}{n+1}\binom{2n}{n}$ | Trees returned | What the row teaches |
+|:---:|:---|:---:|:---|
+| 1 | $\frac{1}{2}\binom{2}{1} = 1$ | 1 | The smallest legal input returns the single node `[1]`, so the base case is exercised immediately. |
+| 2 | $\frac{1}{3}\binom{4}{2} = 2$ | 2 | Two roots produce two trees, `[2, 1]` and `[1, null, 2]`; the interval sizes are $1$ and $0$ in both cases. |
+| 3 | $\frac{1}{4}\binom{6}{3} = 5$ | 5 | The traced instance: root $1$ gives $2$ trees, root $2$ gives $1$, root $3$ gives $2$. |
+| 4 | $\frac{1}{5}\binom{8}{4} = 14$ | 14 | The count more than doubles from $5$; the Cartesian product, not the recursion depth, is what grows. |
+| 8 | $\frac{1}{9}\binom{16}{8} = 1430$ | 1430 | The constraint ceiling: $1430$ trees of $8$ nodes each must be materialised, which is why the interval bounds are not larger. |
+| Counting without building | Any $n$ in $[1, 8]$ | Same count as building | A task that only asks *how many* BSTs exist needs the scalar recurrence $C_m = \sum_{i=1}^{m} C_{i-1} C_{m-i}$ and no node allocation at all. |
 
 - **Base Case Returning Empty List Instead of `[None]`:** If $\text{build}(start, end)$ returns `[]` when $start > end$, the nested loops for $L$ in `left_trees` and $R$ in `right_trees` will execute 0 times, creating zero parent trees! The empty tree must be represented by a list containing one element: `[None]`.
 - **Node Sharing vs Deep Copy:** Reusing subtree references across multiple trees is valid in functional and memory-efficient Python implementations, as trees are read-only. If callers mutate nodes, deep copies are required.
