@@ -23,6 +23,15 @@ $$
 
 A naive approach merges lists sequentially one by one ($O(k \cdot N)$ time), or dumps all values into an array and sorts them ($O(N \log N)$ time and $O(N)$ auxiliary space). The optimal algorithm uses a min-heap of size at most $k$, extracting the minimum node and inserting its successor in $O(\log k)$ time, achieving an optimal $O(N \log k)$ runtime with $O(k)$ auxiliary space.
 
+**Where this instance sits among the candidate methods.** Four plausible strategies solve the same $k = 3$, $N = 8$ instance, and the table records the concrete cost each one pays here rather than only its asymptotic class.
+
+| Method | Mechanism on this instance | Time | Auxiliary space | Tradeoff or failure mode |
+|:---|:---|:---|:---|:---|
+| Sequential pairwise merging | Merge $L_0$ with $L_1$ (lists of length $3$ and $3$), then merge that $6$-node result with $L_2$ (length $2$) | Between $5$ and $12$ comparisons: $\min(3,3) + \min(6,2)$ up to $(3+3-1) + (6+2-1)$ | $O(1)$ | Cost grows with $k$; the worst case $O(kN)$ is unacceptable once $k$ approaches $10^{4}$ |
+| Collect all values, then sort | Read the $8$ values, sort them, and build a fresh $8$-node chain | $O(N \log N)$ | $O(N)$ | Allocates $N$ replacement nodes and abandons the input nodes, so node identity is not preserved |
+| Divide-and-conquer pairwise merging | Merge list pairs in $\lceil \log_2 k \rceil = 2$ rounds, halving the number of active lists each round | $O(N \log k)$ | $O(k)$ head handles | Same asymptotics as the heap, but needs an array of active head positions plus a two-list merge routine |
+| $k$-way min-heap (this lesson) | $8$ pops and $8$ pushes on a heap whose size never exceeds $k = 3$ | $O(N \log k)$ | $O(k)$ | Every pop must be followed by a successor push; an exhausted list simply stops contributing candidates |
+
 ---
 
 ## 2. Conceptual Foundation & Invariants
@@ -167,3 +176,18 @@ Push the head of each list into $H$:
 
 - **Time Complexity:** $O(N \log k)$, where $N$ is the total number of nodes across all lists and $k$ is the number of linked lists. There are $N$ nodes total; each node is pushed and popped from the min-heap of size at most $k$ exactly once. Each heap operation takes $O(\log k)$ time.
 - **Auxiliary Space Complexity:** $O(k)$. The min-heap stores at most $k$ node references simultaneously. Node rewires are performed in place.
+
+**Heap occupancy accounting for this instance.** Each of the $N = 8$ nodes is pushed exactly once and popped exactly once, so this instance costs exactly $2N = 16$ heap operations. The table shows where those operations occur and confirms that the heap never holds more than $k = 3$ entries.
+
+| Extraction | Entry popped | Heap size $h$ before pop | Height $\lfloor \log_2 h \rfloor$ | Successor pushed | Heap size after | Cumulative heap operations |
+|:---:|:---|:---:|:---:|:---|:---:|:---:|
+| 1 | $1_{(L_0)}$ | 3 | 1 | $4_{(L_0)}$ | 3 | 5 |
+| 2 | $1_{(L_1)}$ | 3 | 1 | $3_{(L_1)}$ | 3 | 7 |
+| 3 | $2_{(L_2)}$ | 3 | 1 | $6_{(L_2)}$ | 3 | 9 |
+| 4 | $3_{(L_1)}$ | 3 | 1 | $4_{(L_1)}$ | 3 | 11 |
+| 5 | $4_{(L_0)}$ | 3 | 1 | $5_{(L_0)}$ | 3 | 13 |
+| 6 | $4_{(L_1)}$ | 3 | 1 | none ($L_1$ exhausted) | 2 | 14 |
+| 7 | $5_{(L_0)}$ | 2 | 1 | none ($L_0$ exhausted) | 1 | 15 |
+| 8 | $6_{(L_2)}$ | 1 | 0 | none ($L_2$ exhausted) | 0 | 16 |
+
+The cumulative column begins with the three initial head insertions and then adds one pop plus every successor push, giving $3 + 8 + 5 = 16$ operations. Because the heap never holds more than $k = 3$ entries, its height never exceeds $\lfloor \log_2 3 \rfloor = 1$, so each extraction moves an entry across at most one level. That is the concrete reason the $O(\log k)$ factor is small for this instance while still growing only logarithmically as $k$ approaches $10^{4}$.

@@ -136,9 +136,32 @@ We trace list $[1, 2, 3, 4, 5]$ with $k = 2$:
 - **Connecting Suffixes Correctly:** Linking `group_prev.next = kth` and `new_tail.next = group_next` must be performed in correct sequence to avoid creating reference cycles.
 - **Boundary $k = 1$:** When $k = 1$, each group has size 1; the lookahead and reversal are identity operations, correctly returning the list without alteration.
 
+**Boundary behaviour across the domain.** Every degenerate shape is decided by the same lookahead test, as the published cases confirm.
+
+| Scenario | Input | Expected output | Why the lookahead rule produces it |
+|:---|:---|:---|:---|
+| Single node, $k = 1$ | $\text{head} = [1]$, $k = 1$ | `[1]` | One complete group of size $1$; reversing a single node leaves it in place |
+| $k = 1$ on a longer list | $\text{head} = [1, 2, 3, 4]$, $k = 1$ | `[1, 2, 3, 4]` | All four groups are singletons, so every reversal is the identity and no seam changes the order |
+| Whole list is one group | $\text{head} = [1, 2, 3, 4]$, $k = 4$ | `[4, 3, 2, 1]` | The probe reaches node $4$ exactly, so $\text{group\_next} = \text{None}$ and the reversed group becomes the entire list |
+| Three complete groups | $\text{head} = [1, 2, 3, 4, 5, 6]$, $k = 2$ | `[2, 1, 4, 3, 6, 5]` | $6$ is a multiple of $2$, so there is no remainder and all three seams land on real nodes |
+| Large group with a one-node suffix | $\text{head} = [1, 2, 3, 4, 5, 6]$, $k = 5$ | `[5, 4, 3, 2, 1, 6]` | The first five nodes invert to $[5, 4, 3, 2, 1]$; the probe from the new tail advances one node ($6$) and then reaches $\text{None}$, so node $6$ is preserved |
+| Partial suffix with $k = 3$ | $\text{head} = [1, 2, 3, 4, 5]$, $k = 3$ | `[3, 2, 1, 4, 5]` | Group $1$ inverts to $[3, 2, 1]$; the remaining $2 < 3$ nodes keep their original order |
+| Duplicates and extreme values | $\text{head} = [0, 1000, 0, 1000, 7]$, $k = 2$ | `[1000, 0, 1000, 0, 7]` | Reversal is structural, so equal values behave like any other pair; the trailing $7$ stays unpaired |
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(N)$, where $N$ is the number of nodes in the linked list. Each node is traversed once during the lookahead probe and once during the group pointer reversal. Total operations are $2N = O(N)$.
 - **Auxiliary Space Complexity:** $O(1)$. The reversal is performed entirely in place by repointing references, requiring only a constant number of scalar pointer handles.
+
+**Pointer-move accounting for this instance.** The two phases of the method can be counted exactly, which shows where the linear cost comes from.
+
+| Group | Anchor $\text{group\_prev}$ before | Probe advances that land on a node | $k$-th node found | In-group `.next` rewrites | Seam rewrite | Pointer moves this group |
+|:---:|:---:|:---:|:---:|:---:|:---|:---:|
+| 1 | $\text{dummy}$ | 2 ($\text{Node}(1)$, $\text{Node}(2)$) | $\text{Node}(2)$ | 2 | $\text{dummy.next} \leftarrow \text{Node}(2)$ | 5 |
+| 2 | $\text{Node}(1)$ | 2 ($\text{Node}(3)$, $\text{Node}(4)$) | $\text{Node}(4)$ | 2 | $\text{Node}(1).\text{next} \leftarrow \text{Node}(4)$ | 5 |
+| 3 (probe only) | $\text{Node}(3)$ | 1 ($\text{Node}(5)$), then $\text{None}$ | not reached | 0 | none | 1 |
+| Total | — | 5 | 2 complete groups | 4 | 2 | 11 |
+
+The probe lands on each of the $N = 5$ nodes exactly once, contributing $5$ advances; the two complete groups each rewrite $k = 2$ in-group links plus one seam link, contributing $2 \cdot (2 + 1) = 6$. The exact total is therefore $11$, that is $N + (N - r) + \lfloor N/k \rfloor$ with remainder $r = N \bmod k = 1$. The first two terms contribute at most $2N$ moves, while the seam term contributes one write per complete group, so the total never exceeds $2N + \lfloor N/k \rfloor \le 3N$. The move count is thus bounded by a constant multiple of $N$ for every legal $k$, and the linear bound is unaffected.

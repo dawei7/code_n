@@ -120,6 +120,19 @@ Reader reaches end of array. The final unique count is $k = 5$. Prefix is $[0, 1
 | 8 | 3 | 3 | False | Duplicate; skip | 4 | $[0, 1, 2, 3]$ |
 | 9 | 4 | 3 | **True** | Write $\text{nums}[4] \leftarrow 4$ | **5** | $[0, 1, 2, 3, 4]$ |
 
+**Run-length accounting.** Because the array is sorted, the whole compaction is described by its maximal runs of equal values: each run contributes exactly one accepted element and discards the rest.
+
+| Run | Value | Input positions | Run length | Elements accepted | Elements discarded | Write cursor $k$ after the run |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | $0$ | $0$–$1$ | 2 | 1 | 1 | 1 |
+| 2 | $1$ | $2$–$4$ | 3 | 1 | 2 | 2 |
+| 3 | $2$ | $5$–$6$ | 2 | 1 | 1 | 3 |
+| 4 | $3$ | $7$–$8$ | 2 | 1 | 1 | 4 |
+| 5 | $4$ | $9$ | 1 | 1 | 0 | 5 |
+| Total | — | $0$–$9$ | 10 | 5 | 5 | 5 |
+
+The two totals are complementary by construction: the number of accepted elements is the number of runs, and the number discarded is $N$ minus that number, so $5 + 5 = 10 = N$ and the returned $k$ equals the run count. The reader never needs to know the values in advance — only where each run ends, which is precisely what comparing $\text{nums}[i]$ with $\text{nums}[k-1]$ detects.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -135,6 +148,18 @@ Reader reaches end of array. The final unique count is $k = 5$. Prefix is $[0, 1
 - **Array Modification While Iterating:** Mutating array size (via `del` or `pop`) during iteration shifts indices, causing elements to be skipped or resulting in $O(N^2)$ quadratic slowdown. The two-pointer read-write technique modifies contents in place without resizing.
 - **Empty Array Boundary:** If the array is empty ($N = 0$), $k = 0$ must be returned immediately to prevent indexing $\text{nums}[0]$.
 - **Elements Beyond $k$:** The judge only inspects elements from index $0$ to $k - 1$. Leaving stale values in indices $\ge k$ is completely valid and expected.
+
+**Boundary behaviour across the value domain.** Each published case stresses one extreme of the contract, and the prefix invariant survives all of them.
+
+| Scenario | Input | Expected result | Why the prefix invariant holds |
+|:---|:---|:---|:---|
+| Single element at the domain minimum | `[-100]` | $k = 1$, prefix `[-100]` | The reader range $[1, N-1]$ is empty, so $k$ stays at its initial value $1$ |
+| One repeated maximum value | `[100, 100, 100, 100]` | $k = 1$, prefix `[100]` | All three reader steps compare equal to `nums[0]` and are skipped, so no write occurs |
+| Already strictly increasing | `[-100, -50, 0, 50, 100]` | $k = 5$, prefix unchanged | Every reader step differs from the last written value, so all four steps write |
+| Unequal run lengths | `[-100, -100, -3, -1, -1, 0, 0, 0, 100]` | $k = 5$, prefix `[-100, -3, -1, 0, 100]` | $N = 9$ decomposes into $5$ runs, so exactly $4$ elements are discarded |
+| Duplicate run at the end | `[-100, -50, 0, 100, 100, 100]` | $k = 4$, prefix `[-100, -50, 0, 100]` | The trailing run contributes no new value, so the last accepted element stays at index $3$ |
+| Two-value run plus a distinct tail | `[1, 1, 2]` | $k = 2$, prefix `[1, 2]` | One duplicate is skipped and the new value $2$ is written at index $1$ |
+| Every legal value exactly once | `[-100, -99, \dots, 99, 100]` | $k = 201$, prefix unchanged | The $201$ elements are pairwise distinct, so no comparison ever reports equality and the cursor advances at every step |
 
 ---
 

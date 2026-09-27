@@ -106,6 +106,16 @@ We process list $[1, 2, 3, 4]$:
 | 2 | $\text{Node}(1)$ | $\text{Node}(3)$ | $\text{Node}(4)$ | $\text{None}$ | $[4 \to 3]$ | $\text{dummy} \to 2 \to 1 \to 4 \to 3 \to \text{None}$ |
 | Final | $\text{Node}(3)$ | $\text{None}$ | - | - | - | Emitted Head: $\text{dummy.next} = \text{Node}(2)$ |
 
+**Pointer-write accounting.** The trace shows which links move; counting the writes explains why the in-place method stays linear. Each pair rewrites exactly three `.next` references — two inside the pair and one at the seam that anchors it — and no node participates in more than one pair.
+
+| Pair | Nodes remaining from $\text{prev.next}$ before the pair | Nodes exchanged | The three `.next` references rewritten | Writes this pair | Cumulative writes |
+|:---:|:---:|:---:|:---|:---:|:---:|
+| 1 | 4 ($1, 2, 3, 4$) | $\text{Node}(1)$, $\text{Node}(2)$ | $\text{dummy.next}$, $\text{Node}(2).\text{next}$, $\text{Node}(1).\text{next}$ | 3 | 3 |
+| 2 | 2 ($3, 4$) | $\text{Node}(3)$, $\text{Node}(4)$ | $\text{Node}(1).\text{next}$, $\text{Node}(4).\text{next}$, $\text{Node}(3).\text{next}$ | 3 | 6 |
+| — | 0 | none (the pair guard fails) | none | 0 | 6 |
+
+For $N = 4$ the total is $3 \cdot \lfloor N/2 \rfloor = 6$ writes, and the general cost is at most $3\lfloor N/2 \rfloor$: three writes per completed pair, none per trailing singleton. The second pair is also instructive because $\text{Node}(3).\text{next}$ ends as $\text{None}$ — the seam write for a final pair targets $\text{nxt} = \text{None}$, which is how the chain is terminated without any separate cleanup pass.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -121,6 +131,17 @@ We process list $[1, 2, 3, 4]$:
 - **Modifying Node Values:** Swapping `node.val` rather than pointer references violates problem rules requiring structural node manipulation.
 - **Lost References During Rewire:** If $B.\text{next}$ is updated to $A$ before storing $B.\text{next}$ into $\text{nxt}$, the remaining list $[3 \to 4]$ becomes unreferenced and permanently lost.
 - **Odd Length List Handling:** For a 3-node list $[1, 2, 3]$, after swapping $1$ and $2$, $\text{prev}$ is at $1$. Then $\text{prev.next} = \text{Node}(3)$, but $\text{prev.next.next} = \text{None}$. The condition fails cleanly, leaving node $3$ untouched and producing $[2, 1, 3]$.
+
+**Boundary behaviour across the domain.** The same three-link rewrite covers every degenerate case without a special branch, as the published cases show.
+
+| Scenario | Input | Expected output | Why the invariant still holds |
+|:---|:---|:---|:---|
+| Empty list | $\text{head} = [\,]$ | $[\,]$ | $\text{dummy.next} = \text{None}$, so the pair guard fails at once and the emitted head is $\text{None}$ |
+| Single node | $\text{head} = [1]$ | $[1]$ | $\text{prev.next.next} = \text{None}$: no intact pair exists, so node $1$ is never touched |
+| Unpaired tail | $\text{head} = [1, 2, 3]$ | $[2, 1, 3]$ | After the first pair, $\text{prev} = \text{Node}(1)$ and $\text{prev.next} = \text{Node}(3)$, so the guard rejects the singleton |
+| All values identical | $\text{head} = [5, 5, 5, 5, 5]$ | $[5, 5, 5, 5, 5]$ | Two pairs are rewired and the fifth node stays unpaired; no value comparison is ever made, so the emitted sequence is value-identical |
+| Extreme values | $\text{head} = [0, 100]$ | $[100, 0]$ | Node values are never read or compared, so the limits $0 \le \text{val} \le 100$ cannot influence the rewiring |
+| Alternating short regions | $\text{head} = [0, 42, 100, 7, 8]$ | $[42, 0, 7, 100, 8]$ | Pairs $(0, 42)$ and $(100, 7)$ invert, while the trailing $8$ remains the unpaired remainder |
 
 ---
 
