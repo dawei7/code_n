@@ -1,190 +1,179 @@
 # Guided Example: Reverse Linked List
 
-We trace the step-by-step three-pointer in-place link reversal and recursive unwinding mechanics on representative singly linked list chains:
+## 1. The Edge-Inversion Task and Its Representative Instance
 
-- **Input:** $\text{head} = [1, 2, 3, 4, 5]$
-- **Required output:** $[5, 4, 3, 2, 1]$ (All directed edges reversed in-place)
-- **Two-Node Instance:** $\text{head} = [1, 2] \implies [2, 1]$
-- **Single-Node Instance:** $\text{head} = [1] \implies [1]$
-- **Empty List Instance:** $\text{head} = [] \implies []$
+A singly linked list is a chain of nodes in which each node stores one value and a
+single forward reference to its successor, or an empty reference if it is the last
+node. Only the head of the chain is reachable from outside; every other node is
+found by following forward references. The task is to reverse the direction of every
+one of those references, so that traversing from the returned head visits the
+original values in the opposite order, while keeping the very same node objects.
+No values may be copied into new nodes: node identity must be preserved and every
+original node must appear exactly once in the result.
 
-This instance demonstrates in-place directed graph edge inversion ($\text{curr.next} \leftarrow \text{prev}$), proves why caching the forward reference ($\text{nxt} = \text{curr.next}$) is mandatory to prevent orphan node loss, analyzes both iterative $O(1)$-space and recursive call-stack approaches, and runs in $O(N)$ time.
+The representative instance uses the five-node chain below, written positionally as
+$v_1 \to v_2 \to v_3 \to v_4 \to v_5 \to \text{nil}$ and with the head pointing at
+$v_1$.
 
----
+| Position | Node | Stored `val` | Original successor | Required successor |
+|:---:|:---:|:---:|:---:|:---:|
+| 1 | $v_1$ | `1` | $v_2$ | nil (it becomes the tail) |
+| 2 | $v_2$ | `2` | $v_3$ | $v_1$ |
+| 3 | $v_3$ | `3` | $v_4$ | $v_2$ |
+| 4 | $v_4$ | `4` | $v_5$ | $v_3$ |
+| 5 | $v_5$ | `5` | nil | $v_4$ (it becomes the new head) |
 
-## 1. Instance & Teaching Goal
+The required traversal order of the returned chain is therefore
+`5 → 4 → 3 → 2 → 1`, produced by the returned head $v_5$. The two smaller instances
+in the contract are the degenerate cases: a two-node input `[1, 2]` becomes
+`[2, 1]`, a one-node input `[1]` stays `[1]` with an unchanged empty successor, and
+an empty input returns an empty chain.
 
-Given the head of a singly linked list:
-$$
-\text{head} \to 1 \to 2 \to 3 \to 4 \to 5 \to \text{null}
-$$
-Reverse the direction of every single pointer such that the tail becomes the new head:
-$$
-\text{new\_head} \to 5 \to 4 \to 3 \to 2 \to 1 \to \text{null}
-$$
+## 2. Two Disjoint Segments: The Reversal Invariant
 
-In a singly linked list, each node contains only a single forward reference (`next`) without a backward pointer.
-Reversing the link $\text{curr} \to \text{prev}$ by setting $\text{curr.next} = \text{prev}$ immediately severs access to the remainder of the list!
-To prevent losing the rest of the chain, the algorithm must maintain **three simultaneous pointers**:
-- `prev`: tracks the head of the already-reversed prefix.
-- `curr`: tracks the node currently being inverted.
-- `nxt`: temporarily preserves the unvisited suffix before the forward link is overwritten.
+The decisive difficulty is that a singly linked node holds only one outgoing
+reference. Overwriting it to point backward destroys the only route to the rest of
+the chain, so the reference to the remaining unprocessed nodes must be captured in a
+local variable before the overwrite happens. This forces a small, carefully ordered
+set of steps per node.
 
----
+The method maintains exactly two logical segments of the original node set:
 
-## 2. Conceptual Foundation & Invariants
+- the **reversed segment**, whose head is held in a local reference and whose chain
+  ends in an empty reference; and
+- the **unprocessed suffix**, whose first node is held in a cursor reference and
+  which still retains its original forward references.
 
-### Iterative Three-Pointer Reversal Protocol
-Initialize:
-$$
-\text{prev} = \text{null}, \quad \text{curr} = \text{head}
-$$
+Write the processed count after $k$ iterations as $k$ and the cursor as $c$. The
+invariant that holds at the start of every iteration is:
 
-While $\text{curr} \ne \text{null}$:
-1. **Cache Forward Pointer:**
-   $$
-   \text{nxt} \leftarrow \text{curr.next}
-   $$
-2. **Reverse Directed Link:**
-   Rewire the active node to point to its predecessor:
-   $$
-   \text{curr.next} \leftarrow \text{prev}
-   $$
-3. **Advance Inverted Boundary:**
-   $$
-   \text{prev} \leftarrow \text{curr}
-   $$
-4. **Advance Exploration Cursor:**
-   $$
-   \text{curr} \leftarrow \text{nxt}
-   $$
+> **Reversal invariant.** The reversed segment contains exactly the first $k$
+> original nodes in exact reverse original order, its head is the $k$-th node, and
+> its chain terminates in an empty reference. The cursor points at the
+> $(k+1)$-th original node, which is the head of the unprocessed suffix, and that
+> suffix contains the remaining $n - k$ nodes in original order. The two segments
+> are disjoint and their union is the whole input.
 
-When `curr` reaches `null`, all nodes have been reversed. Return `prev` as the new head.
+Two consequences follow immediately. First, the list is never longer or shorter
+than at the start: no node is duplicated and none is lost, because the cached
+forward reference preserves the suffix across the overwrite. Second, the final
+answer is the reversed segment's head once the suffix becomes empty. A dummy node
+whose successor field is the reversed head is convenient here: it provides a stable
+location to update as the head of the reversed segment changes, and it is never
+returned as data.
 
-### Recursive Reversal Alternative:
-```python
-def reverseList(head):
-    if not head or not head.next:
-        return head
-    new_head = reverseList(head.next)
-    head.next.next = head   # Reverse successor's pointer to point back to current node
-    head.next = None        # Sever original forward edge
-    return new_head
-```
+| Iteration start $k$ | Reversed segment (reverse original order) | Unprocessed suffix (original order) | Union size |
+|:---:|:---|:---|:---:|
+| 0 | empty | $v_1 \to v_2 \to v_3 \to v_4 \to v_5$ | 5 |
+| 1 | $v_1$ | $v_2 \to v_3 \to v_4 \to v_5$ | 5 |
+| 2 | $v_2 \to v_1$ | $v_3 \to v_4 \to v_5$ | 5 |
+| 3 | $v_3 \to v_2 \to v_1$ | $v_4 \to v_5$ | 5 |
+| 4 | $v_4 \to v_3 \to v_2 \to v_1$ | $v_5$ | 5 |
+| 5 | $v_5 \to v_4 \to v_3 \to v_2 \to v_1$ | empty | 5 |
 
-> **Invariant.** At the beginning of each loop iteration, `prev` is the head of a completely reversed list containing all nodes processed so far, while `curr` points to the head of the remaining unreversed list.
+## 3. Step-by-Step Trace of Front Insertion
 
----
+Each iteration performs four ordered actions on the node at the cursor:
 
-## 3. Step-by-Step Worked Execution
+1. **Cache the successor** of the cursor node into a local reference, before any
+   overwrite, so the unprocessed suffix stays reachable.
+2. **Point the cursor node backward** by assigning it the current head of the
+   reversed segment. On the first iteration that head is empty, which is precisely
+   what makes the original head the eventual tail.
+3. **Publish the cursor node as the new head** of the reversed segment. Front
+   insertion changes the reversed sequence from $\text{reverse}(k)$ to
+   $v_{k+1} + \text{reverse}(k)$, which is exactly $\text{reverse}(k+1)$.
+4. **Advance the cursor** to the cached successor, restoring the invariant with
+   $k$ increased by one.
 
-We trace the iterative algorithm on $\text{head} = [1, 2, 3, 4, 5]$:
+Tracing the five-node instance:
 
-### Step 0: Initial Setup
-- $\text{prev} = \text{null}$.
-- $\text{curr} = \text{Node 1}$.
-- Active chain: $1 \to 2 \to 3 \to 4 \to 5 \to \text{null}$.
+| Iteration | Cursor node | Cached successor | New backward reference from cursor | Reversed segment after step 3 | Suffix after step 4 |
+|:---:|:---:|:---:|:---:|:---|:---|
+| 1 | $v_1$ | $v_2$ | nil | $v_1$ | $v_2 \to v_3 \to v_4 \to v_5$ |
+| 2 | $v_2$ | $v_3$ | $v_1$ | $v_2 \to v_1$ | $v_3 \to v_4 \to v_5$ |
+| 3 | $v_3$ | $v_4$ | $v_2$ | $v_3 \to v_2 \to v_1$ | $v_4 \to v_5$ |
+| 4 | $v_4$ | $v_5$ | $v_3$ | $v_4 \to v_3 \to v_2 \to v_1$ | $v_5$ |
+| 5 | $v_5$ | nil | $v_4$ | $v_5 \to v_4 \to v_3 \to v_2 \to v_1$ | empty |
 
----
+After the fifth iteration the cursor is empty, so the loop stops. The reversed
+segment now holds all five nodes, its head is $v_5$, and the answer is that head's
+chain, which reads `5 → 4 → 3 → 2 → 1`.
 
-### Step 1: Invert Node 1
-1. Cache next: $\text{nxt} = \text{curr.next} = \text{Node 2}$.
-2. Invert link: $\text{curr.next} = \text{prev} = \text{null}$.
-   *(Node 1 now terminates the reversed list)*.
-3. Advance `prev`: $\text{prev} = \text{Node 1}$.
-4. Advance `curr`: $\text{curr} = \text{Node 2}$.
-- State: $\text{null} \leftarrow 1 \quad \mathbf{\text{and}} \quad 2 \to 3 \to 4 \to 5$.
+| Termination check | Value at loop exit | Meaning |
+|:---|:---|:---|
+| Cursor | empty reference | The unprocessed suffix holds no nodes |
+| Reversed head | $v_5$ | The returned entry point of the final chain |
+| Reversed chain length | 5 nodes | Equal to the original node count |
+| Original head's successor | empty reference | $v_1$ is the new tail, so the chain is acyclic |
 
----
+## 4. Why the Reasoning Is Correct
 
-### Step 2: Invert Node 2
-1. Cache next: $\text{nxt} = \text{curr.next} = \text{Node 3}$.
-2. Invert link: $\text{curr.next} = \text{prev} = \text{Node 1}$.
-3. Advance `prev`: $\text{prev} = \text{Node 2}$.
-4. Advance `curr`: $\text{curr} = \text{Node 3}$.
-- State: $\text{null} \leftarrow 1 \leftarrow 2 \quad \mathbf{\text{and}} \quad 3 \to 4 \to 5$.
+**Ordering is what avoids node loss.** Assigning the backward reference before
+caching the successor would sever the only route to the suffix and make the
+remaining nodes unreachable from any local reference. The fixed action order —
+cache, rewire, publish, advance — is therefore not stylistic; it is the correctness
+condition that keeps the two segments' union equal to the whole input.
 
----
+**Soundness by induction on $k$.** The base case $k = 0$ holds because nothing has
+been processed: the reversed segment is empty and the cursor is the original head.
+For the step, assume the invariant at the start of iteration $k$. The cached
+successor is exactly the head of the suffix, so the suffix minus its first node is
+still wholly reachable and in original order. Front insertion places $v_{k+1}$ before
+every node of the already reversed segment, so the new segment is
+$v_{k+1} + \text{reverse}(k) = \text{reverse}(k+1)$ in exact reverse original order.
+Advancing the cursor to the cached successor restores the invariant with $k$
+increased by one, and the two segments remain disjoint because $v_{k+1}$ was moved
+out of the suffix and into the reversed segment exactly once.
 
-### Step 3: Invert Node 3
-1. Cache next: $\text{nxt} = \text{curr.next} = \text{Node 4}$.
-2. Invert link: $\text{curr.next} = \text{prev} = \text{Node 2}$.
-3. Advance `prev`: $\text{prev} = \text{Node 3}$.
-4. Advance `curr`: $\text{curr} = \text{Node 4}$.
-- State: $\text{null} \leftarrow 1 \leftarrow 2 \leftarrow 3 \quad \mathbf{\text{and}} \quad 4 \to 5$.
+**Termination is exact.** The cursor advances one original node per iteration and
+the suffix strictly shrinks, so after $n$ iterations the suffix is empty and the loop
+stops. By the invariant the reversed segment then contains all $n$ original nodes in
+exact reverse original order, so its head is the correct returned chain.
 
----
+**No cycle can form.** The first iteration sets the original head's reference to
+empty, creating the new tail. Every later processed node points only into the
+already reversed segment, whose chain ends in that empty reference, and no reversed
+node ever points forward into the suffix. Caching a forward reference in a local
+variable does not create a list edge, so the result is one acyclic chain.
 
-### Step 4: Invert Node 4
-1. Cache next: $\text{nxt} = \text{curr.next} = \text{Node 5}$.
-2. Invert link: $\text{curr.next} = \text{prev} = \text{Node 3}$.
-3. Advance `prev`: $\text{prev} = \text{Node 4}$.
-4. Advance `curr`: $\text{curr} = \text{Node 5}$.
-- State: $\text{null} \leftarrow 1 \leftarrow 2 \leftarrow 3 \leftarrow 4 \quad \mathbf{\text{and}} \quad 5$.
+**Node identity and values are preserved.** Only successor references change. No
+value is read, written, or copied, and no node is allocated except the never-returned
+dummy holder, so equal values in different nodes remain distinct entities and every
+original node appears exactly once.
 
----
+## 5. Traps and Alternatives This Instance Exposes
 
-### Step 5: Invert Node 5
-1. Cache next: $\text{nxt} = \text{curr.next} = \text{null}$.
-2. Invert link: $\text{curr.next} = \text{prev} = \text{Node 4}$.
-3. Advance `prev`: $\text{prev} = \text{Node 5}$.
-4. Advance `curr`: $\text{curr} = \text{null}$.
-- State: $\text{null} \leftarrow 1 \leftarrow 2 \leftarrow 3 \leftarrow 4 \leftarrow 5$.
+| Trap or alternative | Description | Consequence |
+|:---|:---|:---|
+| Overwriting before caching | Assigning the backward reference while the forward reference has not yet been saved | The suffix becomes unreachable; all nodes after the cursor are lost |
+| Initialising the old tail's new reference wrongly | Leaving the original head pointing at its old successor instead of an empty reference | The chain becomes cyclic and traversal never terminates |
+| Treating the holder node as data | Returning the dummy holder rather than its successor | An extra node with no meaningful value appears in the output |
+| Three-reference iterative variant | Track previous, current, and cached next explicitly, without a dummy holder | Correct and equivalent; uses one more local reference but performs the same front insertion |
+| Recursive variant | Reverse the suffix first, then point the successor back at the current node and clear the current node's old forward reference | Correct and elegant, but consumes $O(n)$ stack space and risks a stack-depth limit on long inputs |
+| Copying values into fresh nodes | Building a new chain with the values in reverse order | Produces the right traversal but violates the constant-space and node-identity requirements |
+| Two-node input | One iteration creates the new tail, the next makes the old tail the new head | Handled by the general method with no special branch |
+| One-node or empty input | The cursor is empty immediately, or the single node's cached successor is empty | The holder's successor is the correct (possibly empty) answer with no special branch |
 
----
+## 6. Complexity Derivation
 
-### Step 6: Loop Termination
-- $\text{curr} == \text{null}$. Loop terminates.
-- New head of reversed list is $\text{prev} = \mathbf{\text{Node 5}}$.
-- Sequence: $5 \to 4 \to 3 \to 2 \to 1 \to \text{null}$.
+Let $n$ be the number of nodes in the input chain.
 
----
-
-## 4. Complete Execution Trace
-
-```text
-Start: prev = null, curr = 1 -> 2 -> 3 -> 4 -> 5
-
-Iter 1: 1.next = null  -> prev = 1, curr = 2
-Iter 2: 2.next = 1     -> prev = 2, curr = 3
-Iter 3: 3.next = 2     -> prev = 3, curr = 4
-Iter 4: 4.next = 3     -> prev = 4, curr = 5
-Iter 5: 5.next = 4     -> prev = 5, curr = null
-
-End: curr is null -> return prev (5)
-List: 5 -> 4 -> 3 -> 2 -> 1 -> null
-```
-
-| Iteration | Active Node `curr` | Cached `nxt` | Inverted Assignment `curr.next` | New `prev` Anchor | Unprocessed Suffix |
-|:---:|:---:|:---:|:---:|:---:|:---|
-| Init | Node 1 | - | - | `null` | `1 -> 2 -> 3 -> 4 -> 5` |
-| 1 | Node 1 | Node 2 | `null` | Node 1 | `2 -> 3 -> 4 -> 5` |
-| 2 | Node 2 | Node 3 | Node 1 | Node 2 | `3 -> 4 -> 5` |
-| 3 | Node 3 | Node 4 | Node 2 | Node 3 | `4 -> 5` |
-| 4 | Node 4 | Node 5 | Node 3 | Node 4 | `5` |
-| **5** | **Node 5** | **`null`** | **Node 4** | **Node 5** | **`null` (Finished)** |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** At each step, the directed edge from `curr` to `nxt` is redirected to `prev`. Because `nxt` was cached prior to link modification, no pointers are lost and memory leaks or detached cycles cannot occur. At termination, all $N$ directed edges point backwards, and the former tail node (`Node 5`) becomes the accessible entry point.
-
-**Completeness.** The loop visits each node exactly once in sequential order. When `curr` becomes `null`, every node in the original list has been processed.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Overwriting Pointer Before Caching:** Setting `curr.next = prev` before assigning `nxt = curr.next` destroys the reference to the rest of the list, permanently losing all nodes after `curr`.
-- **Cyclic Reference at the Tail:** Forgetting to initialize $\text{prev} = \text{null}$ causes the original head's `next` pointer to point to garbage instead of `null`, producing an infinite cycle when traversed.
-- **Empty List or Single Node:** If `head is None`, the loop never runs and returns `None`. If `head.next is None`, the loop runs once, sets `1.next = None`, and returns `Node 1`, naturally handling boundary sizes without special-case branches.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(N)$, where $N$ is the number of nodes in the linked list. The loop executes exactly $N$ times, with $O(1)$ pointer assignments per iteration.
-- **Auxiliary Space Complexity:**
-  - Iterative Approach: $O(1)$ constant memory, mutating pointers strictly in-place.
-  - Recursive Approach: $O(N)$ call-stack memory due to $N$ stack frames.
+- **Time.** The loop body executes exactly once per node, because the cursor moves
+  to the cached successor each iteration and the suffix shrinks by one. Each body
+  performs a constant number of reference reads and writes — one cache, one
+  assignment into the node, one assignment to the holder, one cursor advance — and
+  no traversal of the segments takes place. The total is therefore
+  $\Theta(n)$, i.e. $O(n)$ time, and it is asymptotically optimal because every one
+  of the $n$ references must be rewritten for the reversal to be complete.
+- **Auxiliary space.** The method stores a fixed number of local references plus a
+  single holder node, independent of $n$, so auxiliary space is $O(1)$. The output
+  reuses the input nodes and is the same object set, so it is not additional
+  storage. The recursive alternative instead uses $O(n)$ auxiliary space for its
+  call stack, which is the decisive practical difference between the two correct
+  approaches.
+- **Derivation from the invariant.** The reversed segment grows by exactly one node
+  per iteration and the union of the two segments is always the whole input, so the
+  number of iterations is exactly $n$ rather than something that depends on the
+  values stored. The bound is therefore tight in the input size and independent of
+  the value range, of duplicate values, and of whether the chain is sorted.
