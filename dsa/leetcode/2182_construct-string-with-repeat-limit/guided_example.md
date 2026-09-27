@@ -70,9 +70,9 @@ If $\text{cnt}[i] > 0$ after a full run of $\text{repeatLimit}$, but no smaller 
 | Separator Quantity | Exactly $1$ token | Minimal required divergence to reset consecutive count |
 
 ```mermaid
-accTitle: Repeat Limited String Construction Flow
-accDescr: Flowchart illustrating placing the largest character up to repeatLimit, locating a separator when excess remains, and appending tokens.
 flowchart TD
+    accTitle: Repeat Limited String Construction Flow
+    accDescr: Flowchart illustrating placing the largest character up to repeatLimit, locating a separator when excess remains, and appending tokens.
     Find["Find largest available char i with cnt[i] > 0"] --> Run["Place x = min(repeatLimit, cnt[i]) copies of i<br/>cnt[i] -= x"]
     Run --> Check{"cnt[i] == 0?"}
     Check -- "Yes (Exhausted)" --> Next["Advance to next largest char i"]

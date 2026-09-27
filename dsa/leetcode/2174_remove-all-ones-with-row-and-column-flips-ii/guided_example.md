@@ -64,9 +64,9 @@ Since every transition costs exactly $1$ operation, Breadth-First Search (BFS) s
 | Visited Set $\mathcal{V}$ | Hash set of integers | Prevents redundant exploration of duplicate sub-grids |
 
 ```mermaid
-accTitle: BFS State Space Traversal
-accDescr: Diagram illustrating BFS exploration from the initial 7-one bitmask to intermediate states and terminating at the 0-state in 2 operations.
 flowchart TD
+    accTitle: BFS State Space Traversal
+    accDescr: Diagram illustrating BFS exploration from the initial 7-one bitmask to intermediate states and terminating at the 0-state in 2 operations.
     S0["Initial State S_0 (7 ones)<br/>Depth 0"] -->|"Op 1: Pivot (0,0)<br/>Clear row 0, col 0"| S1["State S_1 (3 ones)<br/>Remaining: (1,1), (1,2), (2,1)<br/>Depth 1"]
     S0 -->|"Op 1: Other Pivots"| S_alt["Alternative Depth 1 States"]
     S1 -->|"Op 2: Pivot (1,1)<br/>Clear row 1, col 1"| S2["Terminal State 0 (0 ones)<br/>All cells zero<br/>Depth 2"]

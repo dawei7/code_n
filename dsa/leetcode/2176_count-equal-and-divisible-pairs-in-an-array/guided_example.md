@@ -70,9 +70,9 @@ Thus, for a fixed index $j$, any earlier index $i$ sharing the same value qualif
 | Pair Accumulator | $\sum \mathbf{1}_{\{\text{match } \land \text{ divisible}\}}$ | Running count of verified pairs |
 
 ```mermaid
-accTitle: Pair Evaluation Decision Flow
-accDescr: Flowchart testing two indices i and j for value equality and coordinate product divisibility by k.
 flowchart TD
+    accTitle: Pair Evaluation Decision Flow
+    accDescr: Flowchart testing two indices i and j for value equality and coordinate product divisibility by k.
     Pair["Pick Index Pair (i, j) with i < j"] --> ValCheck{"nums[i] == nums[j]?"}
     ValCheck -- "No" --> Discard["Discard: Values unequal"]
     ValCheck -- "Yes" --> DivCheck{"(i * j) mod k == 0?"}

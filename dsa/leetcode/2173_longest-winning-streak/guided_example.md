@@ -80,9 +80,9 @@ Thus, the composite key `(player_id, rk)` where $\text{rk} = R_{\text{all}} - R_
 | Longest Streak | $\max(\text{Island Win Count})$ grouped by `player_id` | Maximum consecutive wins achieved by the player |
 
 ```mermaid
-accTitle: Gaps and Islands Dual-Rank Difference
-accDescr: Flowchart illustrating how overall rank minus result rank produces a constant grouping identifier for consecutive wins.
 flowchart TD
+    accTitle: Gaps and Islands Dual-Rank Difference
+    accDescr: Flowchart illustrating how overall rank minus result rank produces a constant grouping identifier for consecutive wins.
     M["Matches Ordered by Date"] --> R1["Compute R_all: 1, 2, 3, 4, 5"]
     M --> R2["Compute R_res for 'Win': 1, 2, 3, (pause), 4"]
     R1 & R2 --> Diff["Compute rk = R_all - R_res"]

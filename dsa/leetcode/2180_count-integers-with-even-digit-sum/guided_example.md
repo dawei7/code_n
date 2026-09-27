@@ -67,9 +67,9 @@ $$\text{countEven}(\text{num}) = \begin{cases} \lfloor \text{num} / 2 \rfloor & 
 | Cumulative Counter `ans` | $\sum_{x=1}^{\text{num}} \mathbf{1}_{\{S(x) \equiv 0 \pmod 2\}}$ | Total verified integers |
 
 ```mermaid
-accTitle: Digit Sum Parity Check
-accDescr: Flowchart illustrating digit extraction from an integer x, computing digit sum s, and testing s mod 2 == 0.
 flowchart TD
+    accTitle: Digit Sum Parity Check
+    accDescr: Flowchart illustrating digit extraction from an integer x, computing digit sum s, and testing s mod 2 == 0.
     Start["Given Integer x"] --> Init["Set sum s = 0, temp = x"]
     Init --> Loop{"temp > 0?"}
     Loop -- "Yes" --> Extract["s += temp mod 10<br/>temp = temp // 10"]

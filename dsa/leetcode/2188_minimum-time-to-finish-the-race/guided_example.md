@@ -80,9 +80,9 @@ Adding `changeTime` to every transition then correctly charges $0$ for the initi
 | Cutoff Horizon | $j \le 17$ | Upper limit on single tire stint length |
 
 ```mermaid
-accTitle: Race Time DP Pipeline
-accDescr: Pipeline diagram showing geometric stint precomputation up to 17 laps followed by 1D DP optimization.
 flowchart TD
+    accTitle: Race Time DP Pipeline
+    accDescr: Pipeline diagram showing geometric stint precomputation up to 17 laps followed by 1D DP optimization.
     Tires["For each tire [f, r]:<br/>Simulate laps while t <= changeTime + f<br/>Update cost[j] = min(cost[j], sum)"] --> Precomp["Precomputed cost array (size <= 18)"]
     Precomp --> DP_Init["Set dp[0] = -changeTime"]
     DP_Init --> DP_Loop["For i = 1 to numLaps:<br/>dp[i] = min(dp[i - j] + cost[j]) + changeTime<br/>for 1 <= j <= min(17, i)"]

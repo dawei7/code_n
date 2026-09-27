@@ -62,9 +62,9 @@ Because $x$ and $q$ are integers, $3(x - q)$ must be an integer multiple of $3$.
 | Right Neighbor | $x + 1$ | Third element of the triad |
 
 ```mermaid
-accTitle: Triad Solvability Decision Flow
-accDescr: Diagram testing whether num is divisible by 3 and constructing the triad [x-1, x, x+1] or returning an empty array.
 flowchart TD
+    accTitle: Triad Solvability Decision Flow
+    accDescr: Diagram testing whether num is divisible by 3 and constructing the triad [x-1, x, x+1] or returning an empty array.
     Input["Target num"] --> Div["Compute divmod(num, 3): quotient x, remainder r"]
     Div --> Check{"Is r == 0?"}
     Check -- "Yes (Divisible by 3)" --> Valid["Construct triad: [x - 1, x, x + 1]"]

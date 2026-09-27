@@ -50,9 +50,9 @@ Both formulations yield the exact same cumulative operation count. The subtracti
 | Parity & Termination | Condition $a > 0 \land b > 0$ | Halts if and only if $\min(a, b) = 0$ |
 
 ```mermaid
-accTitle: Subtraction State Diagram for 2 and 3
-accDescr: Flowchart illustrating the state transitions from (2, 3) down to (0, 1) across three operations.
 flowchart TD
+    accTitle: Subtraction State Diagram for 2 and 3
+    accDescr: Flowchart illustrating the state transitions from (2, 3) down to (0, 1) across three operations.
     S0["State 0: (2, 3), ops = 0"] -->|"2 < 3: num2 -= 2"| S1["State 1: (2, 1), ops = 1"]
     S1 -->|"2 >= 1: num1 -= 1"| S2["State 2: (1, 1), ops = 2"]
     S2 -->|"1 >= 1: num1 -= 1"| S3["State 3: (0, 1), ops = 3"]

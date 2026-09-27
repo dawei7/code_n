@@ -59,9 +59,9 @@ Summing the boolean verdicts across all $w \in \text{words}$ yields the exact co
 | Accumulator | $\sum_{w \in \text{words}} \mathbf{1}_{\{\text{pref} \sqsubseteq w\}}$ | Cumulative count of verified matches |
 
 ```mermaid
-accTitle: Word Prefix Check Decision Diagram
-accDescr: Flowchart illustrating length verification, character comparison, and match accumulation for a candidate word.
 flowchart TD
+    accTitle: Word Prefix Check Decision Diagram
+    accDescr: Flowchart illustrating length verification, character comparison, and match accumulation for a candidate word.
     Word["Select next word w from words"] --> LenCheck{"|w| >= |pref|?"}
     LenCheck -- "No" --> Discard["Fail: Word shorter than prefix"]
     LenCheck -- "Yes" --> Comp["Compare characters w[k] vs pref[k] for k in 0..L-1"]

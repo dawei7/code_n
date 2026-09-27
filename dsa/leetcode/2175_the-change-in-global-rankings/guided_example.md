@@ -65,9 +65,9 @@ $$\text{rank\_diff} = R_{\text{old}} - R_{\text{new}}$$
 | Signed Displacement | $R_{\text{old}} - R_{\text{new}}$ | Positive for advancement, negative for demotion |
 
 ```mermaid
-accTitle: Dual Ranking Computation Pipeline
-accDescr: Pipeline diagram showing table join, parallel old and new window ranking, and displacement subtraction.
 flowchart TD
+    accTitle: Dual Ranking Computation Pipeline
+    accDescr: Pipeline diagram showing table join, parallel old and new window ranking, and displacement subtraction.
     TP["TeamPoints (points)"] & PC["PointsChange (delta)"] --> J["INNER JOIN ON team_id"]
     J --> W1["Window 1: ORDER BY points DESC, name => R_old"]
     J --> W2["Window 2: ORDER BY (points + delta) DESC, name => R_new"]

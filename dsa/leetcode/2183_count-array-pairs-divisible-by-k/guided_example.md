@@ -76,9 +76,9 @@ By maintaining a frequency map of seen GCD values:
 | Divisor Count $d(k)$ | $|\{d \in \mathbb{N} : d \mid k\}| \le 128$ | Upper bound on active hash map keys |
 
 ```mermaid
-accTitle: GCD Divisor Projection and Query
-accDescr: Flowchart illustrating computing gcd of value with k, querying existing divisor counts, and updating the map.
 flowchart TD
+    accTitle: GCD Divisor Projection and Query
+    accDescr: Flowchart illustrating computing gcd of value with k, querying existing divisor counts, and updating the map.
     Elem["Read value = nums[j]"] --> Compute["Compute g = gcd(value, k)"]
     Compute --> Query["Iterate over existing (d, count) in gcd_counts:<br/>If (g * d) mod k == 0, add count to answer"]
     Query --> Update["gcd_counts[g] += 1"]

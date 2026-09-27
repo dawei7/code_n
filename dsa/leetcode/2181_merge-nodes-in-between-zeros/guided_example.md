@@ -60,9 +60,9 @@ Rather than modifying the input list with complicated pointer rewiring or perfor
 | Cursor `cur` | Linear scanner | Visits every node of the original list exactly once |
 
 ```mermaid
-accTitle: Zero Delimiter Splicing Flowchart
-accDescr: Flowchart illustrating accumulation of positive values and appending of sum node upon encountering a zero delimiter.
 flowchart TD
+    accTitle: Zero Delimiter Splicing Flowchart
+    accDescr: Flowchart illustrating accumulation of positive values and appending of sum node upon encountering a zero delimiter.
     Scan["Advance cur to cur.next"] --> Check{"Is cur.val == 0?"}
     Check -- "No (Positive value)" --> Add["Accumulate: s += cur.val"]
     Check -- "Yes (Zero delimiter)" --> Splic["Append new node with value s: tail.next = Node(s)<br/>tail = tail.next<br/>Reset s = 0"]

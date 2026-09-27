@@ -82,7 +82,7 @@ flowchart TD
     ScanLoop --> CheckC1{"c == pattern[1]?"}
 
     CheckC1 -- Yes --> IncY["y += 1<br/>base += x"]
-    CheckC1 -- No --> CheckC0{"c == pattern[0]?""}
+    CheckC1 -- No --> CheckC0{"c == pattern[0]?"}
 
     IncY --> CheckC0
     CheckC0 -- Yes --> IncX["x += 1"]

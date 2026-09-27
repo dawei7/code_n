@@ -77,9 +77,9 @@ The optimal time $T^*$ is the unique boundary point where $P(T)$ switches from F
 | Probe Time $M$ | $\lfloor (L + R) / 2 \rfloor$ | Current midpoint being evaluated |
 
 ```mermaid
-accTitle: Monotonic Capacity Binary Search
-accDescr: Flowchart illustrating binary search over time horizon [L, R] using floor division summation.
 flowchart TD
+    accTitle: Monotonic Capacity Binary Search
+    accDescr: Flowchart illustrating binary search over time horizon [L, R] using floor division summation.
     Init["Initialize L = 1, R = min(time) * totalTrips"] --> Loop{"Is L < R?"}
     Loop -- "No (L == R)" --> Terminate["Optimal Time Found: Return L"]
     Loop -- "Yes" --> Mid["Compute M = L + (R - L) // 2"]

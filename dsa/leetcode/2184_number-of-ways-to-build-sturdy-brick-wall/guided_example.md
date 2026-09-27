@@ -77,9 +77,9 @@ Let $dp[h][u]$ be the number of valid sturdy walls of height $h$ whose uppermost
 | Modulus | $10^9 + 7$ | Prevents large integer overflow |
 
 ```mermaid
-accTitle: Sturdy Wall Construction Pipeline
-accDescr: Pipeline diagram illustrating row DFS generation, compatibility graph building via seam disjointness, and layer DP.
 flowchart TD
+    accTitle: Sturdy Wall Construction Pipeline
+    accDescr: Pipeline diagram illustrating row DFS generation, compatibility graph building via seam disjointness, and layer DP.
     DFS["DFS: Find all row layouts of sum = width"] --> Seams["Extract interior seam sets J(u) for each layout"]
     Seams --> Graph["Build Adjacency Graph G: Edge (u, v) if J(u) and J(v) disjoint"]
     Graph --> DP_Init["Initialize DP: dp[0][u] = 1 for all u"]

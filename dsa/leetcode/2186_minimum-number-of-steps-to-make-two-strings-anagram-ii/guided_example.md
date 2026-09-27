@@ -76,9 +76,9 @@ Thus, the minimum operations required is exactly the **$L_1$ norm** $\|\vec{f}(s
 | Total Steps | $\sum_{c \in \Sigma} |\Delta[c]|$ | Global minimum append operations |
 
 ```mermaid
-accTitle: Differential Frequency Calculation Pipeline
-accDescr: Pipeline diagram showing frequency counting of s and t, computing signed delta, and summing absolute values.
 flowchart TD
+    accTitle: Differential Frequency Calculation Pipeline
+    accDescr: Pipeline diagram showing frequency counting of s and t, computing signed delta, and summing absolute values.
     S["Count frequencies in s: +1 for each char"] --> Diff["Signed frequency table delta"]
     T["Count frequencies in t: -1 for each char"] --> Diff
     Diff --> Abs["Compute absolute value |delta[c]| for each character"]

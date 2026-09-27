@@ -82,9 +82,9 @@ For element $y$ with coordinate $p = \text{pos}[y]$:
 | Center Contribution | $\text{left}(y) \times \text{right}(y)$ | Total valid triplets centered at $y$ |
 
 ```mermaid
-accTitle: Middle Element Counting Invariant
-accDescr: Flowchart illustrating how processing nums1 left-to-right allows a Fenwick tree over nums2 positions to count left and right candidates in log n time.
 flowchart TD
+    accTitle: Middle Element Counting Invariant
+    accDescr: Flowchart illustrating how processing nums1 left-to-right allows a Fenwick tree over nums2 positions to count left and right candidates in log n time.
     Scan["Iterate y across nums1 from left to right"] --> Pos["Look up coordinate p = pos[y] in nums2"]
     Pos --> Q1["Query left(y): tree.query(p)"]
     Pos --> Q2["Query right(y): (n - p) - (tree.query(n) - tree.query(p))"]

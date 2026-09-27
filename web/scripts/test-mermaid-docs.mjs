@@ -73,30 +73,45 @@ if (args.length > 0) {
   markdownFiles = await findMarkdownFiles(corpusRoot);
 }
 let diagramCount = 0;
+const failures = [];
 for (const markdownPath of markdownFiles) {
   const markdown = await readFile(markdownPath, 'utf8');
   const diagrams = extractMermaidDiagrams(markdown);
   for (const [index, source] of diagrams.entries()) {
     const location = `${path.relative(corpusRoot, markdownPath)}#diagram-${index + 1}`;
     if (!/^\s*accTitle\s*:/m.test(source)) {
-      throw new Error(`${location}: missing accTitle`);
+      failures.push(`${location}: missing accTitle`);
+      continue;
     }
     if (!/^\s*accDescr(?:\s*:|\s*\{)/m.test(source)) {
-      throw new Error(`${location}: missing accDescr`);
+      failures.push(`${location}: missing accDescr`);
+      continue;
     }
     try {
       await mermaid.parse(source);
     } catch (error) {
-      throw new Error(`${location}: ${error instanceof Error ? error.message : String(error)}`);
+      failures.push(`${location}: ${error instanceof Error ? error.message : String(error)}`);
+      continue;
     }
     diagramCount += 1;
   }
 }
 
-if (diagramCount === 0) {
+// Report every invalid diagram rather than only the first one: a corpus-wide
+// gate is far more useful as a complete work list than as a fail-fast probe.
+if (failures.length > 0) {
+  console.error(`Invalid Mermaid diagrams: ${failures.length}`);
+  for (const failure of failures) console.error(`  ${failure}`);
+}
+
+if (diagramCount === 0 && failures.length === 0) {
   console.log(`No fenced Mermaid diagrams found across ${markdownFiles.length} Markdown files.`);
 } else {
   console.log(`Validated ${diagramCount} accessible Mermaid diagrams across ${markdownFiles.length} Markdown files.`);
+}
+
+if (failures.length > 0) {
+  process.exit(1);
 }
 
 

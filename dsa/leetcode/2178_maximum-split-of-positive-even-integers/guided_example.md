@@ -85,9 +85,9 @@ Therefore, $e_k'$ is strictly greater than all preceding terms in the list, pres
 | Adjusted Last Term | $e_k + R$ | Absorb residual while maintaining strict ordering |
 
 ```mermaid
-accTitle: Greedy Split Flowchart
-accDescr: Flowchart illustrating greedy allocation of 2, 4, 6, 8 and absorption of remainder into the last element.
 flowchart TD
+    accTitle: Greedy Split Flowchart
+    accDescr: Flowchart illustrating greedy allocation of 2, 4, 6, 8 and absorption of remainder into the last element.
     Start["Input: finalSum"] --> Parity{"finalSum & 1 == 1?"}
     Parity -- "Yes (Odd)" --> RetEmpty["Return []"]
     Parity -- "No (Even)" --> Init["i = 2, ans = []"]

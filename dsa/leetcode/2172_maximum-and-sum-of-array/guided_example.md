@@ -66,9 +66,9 @@ The global answer is $\max_{i} f[i]$.
 | Optimal Value $f[i]$ | Non-negative integer | Maximum total AND sum achievable for mask $i$ |
 
 ```mermaid
-accTitle: Virtual Seat Unfolding and DP Transition
-accDescr: Flowchart showing how 3 dual-capacity slots unfold into 6 binary seats and how adding an item to seat j transitions from mask without j to mask with j.
 flowchart TD
+    accTitle: Virtual Seat Unfolding and DP Transition
+    accDescr: Flowchart showing how 3 dual-capacity slots unfold into 6 binary seats and how adding an item to seat j transitions from mask without j to mask with j.
     Slots["3 Slots of Capacity 2"] --> Seats["6 Virtual Binary Seats (0 to 5)"]
     Seats --> S1["Seats 0, 1 -> Slot 1"]
     Seats --> S2["Seats 2, 3 -> Slot 2"]

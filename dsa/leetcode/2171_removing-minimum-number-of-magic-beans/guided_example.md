@@ -77,9 +77,9 @@ A single pass over $i \in \{0, 1, \dots, n-1\}$ evaluates all candidate pivots i
 | Removed Beans | $S - \text{beans}[i] \times (n - i)$ | Objective function to minimize |
 
 ```mermaid
-accTitle: Retained Beans Histogram Rectangle
-accDescr: Diagram depicting sorted beans array and the largest inscribed rectangle under the histogram representing retained beans.
 flowchart TD
+    accTitle: Retained Beans Histogram Rectangle
+    accDescr: Diagram depicting sorted beans array and the largest inscribed rectangle under the histogram representing retained beans.
     A["Sort array: [1, 4, 5, 6], S = 16"] --> B["Evaluate i = 0 (h=1): Retained = 1 * 4 = 4 => Removed = 12"]
     A --> C["Evaluate i = 1 (h=4): Retained = 4 * 3 = 12 => Removed = 4"]
     A --> D["Evaluate i = 2 (h=5): Retained = 5 * 2 = 10 => Removed = 6"]

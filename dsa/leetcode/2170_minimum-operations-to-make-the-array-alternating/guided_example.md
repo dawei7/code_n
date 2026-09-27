@@ -70,9 +70,9 @@ Any third-place candidate would have a frequency less than or equal to the secon
 | Conflict Flag | $e_1 == o_1$ | Determines if runner-up arbitration is triggered |
 
 ```mermaid
-accTitle: Parity Decision Tree
-accDescr: Decision diagram showing top-1 comparison and fallback to runner-ups when values collide.
 flowchart TD
+    accTitle: Parity Decision Tree
+    accDescr: Decision diagram showing top-1 comparison and fallback to runner-ups when values collide.
     Start["Extract Top-2 from Evens: (e1, c_e1), (e2, c_e2)<br/>Extract Top-2 from Odds: (o1, c_o1), (o2, c_o2)"] --> Check{"e1 == o1?"}
     Check -- "No (Disjoint)" --> Opt1["Preserve: c_e1 + c_o1<br/>Ops = n - (c_e1 + c_o1)"]
     Check -- "Yes (Collision)" --> Opt2["Evaluate Candidates:<br/>Option A: e1 + o2 => c_e1 + c_o2<br/>Option B: e2 + o1 => c_e2 + c_o1"]

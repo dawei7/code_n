@@ -77,9 +77,9 @@ $$dfs(n, k) = \begin{cases} 0 & \text{if } x_k > n \\ 1 & \text{if } x_k = n \\ 
 | Base Failure | $x_k > n$ | Excess cards; no solution possible (0 valid houses) |
 
 ```mermaid
-accTitle: House of Cards Partition Decision Tree
-accDescr: Decision tree illustrating inclusion or exclusion of row sizes x_k = 3k + 2 to form distinct partitions summing to n.
 flowchart TD
+    accTitle: House of Cards Partition Decision Tree
+    accDescr: Decision tree illustrating inclusion or exclusion of row sizes x_k = 3k + 2 to form distinct partitions summing to n.
     State["dfs(n, k) with term x_k = 3k + 2"] --> Check{"Compare x_k with n"}
     Check -- "x_k > n" --> Zero["Return 0: Cannot afford tier"]
     Check -- "x_k == n" --> One["Return 1: Single-tier partition found"]

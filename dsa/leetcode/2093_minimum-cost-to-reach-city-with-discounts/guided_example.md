@@ -49,8 +49,8 @@ flowchart TD
         C4_1["(City 4, 1)"]
     end
 
-    C1_0 -.->|Discounted Toll floor(11/2) = 5| C4_1
-    C0_0 -.->|Discounted Toll floor(4/2) = 2| C1_1
+    C1_0 -.->|"Discounted Toll floor(11/2) = 5"| C4_1
+    C0_0 -.->|"Discounted Toll floor(4/2) = 2"| C1_1
 
     classDef l0 fill:#dbeafe,stroke:#1d4ed8,stroke-width:2px;
     classDef l1 fill:#fef3c7,stroke:#d97706,stroke-width:2px;
