@@ -137,6 +137,30 @@ Result: 2
 | **38** | **Pass** | **37** | **1** | **2** | **$38 \to 11 \to 2$** |
 | 9999 | Pass | 9998 | 8 | **9** | $36 \to 9$ |
 
+The rows above evaluate the closed form directly. The next table walks the same
+instances from the opposite direction, recording what the literal repeated
+digit-sum reduction actually produces round by round, so every formula entry can
+be cross-checked against the simulation it is meant to replace.
+
+| Instance $n$ | Round 1 result | Round 2 result | Round 3 result | Reduction rounds | Digital root |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 0 | — | — | — | 0 | **0** |
+| 7 | — | — | — | 0 | **7** |
+| 18 | 9 | — | — | 1 | **9** |
+| 38 | 11 | 2 | — | 2 | **2** |
+| 9999 | 36 | 9 | — | 2 | **9** |
+| 2147483647 | 46 | 10 | 1 | 3 | **1** |
+
+Two facts fall out of this trace. First, a multiple of 9 such as $9999$ needs
+the same two rounds as $38$ but lands on $9$ rather than on $0$, because the
+digit sum of a positive multiple of 9 is again a positive multiple of 9 and the
+smallest such single digit is $9$. Second, the number of rounds is bounded by
+the digit count: for $n \le 2^{31} - 1$ there are at most $10$ digits, so the
+first round yields at most $90$, the second at most $18$, and the third at most
+$9$. Three rounds therefore always suffice on the stated input domain, which is
+why the reference case $2147483647$ terminates at $1$ after the chain
+$2147483647 \to 46 \to 10 \to 1$.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -153,9 +177,56 @@ Result: 2
 - **The Multiple-of-9 Remainder Trap:** Writing `num % 9` directly produces `0` for $18, 27, 36, \dots$. The answer for positive multiples of 9 is $9$, not $0$. The $(n - 1) \pmod 9 + 1$ shift cleanly solves this edge case.
 - **Base Dependency:** This formula works because decimal numbers are in base 10 ($10 - 1 = 9$). For an arbitrary base $b$, the digital root is evaluated modulo $(b - 1)$.
 
+### Boundary Map of the Residue Collision
+
+The trap is not a single unlucky input; it is one residue class of size
+$\lfloor n / 9 \rfloor$. The table below separates the instances where the
+unshifted residue already agrees with the root from the ones where it does not,
+and shows the shift repairing exactly those cases.
+
+| Instance $n$ | Unshifted `num % 9` | Correct digital root | Agreement | Shifted evaluation `(num - 1) % 9 + 1` |
+|:---:|:---:|:---:|:---:|:---:|
+| 0 | 0 | 0 | Agrees, but only because the guard intercepts it first | $8 + 1 = 9$, so the guard is mandatory |
+| 1 | 1 | 1 | Agrees; the residue set is anchored here | $0 + 1 = 1$ |
+| 7 | 7 | 7 | Agrees | $6 + 1 = 7$ |
+| 9 | 0 | 9 | Disagrees by $-9$ | $8 + 1 = 9$ |
+| 18 | 0 | 9 | Disagrees by $-9$ | $8 + 1 = 9$ |
+| 38 | 2 | 2 | Agrees | $1 + 1 = 2$ |
+| 9999 | 0 | 9 | Disagrees by $-9$ | $8 + 1 = 9$ |
+| 2147483647 | 1 | 1 | Agrees | $0 + 1 = 1$ |
+
+Only the residue $0$ is ambiguous, and it is ambiguous for two different
+reasons. For $n = 0$ the true root is $0$, so no formula built from residues
+alone can recover it; the guard must run first. For every positive multiple of
+$9$ the true root is $9$, and the shift resolves it uniformly, because
+$(n - 1) \bmod 9$ sends the residue $0$ to $8$ and leaves every other residue
+untouched. Removing the ambiguity at one end while preserving it nowhere else is
+the entire content of the $(n - 1) \bmod 9 + 1$ identity.
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(1)$ constant time. A single branch check followed by one subtraction, one modulo operation, and one addition. No loops, recursion, or string conversions are executed.
 - **Auxiliary Space Complexity:** $O(1)$ constant auxiliary memory.
+
+### Alternatives and Their Actual Costs
+
+The constant bound is not an accident of the closed form; it is the point of the
+follow-up. Each alternative below reaches the correct root but pays for
+information the residue class already contains.
+
+| Approach | Mechanism | Time | Auxiliary space | Failure mode or tradeoff |
+|:---|:---|:---:|:---:|:---|
+| Closed-form digital root | One subtraction, one modulo by 9, one addition | $O(1)$ | $O(1)$ | Silent wrong answer on $n = 0$ if the guard is dropped, and it is specific to base 10 |
+| Digit-extraction loop | Repeatedly take the last digit and divide the running value down, then restart on the partial sum | $O(\log_{10} n)$ for the first round; at most three rounds on the stated domain | $O(1)$ | Correct and readable, but the follow-up asks for the loop to be removed, and the round count is only bounded by the digit count |
+| Decimal string reduction | Render the value as text, sum its character values per round, and repeat on the running total | $O(d)$ per round where $d$ is the digit count | $O(d)$ | Allocates and reparses strings for a value that is already available arithmetically; worst initial cost of the three |
+| Unshifted `num % 9` | Return the raw residue | $O(1)$ | $O(1)$ | Returns $0$ for $9, 18, 9999, \dots$ where the root is $9$, and cannot represent $0$ separately from those cases |
+
+The closed form wins because the digit-sum map and the identity map differ by an
+exact multiple of $9$, so the entire infinite sequence of reductions collapses
+to one residue computation. No intermediate partial sum has to be materialised,
+which is what keeps the auxiliary space constant rather than proportional to the
+digit count.
+
+$$\text{total work} = \Theta(1), \qquad \text{auxiliary space} = \Theta(1)$$

@@ -7,7 +7,7 @@ We trace the step-by-step divide-and-conquer operator bifurcation, Cartesian pro
 - **Rich Catalan Instance:** $\text{expression} = \text{"2*3-4*5"} \implies [-34, -14, -10, -10, 10]$ ($C_3 = 5$ distinct evaluation trees)
 - **Base Literal Instance:** $\text{expression} = \text{"7"} \implies [7]$ (No operators; single scalar value)
 
-This instance demonstrates recursive divide-and-conquer on binary expression trees, explains why partitioning at each operator splits the problem into independent sub-expressions, details Cartesian cross-product combination ($\text{left\_results} \times \text{right\_results}$), proves Catalan growth ($C_{N-1}$), and prevents exponential recomputations via memoization.
+This instance demonstrates recursive divide-and-conquer on binary expression trees, explains why partitioning at each operator splits the problem into independent sub-expressions, details Cartesian cross-product combination ($\text{left\_results} \times \text{right\_results}$), proves Catalan growth ($C_N$), and prevents exponential recomputations via memoization.
 
 ---
 
@@ -225,5 +225,5 @@ The uncached column totals $27$ recursive calls for ten distinct states, and the
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(C_N)$, where $N$ is the number of operators and $C_N = \frac{1}{N+1}\binom{2N}{N} \approx \frac{4^N}{N^{3/2} \sqrt{\pi}}$ is the $N^{\text{th}}$ Catalan number. With memoization, each of the $O(N^2)$ distinct substrings is evaluated once, and combining results is proportional to the total number of valid parenthesizations generated. For LeetCode constraints ($N \le 10$), $C_{10} = 16,796$ operations, executing in $< 20\text{ ms}$.
+- **Time Complexity:** $O(C_N)$, where $N$ is the number of operators and $C_N = \frac{1}{N+1}\binom{2N}{N} \approx \frac{4^N}{N^{3/2} \sqrt{\pi}}$ is the $N^{\text{th}}$ Catalan number. With memoization, each of the $O(N^2)$ distinct substrings is evaluated once, and combining results is proportional to the total number of valid parenthesizations generated. For the source constraint $1 \le \text{expression.length} \le 20$, every operator costs one character and each of the $N + 1$ operands costs at least one, so $2N + 1 \le 20$ forces $N \le 9$. The worst case is therefore $C_9 = 4{,}862$ evaluation orders, and the returned list is capped at $10^4$ entries, so the output-sensitive cost stays far inside the time limit.
 - **Auxiliary Space Complexity:** $O(C_N)$ auxiliary memory to store all generated numerical outcomes in the recursion trees and memoization table.

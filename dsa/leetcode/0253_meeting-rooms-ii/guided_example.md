@@ -146,6 +146,23 @@ s reaches end -> Finished. Max Rooms: 2
 | **4** | Meeting Starts | $t = 15$ | $\text{starts}[2] < \text{ends}[1]$ ($15 < 20$) | **2** | **2** | $(3, 1)$ |
 | **Finish** | All Starts Handled | - | $s = N = 3$ | - | **2** | Terminal |
 
+### A Staggered Schedule Where the Peak Arrives Late ($\text{intervals} = [[8, 9], [0, 10], [5, 7], [1, 5], [6, 8]]$)
+
+The primary instance peaks on its second step, which hides how the tie-break rule and the pointer interleaving behave over a longer sweep. Here $\text{starts} = [0, 1, 5, 6, 8]$ and $\text{ends} = [5, 7, 8, 9, 10]$, and the peak does not appear until two end events have already been processed.
+
+| Step | Test performed | Event time | Event realised | $\text{active\_rooms}$ | Peak $\text{max\_rooms}$ | Pointers after $(s, e)$ |
+|:---:|:---|:---:|:---|:---:|:---:|:---:|
+| 1 | $\text{starts}[0] < \text{ends}[0]$ ($0 < 5$) | $t = 0$ | meeting $[0, 10]$ begins | 1 | 1 | $(1, 0)$ |
+| 2 | $\text{starts}[1] < \text{ends}[0]$ ($1 < 5$) | $t = 1$ | meeting $[1, 5]$ begins | 2 | 2 | $(2, 0)$ |
+| 3 | $\text{starts}[2] \ge \text{ends}[0]$ ($5 \ge 5$) | $t = 5$ | meeting $[1, 5]$ ends and frees its room | 1 | 2 | $(2, 1)$ |
+| 4 | $\text{starts}[2] < \text{ends}[1]$ ($5 < 7$) | $t = 5$ | meeting $[5, 7]$ begins in that freed room | 2 | 2 | $(3, 1)$ |
+| 5 | $\text{starts}[3] < \text{ends}[1]$ ($6 < 7$) | $t = 6$ | meeting $[6, 8]$ begins with no room free | 3 | **3 (peak)** | $(4, 1)$ |
+| 6 | $\text{starts}[4] \ge \text{ends}[1]$ ($8 \ge 7$) | $t = 7$ | meeting $[5, 7]$ ends | 2 | 3 | $(4, 2)$ |
+| 7 | $\text{starts}[4] \ge \text{ends}[2]$ ($8 \ge 8$) | $t = 8$ | meeting $[6, 8]$ ends | 1 | 3 | $(4, 3)$ |
+| 8 | $\text{starts}[4] < \text{ends}[3]$ ($8 < 9$) | $t = 8$ | meeting $[8, 9]$ begins | 2 | 3 | $(5, 3)$ |
+
+Step 3 and step 4 happen at the same instant $t = 5$, and so do steps 7 and 8 at $t = 8$; in both cases the end event is consumed first, which is exactly the boundary rule from the protocol. After step 8 the start pointer reaches $s = 5 = N$ and the sweep stops, so the answer is $\mathbf{3}$ even though the final active count is only $2$. The last room released, at $t = 8$, is immediately handed to $[8, 9]$, so the schedule needs three rooms rather than four.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -162,9 +179,38 @@ s reaches end -> Finished. Max Rooms: 2
 - **Simultaneous Boundary Tie-Breaking:** If meeting A ends at time 10 and meeting B starts at time 10, does room count increase? No. The room is freed at 10 and reused at 10. The condition $\text{starts}[s] < \text{ends}[e]$ ensures that when $\text{starts}[s] == \text{ends}[e]$, the end event is processed first ($\ge$), preventing a false spike in active rooms.
 - **Difference Array vs Two-Pointer Sweep:** An alternative approach uses a difference array over timeline coordinates. However, if meeting end times reach $10^6$ or $10^9$, allocating a dense array consumes excessive memory. Sorting the $N$ endpoints takes $O(N \log N)$ time and $O(N)$ space regardless of how large coordinates are.
 
+### Boundary instances and the exact instant of the peak
+
+The peak count is always attained at a start instant, but which start instant achieves it is not obvious. The rows below are separate inputs, each with the decisive moment named.
+
+| Instance | Peak | Rooms needed | Which instant establishes the peak |
+|:---|:---:|:---:|:---|
+| `intervals = [[0, 1000000]]` | 1 | 1 | the single meeting, at $t = 0$; the coordinate magnitude changes nothing because only the count is tracked |
+| `[[4, 1000000], [1, 3], [0, 1], [3, 4]]` | 1 | 1 | no start can raise the count: at $t = 1$, $3$ and $4$ the equal end event is consumed first, so the active count returns to $0$ three times |
+| `[[5, 10], [5, 6], [5, 7]]` | 3 | 3 | $t = 5$: three starts share one instant, so the count climbs $1 \to 2 \to 3$ with no end event able to intervene |
+| `[[1, 5], [2, 6], [3, 7], [7, 9]]` | 3 | 3 | any $t$ in $[3, 5)$: three intervals cover it, while $[7, 9]$ only touches $[3, 7]$ and reuses a room at $t = 7$ |
+| `[[30, 70], [0, 100], [20, 80], [10, 90]]` | 4 | 4 | any $t$ in $[30, 70)$: all four meetings are nested inside the outermost one |
+| `[[8, 9], [0, 10], [5, 7], [1, 5], [6, 8]]` | 3 | 3 | $t = 6$: the long meeting $[0, 10]$ is still active beside $[5, 7]$ and $[6, 8]$, and this peak is reached only after two end events have already been processed |
+
+The second row is the sharpest boundary: adding a meeting that lasts almost a million time units never raises the answer above $1$, because each of its three predecessors ends exactly where the next one starts. The fourth row shows the mirror case, where one touching pair coexists with a genuine three-way overlap and the touching pair is irrelevant to the answer.
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(N \log N)$, where $N$ is the number of intervals. Extracting and sorting `starts` and `ends` takes $2 \times O(N \log N)$ time. The two-pointer sweep advances $s$ and $e$ at most $N$ times each, taking $O(N)$ time. Total runtime is strictly bounded by $O(N \log N)$.
 - **Auxiliary Space Complexity:** $O(N)$ auxiliary memory to store the sorted `starts` and `ends` arrays.
+
+### Cost of the alternatives on the two traced instances
+
+Both traced instances are measured below; the last two columns count elementary operations rather than stating an asymptotic class, so the constant factors are visible.
+
+| Strategy | What it does | Primary instance ($N = 3$, largest end $30$) | Staggered instance ($N = 5$, largest end $10$) | Cost or caveat |
+|:---|:---|:---|:---|:---|
+| Separated start/end two-pointer sweep (traced above) | sorts $2N$ endpoints, then advances two pointers | 6 endpoints sorted, 4 sweep comparisons | 10 endpoints sorted, 8 sweep comparisons | $O(N \log N)$ time and $O(N)$ space; no meeting is ever tied to a physical room |
+| Min-heap of active end times | sorts intervals by start, pops a room when its end is reached, pushes the new end | 3 pushes, 1 pop, heap size peaks at 2 | 5 pushes, 3 pops, heap size peaks at 3 | the same $O(N \log N)$ bound with heap operations instead of two arrays, and it names which room is reused |
+| Dense difference array over coordinates | increments at each start and decrements at each end, then prefix-scans the timeline | 31 slots scanned | 11 slots scanned | time and memory scale with the largest coordinate instead of $N$: the single-meeting input `[[0, 1000000]]` needs $1000001$ slots for one meeting |
+| All-pairs concurrency test | for every meeting, counts how many other meetings cover it | 3 pair tests | 10 pair tests | correct but $\Theta(N^2)$, and it recomputes overlaps that the sweep never needs |
+| Generic event sweep with a counter | sorts $2N$ typed events and opens or closes each one | 6 events | 10 events | equivalent to the two-pointer sweep, but it materialises $2N$ typed events instead of two arrays of integers |
+
+The third row explains why the two-pointer sweep is preferred here even though a difference array also answers the question: its cost is $O(N \log N + N)$ in the number of meetings, whereas the dense array's cost is proportional to the largest end time, which the constraints allow to reach $10^6$ for a schedule of a single meeting.

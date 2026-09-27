@@ -68,7 +68,9 @@ The first seven transitions are impeccable, and the configuration still fails, b
 
 ```mermaid
 flowchart LR
-  A["grid: cell to visit time"] --> B["invert the numbering into the sequence pos[0..n*n-1]"]
+  accTitle: Decision flow for validating a knight tour configuration
+  accDescr: The grid of visit times is turned into the knight itinerary, the top-left entry is tested for zero, and then every consecutive pair of cells is tested for absolute offsets of one and two before the configuration is accepted.
+  A["grid: each cell holds its visit time"] --> B["invert the numbering into the knight itinerary"]
   B --> C{"is grid[0][0] zero?"}
   C -- "no" --> F["return false"]
   C -- "yes" --> D["for every consecutive pair: absolute row and column offsets"]

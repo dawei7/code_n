@@ -81,6 +81,18 @@ Let $h = \lfloor n / 2 \rfloor$:
   $$
 *(For $n = 1$, count is 3)*.
 
+The same formula read as a table, with the authored cases as evidence:
+
+| $n$ | Layer structure | Count formula | Exact count | Where the value is confirmed |
+|:---:|:---|:---|:---:|:---|
+| 1 | center only, no wrapper | $3$ self-symmetric centers | 3 | authored single-digit case `["0", "1", "8"]` |
+| 2 | one wrapper layer | $4 \times 5^{0}$ | 4 | authored case listing `"11", "69", "88", "96"` |
+| 3 | one wrapper plus a center | $4 \times 3$ | 12 | authored three-digit case |
+| 4 | two wrapper layers | $4 \times 5$ | 20 | authored four-digit case |
+| 5 | two wrappers plus a center | $4 \times 3 \times 5$ | 60 | formula only; no authored case |
+| 6 | three wrapper layers | $4 \times 5^{2}$ | 100 | formula only; no authored case |
+| 14 | seven wrapper layers, the maximum in contract | $4 \times 5^{6}$ | 62500 | authored maximum-length case, which lists all of them |
+
 > **Invariant.** Every string generated at level $m$ is symmetrically strobogrammatic. At the terminal level $m = n$, no generated string begins with `'0'`.
 
 ---
@@ -148,6 +160,18 @@ Result: ["11", "69", "88", "96"]
   - Around `"8"`: `"181", "689", "888", "986"`
 - Total: $4 \times 3 = 12$ valid numbers.
 
+### Layer-by-Layer Expansion for $n = 4$
+
+The guard depends on the layer index, not on the digit, and this table is the clearest place to see why:
+
+| Layer length $m$ | Inner layer already computed | Wrappers available at this layer | Is `"0" + s + "0"` allowed? | Strings emerging from this layer |
+|:---:|:---|:---|:---|:---|
+| 0 | none, this is the base | base identity | not applicable | `[""]` |
+| 2 | `[""]` | `11`, `88`, `69`, `96`, `00` | Yes, because $m = 2 \ne 4 = n$ | `["00", "11", "69", "88", "96"]`, five strings |
+| 4, the outermost | the five strings above | `11`, `88`, `69`, `96` | No, because $m = 4 = n$; a leading `'0'` would be produced | the $20$ four-digit numerals, from `"1001"` through `"9966"` |
+
+The interior layer is exactly what licenses zeros inside a numeral: wrapping the inner string `"00"` with `"1"` on both sides yields `"1001"`, and the guard never even inspects that inner string, because the decision belongs to the layer currently being wrapped. Reading outward, $5 \times 4 = 20$, which is the count the case data confirms.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -165,7 +189,18 @@ Result: ["11", "69", "88", "96"]
 
 - **Prematurely Banning Zeroes:** Internal zeroes are completely valid (e.g. `"1001"` for $n = 4$ or `"101"` for $n = 3$). The check must be `if m != n:`, allowing `"0" + s + "0"` at internal depths and only banning it at the outer perimeter.
 - **Center Digits in Odd Numbers:** Only `'0'`, `'1'`, and `'8'` can serve as single-character centers. Digits `'6'` and `'9'` rotate into each other, not themselves, so they can never be placed in the center.
-- **Stack Overflow on Large $n$:** The recursion depth is $\lfloor n/2 \rfloor$. For LeetCode constraints ($n \le 14$), recursion depth is at most 7, well within call-stack safety.
+- **Stack Overflow on Large $n$:** The recursion performs $\lfloor n/2 \rfloor$ expansions, hence $\lfloor n/2 \rfloor + 1$ nested calls once the base case is counted. For LeetCode constraints ($n \le 14$) that is at most $8$ frames, well within call-stack safety.
+
+### Boundary Behaviour of the Generator
+
+| Boundary scenario | Concrete input | Required result | Why the recursion produces it |
+|:---|:---|:---|:---|
+| Minimum length | $n = 1$ | `["0", "1", "8"]` | The base case returns the three self-symmetric digits and no wrapper layer exists, so the single digit `'0'` is legal; the leading-zero guard never fires because there is no outer wrap to suppress |
+| Smallest even length | $n = 2$ | $4$ numerals | `"00"` is strobogrammatic as a glyph sequence but would be a leading zero, so the outermost layer drops it and keeps only `"11", "69", "88", "96"` |
+| Interior zeros | $n = 4$ | $20$ numerals including `"1001"` | The inner string `"00"` is produced at layer $2$, where $m \ne n$; the guard is a property of the layer being wrapped and never of the digit itself |
+| Lone center digit | $n = 3$ | $12$ numerals | Only `'0'`, `'1'` and `'8'` are offered as centers: `'6'` and `'9'` rotate into each other, so a single one of them cannot be its own image |
+| Every result is self-mirroring at the ends | any even $n$, e.g. the last $n = 4$ result `"9966"` | the final digit is the image of the first | Each wrapper appends exactly $\rho$ of the digit it prepends, so the property holds by construction rather than by a later filter |
+| Maximum length | $n = 14$ | $62500 = 4 \times 5^{6}$ numerals, from `"10000000000001"` to `"99999996666666"` | Seven wrapper layers, each contributing five choices except the outermost four; the recursion nests $8$ calls including the base case |
 
 ---
 
