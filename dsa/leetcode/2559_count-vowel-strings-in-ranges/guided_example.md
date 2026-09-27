@@ -1,204 +1,139 @@
 # Guided Example: Count Vowel Strings in Ranges
 
-## 1. One Representative Instance
+## 1. The question hiding inside each query
 
-Every entry of `words` either *qualifies* or does not: it qualifies when the vowel
-letters `'a'`, `'e'`, `'i'`, `'o'`, `'u'` are both the first character and the last
-character of the string. Each query `[l, r]` then asks how many qualifying entries
-sit in the inclusive index range from `l` to `r`, and the answers must be returned
-in the same order as the queries.
+We are given a 0-indexed list of lowercase words and a list of index ranges. For a range `[l, r]` the task is not to describe the words: it is to report *how many* of the words at indices $l, l+1, \dots, r$ both begin and end with a vowel, where the vowel set is fixed to `a`, `e`, `i`, `o`, `u`.
 
-The instance traced here is the authored sample
+Two structural facts about that sentence decide the whole method. First, qualification is a property of one word in isolation — it never depends on neighbouring words — so it can be evaluated once per index and frozen into a 0/1 label. Second, each query asks for a count over a **contiguous index interval**, which is precisely the shape a prefix sum answers with a single subtraction. The work therefore splits into one classification pass and one accumulation pass; after that, no query ever looks at a word again.
 
-```text
-words   = ["aba", "bcb", "ece", "aa", "e"]
-queries = [[0, 2], [1, 4], [1, 1]]
-```
-
-whose required output is `[2, 3, 0]`. It carries every idea the method needs: a
-word rejected on its first letter, words accepted through matching vowel endpoints,
-a single-letter word where first and last character coincide, and a query whose
-range contains no qualifying entry at all.
-
-| Query position | Query $[l_i, r_i]$ | Required `ans[i]` | Qualifying indices inside the range |
-|:---:|:---:|:---:|:---|
-| 0 | `[0, 2]` | 2 | 0, 2 |
-| 1 | `[1, 4]` | 3 | 2, 3, 4 |
-| 2 | `[1, 1]` | 0 | none |
-
-## 2. Qualification Is a Property of Two Characters
-
-A string qualifies only when *both* endpoint characters belong to the vowel set
-$V = \{\texttt{a}, \texttt{e}, \texttt{i}, \texttt{o}, \texttt{u}\}$. Contents
-between the endpoints are irrelevant, which matters because the maximum word
-length is $40$ while only two characters decide the outcome. For an index $i$ write
+Name the labels explicitly. Let
 
 $$
-q(i) = [\, \texttt{words[i][0]} \in V \ \text{and}\ \texttt{words[i][-1]} \in V \,],
+b_i = \begin{cases} 1 & \text{if } \texttt{words[i]} \text{ starts and ends with a vowel} \\ 0 & \text{otherwise} \end{cases}
 $$
 
-the Iverson bracket of the qualification predicate, so $q(i) \in \{0, 1\}$.
+The required output for a query `[l, r]` is then the plain interval sum $\sum_{i=l}^{r} b_i$.
 
-| Index $i$ | `words[i]` | First character | Last character | Both vowels? | $q(i)$ |
-|:---:|:---:|:---:|:---:|:---:|:---:|
-| 0 | `"aba"` | `a` | `a` | yes | 1 |
-| 1 | `"bcb"` | `b` | `b` | no, first letter | 0 |
-| 2 | `"ece"` | `e` | `e` | yes | 1 |
+## 2. Reducing a word to one bit
+
+The endpoint test reads exactly two characters of `words[i]`: the first character `words[i][0]` and the last character `words[i][-1]`. Every interior character is irrelevant, which is why the bound on word length never influences the running time — the test costs the same for a one-letter word and a forty-letter word.
+
+A word qualifies only when **both** lookups land in the vowel set $\{a, e, i, o, u\}$. The word length matters for one reason only: when a word has length $1$, its first and last characters are the *same* character, so a single-letter vowel such as `"e"` satisfies both halves of the test at once, while a single-letter consonant such as `"z"` fails both. Nothing in the rule excludes that case, and the contract explicitly allows a length of one, so the collapse must be handled by the ordinary test rather than by a special branch.
+
+## 3. Worked instance: the first official sample
+
+Take `words = ["aba", "bcb", "ece", "aa", "e"]` with `queries = [[0,2], [1,4], [1,1]]`; the required result is `[2, 3, 0]`.
+
+Classifying each index once:
+
+| Index $i$ | Word `words[i]` | First character | Last character | Both in the vowel set? | Label $b_i$ |
+|---|---|---|---|---|---|
+| 0 | `"aba"` | `a` | `a` | yes; the interior `b` is irrelevant | 1 |
+| 1 | `"bcb"` | `b` | `b` | no; `b` is not a vowel | 0 |
+| 2 | `"ece"` | `e` | `e` | yes; the interior `c` is irrelevant | 1 |
 | 3 | `"aa"` | `a` | `a` | yes | 1 |
-| 4 | `"e"` | `e` | `e` | yes | 1 |
+| 4 | `"e"` | `e` | `e` | yes; the only letter serves as both endpoints | 1 |
 
-For the single-letter word `"e"` the first and last characters are the *same*
-position, and it satisfies both endpoint tests, so it qualifies. For `"bcb"` the
-last character is irrelevant once the first fails; a predicate that tested the
-endpoints with "or" instead of "and" would wrongly accept it.
+The label row is `1 0 1 1 1`, so four of the five words qualify. Index 1 is the interesting negative: `"bcb"` looks vowel-rich in its interior, but only endpoints are consulted, and both of its endpoints are consonants.
 
-## 3. Turning a Property into a Range-Counting Structure
+## 4. Turning labels into a prefix table
 
-What a query needs is not the property of one word but a *count over an interval*.
-Define the prefix count
+Define the prefix array by accumulating labels from the left:
 
 $$
-C(t) = \sum_{i=0}^{t} q(i), \qquad C(-1) = 0 .
+P_k = \sum_{i=0}^{k-1} b_i \quad \text{for } 0 \le k \le n
 $$
 
-Two facts make this the right object. First, $C$ is non-decreasing and rises by at
-most one per step, because every added term is $0$ or $1$. Second, and this is the
-whole method, the number of qualifying indices in the inclusive interval $[l, r]$
-is a difference of two prefix counts:
+so $P_0 = 0$ (the empty prefix) and $P_n$ equals the total number of qualifying words.
+
+| Prefix entry | $P_0$ | $P_1$ | $P_2$ | $P_3$ | $P_4$ | $P_5$ |
+|---|---|---|---|---|---|---|
+| Labels included | none | $b_0$ | $b_0, b_1$ | $b_0 \dots b_2$ | $b_0 \dots b_3$ | $b_0 \dots b_4$ |
+| Value | 0 | 1 | 1 | 2 | 3 | 4 |
+| Formed by | the empty prefix | $P_0 + b_0$ | $P_1 + b_1$ | $P_2 + b_2$ | $P_3 + b_3$ | $P_4 + b_4$ |
+
+The value at $P_2$ staying equal to $P_1$ is the signature of the zero label at index 1: a non-qualifying word contributes nothing and leaves the running total flat.
+
+## 5. Answering all three queries
+
+Because $P$ stores running totals, a range sum telescopes into two table lookups:
 
 $$
-\#\{i : l \le i \le r,\ q(i) = 1\} = C(r) - C(l - 1).
+\sum_{i=l}^{r} b_i = P_{r+1} - P_l
 $$
 
-The subtraction removes exactly the qualifying entries before `l` and leaves
-exactly the qualifying entries inside the interval, and the inclusive boundary is
-handled by using $C(l-1)$ rather than $C(l)$.
+| Query | $l$ | $r$ | Left term | Right term | Difference | Required output |
+|---|---|---|---|---|---|---|
+| `[0,2]` | 0 | 2 | $P_0 = 0$ | $P_3 = 2$ | 2 | 2 |
+| `[1,4]` | 1 | 4 | $P_1 = 1$ | $P_5 = 4$ | 3 | 3 |
+| `[1,1]` | 1 | 1 | $P_1 = 1$ | $P_2 = 1$ | 0 | 0 |
 
-| Boundary $t$ | −1 | 0 | 1 | 2 | 3 | 4 |
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| $q(t)$ | — | 1 | 0 | 1 | 1 | 1 |
-| $C(t)$ | 0 | 1 | 1 | 2 | 3 | 4 |
+Every value matches the required result. The third query is the instructive one: it covers the single non-qualifying index, and it is answered by subtracting two equal prefix values, producing $0$ without any word being re-inspected.
 
-The same numbers have a second reading. Collect the indices with $q(i) = 1$ into a
-list. Because they are appended in increasing index order, the list
-$Q = [0, 2, 3, 4]$ is automatically sorted, and the count of qualifying entries at
-or below a boundary `t` is the number of elements of $Q$ that are at most `t`:
+## 6. Why the subtraction is valid
 
-- $C(r)$ counts elements of $Q$ that are $\le r$;
-- $C(l-1)$ counts elements of $Q$ that are $< l$.
+The whole method rests on one invariant, maintained by construction of the prefix array:
 
-Both counts are positions inside a sorted array, so they can be obtained by binary
-search instead of by materialising the whole prefix array: a "last position at or
-below `r`" search and a "first position not below `l`" search. The difference of
-those two positions is the answer.
+> **Invariant.** For every $k$ with $0 \le k \le n$, the entry $P_k$ equals the number of qualifying words among indices $0, 1, \dots, k-1$.
 
-## 4. Executing Each Query
+The base case $k = 0$ counts the empty index set, which is $0$. Each induction step appends the single label $b_k$ to the already-counted set, giving $P_{k+1} = P_k + b_k$; because that rule is applied at every step, the invariant holds for all $n+1$ entries.
 
-With $Q = [0, 2, 3, 4]$ the binary-search positions are read directly.
+Now split the queried interval into two nested prefixes. The indices $0 \dots r$ are the disjoint union of $0 \dots l-1$ and $l \dots r$, so counting is additive:
 
-| Query | `l` | `r` | Count of $Q$ elements $< l$ | Count of $Q$ elements $\le r$ | Difference | Required |
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| 0 | 0 | 2 | 0 (nothing is below 0) | 2 (elements 0 and 2) | 2 | 2 |
-| 1 | 1 | 4 | 1 (element 0 is below 1) | 4 (all four elements) | 3 | 3 |
-| 2 | 1 | 1 | 1 (element 0 is below 1) | 1 (element 0 alone is at most 1) | 0 | 0 |
+$$
+\underbrace{\sum_{i=0}^{r} b_i}_{P_{r+1}} = \underbrace{\sum_{i=0}^{l-1} b_i}_{P_l} + \sum_{i=l}^{r} b_i
+$$
 
-The third query is the informative one. Its range `[1, 1]` refers to the word
-`"bcb"`, which does not qualify, so the two search positions coincide and the
-difference is $0$. A method that counted the *length* of the range instead of the
-qualifying entries inside it would answer `1` here.
+Rearranging isolates the term we want, which is exactly $P_{r+1} - P_l$. That is the correctness argument in full: the difference recovers the count of the requested window and nothing outside it, and the derivation used only additivity of counting over disjoint sets.
 
-## 5. Why the Reasoning Is Correct
+Two consequences matter because they are what make the queries cheap. The prefix array is **non-decreasing** ($b_i \ge 0$ implies $P_{k+1} \ge P_k$), so every answer lies between $0$ and $r - l + 1$; and because each query touches only two cells, the query stage has no dependence on how long the window is.
 
-**The prefix-invariant.** After the prefix of `words` up to index $i$ has been
-scanned, $C(i)$ equals the number of qualifying entries among `words[0]` through
-`words[i]`. The invariant holds at $i = -1$ with $C(-1) = 0$. Scanning index
-$i+1$ adds $q(i+1) \in \{0,1\}$ to $C(i)$, so the count grows exactly when the new
-word qualifies, which maintains the invariant. When the scan reaches the last
-index, $C$ is fully determined by `words` alone, independently of the queries.
+## 7. Boundary behaviour the sample does not show
 
-**Additivity over a split.** For any $l \le r$, the indices $0, \dots, r$ partition
-into $0, \dots, l-1$ and $l, \dots, r$. Counting is additive over a partition, so
-$C(r) = C(l-1) + \#\{i \in [l, r] : q(i) = 1\}$, which rearranges to the query
-formula. This is why the inclusive endpoints require $l-1$: the entry at index `l`
-must remain inside the counted part.
+The chosen instance contains a single-letter word at index 4, but it does not exhibit the other endpoint failures. Exercising them separately:
 
-**Well-definedness of the sorted-list reading.** The list $Q$ is built by scanning
-indices in increasing order and keeping those with $q(i) = 1$, so it is strictly
-increasing. Therefore the number of its elements $\le r$ is a valid "insertion
-position after equals" and the number of its elements $< l$ is a valid "insertion
-position before equals"; taking the difference of these two positions counts
-exactly the elements lying in $[l, r]$. The structure is a faithful
-re-encoding of $C$, not an approximation of it, and each query is answered in
-$O(\log n)$ without touching the words again.
+| Boundary instance | Word | First character | Last character | Label | What it teaches |
+|---|---|---|---|---|---|
+| Single vowel | `"u"` | `u` | `u` | 1 | One character fills both endpoint roles, so a length-one word can qualify |
+| Single consonant | `"z"` | `z` | `z` | 0 | The same collapse occurs, but the shared character is outside the vowel set |
+| Vowel start, consonant end | `"owl"` | `o` | `l` | 0 | Matching one endpoint is not sufficient; the rule is a conjunction |
+| Consonant start, vowel end | `"ab"` | `a` | `b` | 0 | The mirror failure; a leading `a` alone proves nothing |
+| Long word tested only at its ends | a word starting `a` and ending `u` | `a` | `u` | 1 | Interior length never changes the label |
+| Window of one index | `[1,1]` | — | — | read from $P$ | Inclusive bounds make $l = r$ a legal, non-empty window answered by $P_{r+1} - P_r$ |
+| Window spanning the entire array | `[0, n-1]` | — | — | read from $P$ | The answer is $P_n - P_0 = P_n$, the global count |
 
-| Query shape | $C(l-1)$ | $C(r)$ | Result | Reading |
-|:---|:---:|:---:|:---:|:---|
-| Range starts at `0` | 0 | any | $C(r)$ | No correction is needed at the left edge |
-| Range of a single index | $C(l-1)$ | $C(l)$ | $q(l)$ | A single-index query just reports the predicate |
-| Full array | 0 | $C(n-1)$ | total qualifying | The whole list is counted |
-| Range with no qualifying entries | equal values | equal values | 0 | Both searches land on the same position |
+The last two rows are why the prefix array is built with $n+1$ entries rather than $n$: the index $r+1$ must be addressable even when $r$ is the final index, and the index $l$ must be addressable even when $l$ is $0$.
 
-## 6. Boundary Behaviour and the Traps This Instance Exposes
+## 8. Other correct methods and their trade-offs
 
-| Instance | Required output | What it tests |
-|:---|:---|:---|
-| `words = ["u"]`, `queries = [[0, 0]]` | `[1]` | A one-letter word where first and last position coincide |
-| `words = ["ab", "ba", "bc"]`, `queries = [[0, 2], [0, 0], [1, 1]]` | `[0, 0, 0]` | One vowel endpoint is not enough; `"ba"` fails on its last letter |
-| `words = ["a", "b", "e"]`, `queries = [[0, 2], [0, 1], [1, 2]]` | `[2, 1, 1]` | Inclusive boundaries: the entries at both `l` and `r` are counted |
-| `words = ["aa", "bb", "ee", "cc"]`, `queries = [[0, 3], [0, 3], [1, 2], [2, 2]]` | `[2, 2, 1, 1]` | Repeated and overlapping queries are answered independently, in order |
-| `words = ["apple", "owl", "ice"]`, `queries = [[0, 2], [1, 1]]` | `[2, 0]` | `"owl"` starts with a vowel but ends with a consonant |
-| Long word of 40 characters, both endpoints vowels | 1 | Interior letters never matter; only the two endpoints are examined |
+| Method | Preprocessing | Per query | Total cost | Assessment |
+|---|---|---|---|---|
+| Rescan the queried slice | none | $O(r - l + 1)$ | $O(nq)$ in the worst case | Correct, but with both $n$ and $q$ up to $10^5$ it can perform $10^{10}$ steps |
+| Prefix-sum array | $O(n)$ | $O(1)$ | $O(n + q)$ | The method derived above; minimal per-query work and simple state |
+| Sorted list of qualifying indices, then two binary searches | $O(n)$ | $O(\log n)$ | $O(n + q \log n)$ | Correct: count stored indices inside `[l, r]` by locating the first index at least $l$ and the first index greater than $r$ |
+| Fenwick tree over the labels | $O(n)$ | $O(\log n)$ | $O(n + q \log n)$ | Correct, and it additionally supports point updates — a capability this problem never requests |
+| Precomputed table of every window count | $O(n^2)$ | $O(1)$ | $O(n^2)$ time and memory | Constant per query in theory, impossible in practice for $n = 10^5$ |
 
-The traps worth naming:
+The binary-search variant is the closest competitor and is a legitimate answer, but it pays a logarithmic factor per query to preserve information — the sorted index list — that the output never uses. The problem asks only *how many*, never *which*, so answers can be stored as plain counts and the prefix array dominates.
 
-- **Testing containment instead of endpoints.** Asking whether a word contains a
-  vowel accepts `"bcb"` never, but accepts `"owl"` — which the statement rejects
-  because its last character is `l`.
-- **Assuming two distinct characters.** `"e"` and `"u"` are legal words of length
-  one, and both endpoints coincide; a method that inspected a "second character"
-  would be wrong or unsafe at the boundary.
-- **Mixing up the two boundary searches.** Counting elements $< l$ is required on
-  the left and elements $\le r$ on the right. Using $> l$ on the left drops a
-  qualifying word that sits exactly at `l`; using $< r$ on the right drops one that
-  sits exactly at `r`.
-- **Reusing a stale per-query scan.** Answering each query by scanning its range
-  is correct but costs $O(r - l + 1)$ per query; with up to $10^{5}$ queries over
-  up to $10^{5}$ words that is far too slow, which is exactly what the shared
-  prefix structure removes.
-- **Reordering the answers.** The output array is indexed by query position, while
-  the structure is indexed by word position. Sorting or grouping queries is a valid
-  optimisation only if each answer is written back to its original slot.
-- **Treating `y` as a vowel.** The note fixes the vowel set at `a`, `e`, `i`, `o`,
-  `u`; habits from English orthography are not part of the contract. The
-  constraints also guarantee lowercase input only.
+## 9. Traps this instance exposes
 
-## 7. Alternatives and Their Trade-offs
+- **Reading the range as half-open.** `[l, r]` is inclusive at both ends. Treating it as the half-open interval $[l, r)$ silently drops the word at index $r$. The correct prefix indices are $l$ and $r+1$.
+- **Testing only one endpoint.** `"owl"` and `"ab"` both look vowel-adjacent but fail. The rule is a conjunction, so accepting either endpoint over-counts.
+- **Forgetting that a length-one word has one character in both roles.** Rejecting a word whose first and last characters coincide, or special-casing short words, loses `"e"` and `"u"` from the count.
+- **Confusing the label array with the answer.** $b_i$ answers a single-index question, while the output is a window aggregate. Emitting labels, or prefix entries, instead of differences is a different and wrong output shape.
+- **Recomputing the classification inside the query loop.** That discards the entire benefit of the preprocessing pass and degrades the method toward the $O(nq)$ rescan.
+- **Widening the vowel set or ignoring case.** The stated set is exactly `a`, `e`, `i`, `o`, `u`, and the input is guaranteed to be lowercase; adding `y` or folding case changes results for words the contract deliberately excludes.
+- **Assuming the prefix array starts at the first word's label.** Without the leading $P_0 = 0$ entry there is no way to express a window that starts at index $0$ as a difference, so `[0,2]` becomes unspeakable in the prefix language.
 
-| Alternative | Preprocessing | Cost per query | Total | Trade-off |
-|:---|:---:|:---:|:---:|:---|
-| Direct scan of the queried range | none | $O(r - l + 1)$ | $O(nq)$ worst case | No structure at all; hopeless at the stated limits |
-| Full prefix-count array | $O(n)$ | $O(1)$ | $O(n + q)$ | Fastest queries, but materialises $n + 1$ counters that must be precomputed before any query is answered |
-| Sorted list of qualifying indices | $O(n)$ | $O(\log n)$ | $O(n + q \log n)$ | Stores only the qualifying positions, so its size adapts to how many words qualify; queries pay a logarithmic search |
-| Offline sort of queries with a running scan | $O(q \log q)$ | amortised $O(1)$ | $O(n + q \log q)$ | Avoids binary search entirely but must restore the original query order before returning |
+## 10. Time and auxiliary space
 
-All four compute the same predicate counts; they differ only in when the counting
-work happens. The sorted-index form is attractive when few words qualify, because
-its storage is proportional to the number of qualifying entries rather than to the
-number of words.
+Let $n$ be the number of words, $q$ the number of queries, and $L$ the maximum word length.
 
-## 8. Time and Auxiliary Space
+- **Classification.** Each of the $n$ words is examined at two fixed character positions. Reading a character by position is constant time, so this pass costs $O(n)$ and does not depend on $L$ at all.
+- **Prefix construction.** Every entry is one addition over the previous entry: $O(n)$.
+- **Query answering.** Each query performs two array reads and one subtraction: $O(1)$ per query, so $O(q)$ overall.
+- **Total time complexity.** $O(n) + O(n) + O(q) = O(n + q)$, linear in the input size and comfortably inside the limits $n, q \le 10^5$.
+- **Auxiliary space complexity.** A label array and a prefix array cost $O(n)$ integers each, and the returned list costs $O(q)$ integers, so auxiliary space is $O(n + q)$. The returned list is required by the contract; the only avoidable structure is the prefix array, and it is exactly what buys constant-time queries.
 
-Let $n$ be the length of `words` and $q$ the number of queries. Inspecting the two
-endpoint characters of a word is constant work, because indexing the first and last
-character of a string does not depend on the word length; the constraint
-$\sum \lvert \texttt{words[i]} \rvert \le 3 \cdot 10^{5}$ is therefore never paid in
-full by this method.
-
-- **Time:** $O(n + q \log n)$. Building the qualification structure scans `words`
-  once, and each query performs two binary searches over a sorted list of at most
-  $n$ positions, each costing $O(\log n)$. The prefix-array variant reaches
-  $O(n + q)$ at the cost of $O(n)$ counters.
-- **Space:** $O(n)$ auxiliary space in the worst case for the sorted list of
-  qualifying indices, plus $O(q)$ for the returned answer array. If instead each
-  query is answered directly from a prefix array, that array also needs $O(n)$
-  integers, which is the same bound with a larger constant.
+The trade is the classic one for range queries on a static array: spend one linear pass of time and memory up front so that every later query collapses to a subtraction.

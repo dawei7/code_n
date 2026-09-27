@@ -218,6 +218,26 @@ The two column sums confirm the correctness of the tokenization itself: line 1 h
 - **Multiple Spaces Between Words:** If text contains `"the   day"`, standard `tr ' ' '\n'` creates empty lines. Adding `-s` (squeeze) collapses consecutive spaces into a single newline.
 - **Output Column Ordering:** `uniq -c` outputs `<count> <word>` with leading spaces. LeetCode requires `<word> <count>`. Reversing columns via `awk '{print $2, $1}'` is mandatory.
 
+### Boundary Instances and What Each One Forces
+
+The authored instances each stress one stage rather than one more row of the same trace. The middle column names the stage whose behaviour the instance actually decides.
+
+| Instance file content | Token stream after tokenization | Motion through the remaining stages | Final output | What the instance proves |
+|:---|:---|:---|:---|:---|
+| `code` followed by a newline | `code` | The lexicographic sort leaves a single token unchanged, the counter emits `1 code`, the numeric sort cannot reorder one record, and the field swap prints it | `code 1` | A single distinct word needs no special case: with $U = 1$ every stage is a pass-through, and the count still comes from the counter rather than from an assumption. |
+| `a   b` then `a` | `a`, `b`, `a` | The three-space run is squeezed into one newline, so no empty token reaches the sort; the counts become `a = 2` and `b = 1` | `a 2` then `b 1` | The squeeze flag is what makes irregular spacing harmless. Without it the run would produce two empty lines, and the counter would publish a spurious record for the empty string. |
+| `ant bee cat ant bee cat` | `ant`, `bee`, `cat`, `ant`, `bee`, `cat` | All three counts tie at 2, so the numeric key alone cannot order the records; the reversed whole-record comparison decides | `cat 2`, `bee 2`, `ant 2` | Ties are resolved deterministically but not by insertion order: the descending numeric sort also reverses the fallback comparison of the entire line. |
+
+### Pipeline Versus Single-Pass Accumulation
+
+The two methods in section 2 differ in what they remember while reading. Method A remembers nothing across stages and pays for sorting; Method B remembers a map and pays for one traversal.
+
+| Formulation | State it maintains | Work over the input | Auxiliary space | Why it is chosen or eliminated |
+|:---|:---|:---|:---|:---|
+| Five-stage filter pipeline (Method A) | Only the current filter's buffer; no cross-record state survives a stage | One tokenizing pass, a lexicographic sort of all $W$ tokens, a counting pass, and a numeric sort of the $U$ records | $O(W)$ | Chosen for its compositionality: the counter sees only adjacent lines, so the lexicographic pre-sort is what makes global totals possible at all. |
+| Single-pass map accumulation (Method B) | A hash map from word to running count, updated once per token | One traversal that both tokenizes and accumulates, followed by a numeric sort of the $U$ map entries | $O(U)$ | Chosen when materializing every token just to sort it is the dominant cost and $U \ll W$. The trailing numeric sort is still mandatory, because a hash map yields no useful order. |
+| One counting rescan per word | No aggregation state at all; each invocation counts independently | One full read of the file per distinct word, so $O(U \cdot C)$ in the character count $C$ | $O(U)$ for the discovered word list | Eliminated: it must first discover the distinct words and then reread the whole file once per word, which is strictly more work than either method above. |
+
 ---
 
 ## 7. Complexity Derivation

@@ -139,6 +139,19 @@ Result: true
   - Conflict detected: `'b'` cannot be produced by both `'b'` and `'d'`!
   - Returns `false` immediately!
 
+The two conflict directions are worth placing side by side, because they fail at different checks. The one-to-many case is caught by the forward map, and the many-to-one case is caught by the reverse map at the very same index position:
+
+| Conflict | Index $i$ | $u = s[i]$ | $v = t[i]$ | Forward check on `s2t` | Reverse check on `t2s` | Outcome |
+|:---|:---:|:---:|:---:|:---|:---|:---|
+| one-to-many, $s = \text{"foo"}, t = \text{"bar"}$ | 0 | `'f'` | `'b'` | `'f'` is not yet a key | `'b'` is not yet a key | register `'f'` $\leftrightarrow$ `'b'` |
+| one-to-many, $s = \text{"foo"}, t = \text{"bar"}$ | 1 | `'o'` | `'a'` | `'o'` is not yet a key | `'a'` is not yet a key | register `'o'` $\leftrightarrow$ `'a'` |
+| one-to-many, $s = \text{"foo"}, t = \text{"bar"}$ | 2 | `'o'` | `'r'` | **`s2t['o'] = 'a' \ne 'r'`** | never evaluated | reject at once |
+| many-to-one, $s = \text{"badc"}, t = \text{"baba"}$ | 0 | `'b'` | `'b'` | `'b'` is not yet a key | `'b'` is not yet a key | register `'b'` $\leftrightarrow$ `'b'` |
+| many-to-one, $s = \text{"badc"}, t = \text{"baba"}$ | 1 | `'a'` | `'a'` | `'a'` is not yet a key | `'a'` is not yet a key | register `'a'` $\leftrightarrow$ `'a'` |
+| many-to-one, $s = \text{"badc"}, t = \text{"baba"}$ | 2 | `'d'` | `'b'` | `'d'` is not yet a key | **`t2s['b'] = 'b' \ne 'd'`** | reject at once |
+
+Row 3 and row 6 use the same pair of positions and differ only in which dictionary objects. That is the whole argument for keeping both: with the forward map alone, row 6 would register `'d'` $\leftrightarrow$ `'b'` and wrongly return `true`, because nothing in the forward direction forbids two source characters from sharing one target.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -154,6 +167,30 @@ Result: true
 - **Single Dictionary Trap:** Using only `s2t` checks that each source character maps to a unique target, but fails to check that multiple source characters do not map to the same target (e.g. $s = \text{"ab"}, t = \text{"aa"}$ returns `true` with one dictionary). Two maps are required.
 - **Index-of Transformation:** Replacing strings with their first-occurrence index patterns (e.g. `[s.find(c) for c in s] == [t.find(c) for c in t]`) is valid, but calling `.find()` inside a loop runs in $O(N^2)$ time! Dual hash maps achieve strictly $O(N)$.
 - **Fixed Alphabet Size:** For standard ASCII, fixed 256-integer arrays `map_s[256]` and `map_t[256]` initialized to $-1$ achieve $O(1)$ space and zero hash overhead.
+
+The alternatives below all decide the same predicate, so the choice is really about which structural fact each one makes available and what it gives up:
+
+| Approach | What is stored | Time | Auxiliary space | Cost or failure mode |
+|:---|:---|:---:|:---:|:---|
+| Two maps, one per direction (used here) | The forward relation and its inverse | $O(N)$ | $O(\lvert \Sigma \rvert)$ | none; both axioms are tested at every index |
+| One forward map only | $s[i] \to t[i]$ | $O(N)$ | $O(\lvert \Sigma \rvert)$ | accepts many-to-one collisions: `"ab"` against `"aa"` is wrongly reported isomorphic |
+| First-occurrence index patterns | The first position at which each character appears | $O(N)$ with a map, $O(N^2)$ if each position is found by rescanning | $O(N)$ for the two pattern lists | correct answers, but the rescanning form repeats work on every index |
+| Two 256-entry arrays | Direct-indexed slots initialised to a sentinel | $O(N)$ | $512$ fixed slots | hash-free and correct, but it presumes the alphabet is bounded by $256$, which the ASCII constraint supplies |
+
+Every authored pair is also a boundary probe. The rows below list them with the exact index at which the method stops, so a reader can predict the decision before running anything:
+
+| Pair | Pairs examined | First conflict | Result | What it isolates |
+|:---|:---:|:---|:---:|:---|
+| `"paper"` / `"title"` | $5$ | none | `true` | a repeated source character that must map to the same target twice |
+| `"egg"` / `"add"` | $3$ | none | `true` | the shortest fully consistent non-trivial pair |
+| `"foo"` / `"bar"` | $3$ | index $2$: `'o'` is bound to `'a'`, not `'r'` | `false` | one-to-many — a single source character demanding two targets |
+| `"f11"` / `"b23"` | $3$ | index $2$: `'1'` is bound to `'2'`, not `'3'` | `false` | digits are ordinary ASCII symbols, with no special treatment |
+| `"badc"` / `"baba"` | $3$ | index $2$: target `'b'` is already claimed by source `'b'` | `false` | many-to-one — invisible to the forward map alone |
+| `"ab"` / `"aa"` | $2$ | index $1$: target `'a'` is already claimed by source `'a'` | `false` | the minimal many-to-one collision |
+| `"eee"` / `"add"` | $3$ | index $1$: `'e'` is bound to `'a'`, not `'d'` | `false` | one source character repeated three times with shifting targets |
+| `"e"` / `"add"` | $1$ | none | `true` | unequal lengths, outside the stated contract $t.\text{length} = s.\text{length}$: only the shared prefix is paired, so the extra `'d'` is never inspected |
+
+The last row is a contract violation rather than a legitimate input, and it is instructive for exactly that reason: pairing stops as soon as the shorter string is exhausted, so a length mismatch silently truncates the comparison instead of raising an error.
 
 ---
 

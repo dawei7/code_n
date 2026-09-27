@@ -155,7 +155,7 @@ One consequence is worth stating: the ferry never changes any balance, because i
 | Strategy | Idea | Cost | Assessment |
 |---|---|---|---|
 | Charge the cheaper half of the sorted movers | sort $M$, cap each of the first $m$ entries at $2 \cdot mi$ | $O(n \log n)$ time, $O(n)$ space | The derived method; one sort and one linear sum |
-| Always swap directly, pairing sorted neighbours | ignore the ferry entirely | sum of $z_1, z_3, \dots$ style pairings | Overpays whenever the cap binds; instance 1 would cost 100 instead of 2 |
+| Always swap directly, pairing sorted neighbours | ignore the ferry entirely | sum of the cheaper member of each adjacent pair | Overpays whenever the cap binds; instance 1 would cost 100 instead of 2 |
 | Always route through the global minimum | never swap two movers directly | $2 \cdot mi \cdot m$ | Overpays in instance 2, where the direct charges 2 and 3 beat the ferry price 4 each |
 | Greedy repair with two heaps | repeatedly swap the cheapest surplus with the cheapest deficit | $O(n \log n)$ | Correct in spirit but must still compare every candidate against the ferry price, with more bookkeeping and the same asymptotic bound |
 

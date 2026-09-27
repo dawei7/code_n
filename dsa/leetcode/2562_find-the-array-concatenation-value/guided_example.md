@@ -1,131 +1,101 @@
 # Guided Example: Find the Array Concatenation Value
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. The order the operations impose
 
-- **Input:** `{"nums": [7, 52, 2, 4]}`
-- **Required output:** `596`
+The concatenation value starts at $0$. While at least two elements remain, the operation takes the **first** and the **last** element of the current array, forms a single number by writing their numerals back to back, adds that number to the running total, and deletes both elements. When exactly one element is left, that element is added on its own and the array is emptied.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+The pairing order is therefore fixed: outermost pair first, then the next pair inward, and so on. Nothing is chosen and nothing is searched — the only question is how to compute each concatenation and where the process stops.
 
----
+## 2. What concatenation does arithmetically
 
-## 1. Instance & Teaching Goal
-
-You are given a **0-indexed** integer array `nums`.
-
-The objective is to compute `596` from `{"nums": [7, 52, 2, 4]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: The deletions always expose symmetric pairs
-
-The operation repeatedly removes the current first and last elements. In the original array, the pairs are therefore
+Writing two numerals back to back is a shift and an addition. If the right-hand operand has $d$ decimal digits, then appending it to the left-hand operand $a$ produces
 
 $$
-(0,n-1),(1,n-2),(2,n-3),\ldots
+a \cdot 10^{d} + b
 $$
 
-There is no need to physically delete anything. Two pointers `i` and `j` can identify the same elements while moving inward. Initially `i = 0` and `j = len(nums) - 1`. After handling one outer pair, `i` increases and `j` decreases.
+For example, appending `2` to `52` gives $52 \cdot 10 + 2 = 522$, and appending `12` to `5` gives $5 \cdot 10^{2} + 12 = 512$.
 
-Deleting from the front of a Python list would shift all remaining elements and could make a simple-looking simulation quadratic. Pointer movement keeps each array element involved in at most one operation and leaves the input unchanged.
+The exponent is decided by the **right** operand alone — the number of digits of the element taken from the end of the array. The left operand's own width is irrelevant. This asymmetry is the one arithmetic fact the whole problem rests on, and it is why the pair order cannot be reversed: the pair `(10, 2)` yields `102` while `(2, 10)` would yield `210`.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+## 3. Worked instance: the odd-length official sample
+
+Take `nums = [5, 14, 13, 8, 12]`, whose required concatenation value is `673`. Five elements mean two full pairs plus one leftover:
+
+| Operation | Window before the operation | First element | Last element | Digits of the last element | Concatenation | Running total |
+|---|---|---|---|---|---|---|
+| 1 | `[5, 14, 13, 8, 12]` | 5 | 12 | 2 | $5 \cdot 10^{2} + 12 = 512$ | 512 |
+| 2 | `[14, 13, 8]` | 14 | 8 | 1 | $14 \cdot 10^{1} + 8 = 148$ | 660 |
+| 3 | `[13]` | 13 | 13 | the element is the only one left | added unchanged | 673 |
+
+The third operation is not a concatenation at all: a single remaining element is added as its own value, so `13` enters the total raw. Summing gives $512 + 148 + 13 = 673$, matching the required output.
+
+## 4. Tracking the window with two indices
+
+Deleting the outer elements is a description of the state, not an instruction to move memory. After $k$ operations the surviving elements are exactly the original indices
+
+$$
+k,\; k+1,\; \dots,\; n-1-k
+$$
+
+because each operation consumes one element from each end. Two indices — a left cursor $i$ starting at $0$ and a right cursor $j$ starting at $n-1$ — reproduce that window exactly, advancing $i$ by one and retreating $j$ by one per operation.
+
+> **Invariant.** Before each operation, the elements still to be processed are precisely `nums[i]` through `nums[j]`, inclusive, and every element outside that window has already contributed its share to the running total.
+
+The invariant starts true at $i = 0$, $j = n-1$, where the window is the whole array. Each operation pairs `nums[i]` with `nums[j]` and then moves both cursors inward, so the next window is again the untouched remainder. The process ends when $i$ reaches or passes $j$: if $i > j$ the array is empty, and if $i = j$ exactly one element sits in the window, which is the case handled by adding `nums[i]` unchanged. Distinguishing those two stopping states is what makes odd and even lengths agree without a separate branch for parity.
+
+## 5. How the shift depends on the right operand's width
+
+The width of the appended value decides the size of the jump, so values that straddle powers of ten behave very differently even when they look similar:
+
+| Right operand | Decimal digits $d$ | Multiplier $10^{d}$ | Left operand `1` becomes | Left operand `9` becomes |
+|---|---|---|---|---|
+| `4` | 1 | 10 | 14 | 94 |
+| `12` | 2 | 100 | 112 | 912 |
+| `999` | 3 | 1000 | 1999 | 9999 |
+| `10000` | 5 | 100000 | 100001 | 900001 |
+
+A one-digit increase in the appended value multiplies the left operand's contribution by ten, which is why a careless fixed shift — say always multiplying by $10$ — collapses as soon as any element has more than one digit.
+
+## 6. Boundary behaviour
+
+| Input | Length | Pairing performed | Arithmetic | Result |
+|---|---|---|---|---|
+| `[1]` | 1 | no pair exists; the lone element | $1$ | 1 |
+| `[7]` | 1 | no pair exists; the lone element | $7$ | 7 |
+| `[10, 2]` | 2 | (10, 2) | $10 \cdot 10 + 2$ | 102 |
+| `[7, 7]` | 2 | (7, 7) | $7 \cdot 10 + 7$ | 77 |
+| `[1, 10, 100, 1000]` | 4 | (1, 1000) then (10, 100) | $11000 + 10100$ | 21100 |
+| `[9, 99, 999]` | 3 | (9, 999), then the middle 99 | $9999 + 99$ | 10098 |
+| `[10000, 10000]` | 2 | (10000, 10000) | $10000 \cdot 100000 + 10000$ | 1000010000 |
+
+Three of these rows matter most. `[10, 2]` shows that order is not interchangeable, since the reversed reading would be `210`. `[9, 99, 999]` shows the middle element of an odd-length array being added raw after a wide pair — the middle is never shifted. `[10000, 10000]` shows the largest arithmetic the constraints permit, with a shift of five digits on each side.
+
+## 7. Other strategies and their trade-offs
+
+| Strategy | Work per operation | Total cost | Assessment |
 |---|---|---|---|
-| Input Slice | `{"nums": [7, 52, 2, 4]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Physically delete the first and last element | moving the remaining elements costs $\Theta(\text{window size})$ | $O(n^2)$ | Reproduces the statement literally, but the shifting work dominates for no benefit |
+| Two cursors moving inward | one comparison and two cursor updates, $O(1)$ | $O(n)$ | The method derived here; the array is read-only |
+| Explicit double-ended queue | $O(1)$ amortised per removal | $O(n)$ | Equivalent cost; more state than two integer cursors need |
+| Rebuilding the array each round | allocating a shorter copy costs $O(\text{window size})$ | $O(n^2)$ | Correct but allocates repeatedly |
 
----
+All four produce the same total; the difference is entirely in how the shrinking window is represented. Since the operations never depend on elements in any order other than outside-in, the read-only cursor form is the natural one.
 
-### Step 2: How the exact solution concatenates a pair
+## 8. Traps this instance exposes
 
-For current values `nums[i]` and `nums[j]`, the code evaluates
+- **Reversing the pair.** The pair is always (first, last) in that order. `[12, 3]` gives $12 \cdot 10 + 3 = 123$, and swapping the operands would give a different number.
+- **Shifting by the wrong operand's width.** The exponent counts the digits of the element taken from the **end** of the current window; using the left operand's width produces wrong concatenations whenever the two widths differ.
+- **Shifting the middle element of an odd-length array.** After the final pair, exactly one element remains and it enters the total unchanged. In `[9, 99, 999]` the leftover `99` contributes $99$, not $990$ or $9900$.
+- **Stopping too late or too early.** The loop belongs to the condition $i < j$. Letting it run at $i = j$ would process the middle element twice; stopping at $i \le j$ would also process a single element as though it had a partner.
+- **Assuming a fixed number of digits.** Values up to $10^4$ span one to five digits, and a hard-coded multiplier breaks as soon as the appended value is not a single digit.
+- **Underestimating the total.** With up to $500$ pairs whose concatenations can each approach $10^9$, the total can exceed $5 \times 10^{11}$, so a narrow 32-bit accumulator is not enough.
 
-`int(str(nums[i]) + str(nums[j]))`.
+## 9. Time and auxiliary space
 
-Converting both positive integers to strings produces their usual decimal numerals. String addition joins those numerals without arithmetic addition. For example, `str(15) + str(49)` is `"1549"`, and converting that string back to an integer yields $1549$.
+Let $n$ be the length of `nums` and $d$ the number of decimal digits of a value, with $d \le 5$ under the constraints.
 
-Order matters. The first element's digits appear before the last element's digits, exactly as the statement requires. Swapping the conversion order would produce $4915$ and be wrong.
-
-The manifest summary describes arithmetic concatenation, but the checked-in solution actually uses string conversion. Both implement the same mathematical operation under the positive-integer constraints; this document follows the exact code.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Why the main loop uses `i < j`
-
-While `i < j`, two distinct elements remain. The solution concatenates them, adds the result to `ans`, and moves both pointers inward. The interval of not-yet-processed elements changes from $[i,j]$ to $[i+1,j-1]$, exactly matching removal of its endpoints.
-
-Eventually there are two possibilities:
-
-- `i > j`, meaning every element belonged to a pair and nothing remains;
-- `i == j`, meaning one middle element remains.
-
-The separate condition `if i == j` adds that middle value directly. It must not concatenate the value with itself because the rule for a one-element array says to add the element once.
-
-For an even-length array, the pointers cross after the final pair and the condition is false. For an odd-length array, they meet at the unique middle index and the condition is true.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `596` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [7, 52, 2, 4]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `596` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Arithmetic concatenation:** Compute the power of ten determined by the right value's digit count, then add `left * power + right`. This avoids strings but needs careful digit counting.
-- **Physically pop endpoints:** Repeated `pop(0)` shifts the list and can cost $O(n^2)$ overall; it also destroys the input.
-- **Deque simulation:** A deque supports removal from both ends in $O(1)$ time, but copying the array into it uses $O(n)$ extra space when two indices suffice.
-- **One element:** The loop never runs, the pointers are equal, and the sole value is added once.
-- **Two elements:** Exactly one concatenation occurs, then the pointers cross and no middle value is added.
-- **Odd length:** The unique middle element contributes as its own value rather than being concatenated with itself.
-- **Different digit lengths:** String joining naturally handles cases such as $7$ followed by $52$, producing $752$.
-- **Positive-input guarantee:** Since zero and negative values are absent, there are no sign characters or meaningful leading zeros to complicate numeral concatenation.
-- **Input preservation:** Pointer movement reads `nums` only; the caller's array retains its original elements and order.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n)$. Let $n$ be the array length and let $d$ be the maximum number of digits in an element. There are $\lfloor n/2\rfloor$ pair iterations. Each string conversion, concatenation, and integer parsing uses $O(d)$ character work, so the precise general bound is $O(nd)$ time.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Number of operations.** Each operation consumes two elements, so exactly $\lfloor n/2 \rfloor$ concatenations occur, plus at most one direct addition when $n$ is odd.
+- **Work per operation.** Reading the two endpoint values, measuring the digit count of the right operand, forming the shifted number, and advancing both cursors are all $O(d)$, and $d$ is bounded by a constant.
+- **Total time complexity.** $O(n \cdot d) = O(n)$, a single outside-in sweep with no repeated scanning.
+- **Auxiliary space complexity.** $O(1)$. Only the two cursors, the running total, and the digit width of one element are stored; the array itself is never copied or modified.

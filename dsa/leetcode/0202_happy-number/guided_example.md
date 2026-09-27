@@ -47,6 +47,18 @@ For $k \ge 4$ (i.e. $n \ge 1000$):
 - If $k = 4$ ($n \le 9999$): $f(n) \le 4 \times 81 = 324 < 1000$.
 - If $k = 10$: $f(n) \le 10 \times 81 = 810 \ll 10^9$.
 For any number with 4 or more digits, $f(n) < n$. The sequence is strictly contracting until $n \le 243$!
+
+The table below records where each digit count can send the trajectory. Only the one- and two-digit rows can expand a value, and both of those expansions are absorbed by the three-digit contraction that follows:
+
+| Digits $k$ | Range of $n$ | Worst case $f(n) = 81k$ | Always $f(n) < n$? | Where the successor lands |
+|:---:|:---|:---:|:---|:---|
+| 1 | $1 \dots 9$ | $81$ | No — $f(9) = 81 > 9$ | up to $81$ |
+| 2 | $10 \dots 99$ | $162$ | No — $f(99) = 162 > 99$ | up to $162$ |
+| 3 | $100 \dots 999$ | $243$ | Yes, for every three-digit $n$ | inside $[1, 243]$ |
+| 4 | $1000 \dots 9999$ | $324$ | Yes — $324 < 1000 \le n$ | at most three digits |
+| 10 | $10^9 \dots 10^{10} - 1$ | $810$ | Yes — $810 \ll 10^9 \le n$ | at most three digits after one step |
+
+So the only unbounded-looking region is the low one, and it is finite: every value above $999$ is dragged below $1000$ in a single step, and every three-digit value then contracts until it settles in the finite state space $[1, 243]$.
 Because the state space is restricted to $[1, 243]$, by the **Pigeonhole Principle**, any trajectory must either reach the absorbing state $1$ or repeat a state within at most $243$ iterations.
 
 ### Cycle Detection Protocols:
@@ -105,6 +117,30 @@ We trace the trajectory of $n = 19$:
 - Loop condition $n == 1$ met!
 - Return `true`.
 
+### Method B: Floyd's Tortoise and Hare on the Same Trajectory
+
+The hash-set variant above remembers every value it visits. Floyd's variant remembers nothing: it runs one cursor at single-step speed and a second at double-step speed, and only compares them. On the happy input $n = 19$ the two cursors separate immediately and the fast one reaches the fixed point first:
+
+| Step | `slow` (one $f$-step) | `fast` (two $f$-steps) | Test | Conclusion |
+|:---:|:---:|:---:|:---|:---|
+| 1 | $f(19) = 82$ | $f(f(19)) = f(82) = 68$ | `fast == 1`? No. `slow == fast`? No, $82 \ne 68$ | both cursors are still on the approach path |
+| 2 | $f(82) = 68$ | $f(f(68)) = f(100) = 1$ | `fast == 1`? Yes | report `true`; the discovery is complete |
+
+On the unhappy input $n = 2$ the trajectory is the eight-node cycle $4 \to 16 \to 37 \to 58 \to 89 \to 145 \to 42 \to 20 \to 4$, and neither cursor can ever reach $1$. Numbering the cycle nodes in that order, the fast cursor gains exactly one node of separation per step, so the two cursors are forced to coincide after eight steps:
+
+| Step | `slow` | `fast` | Separation of `fast` ahead of `slow` (modulo 8) | Test |
+|:---:|:---:|:---:|:---:|:---|
+| 1 | $4$ | $16$ | $1$ | not equal |
+| 2 | $16$ | $58$ | $2$ | not equal |
+| 3 | $37$ | $145$ | $3$ | not equal |
+| 4 | $58$ | $20$ | $4$ | not equal |
+| 5 | $89$ | $16$ | $5$ | not equal |
+| 6 | $145$ | $58$ | $6$ | not equal |
+| 7 | $42$ | $145$ | $7$ | not equal |
+| 8 | $20$ | $20$ | $0$ | **equal — cycle detected, report `false`** |
+
+The separation column is the whole correctness argument for this variant: inside a cycle the fast cursor closes the gap by one node per step, so a meeting is inevitable and it can only happen after at most the cycle length in steps.
+
 ---
 
 ## 4. Complete Execution Trace
@@ -144,6 +180,15 @@ n = 2 (Unhappy Contrast):
 - **Infinite While Loop:** Without cycle detection (`seen` set or Floyd's pointers), an unhappy number like $2$ loops forever, causing a Time Limit Exceeded error.
 - **String Conversion Overhead:** Using `sum(int(d)**2 for d in str(n))` creates string objects and lists at every step. Extracting digits via `n % 10` and `n //= 10` is significantly faster and uses zero heap memory.
 - **Cycle Numbers:** Number theory proves that in base 10, all unhappy numbers enter the unique cycle $\{4, 16, 37, 58, 89, 145, 42, 20\}$. Checking `if n == 4: return False` is an alternative $O(1)$ space optimization.
+
+Beyond $n = 19$, the authored inputs cover one outcome each, and taken together they show that the same three lines of reasoning handle the whole input space:
+
+| Input $n$ | First transition | Full trajectory | Outcome | Trap it exercises |
+|:---:|:---|:---|:---:|:---|
+| $19$ | $1^2 + 9^2 = 82$ | $19 \to 82 \to 68 \to 100 \to 1$ | `true` | the ordinary happy path through $\le 243$ |
+| $2$ | $2^2 = 4$ | $2 \to 4 \to 16 \to 37 \to 58 \to 89 \to 145 \to 42 \to 20 \to 4$ | `false` | an endless loop unless a repeat is detected |
+| $1$ | $f(1) = 1$ | $1$ | `true` | the absorbing fixed point: the guard must recognise $1$ before inserting it |
+| $1000$ | $1^2 + 0^2 + 0^2 + 0^2 = 1$ | $1000 \to 1$ | `true` | interior and trailing zeros must be extracted as digits, not skipped |
 
 ---
 

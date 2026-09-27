@@ -30,6 +30,16 @@ $$
 \end{aligned}
 $$
 
+Reading that interval column by column makes the elimination rule concrete. Bit position $k$ carries weight $2^k$, and a column survives only when **every** member of the range agrees on it:
+
+| Bit position $k$ | Weight $2^k$ | Members of $[5,7]$ with $0$ at $k$ | Members with $1$ at $k$ | Is the column constant? | Surviving bit |
+|:---:|:---:|:---|:---|:---|:---:|
+| 2 | $4$ | none | $5, 6, 7$ | Yes, every member has $1$ | $1$ |
+| 1 | $2$ | $5$ | $6, 7$ | No, both bit values occur | $0$ |
+| 0 | $1$ | $6$ | $5, 7$ | No, both bit values occur | $0$ |
+
+A single dissenting member kills a column: bit $1$ collapses because $5 = 101_2$ has a $0$ there, and bit $0$ collapses because $6 = 110_2$ has a $0$ there. Only bit $2$, where all three numbers agree, contributes, and the surviving column reassembles as $100_2 = 4$.
+
 A naive linear loop `for x in range(left, right + 1)` takes $O(\text{right} - \text{left})$ time. When $\text{right} - \text{left} \approx 2 \times 10^9$, this results in an immediate Time Limit Exceeded (TLE).
 A bitwise observation reveals that:
 - For any bit position $k$, if the value varies anywhere between $\text{left}$ and $\text{right}$, at least one number in $[L, R]$ has a $0$ at bit $k$.
@@ -113,6 +123,15 @@ We trace both methods on $\text{left} = 5$ ($101_2$) and $\text{right} = 7$ ($11
   - Loop terminates.
   - Return $\text{right} = \mathbf{4}$.
 
+The reduction in tabular form, with the column that each cleared bit corresponds to:
+
+| Kernighan iteration | `right` before | Lowest set bit cleared | Evaluation of $R \ \& \ (R - 1)$ | `right` after (binary) | Is `right > left`? |
+|:---:|:---:|:---:|:---:|:---:|:---|
+| 1 | $7$ | bit $0$, weight $1$ | $7 \ \& \ 6 = 6$ | `110` ($6$) | Yes, $6 > 5$ — continue |
+| 2 | $6$ | bit $1$, weight $2$ | $6 \ \& \ 5 = 4$ | `100` ($4$) | No, $4 \le 5$ — stop and return $4$ |
+
+Each cleared bit is exactly one of the fluctuating columns identified in the section 1 table: bit $0$ varied because half the range is even, and bit $1$ varied because $5$ disagrees with $6$ and $7$ there. Once `right` has fallen to $100_2$, its remaining set bit is bit $2$, the one column the whole range agrees on, so nothing further may be cleared without destroying a correct answer bit.
+
 ---
 
 ## 4. Complete Execution Trace
@@ -154,6 +173,17 @@ Final Bitwise AND: 4
 - **Linear Range Iteration:** Running an iterative loop `for x in range(left, right + 1)` crashes with TLE when the range spans up to $2 \times 10^9$ numbers.
 - **Interval Spanning Power of Two:** If $\text{left} = 1$ and $\text{right} = 2$, their binary representations are $01_2$ and $10_2$. They have no common prefix $\implies \text{shift}$ reaches the MSB, returning $0$.
 - **Integer Overflow in 32-bit Signed Environments:** In C++/Java, `1 << 31` with signed integers causes signed overflow. Using unsigned 32-bit integers or Python's arbitrary-precision integers avoids overflow.
+
+The boundary scenarios below are the ones worth rehearsing, because each one probes a different reason for the common prefix to be short, empty, or the whole number:
+
+| Scenario | `left` | `right` | Binary endpoints | Longest common prefix | Result |
+|:---|:---:|:---:|:---|:---|:---:|
+| Single-point range | $12$ | $12$ | `1100`, `1100` | `1100` (the entire number) | $12$ |
+| Range touching zero | $0$ | $1$ | `0`, `1` | the all-zero 32-bit prefix | $0$ |
+| Shared high prefix | $49$ | $62$ | `110001`, `111110` | `11` | $48$ |
+| Full 31-bit span | $1$ | $2147483647$ | `1`, `1111111111111111111111111111111` | none | $0$ |
+
+The single-point range is the degenerate case where the two endpoints are already identical, so no shift and no bit-clearing ever happens and the endpoint itself is returned. The range touching zero is the opposite extreme: because $0$ has a $0$ in every column, every column of the AND is forced to $0$ the moment the interval includes it.
 
 ---
 

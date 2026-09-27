@@ -135,6 +135,19 @@ Output: Line 10
 | **10** | **`Line 10`** | **`True`** | **Print (`p`)** | **`Line 10`** |
 | 11 | `Line 11` | `False` | Suppress / Quit | - |
 
+### Authored Instances at the Boundary
+
+Selection by position has two independent boundaries: not enough records, and a tenth record that carries no text. The table separates them, because both end in empty-looking output.
+
+| Instance file | Records in the file | Highest counter reached | Selection result | Observable output | What the instance proves |
+|:---|:---:|:---:|:---|:---|:---|
+| `Line 1` through `Line 12` | 12 | 12 without a quit, 10 with one | counter 10 is the only match | `Line 10` | Selection depends on position alone: records 11 and 12 are never candidates, whatever their text says. |
+| `1` through `9`, then `ten` | 10 | 10 | counter 10 matches, and it is also the final record | `ten` | The test is `NR == 10`, not "ten records followed by one more"; reaching the end of the file right after the match changes nothing. |
+| `1`, `2`, `3` | 3 | 3 | no record ever reaches counter 10 | nothing at all | Exhausting the input is not an error: the address never becomes true, the exit status still reports success, and the empty result is the required answer. |
+| `1` through `9`, one empty line, then `11` | 11 | 11 | counter 10 matches, and its content is the empty string | one empty record, which normalizes to the same empty output | A blank line is still a record. The counter advances across it, so empty output alone cannot distinguish a short file from a file whose tenth line is blank. |
+
+The last row is the decisive one for correctness reasoning. Any formulation that decides by looking at the text of a record — for instance, stopping when it reads something nonempty — would treat the blank tenth record as the end of the file and then print record 11. Position-based addressing is what makes the rule sound in both directions.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -150,6 +163,20 @@ Output: Line 10
 - **Forgetting `-n` in `sed`:** Running `sed '10p' file.txt` without `-n` prints *every* line once and line 10 *twice*! The `-n` flag is mandatory.
 - **Off-by-One in `tail`:** Writing `tail -n 10` prints the *last 10 lines* of the file. The syntax to start from line 10 forward is `tail -n +10`.
 - **Fewer Than 10 Lines:** If the file has 5 lines, `head -n 10 file.txt | tail -n 1` would erroneously print line 5! `sed -n '10p'` and `tail -n +10 | head -n 1` both correctly print nothing.
+
+### Formulations Compared
+
+All four correct forms agree on the answer; they differ in how much of the stream they consume and in which mistake each one invites.
+
+| Formulation | How record 10 is recognized | Reads past record 10 | With fewer than ten records | With a blank tenth record | Characteristic failure |
+|:---|:---|:---|:---|:---|:---|
+| `sed -n '10p'` | the line address matches the tenth record | Yes; the remaining records are still read and discarded | no record is selected, so nothing is printed | the empty record is selected and emitted, giving empty visible output | dropping `-n` restores automatic echoing: every record is printed once, and record 10 is printed a second time. |
+| `sed -n '10{p;q}'` | the same address, with a quit command inside the matched block | No; the editor stops reading immediately after the print | nothing is printed | the empty record is printed, then the editor quits | the `q` must sit inside the addressed block; outside it the quit applies to the first record, and the command prints nothing at all. |
+| `awk 'NR == 10 {print; exit}'` | the built-in record counter `NR` compared with 10 | No; the exit statement stops after the print | the rule never fires, so nothing is printed | the empty record is printed | omitting the exit keeps the answer correct but reads the whole file, which is exactly the cost the early-exit form removes. |
+| `tail -n +10 \| head -n 1` | a starting-line offset, then the first record of that stream | Only until the reader closes the pipe after one record | the first tool emits nothing, so the second emits nothing | the empty record is first on the stream and is emitted | `-n 10` instead of `-n +10` asks for the last ten records, which is a different question. |
+| `head -n 10 \| tail -n 1` | the last record among the first ten | No | the final available record is printed, for example `3` from a three-record file | the empty record is tenth of the first ten and is printed | eliminated: it returns a line for a short file, so it cannot express the required condition. |
+
+Two conclusions follow for the complexity analysis in the next section. The `-n` form touches every record and therefore runs in $O(C)$ over the whole file, while the quitting forms stop at record 10 and run in $O(\min(C, C_{10}))$. All correct forms keep only the current record in memory, so the auxiliary space is the length of one line rather than the size of the file.
 
 ---
 

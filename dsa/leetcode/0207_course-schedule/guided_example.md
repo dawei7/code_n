@@ -185,6 +185,20 @@ Total Processed: 4 / 4 -> Return True
 - No node has in-degree $0 \implies Q = []$.
 - $\text{processed\_count} = 0 \ne 2 \implies \mathbf{False}$.
 
+### Contrast: A Cycle Trapped Inside One Component
+
+A cycle does not have to poison the whole graph. The authored input $numCourses = 5$, $\text{prerequisites} = [[1, 0], [2, 1], [1, 2], [4, 3]]$ splits into two components: the two-course cycle $1 \leftrightarrow 2$, which also receives the edge $0 \to 1$, and the independent edge $3 \to 4$. Kahn's algorithm drains the acyclic part, then stalls with the cycle nodes still owing each other:
+
+| Step | Active course $u$ | In-degree vector $[\text{deg}_0, \dots, \text{deg}_4]$ | Unlocked neighbours | Queue $Q$ | Processed |
+|:---:|:---:|:---:|:---|:---:|:---:|
+| Init | - | $[0, 2, 1, 0, 1]$ | - | `[0, 3]` | 0 |
+| 1 | 0 | $[0, 1, 1, 0, 1]$ | none: course 1 still waits for course 2 | `[3]` | 1 |
+| 2 | 3 | $[0, 1, 1, 0, 0]$ | course 4 | `[4]` | 2 |
+| 3 | 4 | $[0, 1, 1, 0, 0]$ | none: `adj[4]` is empty | `[]` | 3 |
+| End | - | $[0, 1, 1, 0, 0]$ | courses 1 and 2 can never reach in-degree 0 | `[]` | **$3 \ne 5 \implies$ `false`** |
+
+The processed set is exactly $\{0, 3, 4\}$: every course outside the cycle, plus the prerequisite that feeds it. Courses 1 and 2 hold each other's degree above zero forever, so the final count comparison — not any explicit cycle search — is what reports the failure.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -200,6 +214,28 @@ Total Processed: 4 / 4 -> Return True
 - **Edge Direction Inversion:** Writing directed edge $a \to b$ instead of $b \to a$ reverses dependencies, causing courses to require their advanced successors instead of prerequisites.
 - **Disconnected Graphs:** A graph may contain several disconnected components (e.g. some courses with no prerequisites at all). Kahn's algorithm naturally initializes the queue with all in-degree 0 nodes across all components.
 - **DFS Recursion Depth on Linear Chains:** Recursive cycle detection using 3-color DFS (`WHITE`, `GRAY`, `BLACK`) on a long chain of $V = 100,000$ courses causes stack overflow. Kahn's BFS queue avoids call-stack limits.
+
+Cycle detection has several correct-looking formulations, and the differences only show up on specific graph shapes:
+
+| Approach | Mechanism | Time | Space | Cost or failure mode |
+|:---|:---|:---:|:---:|:---|
+| Kahn's BFS in-degree reduction (used here) | Repeatedly remove a course with in-degree $0$ and decrement its successors | $O(V + E)$ | $O(V + E)$ | none; a concrete ordering falls out as a by-product |
+| Depth-first search with three colours | Recurse from every course; an edge into a node still on the recursion stack proves a cycle | $O(V + E)$ | recursion stack up to the longest chain | the stack depth grows with the chain length and can exhaust the interpreter's recursion limit |
+| Union–find over the prerequisite pairs | Merge both endpoints of every pair into a single set | nearly $O(V + E)$ | $O(V)$ | it answers the undirected question: $0 \to 1, 0 \to 2, 1 \to 2$ is acyclic, yet union–find reports a cycle because it ignores edge direction |
+| Transitive closure by repeated relaxation | Compute all-pairs reachability, then look for a course that reaches itself | $O(V \cdot E)$ or worse | $O(V^2)$ | correct but needlessly large: at $V = 2000$ the reachability table alone holds $4{,}000{,}000$ entries |
+
+The authored inputs disaggregate the boundary shapes that the count test has to survive:
+
+| `numCourses` | `prerequisites` | Directed edges | Initial in-degrees | Initial queue | Processed | Result |
+|:---:|:---|:---|:---:|:---:|:---:|:---:|
+| $2$ | `[[1, 0]]` | $0 \to 1$ | `[0, 1]` | `[0]` | $2$ | `true` |
+| $2$ | `[[1, 0], [0, 1]]` | $0 \to 1$, $1 \to 0$ | `[1, 1]` | `[]` | $0$ | `false` |
+| $3$ | `[]` | none | `[0, 0, 0]` | `[0, 1, 2]` | $3$ | `true` |
+| $4$ | `[[1, 0], [2, 0], [3, 1], [3, 2]]` | $0 \to 1$, $0 \to 2$, $1 \to 3$, $2 \to 3$ | `[0, 1, 1, 2]` | `[0]` | $4$ | `true` |
+| $5$ | `[[1, 0], [2, 1], [1, 2], [4, 3]]` | $0 \to 1$, $1 \to 2$, $2 \to 1$, $3 \to 4$ | `[0, 2, 1, 0, 1]` | `[0, 3]` | $3$ | `false` |
+| $1$ | `[[0, 0]]` | $0 \to 0$, a self-loop | `[1]` | `[]` | $0$ | `false` |
+
+Only the empty-prerequisite row starts with every course already in the queue, and the two-cycle row starts with the queue empty; both are handled by the same count comparison. The self-loop row is admissible here because the pairs need only satisfy $0 \le a_i, b_i < \text{numCourses}$ and be unique, and a single self-edge raises its own in-degree to $1$ with nothing left to lower it.
 
 ---
 

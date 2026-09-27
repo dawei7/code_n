@@ -164,6 +164,19 @@ age 21 30
 | **3** | **`ryan 30`** | **`"ryan"`** | **`"30"`** | **`"name alice ryan"`** | **`"age 21 30"`** |
 | **END** | - | - | - | **Emit line 1** | **Emit line 2** |
 
+### Shape Boundaries of the Same Protocol
+
+Transposition changes the dimensions, so the degenerate shapes are not special cases in the script but consequences of two numbers: $R$ (how many times the seeding branch can run) and the final $NF$ (what the `END` loop counts to).
+
+| Instance file | Input shape $R \times C$ | Output shape $C \times R$ | Printed output | Which detail of the protocol decides the result |
+|:---|:---:|:---:|:---|:---|
+| `name age` then `alice 21` | $2 \times 2$ | $2 \times 2$ | `name alice` then `age 21` | The seeding branch runs once per field on row 1, so row 2 appends exactly one space per column and no delimiter is ever doubled. |
+| `a b c` | $1 \times 3$ | $3 \times 1$ | `a`, `b`, `c` on three lines | With $R = 1$ the append branch never executes; every accumulator holds a single word, and the `END` loop bound of 3 turns one input row into three output rows. |
+| `a` then `b` then `c` | $3 \times 1$ | $1 \times 3$ | `a b c` on one line | Here $NF = 1$ on every row, so only `row[1]` is ever created and exactly one output line exists. No branch suppresses the other columns; there simply are none. |
+| `a b c d`, `1 2 3 4`, `w x y z` | $3 \times 4$ | $4 \times 3$ | `a 1 w`, `b 2 x`, `c 3 y`, `d 4 z` | Rectangularity is what makes the `END` bound correct: $NF$ read after the last record still equals the true column count. |
+
+The last row isolates the one assumption the script truly depends on. The `END` block takes its loop bound from the most recently read record, so it prints the number of fields of the **final** row, not the maximum over all rows. The equal-column guarantee is exactly what makes those two quantities identical, and it is why the protocol needs no bookkeeping of a running maximum.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -179,6 +192,27 @@ age 21 30
 - **Leading or Trailing Whitespace:** Appending `" " $i$"` unconditionally creates a leading space on row 1 (e.g. `" name alice"`). Branching on `if (NR == 1)` ensures the first element is unpadded.
 - **Unequal Column Counts:** While the problem guarantees equal column count, a general script can track $\max(NF)$ across lines.
 - **Large Files:** For large tables, buffering $R \times C$ words in memory is required because transposition cannot be completed until the final row is read.
+
+### What the First-Row Branch Actually Prevents
+
+Unconditional concatenation is the natural first attempt, and it is not wrong by accident of arithmetic — it is wrong by one character per line. The comparison below uses the lesson instance, and the exact spacing is shown because the output is compared byte for byte.
+
+| Stage | Accumulator with the `NR == 1` branch | Accumulator with unconditional concatenation | Why the two differ |
+|:---|:---|:---|:---|
+| After row 1 | `row[1] = name`, `row[2] = age` | `row[1] = " name"`, `row[2] = " age"` | The delimiter is emitted before the field even though nothing precedes it, so the very first append creates a leading space. |
+| After row 2 | `row[1] = name alice` | `row[1] = " name alice"` | Every later append adds one space in both variants, so the extra leading character is never repaired. |
+| After row 3 | `row[1] = name alice ryan` | `row[1] = " name alice ryan"` | The accumulated difference is still exactly one leading space; concatenation never removes it. |
+| Printed line 1 | `name alice ryan` | ` name alice ryan` | The leading space survives into standard output and the line no longer matches the required format. |
+
+The lesson generalises: a delimiter belongs **between** elements, so it must be emitted once per element except the first. Branching on `NR == 1` is the cheapest way to express that, because the first element of each column is always read on the first record.
+
+### Transposition Strategies Compared
+
+| Formulation | State retained while reading | Work | Auxiliary space | Tradeoff |
+|:---|:---|:---|:---|:---|
+| Per-column string accumulators (this protocol) | One partially built output line per column | One append per field, then $C$ print operations | $O(R \cdot C)$ characters | Chosen here: one pass over the input and no index arithmetic, but it must carry the first-row branch for delimiters and the final $NF$ for the print bound. |
+| Two-dimensional cell array, printed column by column | One array slot per grid cell | One store per field, then $R \cdot C$ indexed reads in the `END` block | $O(R \cdot C)$ slots, with a higher constant than concatenated strings | Makes the mapping $(r, c) \to (c, r)$ explicit and removes all delimiter bookkeeping, at the cost of tracking the row count and a maximum field count instead of a simple final $NF$. |
+| One output column per pass over the file | The words of a single column | Every record is re-split on every pass, so $O(R \cdot C^{2})$ character work because each of the $C$ passes scans each record to reach field $c$ | $O(R)$ for the column being printed, and no grid buffering at all | Needs no buffering, which suits a table too large to hold in memory, but it re-reads the whole input once per output line and its work grows quadratically in the column count. |
 
 ---
 

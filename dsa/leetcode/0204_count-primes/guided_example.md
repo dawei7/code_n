@@ -67,6 +67,13 @@ Because $k < p$, $k$ possesses at least one prime factor $q \le k < p$.
 Therefore, $c$ has already been marked composite during the earlier sieve pass for prime $q$!
 Starting at $p^2$ avoids re-marking smaller composites.
 
+The saving is easy to measure: count the assignments $A[m] \leftarrow \text{False}$ each rule performs. Even at these small bounds the difference is already visible, and it grows as the range widens because more composites acquire a second prime factor below their square root:
+
+| Bound $n$ | Writes when each pass starts at $2p$ | Writes when each pass starts at $p^2$ | Writes avoided | Primes counted |
+|:---:|:---:|:---:|:---:|:---:|
+| $10$ | $5$ | $4$ | $1$ — index $6$ is revisited by the $p = 3$ pass | $4$ |
+| $100$ | $144$ | $102$ | $42$ | $25$ |
+
 > **Invariant.** Before starting iteration $p$, for every integer $x < p^2$, $A[x] = \text{True}$ if and only if $x$ is prime.
 
 ---
@@ -123,6 +130,17 @@ Sum remaining `True` values across $A[2 \dots 9]$:
 
 Total prime count: $\mathbf{4}$.
 
+Attributing each composite below $10$ to the pass that eliminates it shows that no composite is missed and only index $6$ is a candidate for a redundant visit:
+
+| Composite $c$ | Factorisation | Passes marking $c$ under the $p^2$ rule | Passes that would also touch $c$ under the $2p$ rule |
+|:---:|:---:|:---|:---|
+| $4$ | $2 \times 2$ | $p = 2$, since $4 \ge 2^2$ | $p = 2$ |
+| $6$ | $2 \times 3$ | $p = 2$ only, because $3^2 = 9 > 6$ | $p = 2$ and $p = 3$ |
+| $8$ | $2 \times 2 \times 2$ | $p = 2$, since $8 \ge 2^2$ | $p = 2$ |
+| $9$ | $3 \times 3$ | $p = 3$, since $9 \ge 3^2$ | $p = 3$ |
+
+Every composite is reached at least once — $6$ by the small factor $2$, $9$ by the factor $3$ that only becomes available at the $p = 3$ pass — so dropping the sub-$p^2$ multiples removes work without removing information.
+
 ---
 
 ## 4. Complete Execution Trace
@@ -164,6 +182,20 @@ True indices: 2, 3, 5, 7 -> Count = 4
 - **Strict Inequality `< n`:** The problem asks for primes *strictly less than* $n$. If $n = 7$, $7$ itself is prime but must not be counted (result is $3$, for primes $2, 3, 5$). Allocating an array of size $n$ guarantees that index $n$ is never included.
 - **Starting at $2p$ Instead of $p^2$:** Marking from $2p$ is correct but wastes significant time re-marking even numbers ($4, 6, 8, \dots$) during later prime passes. Starting at $p^2$ avoids this overhead.
 - **Base Cases $n \le 2$:** If $n = 0, 1, 2$, there are no primes strictly less than $n$. Guarding with `if n <= 2: return 0` avoids negative range indexing.
+
+The bounds below separate the three boundary behaviours — empty index range, strict-inequality exclusion, and the first non-empty answer — from an ordinary larger sweep:
+
+| $n$ | Primes strictly below $n$ | Count | Which boundary rule this bound exercises |
+|:---:|:---|:---:|:---|
+| $0$ | none | $0$ | the candidate array has no indices at all |
+| $1$ | none | $0$ | index $1$ is the only index and is not prime |
+| $2$ | none | $0$ | $2$ is prime, but the comparison is strict, so it cannot count itself |
+| $3$ | $2$ | $1$ | the smallest bound with a non-zero answer |
+| $7$ | $2, 3, 5$ | $3$ | the endpoint is itself prime and must still be excluded |
+| $10$ | $2, 3, 5, 7$ | $4$ | the representative input traced above |
+| $100$ | the $25$ primes from $2$ through $97$ | $25$ | not a boundary case: the same sweep, only longer |
+
+The $n = 2$ and $n = 7$ rows are the ones that catch an off-by-one: in both, a prime sits exactly on the endpoint $n$, and only the strict comparison keeps it out of the total.
 
 ---
 

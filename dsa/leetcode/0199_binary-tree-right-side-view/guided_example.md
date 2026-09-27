@@ -143,6 +143,18 @@ Final Output: [1, 3, 4]
 | 1 | `[Node 2, Node 3]` | 2 | Node 3 | 3 | `[1, 3]` |
 | **2** | **`[Node 5, Node 4]`** | **2** | **Node 4** | **4** | **`[1, 3, 4]` (Final)** |
 
+### Per-Depth Visibility and Obstruction
+
+The view keeps one node per depth and discards the rest, but "discarded" is not the same as "unreachable": every omitted node is a real node that was visited and then passed over because another node at the same depth lies further right.
+
+| Depth | Nodes present, left to right | Rightmost node | Nodes the view omits at this depth | Why those nodes are invisible | Cumulative `result` |
+|:---:|:---|:---:|:---|:---|:---|
+| 0 | `[Node 1]` | Node 1 | none | The root is the only node at depth 0, so there is nothing to compare it against. | `[1]` |
+| 1 | `[Node 2, Node 3]` | Node 3 | Node 2 | Node 2 and Node 3 share a depth, and the view keeps only the rightmost node of each depth. Node 2 is a left child, so it is one step behind. | `[1, 3]` |
+| 2 | `[Node 5, Node 4]` | Node 4 | Node 5 | The same rule applies across different parents: Node 5 hangs from Node 2 and Node 4 from Node 3, yet they compete only by depth and horizontal order, and Node 4 is further right. | `[1, 3, 4]` |
+
+This is the precise sense in which the problem is level-based rather than path-based. Visibility is decided **within** a depth, using the tree's left-to-right ordering (the order in which the queue exposes nodes), and never by which parent a node descends from.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -158,6 +170,29 @@ Final Output: [1, 3, 4]
 - **Following Only Right Pointers:** If node 3 had no children while node 2 had children (as in `[1, 2, 3, 4]`), node 4 is visible from the right side. Greedily descending `node = node.right` fails to see node 4!
 - **Queue Mutation During Level Loop:** Modifying the loop limit dynamically (`for u in queue:`) while appending children breaks level boundaries. Freezing level size $S = \text{len}(\text{queue})$ beforehand is essential.
 - **Empty Tree:** Passing `root = None` should immediately return `[]` without attempting to access `.val` or initialize an empty level.
+
+### Where the Right-Spine Descent Diverges
+
+For the overhang tree `[1, 2, 3, 4, null, null, null, 5]`, both methods are compared depth by depth. The spine descent stops as soon as a node has no right child, while the true view continues as long as any node exists at a deeper level.
+
+| Depth | Nodes present, left to right | Node found by following right children | Node found by the level view | Why the two diverge |
+|:---:|:---|:---:|:---:|:---|
+| 0 | `[1]` | 1 | 1 | The root is the rightmost node at depth 0, so both agree. |
+| 1 | `[2, 3]` | 3 | 3 | The root's right child exists, so the descent takes its first step successfully. |
+| 2 | `[4]` | none; the descent has already stopped | 4 | Node 3 has no right child, yet Node 4 exists at depth 2 in the left subtree and is the only node there. The spine pointer has nowhere to go. |
+| 3 | `[5]` | none | 5 | Node 5 is deeper still along the left chain, and it is likewise the only node at its depth, so it is visible as well. |
+| **Result** | — | **`[1, 3]`** | **`[1, 3, 4, 5]`** | The spine answers a different question: it reports the path along right pointers, not the rightmost node of every depth. |
+
+The divergence is structural, not a matter of tuning. A path visits one node per level by construction, whereas a level can contain nodes from either subtree, so no pointer-following strategy can be correct in general.
+
+### Formulations Compared
+
+| Formulation | What it maintains | How the answer is selected | Time | Auxiliary space | Tradeoff or failure mode |
+|:---|:---|:---|:---|:---|:---|
+| Level-order BFS, left-to-right enqueue | A queue holding exactly the current frontier | The level width is frozen before the level is expanded, and the node at position $S-1$ is recorded | $O(N)$ | $O(W)$, the maximum frontier width | The frozen width is load-bearing: letting the loop bound follow the queue as children are appended merges one level into the next and records the wrong node. |
+| Level-order BFS, right-to-left enqueue | A frontier ordered with the rightmost node first | The node at the head of the queue is recorded at the start of each level, because each expansion appends the right child before the left | $O(N)$ | $O(W)$ | Needs no position counter at all, but its correctness rests entirely on the enqueue order, and the head must be read before the level is expanded — afterwards it belongs to the next level. |
+| Right-first DFS with a depth guard | A recursion stack plus the growing result list | The first node visited at a new depth is recorded, and the guard compares that depth with the current result length | $O(N)$ | $O(H)$, the tree height | Needs no queue and reads the same shape as the recursion, but its stack is as deep as the tree, so a chain of $N$ nodes risks exhausting the recursion limit. |
+| Right-spine descent | A single node pointer | Repeatedly follow the right child and record each node | $O(H)$ before it stops | $O(1)$ | Eliminated: it is cheap only because it gives up early, and it returns `[1, 3]` instead of `[1, 3, 4, 5]` on the overhang tree. |
 
 ---
 

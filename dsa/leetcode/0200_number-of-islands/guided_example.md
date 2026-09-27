@@ -39,7 +39,7 @@ Count the total number of islands. An island is a maximal connected component of
 
 Visualizing the connectivity:
 - Land cells $(0,0)$, $(0,1)$, and $(1,0)$ are adjacent to each other $\implies$ **Island 1**.
-- Land cell $(2,2)$ touches $(1,1)$, $(1,2)$, and $(2,1)$, all of which are water `'0'`. Although $(2,2)$ touches $(1,0)$ diagonally across $(1,1)$, diagonal contact is forbidden $\implies$ **Island 2**.
+- Land cell $(2,2)$ touches only $(1,2)$ and $(2,1)$ inside the grid, both water `'0'`; its single in-grid diagonal neighbour $(1,1)$ is water as well, so no corner contact can join it to Island 1 either $\implies$ **Island 2**.
 Total islands: $\mathbf{2}$.
 
 The flood fill algorithm traverses the grid cell by cell:
@@ -166,6 +166,31 @@ Total Islands: 2
 | $(1, 1)$ | `'0'` | Skip (water) | - | Unchanged | 1 |
 | **$(2, 2)$** | **`'1'`** | **New Island Found** | **$(2,2)$** | $\begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}$ | **2 (Final)** |
 
+### Complete Row-Major Scan Order
+
+Every cell of the grid is examined exactly once, in row-major order, and only the cells that are still land when the scan reaches them can start a fill. The table records the value **as read**, which is why two cells that began as land appear here as water.
+
+| Scan order | Cell $(r, c)$ | Value when scanned | Why it reads that way | Action | `islands` after the step |
+|:---:|:---:|:---:|:---|:---|:---:|
+| 1 | $(0, 0)$ | `'1'` | Original land, untouched by any earlier fill | New island seeded; fill launched | 1 |
+| 2 | $(0, 1)$ | `'0'` | Land in the initial grid, sunk while Island 1 was filled | Skip | 1 |
+| 3 | $(0, 2)$ | `'0'` | Water in the initial grid | Skip | 1 |
+| 4 | $(1, 0)$ | `'0'` | Land in the initial grid, sunk while Island 1 was filled | Skip | 1 |
+| 5 | $(1, 1)$ | `'0'` | Water in the initial grid, and the diagonal neighbour of $(2,2)$ | Skip | 1 |
+| 6 | $(1, 2)$ | `'0'` | Water in the initial grid | Skip | 1 |
+| 7 | $(2, 0)$ | `'0'` | Water in the initial grid | Skip | 1 |
+| 8 | $(2, 1)$ | `'0'` | Water in the initial grid | Skip | 1 |
+| 9 | $(2, 2)$ | `'1'` | Land that the first fill never reached, so it is still `'1'` | New island seeded; fill launched | 2 |
+
+Rows 2 and 4 carry the whole idea of in-place marking: those two cells were land at the start, but by the time the outer loop arrives they are indistinguishable from water. The mutation is performing the job an auxiliary visited set would otherwise do, which is exactly why no separate visited matrix is needed.
+
+### Island Inventory
+
+| Island | Seed cell (first member in scan order) | Member cells | Size | Neighbours examined and rejected during the fill | Why this seed, and not another member |
+|:---:|:---|:---|:---:|:---|:---|
+| 1 | $(0, 0)$ | $(0,0), (0,1), (1,0)$ | 3 | $(0,2)$ is water, $(1,1)$ is water, $(2,0)$ is water, and the top and left edges are out of bounds | Row-major order reaches $(0,0)$ before any other member, and every other member lies below or to the right of it. |
+| 2 | $(2, 2)$ | $(2,2)$ | 1 | $(1,2)$ is water, $(2,1)$ is water, the bottom and right edges are out of bounds, and the in-grid diagonal $(1,1)$ is water besides not being an edge | By the time the scan reaches row 2, $(2,2)$ is the only land cell left, so it cannot have been absorbed by an earlier fill. |
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -178,9 +203,24 @@ Total Islands: 2
 
 ## 6. Traps This Instance Exposes
 
-- **Diagonal Adjacency Fallacy:** Land cells touching diagonally (such as $(1,0)$ and $(2,2)$) do **not** form a single island. Only the 4 cardinal directions ($(-1,0), (1,0), (0,-1), (0,1)$) are valid edges.
+- **Diagonal Adjacency Fallacy:** Cells meeting only at a corner are not joined by an edge. In this grid the diagonal pair is $(0,1)$ and $(1,0)$, and 4-connectivity ignores that contact entirely: the two cells are joined only through $(0,0)$. The rule becomes decisive on other instances, which is why the lesson instance cannot prove it on its own. Only the 4 cardinal directions ($(-1,0), (1,0), (0,-1), (0,1)$) are valid edges.
 - **Marking Visited on Pop Instead of Push (BFS):** In a queue-based BFS, if cells are marked `'0'` only when popped from the queue, adjacent nodes will enqueue the same neighbor multiple times, causing exponential memory growth and Time Limit Exceeded (TLE). A cell must be marked `'0'` **immediately upon enqueuing**.
 - **Python Recursion Limit:** For large grids (e.g. $300 \times 300 = 90,000$ cells), recursive DFS can trigger `RecursionError`. BFS with `collections.deque` or iterative DFS with an explicit stack avoids stack overflow.
+
+### Connectivity Rules and Their Boundary Instances
+
+The adjacency rule is a property of the graph, not of the traversal, so the instances below are grouped by what they can and cannot discriminate. The fourth column counts components under the required orthogonal rule; the fifth recounts them as if corner contact also joined cells.
+
+| Instance | Shape | Land cells | Islands under orthogonal adjacency | Islands if corner contact counted | What the instance exposes |
+|:---|:---:|:---:|:---:|:---:|:---|
+| Lesson grid | $3 \times 3$ | 4 | 2 | 2 | The two counts agree, so this instance cannot test the rule at all: $(2,2)$ is corner-adjacent only to $(1,1)$, which is water. |
+| Four corners | $2 \times 2$ | 2 | 2 | 1 | The minimal discriminating case: the only contact between the two cells is at a corner, so the adjacency rule alone decides the answer. |
+| All water | $2 \times 2$ | 0 | 0 | 0 | Every scan step is a skip; the counter is never incremented and no fill is ever launched, so the answer is $0$ rather than an error. |
+| All land | $3 \times 3$ | 9 | 1 | 1 | One component that absorbs every cell, so the traversal reaches depth equal to the number of land cells: the worst case for a recursive stack. |
+| Winding corridor | $3 \times 3$ | 5 | 1 | 1 | Connectivity is transitive: $(0,0)$ reaches $(2,2)$ through a chain of four orthogonal steps, so counting local patterns rather than components would overcount. |
+| Three-island sample | $4 \times 5$ | 7 | 3 | 1 | Its three components are corner-adjacent in a chain, so counting corner contact would merge all of them and answer $1$ instead of $3$. |
+
+Two rows carry the real content. The four-corner grid isolates the adjacency rule in its smallest possible form, and the three-island sample shows that the rule is not a cosmetic detail: it changes the answer by a factor of three on an ordinary instance.
 
 ---
 
