@@ -90,6 +90,15 @@ Sublist to reverse: $N_2(2) \to N_3(1) \to \text{None}$.
   - First half: $N_0(1) \to N_1(2) \to \dots$
   - Second half reversed: $N_3(1) \to N_2(2) \to \text{None}$.
 
+The three-pointer loop is easy to run in the head and easy to get wrong on paper, so the table records every link write of this reversal. `nxt` is always read *before* `curr.next` is overwritten; forgetting that order loses the rest of the suffix and turns the reversal into a truncation.
+
+| Reversal step | `curr` entering the step | `nxt` saved first | Link rewritten | `prev` after the step | Suffix not yet reversed |
+|:---:|:---:|:---:|:---|:---:|:---|
+| Init | $N_2(2)$ | not yet read | none | `None` | $N_2(2) \to N_3(1)$ |
+| 1 | $N_2(2)$ | $N_3(1)$ | $N_2\text{.next} \leftarrow \text{None}$ | $N_2(2)$ | $N_3(1)$ |
+| 2 | $N_3(1)$ | `None` | $N_3\text{.next} \leftarrow N_2(2)$ | $N_3(1)$ | empty |
+| Exit | `None` | not read | none | $N_3(1)$ is the new head | empty |
+
 ---
 
 ### Phase 3: Compare First Half with Reversed Second Half
