@@ -51,11 +51,21 @@ if (args.length > 0) {
       }
     } catch {
       const fallback = path.resolve(corpusRoot, arg);
-      const s2 = await stat(fallback);
-      if (s2.isDirectory()) {
-        markdownFiles.push(...await findMarkdownFiles(fallback));
-      } else if (s2.isFile() && fallback.endsWith('.md')) {
-        markdownFiles.push(fallback);
+      try {
+        const s2 = await stat(fallback);
+        if (s2.isDirectory()) {
+          markdownFiles.push(...await findMarkdownFiles(fallback));
+        } else if (s2.isFile() && fallback.endsWith('.md')) {
+          markdownFiles.push(fallback);
+        }
+      } catch {
+        console.error(
+          `No Markdown file or directory found for '${arg}'.\n` +
+          `Tried '${resolved}' and '${fallback}'.\n` +
+          `Paths are resolved against the corpus root (${corpusRoot}), so pass a ` +
+          `package name such as '0001_two-sum' or an absolute path.`,
+        );
+        process.exit(1);
       }
     }
   }
