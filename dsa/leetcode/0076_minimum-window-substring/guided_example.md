@@ -108,6 +108,28 @@ Final minimal substring: $\text{"BANC"}$.
 
 ---
 
+### Window Frequency State at Decisive Events
+
+The `formed` counter only tells us how many target letters are satisfied. The underlying counts show *why* it moves, and how a surplus letter keeps a window feasible while a target letter is being evicted.
+
+| Event | Window $[L, R]$ and its content | `'A'` | `'B'` | `'C'` | Non-target letters inside | `formed` |
+|:---|:---|:---:|:---:|:---:|:---|:---:|
+| $R = 5$ acquires the first `'C'` | `[0, 5]` = `"ADOBEC"` | 1 | 1 | 1 | `'D'`, `'O'`, `'E'` | 3 |
+| Evict $s[0]$ = `'A'` | `[1, 5]` = `"DOBEC"` | 0 | 1 | 1 | `'D'`, `'O'`, `'E'` | 2 |
+| $R = 9$ acquires a second `'B'` | `[1, 9]` = `"DOBECODEB"` | 0 | 2 | 1 | `'D'`, `'O'`, `'E'`, `'O'`, `'D'`, `'E'` | 2 |
+| $R = 10$ acquires a fresh `'A'` | `[1, 10]` = `"DOBECODEBA"` | 1 | 2 | 1 | `'D'`, `'O'`, `'E'`, `'O'`, `'D'`, `'E'` | 3 |
+| Evict $s[1], s[2]$ = `'D'`, `'O'` | `[3, 10]` = `"BECODEBA"` | 1 | 2 | 1 | `'E'`, `'C'`, `'O'`, `'D'`, `'E'` | 3 |
+| Evict $s[3]$ = surplus `'B'` | `[4, 10]` = `"ECODEBA"` | 1 | 1 | 1 | `'E'`, `'C'`, `'O'`, `'D'`, `'E'` | 3 |
+| Evict $s[4]$ = `'E'` | `[5, 10]` = `"CODEBA"` | 1 | 1 | 1 | `'C'`, `'O'`, `'D'`, `'E'` | 3 |
+| Evict $s[5]$ = `'C'` | `[6, 10]` = `"ODEBA"` | 1 | 1 | 0 | `'O'`, `'D'`, `'E'` | 2 |
+| $R = 12$ acquires a new `'C'` | `[6, 12]` = `"ODEBANC"` | 1 | 1 | 1 | `'O'`, `'D'`, `'E'`, `'N'` | 3 |
+| Evict $s[6..8]$ = `'O'`, `'D'`, `'E'` | `[9, 12]` = `"BANC"` | 1 | 1 | 1 | `'N'` | 3 |
+| Evict $s[9]$ = `'B'` | `[10, 12]` = `"ANC"` | 1 | 0 | 1 | `'N'` | 2 |
+
+Two rows carry the decisive lesson. The second `'B'` at index 9 pushes the count from $1$ to $2$, yet `formed` does not move, because a count above the requirement is surplus; that surplus is exactly what lets the contraction loop continue past index 3 later without losing feasibility. Symmetrically, evicting the only `'C'` at index 5 drops the count from $1$ to $0$, which is the first time the loop falls *below* the requirement and forces `formed` down to $2$.
+
+---
+
 ## 4. Complete Execution Trace
 
 | Step Event | Active $R$ | Char $s[R]$ | Active $L$ | Current Window String | Formed / Req | Best Window | Best Length |
@@ -142,6 +164,15 @@ Final minimal substring: $\text{"BANC"}$.
 ---
 
 ## 7. Complexity Derivation
+
+### Variant Comparison
+
+| Approach | Mechanism | Time | Auxiliary space | Tradeoff or failure mode |
+|:---|:---|:---|:---|:---|
+| Enumerate every window | For each pair $(L, R)$, rebuild the frequency map of the window and test it | $O(\lvert s \rvert^3)$ | $O(\lvert \Sigma \rvert)$ | Correct but cubic; the count rebuild dominates and nothing is reused between windows |
+| Two-pointer window with a `formed` counter (used here) | Grow $R$ until feasible, then shrink $L$ while feasibility survives | $O(\lvert s \rvert + \lvert t \rvert)$ | $O(\lvert \Sigma \rvert)$ | Each character enters and leaves the window once, but the counter must increment only on strict equality with the target count |
+| Two-pointer window with a per-step feasibility re-check | Grow and shrink the same way, but re-compare every target count on each evaluation | $O(\lvert s \rvert \cdot \lvert \Sigma_t \rvert)$ | $O(\lvert \Sigma \rvert)$ | Simpler to reason about, yet the repeated verification multiplies the running time by the number of distinct letters in $t$ |
+| Prefiltered index list | Compress $s$ to the positions whose letters occur in $t$, then slide over that compressed list | $O(\lvert s \rvert + \lvert t \rvert)$ | $O(\lvert s \rvert)$ | Skips irrelevant letters but stores a filtered index list, and the winning window must be mapped back to original indices |
 
 - **Time Complexity:** $O(|s| + |t|)$. Building the frequency dictionary takes $O(|t|)$ time. Pointers $L$ and $R$ each traverse string $s$ from index $0$ to $|s|$ at most once ($2|s|$ operations).
 - **Auxiliary Space Complexity:** $O(|\Sigma|)$, where $|\Sigma|$ is the alphabet size of unique characters in $s$ and $t$ (at most $52$ for ASCII letters).

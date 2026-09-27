@@ -123,6 +123,21 @@ $$
 
 ---
 
+### Corner Collision Trace: A Zero at $(0, 0)$
+
+The instance above never exercises the boundary flags, so the collision at the shared corner deserves its own trace. Take the $2 \times 2$ input $\begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix}$, where the single zero sits exactly on $(0, 0)$ — the cell that both a row marker and a column marker would want to occupy.
+
+| Phase | Boundary flags | Interior markers $\text{matrix}[1][0]$, $\text{matrix}[0][1]$ | Matrix after the phase |
+|:---:|:---|:---:|:---:|
+| 1 | `first_row_zero = True`, `first_col_zero = True` | Not yet written; both still `1` | $\begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix}$ |
+| 2 | Unchanged | Cell $(1, 1) = 1$ is non-zero, so both markers stay `1` | $\begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix}$ |
+| 3 | Unchanged | Consulted for $(1, 1)$; neither marker equals `0`, so the interior cell keeps `1` | $\begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix}$ |
+| 4 | Both True | Header lines are overwritten by the two flags | $\begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}$ |
+
+The final matrix is correct because the zero at $(0, 0)$ means Row 0 must be cleared and Column 0 must be cleared, while cell $(1, 1)$ lies in neither of those lines and survives as `1`. The corner cell alone cannot express that, since reading it as a row marker and reading it as a column marker return the same bit; the two scalars are what keep the two facts separate and prevent the algorithm from inventing a zero in a row or column that never had one.
+
+---
+
 ## 4. Complete Execution Trace
 
 | Phase | Affected Indices | Condition / Value | Action Taken | Matrix Configuration |
@@ -152,6 +167,17 @@ $$
 ---
 
 ## 7. Complexity Derivation
+
+### Variant Comparison
+
+Every variant below makes the same final decision — clear a row or column exactly when the original matrix put a zero in it — and differs only in where the evidence is stored.
+
+| Approach | Where the zero evidence lives | Time | Auxiliary space | Failure mode |
+|:---|:---|:---|:---|:---|
+| Immediate zeroing during the scan | Nowhere; the matrix is mutated on sight | $O(M \cdot N \cdot (M + N))$ | $O(1)$ | Each freshly written zero becomes new evidence, so the matrix cascades to all zeros |
+| Boolean row and column arrays | Two separate vectors of length $M$ and $N$ | $O(M \cdot N)$ | $O(M + N)$ | Correct, but the extra vectors breach a strict in-place contract |
+| Recorded zero coordinates | A list of $(r, c)$ pairs | $O(M \cdot N)$ | $O(M \cdot N)$ in the worst case | Every cell of an all-zero matrix is stored, so memory scales with the number of zeros |
+| First row and first column as markers (used here) | The matrix headers themselves, plus two scalars for the $(0, 0)$ collision | $O(M \cdot N)$ | $O(1)$ | Phase 4 must run strictly after Phase 3, and the corner facts must ride in the flags rather than in $\text{matrix}[0][0]$ |
 
 - **Time Complexity:** $O(M \cdot N)$, where $M$ is the number of rows and $N$ is the number of columns. Exactly two passes over the matrix are performed.
 - **Auxiliary Space Complexity:** $O(1)$. All markings are stored in place using the matrix itself, using two boolean scalar flags for boundary headers.

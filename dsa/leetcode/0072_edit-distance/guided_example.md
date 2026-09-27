@@ -130,6 +130,22 @@ Terminal minimum edit distance is $DP[5][3] = 3$.
 
 ---
 
+### Optimal Backtrace from the Target Cell
+
+A filled table reports the cost, but the actual edit script is recovered by walking from $(M, N)$ back toward $(0, 0)$ and always stepping to a predecessor that attained the current cell's value. A tie between predecessors is harmless: each minimal predecessor yields an equally short script.
+
+| Step | Current cell $(i, j)$ | $DP[i][j]$ | `word1[i-1]` | `word2[j-1]` | Chosen predecessor | Operation | Next cell |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---|:---:|
+| 1 | $(5, 3)$ | 3 | `'e'` | `'s'` | $(4, 3)$ with $DP = 2$ | Delete `'e'` from `word1` | $(4, 3)$ |
+| 2 | $(4, 3)$ | 2 | `'s'` | `'s'` | $(3, 2)$ with $DP = 2$ | Characters agree, so the diagonal is free | $(3, 2)$ |
+| 3 | $(3, 2)$ | 2 | `'r'` | `'o'` | $(2, 2)$ with $DP = 1$ | Delete `'r'` from `word1` | $(2, 2)$ |
+| 4 | $(2, 2)$ | 1 | `'o'` | `'o'` | $(1, 1)$ with $DP = 1$ | Characters agree, so the diagonal is free | $(1, 1)$ |
+| 5 | $(1, 1)$ | 1 | `'h'` | `'r'` | $(0, 0)$ with $DP = 0$ | Replace `'h'` with `'r'` | $(0, 0)$ |
+
+The walk lands on the origin after exactly three charged operations, which is consistent with $DP[5][3] = 3$. Read forward, it reproduces the script named at the top of the lesson: `"horse"` becomes `"rorse"`, then `"rose"`, then `"ros"`.
+
+---
+
 ## 5. Algorithmic Correctness
 
 **Soundness.** Any string alignment between $\text{word1}[0 \dots i-1]$ and $\text{word2}[0 \dots j-1]$ must align $\text{word1}[i-1]$ with $\text{word2}[j-1]$ (either matching or replacement), delete $\text{word1}[i-1]$, or insert $\text{word2}[j-1]$. By exploring the minimum of these three mutually exclusive choices at every cell, the optimal substructure is preserved.
@@ -147,6 +163,18 @@ Terminal minimum edit distance is $DP[5][3] = 3$.
 ---
 
 ## 7. Complexity Derivation
+
+### Variant Comparison
+
+The same recurrence admits several state representations with different constant factors and different amounts of recoverable information.
+
+| Variant | State retained | Time | Auxiliary space | Material failure mode |
+|:---|:---|:---|:---|:---|
+| Plain recursion on suffixes | Call stack only | $O(3^{M+N})$ | $O(M + N)$ stack | Re-solves each suffix pair exponentially many times |
+| Memoized recursion | Cache keyed by $(i, j)$ | $O(M \cdot N)$ | $O(M \cdot N)$ | Needs $O(M + N)$ stack depth, so long inputs can exhaust the recursion limit |
+| Full 2D bottom-up table (used here) | $(M+1) \times (N+1)$ matrix | $O(M \cdot N)$ | $O(M \cdot N)$ | Retains every row although only row $i - 1$ is ever read |
+| Two rolling rows | Previous row and current row | $O(M \cdot N)$ | $O(N)$ | Discards earlier rows, so no row-major backtrace is possible afterwards |
+| One row plus a saved diagonal scalar | Current row and one saved scalar | $O(M \cdot N)$ | $O(N)$ | Recovers the optimal cost but not the edit script unless predecessors are recorded separately |
 
 - **Time Complexity:** $O(M \cdot N)$, where $M = |\text{word1}|$ and $N = |\text{word2}|$. The table has $(M + 1)(N + 1)$ cells, each taking $O(1)$ constant time.
 - **Auxiliary Space Complexity:** $O(M \cdot N)$ for the full 2D table, or $O(N)$ with 1D row compression.

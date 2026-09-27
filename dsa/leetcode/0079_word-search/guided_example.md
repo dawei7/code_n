@@ -128,7 +128,21 @@ The success propagates up through the call stack, restoring marked cells and ret
 | 5 | `'D'` | $(2, 1)$ | `'D'` | **Match. Final Letter!** | **Return True** |
 
 ### Rejected Instance: $\text{word} = \text{"ABCB"}$
+
 From $(0, 2)$ (`'C'`), searching for second `'B'` finds $(0, 1)$ containing `'#'` (already on active path). All other neighbors fail $\implies$ returns $\text{False}$.
+
+Because this instance fails, it is the one that exercises rollback, so it deserves a full trace. The board starts unmarked again, so the first `'A'` at $(0, 0)$ is retried:
+
+| Depth $k$ | Current cell (letter matched) | Letter sought among neighbors, $\text{word}[k+1]$ | Neighbor probes | Outcome and rollback |
+|:---:|:---|:---:|:---|:---|
+| 0 | $(0, 0)$ = `'A'` | `'B'` | Up and left are off-grid; down $(1, 0)$ = `'S'`; right $(0, 1)$ = `'B'` | Descend into $(0, 1)$; $(0, 0)$ stays marked while the child is active |
+| 1 | $(0, 1)$ = `'B'` | `'C'` | Left $(0, 0)$ = `'#'`; down $(1, 1)$ = `'F'`; right $(0, 2)$ = `'C'` | Descend into $(0, 2)$ |
+| 2 | $(0, 2)$ = `'C'` | `'B'` | Left $(0, 1)$ = `'#'`; right $(0, 3)$ = `'E'`; down $(1, 2)$ = `'C'`; up is off-grid | No `'B'` anywhere, so return False and restore `board[0][2]` to `'C'` |
+| 1 | $(0, 1)$ = `'B'` | `'C'` | All four directions were already probed; the only `'C'` led to the dead end above | Return False and restore `board[0][1]` to `'B'` |
+| 0 | $(0, 0)$ = `'A'` | `'B'` | Down $(1, 0)$ = `'S'`; right $(0, 1)$ now holds `'B'` again, but its subtree already failed; up and left are off-grid | Return False and restore `board[0][0]` to `'A'` |
+| 0 | $(2, 0)$ = `'A'` | `'B'` | Up $(1, 0)$ = `'S'`; right $(2, 1)$ = `'D'`; down and left are off-grid | No match, so restore `board[2][0]` to `'A'`; the outer scan then finds no further `'A'` and the whole search answers False |
+
+The last two rows explain why the answer is $\text{False}$ rather than a lucky find: this board holds exactly two `'A'` cells, and both of them exhaust their neighbourhoods without extending the prefix. The rollback column is also the reason the second root can be tried at all — had $(0, 0)$ kept its `'#'` marker, the board would have been left in a state that misrepresents the original input.
 
 ---
 
@@ -149,6 +163,15 @@ From $(0, 2)$ (`'C'`), searching for second `'B'` finds $(0, 1)$ containing `'#'
 ---
 
 ## 7. Complexity Derivation
+
+### Variant Comparison
+
+| Approach | How the active path is represented | Time | Auxiliary space | Tradeoff or failure mode |
+|:---|:---|:---|:---|:---|
+| DFS that copies the visited matrix per frame | Every recursive call receives its own boolean grid | $O(M \cdot N \cdot 3^L)$ | $O(M \cdot N \cdot L)$ summed over the frames | Allocating a grid per frame dominates the running time and can exhaust memory on a large board |
+| DFS with in-place marking (used here) | One mutated board plus the recursion stack | $O(M \cdot N \cdot 3^L)$ | $O(L)$ stack frames | Every exit path must restore the character, because a single early return that skips the restoration leaves the board permanently altered |
+| BFS over partial paths | A queue whose entries each carry their own prefix and visited set | $O(M \cdot N \cdot 3^L)$ | $O(M \cdot N \cdot 3^L)$ in the worst case | Correct, but it materialises every prefix instead of reusing one active path, so it trades stack depth for unbounded memory |
+| Letter-frequency pre-check, then search from the rarer end | The same in-place DFS, entered only after counting letters and possibly reversing the word | $O(M \cdot N \cdot 3^L)$ worst case, dramatically fewer roots in practice | $O(L)$ stack plus $O(\lvert \Sigma \rvert)$ counters | Rejects impossible inputs in linear time and shrinks the branching factor, but neither trick changes the worst-case bound |
 
 - **Time Complexity:** $O(M \cdot N \cdot 3^L)$, where $M \times N$ is the grid size and $L = |\text{word}|$. From each cell, we explore at most 3 directions (since the parent cell is blocked by `'#'`).
 - **Auxiliary Space Complexity:** $O(L)$ to store the recursion call stack up to depth $L$. No extra 2D arrays are created.

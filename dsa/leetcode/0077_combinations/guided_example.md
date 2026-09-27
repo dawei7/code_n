@@ -92,6 +92,23 @@ Search complete. Emitted combinations: $[[1, 2], [1, 3], [1, 4], [2, 3], [2, 4],
 
 ---
 
+### Pruning Bound Evaluated at Every Node
+
+The bound is recomputed at each node from the current path length, which is what makes the pruned tree shallower than an unpruned one. For $n = 4, k = 2$ the recursive nodes are:
+
+| Node `path` | Depth $\lvert \text{path} \rvert$ | Vacancies $k - \lvert \text{path} \rvert$ | Bound $n - \text{needed} + 1$ | Candidate range for $i$ | Combinations emitted from this node |
+|:---|:---:|:---:|:---:|:---:|:---:|
+| `[]` | 0 | 2 | $4 - 2 + 1 = 3$ | $i \in [1, 3]$ | 6 |
+| `[1]` | 1 | 1 | $4 - 1 + 1 = 4$ | $i \in [2, 4]$ | 3 |
+| `[2]` | 1 | 1 | $4 - 1 + 1 = 4$ | $i \in [3, 4]$ | 2 |
+| `[3]` | 1 | 1 | $4 - 1 + 1 = 4$ | $i \in [4, 4]$ | 1 |
+| `[4]` (never constructed) | 1 | 1 | $4 - 1 + 1 = 4$ | empty, because the root bound already rejected $i = 4$ | 0 |
+| `[1, 2]`, `[1, 3]`, `[1, 4]`, `[2, 3]`, `[2, 4]`, `[3, 4]` | 2 | 0 | not evaluated | none, the base case fires first | 1 each |
+
+The same arithmetic explains the decreasing yield along the root's children: the path `[3]` has room for exactly one partner, so its subtree contributes a single combination, while `[1]` contributes three. Removing the bound would let the root also try $i = 4$, whose only continuation would be a path of length $1$ that silently dies without emitting anything.
+
+---
+
 ## 4. Complete Execution Trace
 
 | DFS Step | Action Taken | Candidate $i$ | Resulting Path | Condition Check ($\lvert \text{path} \rvert == 2$) | Emitted Output |
@@ -129,6 +146,17 @@ Search complete. Emitted combinations: $[[1, 2], [1, 3], [1, 4], [2, 3], [2, 4],
 ---
 
 ## 7. Complexity Derivation
+
+### Variant Comparison
+
+The call counts below are the actual node counts for the representative instance $n = 4, k = 2$, not asymptotic estimates.
+
+| Approach | Decision structure | Nodes or iterations for $n = 4, k = 2$ | Time | Auxiliary space | Failure mode |
+|:---|:---|:---:|:---|:---|:---|
+| Include/exclude binary recursion | Every integer is independently taken or skipped, with no ordering constraint | 21 calls | $O(2^n)$ calls regardless of $k$ | $O(n)$ stack | Spends most of its work on branches that can no longer reach size $k$, and without an ordering rule it also risks emitting permutations |
+| Pruned increasing-order DFS (used here) | Always choose the next value above the current start, and stop at $i \le n - \text{needed} + 1$ | 10 calls | $O\!\left(k \cdot \binom{n}{k}\right)$ | $O(k)$ stack and path buffer | Requires the bound in the loop head; dropping it restores the unpruned node count |
+| Lexicographic successor enumeration | Hold a $k$-tuple of positions and advance it to the next lexicographic combination | 6 iterations | $O\!\left(k \cdot \binom{n}{k}\right)$ | $O(k)$ | The carry step at the rightmost index that can still advance is easy to misplace, which skips or repeats combinations |
+| Library combination iterator | Delegate to the language's built-in combinations generator | 6 yields | $O\!\left(k \cdot \binom{n}{k}\right)$ | Implementation-defined | Defeats the purpose of the exercise, and the relative ordering of yielded tuples is not part of the contract |
 
 - **Time Complexity:** $O\left( k \cdot \binom{n}{k} \right)$. There are $\binom{n}{k}$ combinations, and copying each valid combination of size $k$ takes $O(k)$ time. Pruning ensures the search tree visits only viable states.
 - **Auxiliary Space Complexity:** $O(k)$ recursion call stack depth and path buffer storage (excluding the returned result array).

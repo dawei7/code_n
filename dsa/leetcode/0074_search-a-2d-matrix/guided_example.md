@@ -39,6 +39,27 @@ $$
 $$
 The value corresponding to 1D index $k$ is directly $\text{matrix}[r][c]$.
 
+### Virtual Index Map for This Instance
+
+Reading the $3 \times 4$ matrix row by row spans $4$ virtual indices per row, so the column stride is exactly the point where $c$ wraps back to $0$:
+
+| Virtual index $k$ | $r = \lfloor k / 4 \rfloor$ | $c = k \bmod 4$ | $\text{matrix}[r][c]$ | Begins a new row? |
+|:---:|:---:|:---:|:---:|:---|
+| 0 | 0 | 0 | 1 | Yes, Row 0 starts here |
+| 1 | 0 | 1 | 3 | No |
+| 2 | 0 | 2 | 5 | No |
+| 3 | 0 | 3 | 7 | No |
+| 4 | 1 | 0 | 10 | Yes, Row 1 starts here |
+| 5 | 1 | 1 | 11 | No |
+| 6 | 1 | 2 | 16 | No |
+| 7 | 1 | 3 | 20 | No |
+| 8 | 2 | 0 | 23 | Yes, Row 2 starts here |
+| 9 | 2 | 1 | 30 | No |
+| 10 | 2 | 2 | 34 | No |
+| 11 | 2 | 3 | 60 | No |
+
+The four probed indices in the worked search are $5, 2, 0, 1$, which the map sends to $11, 5, 1, 3$ respectively. Indices $4$ and $8$ are the stride boundaries where the column resets, and they are read as $\text{matrix}[1][0]$ and $\text{matrix}[2][0]$; this is why the divisor must be the column count $N = 4$ and never the row count.
+
 ### Binary Search Execution Loop
 Initialize $L = 0$ and $R = M \cdot N - 1$.
 While $L \le R$:
@@ -154,6 +175,15 @@ We search for $\text{target} = 3$ in the $3 \times 4$ matrix ($M = 3, N = 4$, $M
 ---
 
 ## 7. Complexity Derivation
+
+### Variant Comparison
+
+| Approach | Mechanism | Time | Auxiliary space | Material failure mode |
+|:---|:---|:---|:---|:---|
+| Exhaustive cell scan | Inspect every one of the $M \cdot N$ cells | $O(M \cdot N)$ | $O(1)$ | Discards both ordering guarantees, so it is needlessly linear on a fully sorted matrix |
+| Two-tier bisection | Binary search the first column, then binary search the row it selects | $O(\log M + \log N)$ | $O(1)$ | An off-by-one row selection silently searches a row that cannot contain the target, because the row search never re-checks the inter-row boundary |
+| Virtual flattened binary search (used here) | One bisection over $[0, M \cdot N - 1]$ with the $(r, c)$ decode | $O(\log(M \cdot N))$ | $O(1)$ | The decode divides by the column count; dividing by the row count produces valid-looking coordinates that read the wrong cell |
+| Top-right staircase | Walk down or left from the top-right corner using both sorted directions | $O(M + N)$ | $O(1)$ | Still correct, but asymptotically slower here because it does not exploit the strict inter-row dominance that this problem guarantees |
 
 - **Time Complexity:** $O(\log(M \cdot N)) = O(\log M + \log N)$. The search range of size $M \cdot N$ is halved each iteration.
 - **Auxiliary Space Complexity:** $O(1)$. Index arithmetic uses constant extra memory.

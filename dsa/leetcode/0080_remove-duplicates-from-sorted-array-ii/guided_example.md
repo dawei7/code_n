@@ -137,6 +137,21 @@ Termination. Return $k = w = 5$.
 | 5 | 3 | 4 | $3 \ne \text{nums}[2]$ ($3 \ne 2$ True) | Accept | $\text{nums}[4] = 3$ | `[1, 1, 2, 2, 3]` |
 | Final | - | **5** | - | - | **Return $k = 5$** | **`[1, 1, 2, 2, 3]`** |
 
+### Physical Array Contents Versus the Retained Prefix
+
+The retained prefix and the raw array are not the same object, and the difference is easy to miss because the writes are in place. Tracking the whole array shows that rejected candidates leave the physical layout unchanged and that the slots at or beyond $w$ are never validated.
+
+| After processing $r$ | Physical array contents | Slots $\text{nums}[w \dots N-1]$ not yet validated | Retained prefix length $w$ |
+|:---:|:---|:---|:---:|
+| 0 | `[1, 1, 1, 2, 2, 3]` | `[1, 1, 2, 2, 3]` over $[1, 5]$ | 1 |
+| 1 | `[1, 1, 1, 2, 2, 3]` | `[1, 2, 2, 3]` over $[2, 5]$ | 2 |
+| 2 (candidate rejected) | `[1, 1, 1, 2, 2, 3]` | `[1, 2, 2, 3]` over $[2, 5]$ | 2 |
+| 3 | `[1, 1, 2, 2, 2, 3]` | `[2, 2, 3]` over $[3, 5]$ | 3 |
+| 4 | `[1, 1, 2, 2, 2, 3]` | `[2, 3]` over $[4, 5]$ | 4 |
+| 5 | `[1, 1, 2, 2, 3, 3]` | `[3]` over $[5, 5]$ | 5 |
+
+Two details follow from this view. First, the rejection at $r = 2$ performs no write at all, so the array is byte-identical before and after that iteration while the read pointer still advances. Second, index $5$ keeps its original value `3` simply because no write ever targeted it; that trailing slot happens to match the last retained element here, but the answer is defined by the returned count $k = 5$ and by the first $k$ slots only.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -152,6 +167,17 @@ Termination. Return $k = w = 5$.
 - **Generalization to $K$ Duplicates:** This exact template generalizes to allowing at most $K$ duplicates by checking `w < K or x != nums[w - K]`. For $K = 1$ (LeetCode 26), compare against `w - 1`. For $K = 2$ (this problem), compare against `w - 2`.
 - **Comparing Against $r - 2$ instead of $w - 2$:** Comparing $\text{nums}[r]$ against $\text{nums}[r - 2]$ fails when duplicates have already been skipped, because the input indices no longer match the compacted output layout. The lookback must check the **write** index $\text{nums}[w - 2]$.
 - **Short Arrays ($N \le 2$):** If $N \le 2$, the condition $w < 2$ accepts all elements, immediately returning $N$ without any index out-of-bounds error.
+
+### Boundary Behaviour Across Legal Inputs
+
+The representative instance never stresses either extreme — a run longer than three, or an array with nothing to remove. The authored cases cover both:
+
+| Scenario | Input array | Gate behaviour | Returned $k$ | Retained prefix | Why the gate handles it |
+|:---|:---|:---|:---:|:---|:---|
+| One long duplicate run | `[7, 7, 7, 7, 7, 7]` | The first two writes pass on $w < 2$; every later candidate equals $\text{nums}[w-2] = 7$ and is rejected | 2 | `[7, 7]` | Once two copies are written, the lookback cell always holds the same value, so no further copy can pass the gate |
+| Nothing to remove | `[-2, -2, 0, 1, 1]` | Every candidate differs from $\text{nums}[w-2]$ except the runs that are exactly length two, which are accepted | 5 | `[-2, -2, 0, 1, 1]` | While every run has length at most two, the candidate always differs from the slot two positions back, so $w$ keeps pace with $r$ and the array is rewritten with itself |
+| Single element | `[5]` | $w = 0 < 2$ accepts the only candidate | 1 | `[5]` | The lookback term is never evaluated, so no out-of-range index is read |
+| Several runs, one of length four | `[0, 0, 1, 1, 1, 1, 2, 3, 3]` | Runs of length $2, 4, 1, 2$ contribute $2, 2, 1, 2$ writes respectively | 7 | `[0, 0, 1, 1, 2, 3, 3]` | The answer is the sum of the run-length minima, $\sum_{\text{runs}} \min(\text{run length}, 2)$, so $k$ is fixed by the input runs alone |
 
 ---
 

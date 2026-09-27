@@ -114,6 +114,24 @@ We trace $\text{nums} = [2, 0, 2, 1, 1, 0]$ with initial pointers $L = 0, cur = 
 
 ---
 
+### Region State After Each Iteration
+
+Tracking the four regions explicitly shows that classified elements are never revisited, and that a swap always exchanges an element across exactly one region boundary.
+
+| Iteration | Confirmed 0s $[0, L-1]$ | Confirmed 1s $[L, cur-1]$ | Unclassified $[cur, R]$ | Confirmed 2s $[R+1, N-1]$ | Element that crossed a boundary |
+|:---:|:---|:---|:---|:---|:---|
+| Start | empty | empty | `[2, 0, 2, 1, 1, 0]` over $[0, 5]$ | empty | none |
+| 1 | empty | empty | `[0, 0, 2, 1, 1]` over $[0, 4]$ | `[2]` over $[5, 5]$ | the `2` at index 0 left for the 2-region, and a `0` arrived at index 0 |
+| 2 | `[0]` over $[0, 0]$ | empty | `[0, 2, 1, 1]` over $[1, 4]$ | `[2]` over $[5, 5]$ | the `0` at index 0 was sealed into the 0-region |
+| 3 | `[0, 0]` over $[0, 1]$ | empty | `[2, 1, 1]` over $[2, 4]$ | `[2]` over $[5, 5]$ | the second `0` was sealed into the 0-region |
+| 4 | `[0, 0]` over $[0, 1]$ | empty | `[1, 1]` over $[2, 3]$ | `[2, 2]` over $[4, 5]$ | the `2` at index 2 left for the 2-region, and a `1` arrived at index 2 |
+| 5 | `[0, 0]` over $[0, 1]$ | `[1]` over $[2, 2]$ | `[1]` over $[3, 3]$ | `[2, 2]` over $[4, 5]$ | the `1` at index 2 joined the 1-region |
+| 6 | `[0, 0]` over $[0, 1]$ | `[1, 1]` over $[2, 3]$ | empty, because $cur = 4 > R = 3$ | `[2, 2]` over $[4, 5]$ | the `1` at index 3 joined the 1-region |
+
+The table also exposes why the swap in iteration 4 costs nothing extra: the element pulled from index 4 happened to be a `1`, so `cur` could stay put and re-inspect it without any additional array movement.
+
+---
+
 ## 4. Complete Execution Trace
 
 | Iteration | Active $cur$ | Value $\text{nums}[cur]$ | $L$ | $R$ | Swap Performed | Array State After Step | Next Pointer Adjustment |
@@ -145,6 +163,15 @@ We trace $\text{nums} = [2, 0, 2, 1, 1, 0]$ with initial pointers $L = 0, cur = 
 ---
 
 ## 7. Complexity Derivation
+
+### Variant Comparison
+
+| Approach | Strategy | Time | Auxiliary space | Tradeoff or failure mode |
+|:---|:---|:---|:---|:---|
+| Library sort | Hand the array to the built-in comparison sort | $O(N \log N)$ | Implementation-defined | Excluded by the problem, and asymptotically worse than necessary because the key set has only three distinct values |
+| Two-pass counting sort | Tally the three values, then overwrite the array from the tallies | $O(N)$ | $O(1)$ with three counters | Correct and fast, but sweeps the array twice and teaches nothing about partitioning in place |
+| Three-region in-place partition (used here) | Move 0s left and 2s right with three pointers while leaving 1s untouched | $O(N)$ | $O(1)$ | Advancing $cur$ after a swap with $R$ skips an uninspected element and can strand a `0` inside the 1-region |
+| Stable buffered partition | Copy all 0s, then all 1s, then all 2s into a second array | $O(N)$ | $O(N)$ | Buys a stability guarantee the problem never asks for, at the cost of a full duplicate buffer |
 
 - **Time Complexity:** $O(N)$, where $N$ is the number of elements. The loop runs at most $N$ times since each iteration either increments $cur$ or decrements $R$.
 - **Auxiliary Space Complexity:** $O(1)$. Swaps are executed strictly in place using three pointer registers.
