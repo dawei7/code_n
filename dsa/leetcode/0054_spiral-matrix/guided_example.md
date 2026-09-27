@@ -133,9 +133,31 @@ Final result: $[1, 2, 3, 6, 9, 8, 7, 4, 5]$.
 - **Missing Guards on Left and Up:** In non-square matrices (e.g., $1 \times 4$ or $3 \times 1$), the top boundary increment can cause $\text{top} > \text{bottom}$ before Phase 3 executes. Without the condition `if top <= bottom:` before moving left, the bottom row would be traversed backwards again, causing duplicate element readings.
 - **Empty Matrix:** If $\text{matrix} = []$ or $\text{matrix}[0] = []$, returning `[]` upfront prevents index errors when initializing boundaries.
 
+### Degenerate Shapes and the Sweeps They Suppress
+
+The same four phases serve every legal shape, because $1 \le m, n \le 10$ guarantees an outer ring always exists. What changes is which later sweep has an empty range, and only the guards keep that empty range from turning into a re-read of cells already collected.
+
+| Shape | Instance | Rectangle before the first phase | Sweep that must contribute nothing | Verified output |
+|---|---|---|---|---|
+| Single cell $1 \times 1$ | `[[-100]]` | $\text{top}=0, \text{bottom}=0, \text{left}=0, \text{right}=0$ | Every phase after the first: $\text{top}$ becomes $1$, so the downward sweep and both guarded sweeps are empty. | `[-100]` |
+| Single row $1 \times 4$ | `[[1,2,3,4]]` | $\text{top}=0, \text{bottom}=0, \text{left}=0, \text{right}=3$ | The leftward sweep: after the top row is read, $\text{top}=1 > \text{bottom}=0$, so sweeping row $0$ backwards would repeat $3, 2, 1$. | `[1,2,3,4]` |
+| Single column $4 \times 1$ | `[[1],[2],[3],[4]]` | $\text{top}=0, \text{bottom}=3, \text{left}=0, \text{right}=0$ | The upward sweep: after the right column is read, $\text{right}=-1 < \text{left}=0$, so climbing column $0$ would repeat $4, 3, 2$. | `[1,2,3,4]` |
+| Wide $3 \times 4$ | `[[1,2,3,4],[5,6,7,8],[9,10,11,12]]` | $\text{top}=0, \text{bottom}=2, \text{left}=0, \text{right}=3$ | The second-layer leftward sweep: the rectangle is one row tall with $\text{top}=2 > \text{bottom}=1$, so moving left along row $1$ would repeat $6$. | `[1,2,3,4,8,12,11,10,9,5,6,7]` |
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(M \cdot N)$, where $M$ is the number of rows and $N$ is the number of columns. Every element is visited exactly once.
 - **Auxiliary Space Complexity:** $O(1)$. Boundary pointers (`top`, `bottom`, `left`, `right`) require constant extra storage beyond the returned output list.
+
+### Comparison of Candidate Traversals
+
+Every method below emits the same permutation on this instance; they differ in what they must remember between steps and in which shape breaks them.
+
+| Method | What it maintains | Time | Auxiliary space | Tradeoff or failure mode |
+|---|---|---|---|---|
+| Boundary contraction (this lesson) | Four integers: $\text{top}, \text{bottom}, \text{left}, \text{right}$ | $O(m \cdot n)$ | $O(1)$ beyond the output | The leftward and upward sweeps need the $\text{top} \le \text{bottom}$ and $\text{left} \le \text{right}$ guards, or single-row and single-column shapes duplicate their edge cells. |
+| Visited grid with a rotating direction vector | An $m \times n$ boolean grid plus the current heading | $O(m \cdot n)$ | $O(m \cdot n)$ | Bounds alone cannot decide a turn: the walker must test whether the candidate cell was already collected, otherwise it re-enters a spent ring instead of turning. |
+| Peel-and-rotate | A fresh matrix holding the remaining ring unrolled | $O(m \cdot n)$ | $O(m \cdot n)$ | Reading the top row and reversing the remainder is easy to state, but every rotation copies all surviving elements, and the coordinate meaning of rows and columns swaps at each layer. |
+| Recursive layer peeling | One call frame per ring | $O(m \cdot n)$ | $O(\min(m, n))$ stack depth | Clean and short, yet it consumes stack proportional to the number of rings; with $m, n \le 10$ that is at most five frames, so the risk here is conceptual rather than practical. |

@@ -105,6 +105,17 @@ $$
 - $r_3 = \lfloor \frac{1}{2}(3 + 8/3) \rfloor = \lfloor \frac{5}{2} \rfloor = 2$
 - $r_4 = \lfloor \frac{1}{2}(2 + 8/2) \rfloor = \lfloor \frac{6}{2} \rfloor = 3 > 2 \implies$ Halt at $2$!
 
+The same four iterations written as a table show why halting on the first non-decreasing step is safe:
+
+| Iteration $k$ | $r_k$ | $x / r_k$ | $\frac{1}{2}\left(r_k + x/r_k\right)$ | $r_{k+1} = \lfloor \cdot \rfloor$ | Still decreasing? |
+|:---:|:---:|:---:|:---:|:---:|:---|
+| 0 | 8 | 1 | $4.5$ | 4 | yes |
+| 1 | 4 | 2 | $3$ | 3 | yes |
+| 2 | 3 | $8/3 \approx 2.667$ | $17/6 \approx 2.833$ | 2 | yes |
+| 3 | 2 | 4 | $3$ | 3 | **no — sequence turns upward** |
+
+For $x > 0$ and $r_k \ge 1$, the arithmetic mean $\frac{1}{2}(r_k + x/r_k)$ is at least $\sqrt{x}$ by the AM–GM inequality, so the iteration can only descend toward $\sqrt{x}$ and then oscillate in the pair $\{2, 3\}$ here. That is why the answer is taken as the last value before the increase, namely $r_3 = 2$.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -120,6 +131,18 @@ $$
 - **Integer Multiplication Overflow:** Writing `M * M <= x` causes overflow when $M \ge 46341$ in 32-bit signed integers. Writing `M <= x // M` or using 64-bit arithmetic avoids overflow.
 - **Base Case $x = 0$ and $x = 1$:** When $x = 0$, $L = 1$ would fail division by zero. Handling $x < 2$ returning $x$ upfront ensures division is never called with $M = 0$.
 - **Returning $L$ vs Returning $R$:** When the loop exits with $L > R$, $L$ is the first value whose square exceeds $x$, while $R$ is the greatest value whose square is $\le x$. Returning $R$ (or the recorded candidate $\text{ans}$) is required.
+
+The bracket $[\,m^2 \le x < (m+1)^2\,]$ pins the answer for every boundary in the case set:
+
+| Instance | $x$ | $\lfloor \sqrt{x} \rfloor$ | $m^2$ | $(m+1)^2$ | Why the guard or predicate settles it |
+|:---|:---:|:---:|:---:|:---:|:---|
+| Zero boundary | 0 | 0 | 0 | 1 | The $x < 2$ guard returns $x$ directly, so no midpoint of $0$ is ever used as a divisor. |
+| One boundary | 1 | 1 | 1 | 4 | Same guard; the interval $[1, 1]$ would otherwise be reached with $L = 1, R = 1$. |
+| Perfect square | 4 | 2 | 4 | 9 | The predicate confirms $M^2 = x$ exactly rather than merely bounding it. |
+| Floor case (main trace) | 8 | 2 | 4 | 9 | $2.8284\dots$ truncates to $2$; $9 > 8$ eliminates every $m \ge 3$. |
+| Near 32-bit maximum | 2147395599 | 46339 | 2147302921 | 2147395600 | The successor already exceeds $x$ by $1$, and early midpoints are far above $46341$, so the division test is what keeps 32-bit arithmetic safe. |
+
+Row 5 is the one that justifies the division form: a midpoint such as $\lfloor (x+1)/2 \rfloor$ would square far beyond $2^{31} - 1 = 2147483647$, whereas comparing $M$ against $\lfloor x / M \rfloor$ stays inside the same 32-bit range for every midpoint.
 
 ---
 

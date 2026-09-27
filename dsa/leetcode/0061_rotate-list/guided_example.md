@@ -112,6 +112,20 @@ $$
 4 \longrightarrow 5 \longrightarrow 1 \longrightarrow 2 \longrightarrow 3 \longrightarrow \emptyset
 $$
 
+### Position Mapping Verification
+
+A right rotation by $k' = 2$ sends every element from its old index $i$ to the index $(i + k') \bmod L$. The severed ring must reproduce exactly that permutation:
+
+| Original index $i$ | Value | Destination index $(i + 2) \bmod 5$ | Position in the result | Value now at that position |
+|:---:|:---:|:---:|:---:|:---:|
+| 0 | 1 | 2 | 3rd from the left | 1 |
+| 1 | 2 | 3 | 4th from the left | 2 |
+| 2 | 3 | 4 | 5th from the left | 3 |
+| 3 | 4 | 0 | 1st from the left | 4 |
+| 4 | 5 | 1 | 2nd from the left | 5 |
+
+Each destination index $0, 1, \dots, 4$ is claimed exactly once, so the mapping is a bijection: severing the ring neither duplicates nor drops a node, and the relative order inside each of the two blocks is preserved.
+
 ---
 
 ## 4. Complete Execution Trace
@@ -141,6 +155,16 @@ $$
 - **$k \ge L$ Overflow:** $k$ can be up to $2 \times 10^9$, much larger than list length $L \le 500$. Taking $k \pmod L$ handles arbitrary large rotations in $O(1)$.
 - **$k \pmod L == 0$ No-Op:** If $k$ is an exact multiple of $L$, rotating leaves the list unchanged. Detecting $k' == 0$ avoids severing and reconnecting the list.
 - **Off-by-One in Tail Selection:** The loop must advance $L - k' - 1$ times, not $L - k'$ times, because starting at `head` already accounts for step 1.
+
+The same four phases absorb every degenerate input in the package's case set without a special-purpose branch beyond the two guards:
+
+| Instance | Input | $L$ | $k' = k \bmod L$ | Expected output | Why the method is still correct |
+|:---|:---|:---:|:---:|:---|:---|
+| Main trace | `head = [1,2,3,4,5]`, `k = 2` | 5 | 2 | `[4,5,1,2,3]` | New tail is node 3; severing after it yields the two-block rotation. |
+| Rotation exceeds length | `head = [0,1,2]`, `k = 4` | 3 | 1 | `[2,0,1]` | Four right rotations equal one, so the ring is walked one step past the old tail. |
+| Whole multiples of $L$ | `head = [1,2,3]`, `k = 6` | 3 | 0 | `[1,2,3]` | $k' = 0$ exits before any pointer moves, so the list is untouched. |
+| Single node | `head = [9]`, `k = 100` | 1 | 0 | `[9]` | $\text{head.next} == \emptyset$ returns immediately; a one-node ring is already closed. |
+| Empty list | `head = []`, `k = 7` | 0 | undefined | `[]` | The empty guard fires before the length loop, so the modulo by $L$ is never evaluated. |
 
 ---
 

@@ -94,6 +94,22 @@ Row 2 values: $[1, 3, 6, 10, 15, 21, 28]$.
 
 Destination reached at $(2, 6)$ with value $28$.
 
+### The Same Numbers with a Single Rolling Row
+
+The full matrix is never required: one array of length $n$ is enough, because `dp[c]` still holds the row above when column $c$ is processed, while `dp[c-1]` has already been overwritten with the current row. Each update `dp[c] += dp[c-1]` therefore reproduces the recurrence exactly.
+
+| Column $c$ | Row-1 pass: carry `dp[c]` (row 0) | Row-1 pass: left `dp[c-1]` | Row-1 pass: `dp[c]` after | Row-2 pass: carry `dp[c]` (row 1) | Row-2 pass: left `dp[c-1]` | Row-2 pass: `dp[c]` after |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 0 | 1 | none (boundary) | 1 | 1 | none (boundary) | 1 |
+| 1 | 1 | 1 | 2 | 2 | 1 | 3 |
+| 2 | 1 | 2 | 3 | 3 | 3 | 6 |
+| 3 | 1 | 3 | 4 | 4 | 6 | 10 |
+| 4 | 1 | 4 | 5 | 5 | 10 | 15 |
+| 5 | 1 | 5 | 6 | 6 | 15 | 21 |
+| 6 | 1 | 6 | 7 | 7 | 21 | **28** |
+
+The final column is identical to row 2 of the matrix, confirming that discarding the earlier rows loses no information: row 1 was needed only as the "above" operand of row 2.
+
 ---
 
 ## 4. Complete Execution Trace
@@ -121,6 +137,18 @@ Destination reached at $(2, 6)$ with value $28$.
 - **Space Optimization to 1D Array:** Storing the full $M \times N$ matrix is unnecessary. Maintaining a single row of size $n$, updating `dp[c] += dp[c-1]`, achieves identical results in $O(n)$ memory.
 - **Factorial Overflow in Combinatorics:** Computing $\frac{N!}{K!(N-K)!}$ via direct factorials can exceed integer limits in fixed-width languages. Computing iteratively $\prod_{i=1}^K \frac{N - K + i}{i}$ prevents intermediate numerical overflow.
 - **Single Row or Column Grid:** If $m = 1$ or $n = 1$, the robot has only 1 path (moving purely right or purely down). The formula yields $\binom{0}{0} = 1$, correctly handling this edge case.
+
+The package's whole case set is governed by one quantity, the number of down moves $m - 1$ chosen among $S = m + n - 2$ total steps:
+
+| Instance | $m$ | $n$ | Steps $S = m + n - 2$ | Down moves $m - 1$ | Binomial form | Expected output |
+|:---|:---:|:---:|:---:|:---:|:---|:---:|
+| Only rightward moves | 1 | 8 | 7 | 0 | $\binom{7}{0} = 1$ | 1 |
+| Tall grid | 3 | 2 | 3 | 2 | $\binom{3}{2} = 3$ | 3 |
+| Wide grid (main trace) | 3 | 7 | 8 | 2 | $\binom{8}{2} = 28$ | 28 |
+| Small square | 4 | 4 | 6 | 3 | $\binom{6}{3} = 20$ | 20 |
+| Larger square | 10 | 10 | 18 | 9 | $\binom{18}{9} = 48620$ | 48620 |
+
+Every $m, n \ge 1$ produces a non-empty grid with exactly one monotone route family, and $\binom{m+n-2}{m-1}$ degenerates to $1$ at $m = 1$ or $n = 1$, which is why no special branch is needed for a degenerate grid.
 
 ---
 

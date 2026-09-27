@@ -134,9 +134,33 @@ Termination. Final maximum subarray sum is $6$.
 - **All-Negative Array Pitfall:** If $\text{nums} = [-3, -1, -5]$ and $\text{max\_sum}$ is initialized to $0$, the algorithm will return $0$, which is wrong because an empty subarray is not allowed. Initializing $\text{current\_sum} = \text{nums}[0]$ and $\text{max\_sum} = \text{nums}[0]$ handles all-negative inputs correctly (returning $-1$).
 - **Divide-and-Conquer Alternative:** The problem can also be solved in $O(N)$ time via divide-and-conquer by maintaining four metrics for each segment: total sum, max prefix sum, max suffix sum, and max contiguous sum. Kadane's algorithm achieves the same result iteratively with far simpler code.
 
+### Boundary and Degenerate Instances
+
+No case below needs a separate branch: each is decided by the same two assignments, which is exactly why the initialisation must use $\text{nums}[0]$ rather than $0$.
+
+| Scenario | Instance (as authored) | Required result | Why the recurrence produces it |
+|---|---|---|---|
+| Single element | `[1]` | 1 | The scan starts at index 0, so $DP[0]$ is already both the running sum and the global maximum. |
+| Every value negative | `[-8, -3, -5, -11]` | -3 | Whenever $DP[i-1] < 0$ we have $\max(0, DP[i-1]) = 0$, so every $DP[i] = \text{nums}[i]$ and the maximum single-element window is $-3$. |
+| All zeros at the length limit | $10^{5}$ zeros | 0 | Extension and restart both evaluate to $0$, so the running maximum never leaves $0$; only the scan length changes, not the arithmetic. |
+| Extreme element values | `[-10000, 10000, -10000]` | 10000 | The positive peak is the largest fresh start, and the neighbouring $-10^{4}$ values never improve on it. |
+| Whole array optimal | `[5, -1, 4, -2, 3]` | 9 | The running sum never falls to $0$, so no restart fires and $5 + (-1) + 4 + (-2) + 3 = 9$ is collected in one window. |
+| Repeated restarts | `[-10, 4, -1, 2, -20, 7, 8, -3, 2, -30]` | 15 | Adding $-20$ drags the running sum to $-15$, so the window restarts at $7$; $7 + 8 = 15$ beats the earlier best of $4 + (-1) + 2 = 5$. |
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(N)$, where $N = |\text{nums}|$. The algorithm inspects each element exactly once in a single linear loop.
 - **Auxiliary Space Complexity:** $O(1)$. Kadane's algorithm requires only two scalar variables (`current_sum` and `max_sum`).
+
+### Comparison of Candidate Methods
+
+All four methods below return the same value on this instance; they differ in what they must remember and in how they behave at $N = 10^{5}$.
+
+| Method | What it maintains | Time | Auxiliary space | Tradeoff or failure mode |
+|---|---|---|---|---|
+| Exhaustive subarray enumeration | Every start and end pair | $O(N^{2})$ (incremental) | $O(1)$ | At $N = 10^{5}$ there are roughly $5 \times 10^{9}$ windows, so the approach is far outside the limit even though it never reasons about restarting. |
+| Running sum with restart (this lesson) | Two scalars: sum ending here, best so far | $O(N)$ | $O(1)$ | The initialisation must come from $\text{nums}[0]$; seeding the best with $0$ silently answers an empty subarray on all-negative inputs. |
+| Prefix sums with a minimum prefix | Full prefix-sum array plus the smallest earlier prefix | $O(N)$ | $O(N)$ | The minimum must be taken over strictly earlier prefixes; including the current index admits the empty window and returns $0$ for all-negative arrays. |
+| Divide and conquer | Four aggregates per segment: total, best prefix, best suffix, best interior | $O(N \log N)$ | $O(\log N)$ recursion | Subtle to combine: if either side of the crossing window is allowed to be empty, the merge reports an inflated sum on all-negative inputs. |

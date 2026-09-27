@@ -94,6 +94,24 @@ $$
 
 Emitted result: `"/c"`.
 
+### A Second Instance: Dots That Are Names, Not Operators
+
+Re-running the same token loop on $\text{path} = \text{"/.../a/./b/../../c/"}$ isolates the literal-name trap, because `"..."` must be pushed while `".."` must pop:
+
+| Token index | Token | Classification | Stack action | Stack after | Depth |
+|:---:|:---:|:---|:---|:---|:---:|
+| 0 | `""` | Empty from the leading slash | Skip | `[]` | 0 |
+| 1 | `"..."` | Directory name (not the parent operator) | Push `"..."` | `['...']` | 1 |
+| 2 | `"a"` | Directory name | Push `"a"` | `['...', 'a']` | 2 |
+| 3 | `"."` | Current directory | Skip | `['...', 'a']` | 2 |
+| 4 | `"b"` | Directory name | Push `"b"` | `['...', 'a', 'b']` | 3 |
+| 5 | `".."` | Parent directory | Pop `"b"` | `['...', 'a']` | 2 |
+| 6 | `".."` | Parent directory | Pop `"a"` | `['...']` | 1 |
+| 7 | `"c"` | Directory name | Push `"c"` | `['...', 'c']` | 2 |
+| 8 | `""` | Empty from the trailing slash | Skip | `['...', 'c']` | 2 |
+
+Reassembly gives `"/"` followed by the joined stack `".../c"`, that is `"/.../c"`. Both `".."` tokens in this instance were absorbed by pops rather than by the root guard, so the same code path serves tokens 5 and 6 here and tokens 4 and 5 of the main trace.
+
 ---
 
 ## 4. Complete Execution Trace
@@ -125,6 +143,17 @@ Emitted result: `"/c"`.
 - **Popping from Root (`"/../"`):** If the stack is empty, encountering `".."` must not raise an `IndexError`. Checking `if stack: stack.pop()` safely absorbs root-level parent requests.
 - **Valid Name With Dots (`"..."` or `".hidden"`):** Only exact strings `"."` and `".."` represent navigational operators. Names like `"..."` or `"..hidden"` are valid file/folder names and must be pushed onto the stack.
 - **Empty Stack Formatting:** If the stack is empty after all tokens are processed (e.g. `path = "/a/.."`), returning `"/" + "/".join([])` correctly produces `"/"` rather than an empty string `""`.
+
+Each canonicalization rule is pinned by a concrete instance, and in every case the observable output follows from the stack state alone:
+
+| Instance | Input path | Terminal stack | Expected output | Rule that produces it |
+|:---|:---|:---|:---|:---|
+| Remove trailing separator | `/home/` | `['home']` | `/home` | The empty token after the final slash is skipped, so no trailing `'/'` is emitted. |
+| Repeated separators | `/home//foo/` | `['home', 'foo']` | `/home/foo` | The empty token produced by `"//"` is skipped, collapsing the double slash to one. |
+| Parent component | `/home/user/Documents/../Pictures` | `['home', 'user', 'Pictures']` | `/home/user/Pictures` | One pop removes exactly the most recent directory, `"Documents"`. |
+| Parent at root | `/../` | `[]` | `/` | The `".."` meets an empty stack, so the root guard absorbs it and formatting yields `"/"`. |
+| Above root | `/../../..` | `[]` | `/` | Three consecutive `".."` tokens are all absorbed; the depth never drops below $0$. |
+| Literal dots | `/.../a/./b/../../c/` | `['...', 'c']` | `/.../c` | `"..."` is a name and is pushed; only the exact string `".."` pops. |
 
 ---
 

@@ -24,9 +24,9 @@ Without sorting, an interval might overlap with another interval located anywher
 ## 2. Conceptual Foundation & Invariants
 
 ### Sorting & The Overlap Invariant
-We sort the array by starting coordinate:
+We reorder the intervals so that their start coordinates are non-decreasing:
 $$
-\text{intervals.sort}(\text{key} = \lambda x: x[0])
+s_1 \le s_2 \le \dots \le s_N
 $$
 
 For any two adjacent intervals $A = [s_A, e_A]$ and $B = [s_B, e_B]$ with $s_A \le s_B$:
@@ -116,9 +116,32 @@ All intervals processed. Return `merged`.
 - **Complete Containment ($[1, 5]$ and $[2, 3]$):** If the new interval is fully contained, blindly setting $\text{tail}[1] = e$ would shorten the interval from $5$ to $3$. Using $\max(\text{tail}[1], e)$ ensures the end never shrinks.
 - **Unsorted Input:** If the input is unsorted (e.g. $[[2, 6], [1, 3]]$), linear merging will miss the overlap. Sorting upfront is mandatory.
 
+### Boundary and Nested Instances
+
+Each row below is settled by the same two operations, and each one isolates a different way the scan can go wrong. Values are the verified outputs for the authored cases.
+
+| Scenario | Instance | Order actually scanned | Decision that settles the case | Verified result |
+|---|---|---|---|---|
+| Closed endpoints touching | `[[1,4],[4,5]]` | `[[1,4],[4,5]]` | $4 \le 4$ is true, so the shared point $4$ joins the two intervals; a strict $<$ test would wrongly emit two intervals. | `[[1,5]]` |
+| Touching pair supplied out of order | `[[4,7],[1,4]]` | `[[1,4],[4,7]]` | Sorting moves the later-starting interval second; then $4 \le 4$ extends the tail to $\max(4, 7) = 7$. | `[[1,7]]` |
+| Nested intervals | `[[1,10],[2,3],[4,8]]` | `[[1,10],[2,3],[4,8]]` | Both followers satisfy start $\le 10$, and $\max(10, 3) = \max(10, 8) = 10$: replacing the end with the candidate end would shrink the interval. | `[[1,10]]` |
+| Disjoint intervals given unsorted | `[[9,11],[1,2],[5,7]]` | `[[1,2],[5,7],[9,11]]` | After sorting, $5 > 2$ and $9 > 7$, so each gap finalizes the interval already held. | `[[1,2],[5,7],[9,11]]` |
+| Transitive overlap chain | `[[1,2],[5,8],[2,6],[10,12],[11,15]]` | `[[1,2],[2,6],[5,8],[10,12],[11,15]]` | $[1,2]$ touches $[2,6]$, which reaches $[5,8]$ although $[1,2]$ and $[5,8]$ are disjoint; the single running end carries the chain forward. | `[[1,8],[10,15]]` |
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(N \log N)$ to sort $N$ intervals. The subsequent linear merging pass takes $O(N)$ time. Total runtime is $O(N \log N)$.
 - **Auxiliary Space Complexity:** $O(N)$ (or $O(\log N)$ depending on sorting implementation) to store the output merged list.
+
+### Comparison of Candidate Methods
+
+Every method below returns the same three intervals on this instance; they differ in how much order they impose before merging and in which boundary ordering destroys them.
+
+| Method | What it maintains | Time | Auxiliary space | Tradeoff or failure mode |
+|---|---|---|---|---|
+| Sort by start, then one scan (this lesson) | A single open interval $[s, e]$ | $O(N \log N)$ | $O(N)$ for the result, $O(\log N)$ extra from the sort | The gap test must be $e < s$; writing it as $e \le s$ splits intervals that share an endpoint, such as $[1,4]$ and $[4,5]$. |
+| Sweep over the $2N$ endpoints with an active counter | A sorted endpoint list and a running count | $O(N \log N)$ | $O(N)$ | Whenever one interval ends exactly where the next starts, the starting event must be consumed before the ending event; the opposite tie order separates those two intervals. |
+| Pairwise overlap as connected components | A parent pointer per interval | $O(N^{2})$ to test every pair | $O(N)$ | At $N = 10^{4}$ that is about $10^{8}$ pair tests, and the components still need a second pass to be turned back into intervals. |
+| Insert each interval into a kept-sorted non-overlapping list | The current merged list and the insertion position | $O(N^{2})$ from shifting elements | $O(N)$ | Every insertion has to handle containment, full overlap and touching neighbours, and the list must be re-scanned from the insertion point forward. |

@@ -106,9 +106,9 @@ We trace $n = 4$ ($\text{limit} = 1111_2 = 15$):
     - Available: $0001_2$ (Only Column 0 is safe!).
   - **Place Col 0 at Row 2 ($p = 0001_2$):**
     - **Row 3:**
-      - Blocked calculates to $1101_2$.
-      - Available: $0010_2$ (Column 2 is safe!).
-    - **Place Col 2 at Row 3 ($p = 0010_2$):**
+      - Blocked calculates to $1011_2$.
+      - Available: $0100_2$ (Column 2 is safe!).
+    - **Place Col 2 at Row 3 ($p = 0100_2$):**
       - **Row 4:** Reached terminal row! Return **1**.
 - Subtree 2 yields **1 valid solution** (`[1, 3, 0, 2]`).
 
@@ -138,7 +138,7 @@ Total count: $0 + 1 + 1 + 0 = 2$.
 | Row 0 | **$p = 0010_2$ (Col 1)** | $0000_2$ | $1111_2$ | $0010_2$ | Enters Subtree 2 |
 | Row 1 | $p = 1000_2$ (Col 3) | $0111_2$ | $1000_2$ | $1000_2$ | Advances to Row 2 |
 | Row 2 | $p = 0001_2$ (Col 0) | $1110_2$ | $0001_2$ | $0001_2$ | Advances to Row 3 |
-| Row 3 | $p = 0010_2$ (Col 2) | $1101_2$ | $0010_2$ | $0010_2$ | Advances to Row 4 |
+| Row 3 | $p = 0100_2$ (Col 2) | $1011_2$ | $0100_2$ | $0100_2$ | Advances to Row 4 |
 | Row 4 | Base Case | - | - | - | **Count +1 (`[1, 3, 0, 2]`)** |
 | Row 0 | **$p = 0100_2$ (Col 2)** | $0000_2$ | $1111_2$ | $0100_2$ | **Count +1 (`[2, 0, 3, 1]`)** |
 | Row 0 | $p = 1000_2$ (Col 3) | $0000_2$ | $1111_2$ | $1000_2$ | Dead ends ($+0$) |
@@ -159,9 +159,34 @@ Total count: $0 + 1 + 1 + 0 = 2$.
 - **Two's Complement Lowest-Bit Trick:** $p = \text{available} \ \& \ (-\text{available})$ isolates the rightmost set bit in $O(1)$ operations via two's complement integer properties.
 - **Symmetry Optimization:** The board is horizontally symmetric: the number of solutions starting with col $c$ equals the number starting with col $n - 1 - c$. For even $n$, searching only $c \in [0, n/2 - 1]$ and doubling the count cuts runtime in half.
 
+### Boundary Instances and Verified Counts
+
+The same recurrence is exercised against the smallest and largest legal boards, so the count is never a property of the mask arithmetic alone but of how quickly the threat lanes close. The mask width is $\text{limit} = 2^n - 1$; the returned value is exactly the number of branches that survive to a full row.
+
+| Board size $n$ | $\text{limit} = 2^n - 1$ | Verified count | What decides the count |
+|:---:|:---:|:---:|---|
+| 1 | 1 | 1 | No threat lane is ever occupied, so the single set bit reaches the terminal row. |
+| 2 | 3 | 0 | The two rows must use both columns, and either choice blocks the other row completely: both branches die at row 1. |
+| 3 | 7 | 0 | Placing col 1 first blocks all of row 1; the outer openers leave only the opposite outer column, which then blocks all of row 2. |
+| 4 | 15 | 2 | Exactly the two traced placements `[1, 3, 0, 2]` and `[2, 0, 3, 1]`. |
+| 5 | 31 | 10 | Pruning is no longer immediate: several rows keep two or more safe columns, so ten branches reach row 5. |
+| 6 | 63 | 4 | Strictly fewer than $n = 5$: the count is **not** monotone in the board size. |
+| 9 | 511 | 352 | The largest legal board; the tally is a leaf count with no closed form, so it must be produced by the search. |
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(n!)$. Pruning via bitwise operations reduces the search tree size dramatically compared to explicit arrays. All bitwise operations (`|`, `&`, `<<`, `>>`) run in $O(1)$ CPU cycles.
 - **Auxiliary Space Complexity:** $O(n)$ recursion call stack depth. No heap arrays or string allocations are required.
+
+### Alternative Encodings of the Same Search
+
+Every candidate below explores the identical solution tree; they differ only in how the threat lanes are encoded and how early a dead branch is detected.
+
+| Strategy | State carried per row | Cost | Tradeoff or failure mode |
+|---|---|---|---|
+| Three threat bitmasks (this lesson) | $\text{cols}, \text{diag1}, \text{diag2}$ as $n$-bit integers | $O(n!)$ time, $O(n)$ auxiliary space | Shifts must be truncated to $n$ bits, and the complement must be masked with $\text{limit}$, because an unmasked complement is negative. |
+| Boolean per-column and per-diagonal occupancy arrays | $\text{cols}[j]$ plus the two diagonal arrays indexed by $i + j$ and $i - j + n$ | Same $O(n!)$ time, $O(n)$ auxiliary space | Simpler to read, but each row inspects several arrays instead of one bitwise combination, and the diagonal offsets must be kept inside their array bounds. |
+| Enumerate all $n!$ column permutations, then test each board | The current permutation only | $O(n! \cdot n)$ time, $O(n)$ auxiliary space | No pruning: for $n = 9$ it examines $9! = 362\,880$ complete boards to find the same 352 valid ones. |
+| Mirror-symmetry halving | Bitmasks plus a restricted first-row choice | Roughly half the $O(n!)$ traversal | Valid only when the doubled half excludes every self-symmetric placement; applying the doubling blindly on odd $n$ double counts the middle-column branches. |

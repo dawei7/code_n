@@ -94,6 +94,22 @@ We trace the $3 \times 3$ grid:
 
 Terminal answer is $DP[2][2] = 2$.
 
+### Cell-by-Cell Dependency Audit
+
+Writing every cell as $(\text{from top}) + (\text{from left})$ shows precisely where the obstacle breaks the flow. A cell marked as an obstacle never reads its neighbours at all: its value is pinned to $0$ before anything can flow through it.
+
+| Cell $(r, c)$ | $\text{obstacleGrid}[r][c]$ | From top $DP[r-1][c]$ | From left $DP[r][c-1]$ | Resulting $DP[r][c]$ | Reason |
+|:---:|:---:|:---:|:---:|:---:|:---|
+| $(0, 0)$ | 0 | none (boundary) | none (boundary) | 1 | Free start cell is seeded with the single empty path. |
+| $(0, 1)$ | 0 | none (row 0) | 1 | 1 | Top boundary admits only the leftward entry. |
+| $(0, 2)$ | 0 | none (row 0) | 1 | 1 | Top boundary again; the corridor stays open. |
+| $(1, 0)$ | 0 | 1 | none (column 0) | 1 | Left boundary admits only the downward entry. |
+| $(1, 1)$ | **1** | 1 | 1 | **0** | Obstacle overrides both contributors, so neither neighbour reaches through. |
+| $(1, 2)$ | 0 | 1 | **0** | 1 | One of the two entries is annihilated; only the top route survives. |
+| $(2, 0)$ | 0 | 1 | none (column 0) | 1 | Left boundary again. |
+| $(2, 1)$ | 0 | **0** | 1 | 1 | The blocked cell above contributes nothing; the bottom route passes underneath. |
+| $(2, 2)$ | 0 | 1 | 1 | **2** | Both surviving corridors reunite at the destination. |
+
 ---
 
 ## 4. Complete Execution Trace
@@ -121,6 +137,16 @@ Terminal answer is $DP[2][2] = 2$.
 - **Obstacle at Start or Goal:** If $\text{obstacleGrid}[0][0] == 1$ or $\text{obstacleGrid}[M-1][N-1] == 1$, no valid path is possible. Returning $0$ immediately handles this correctly.
 - **Obstacle Blocking Boundary Rows:** If $\text{obstacleGrid}[0][1] == 1$, all subsequent cells in Row 0 ($(0, 2), (0, 3), \dots$) have zero paths reaching them because the robot cannot jump over obstacles. The loop automatically handles this because $DP[0][c] = DP[0][c-1] = 0$.
 - **Space Optimization:** An array of size $N$ updated in-place: `dp[c] = 0 if obstacle else dp[c] + dp[c-1]` solves the problem in $O(N)$ space.
+
+Each trap is realised by a concrete instance, and in every one of them the single obstacle rule is the only thing doing work:
+
+| Scenario | Grid (rows top to bottom) | Blocked cell | Expected output | Why the recurrence returns that value |
+|:---|:---|:---:|:---:|:---|
+| Main trace | `[0,0,0]`, `[0,1,0]`, `[0,0,0]` | $(1, 1)$ | 2 | Both the top-right and bottom-left corridors survive and meet at the goal. |
+| One route around the obstacle | `[0,1]`, `[0,0]` | $(0, 1)$ | 1 | The top row is severed, so only the downward-then-right route contributes. |
+| Blocked start | `[1,0]`, `[0,0]` | $(0, 0)$ | 0 | $DP[0][0] = 0$ propagates along both boundaries and starves every later cell. |
+| Blocked destination | `[0,0]`, `[0,1]` | $(1, 1)$ | 0 | Both neighbours hold $1$, yet the goal's own obstacle forces $DP[1][1] = 0$. |
+| Winding corridor | `[0,0,1,0]`, `[1,0,0,0]`, `[0,0,1,0]`, `[0,0,0,0]` | $(0, 2)$, $(1, 0)$, $(2, 2)$ | 2 | Three obstacles leave exactly two dogleg routes, and the recurrence counts only those. |
 
 ---
 

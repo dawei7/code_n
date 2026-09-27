@@ -126,7 +126,20 @@ $$
 ## 6. Traps This Instance Exposes
 
 - **Odd $n$ Center Overwrite:** For odd $n$ (like $n = 3$), the center cell $(1, 1)$ is written during the final "Right" pass. Checking $\text{val} \le n^2$ prevents subsequent "Down", "Left", or "Up" steps from executing on already-crossed boundaries.
-- **Pre-allocating Rows Correctly:** Using `matrix = [[0] * n for _ in range(n)]` creates independent row lists. Writing `[[0] * n] * n` creates $n$ references to the same underlying list, causing simultaneous overwrites across all rows.
+- **Pre-allocating Rows Correctly:** The grid must be built from $n$ independent row lists. Constructing it by repeating one row $n$ times makes every row an alias of the same underlying storage, so a single write would appear in all $n$ rows at once.
+
+### How the Winding Ends for Each Size
+
+The parity of $n$ decides the shape of the final block: an odd side length leaves a $1 \times 1$ centre written by the rightward phase, while an even side length leaves a $2 \times 2$ block whose last entry is written by the leftward phase of the bottom row. Every row below was checked against the verified matrices.
+
+| Size $n$ | Rings fully traversed first | Final block | Phase that writes the last value | Verified last value and block |
+|---|---|---|---|---|
+| 1 | 0 | the single cell | Phase 1, which is the entire matrix | $1$ at $(0,0)$; `[[1]]` |
+| 2 | 0 | the whole $2 \times 2$ grid | Phase 3 (bottom row); phase 4 spans the empty range from $\text{bottom} = 0$ up to $\text{top} = 1$ | $4$ at $(1,0)$; `[[1,2],[4,3]]` |
+| 3 | 1 | $1 \times 1$ centre | Phase 1 of the centre layer | $9$ at $(1,1)$; `[[1,2,3],[8,9,4],[7,6,5]]` |
+| 4 | 1 | $2 \times 2$ centre | Phase 3 of the centre layer | $16$ at $(2,1)$; centre block $\begin{pmatrix}13&14\\16&15\end{pmatrix}$ |
+| 5 | 2 | $1 \times 1$ centre | Phase 1 of the centre layer | $25$ at $(2,2)$; `[[1,2,3,4,5],[16,17,18,19,6],[15,24,25,20,7],[14,23,22,21,8],[13,12,11,10,9]]` |
+| 20 | 9 | $2 \times 2$ centre | Phase 3 of the centre layer | $400$ at $(10,9)$; centre block $\begin{pmatrix}397&398\\400&399\end{pmatrix}$ |
 
 ---
 
@@ -134,3 +147,14 @@ $$
 
 - **Time Complexity:** $O(n^2)$. Each of the $n^2$ cells is written exactly once.
 - **Auxiliary Space Complexity:** $O(1)$ beyond the required $n \times n$ output matrix.
+
+### Comparison of Candidate Methods
+
+Each method below produces the same grid; they differ in what they track between writes and in which layer exposes their weakness.
+
+| Method | Time | Auxiliary space | Tradeoff or failure mode |
+|---|---|---|---|
+| Four-boundary contraction driven by the value counter (this lesson) | $O(n^{2})$ | $O(1)$ beyond the output | The value counter is what makes guards on phases 3 and 4 unnecessary; driving the loop by the boundary test alone repeats the centre coordinate once a layer shrinks to one cell. |
+| Rotating heading with a zero test on the grid | $O(n^{2})$ | $O(1)$ beyond the output, because unwritten cells already record occupancy | The turn must be decided before the step by testing both the grid edge and the candidate cell, and the new heading has to be committed only after that test. |
+| Layer-by-layer recursion | $O(n^{2})$ | $O(n)$ call frames, one per ring | Depth grows with $n$ — ten frames at the maximum $n = 20$ — and each level must re-derive its own offsets. |
+| Closed-form mapping from the counter to a coordinate | $O(n^{2})$ | $O(1)$ | Four piecewise branches, one per side, and each corner belongs to the side that reaches it first; an off-by-one at a corner silently swaps two values. |

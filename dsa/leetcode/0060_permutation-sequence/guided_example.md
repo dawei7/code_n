@@ -156,9 +156,33 @@ Final emitted string: `"2314"`.
 - **List Element Removal Overhead:** Removing an element from a Python list takes $O(n)$ time. For $n \le 9$, this is instantaneous ($9 \times 9 = 81$ operations).
 - **Factorial Precomputation:** Computing factorials up to $n$ avoids repeated factorial calculations inside the loop.
 
+### The Authored Ranks and Their Leading Block Arithmetic
+
+Every rank below is settled by the same division, so the table doubles as a check that the block boundaries are aligned. Since $1 \le k \le n!$, the offset $k - 1$ is at most $n! - 1$ and the leading index can never reach $n$.
+
+| Instance $(n, k)$ | Offset $k - 1$ | Leading block $(n-1)!$ | Leading index $\lfloor (k-1)/(n-1)! \rfloor$ | Verified output |
+|---|---|---|---|---|
+| $(3, 1)$ | 0 | $2! = 2$ | 0 | `123` — offset $0$ selects index $0$ at every position, so the digits stay ascending |
+| $(3, 3)$ | 2 | $2! = 2$ | 1 | `213` |
+| $(4, 9)$ | 8 | $3! = 6$ | 1 | `2314` |
+| $(4, 24)$ | 23 | $3! = 6$ | 3 | `4321` — the largest legal rank drives each index to the last remaining slot, so the digits come out descending |
+| $(5, 1)$ | 0 | $4! = 24$ | 0 | `12345` |
+| $(5, 42)$ | 41 | $4! = 24$ | 1 | `24531` |
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(n^2)$. The loop runs $n$ times. In each iteration, removing an element from the dynamic list takes $O(n)$ time. For $n \le 9$, $n^2 \le 81$ basic operations, executing in under $0.1$ milliseconds.
 - **Auxiliary Space Complexity:** $O(n)$ to store the array of available digits and the result string.
+
+### Comparison of Candidate Methods
+
+The methods below all return the same string for a given rank; they differ in how many permutations they touch on the way and in where the rank arithmetic can slip.
+
+| Method | Time | Auxiliary space | Tradeoff or failure mode |
+|---|---|---|---|
+| Factoradic block decoding with a shrinking pool (this lesson) | $O(n^{2})$: $n$ positions, each removal shifting up to $n$ pool entries | $O(n)$ for the pool, the digit table and the result | The rank must be converted to 0-based exactly once; leaving it 1-based shifts every block boundary and sends $k = (n-1)!$ into the second block instead of the end of the first. |
+| Advance by successive next-permutation steps | $O(k \cdot n)$, worst case $O(n! \cdot n)$ | $O(n)$ | It walks through every earlier permutation, so the last rank at $n = 9$ needs $9! - 1 = 362\,879$ advances to reach a string the division finds immediately. |
+| Enumerate all $n!$ permutations and take the $k$-th after ordering | $O(n! \cdot n \log n)$ or more | $O(n! \cdot n)$ | Materialises $362\,880$ strings of length $9$ at the largest legal $n$ merely to read one of them, far outside any sensible memory budget. |
+| Recursive digit-by-digit selection with factorial pruning | $O(n^{2})$ | $O(n)$ call frames | Identical arithmetic to the iterative form, but the pool and the running rank must be threaded through each call; since $n \le 9$, the cost is bookkeeping rather than depth. |

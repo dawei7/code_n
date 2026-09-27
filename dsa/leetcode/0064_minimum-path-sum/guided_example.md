@@ -107,6 +107,24 @@ We construct the DP cost matrix for the $3 \times 3$ grid:
 
 Target minimum path sum is $DP[2][2] = 7$.
 
+### Why Each Cell Commits to One Predecessor
+
+The recurrence is a comparison, so every cell can be annotated with the two candidate totals it weighed and the winner it kept. Recording the direction also reconstructs the optimal route without storing parent pointers.
+
+| Cell $(r, c)$ | $\text{grid}[r][c]$ | Arriving from above $DP[r-1][c]$ | Arriving from the left $DP[r][c-1]$ | $\min$ chosen | $DP[r][c]$ | Optimal arrival direction |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| $(0, 0)$ | 1 | none (boundary) | none (boundary) | — | **1** | Start cell |
+| $(0, 1)$ | 3 | none (row 0) | 1 | 1 | 4 | From the left |
+| $(0, 2)$ | 1 | none (row 0) | 4 | 4 | 5 | From the left |
+| $(1, 0)$ | 1 | 1 | none (column 0) | 1 | 2 | From above |
+| $(1, 1)$ | 5 | 4 | 2 | 2 | 7 | From the left |
+| $(1, 2)$ | 1 | 5 | 7 | 5 | 6 | From above |
+| $(2, 0)$ | 4 | 2 | none (column 0) | 2 | 6 | From above |
+| $(2, 1)$ | 2 | 7 | 6 | 6 | 8 | From the left |
+| $(2, 2)$ | 1 | 6 | 8 | 6 | **7** | From above |
+
+Reading the last column backwards from $(2, 2)$ yields $(2, 2) \leftarrow (1, 2) \leftarrow (0, 2) \leftarrow (0, 1) \leftarrow (0, 0)$, the five-cell route of total $7$. The tie-free winner at every cell is what makes that reconstruction unambiguous.
+
 ---
 
 ## 4. Complete Execution Trace
@@ -134,6 +152,18 @@ Target minimum path sum is $DP[2][2] = 7$.
 - **Greedy Choice Fallacy:** Choosing the smaller immediate adjacent number (moving down to $(1, 0)$ with value $1$ rather than right to $(0, 1)$ with value $3$) traps the path into higher cumulative costs downstream. Dynamic programming avoids myopic local decisions.
 - **In-Place Modification:** The input `grid` can be overwritten directly (`grid[r][c] += min(...)`), saving space and requiring $O(1)$ auxiliary memory.
 - **Single Row / Single Column Grid:** A $1 \times N$ or $M \times 1$ grid has only one viable path (prefix sum). The boundary formulas handle this naturally without conditional exceptions.
+
+The boundary rules are exactly the prefix sums, so each instance below can be checked from its two edges inward:
+
+| Instance | Grid (rows top to bottom) | Row-0 prefix sums $DP[0][c]$ | Column-0 prefix sums $DP[r][0]$ | Goal computation | Expected output |
+|:---|:---|:---|:---|:---|:---:|
+| Single cell | `[5]` | `[5]` | `[5]` | The goal is the start cell | 5 |
+| Rectangular grid | `[1,2,3]`, `[4,5,6]` | `[1, 3, 6]` | `[1, 5]` | `min(6, 8) + 6 = 12` | 12 |
+| Main square | `[1,3,1]`, `[1,5,1]`, `[4,2,1]` | `[1, 4, 5]` | `[1, 2, 6]` | `min(6, 8) + 1 = 7` | 7 |
+| Zero-valued route | `[0,9,9]`, `[0,0,9]`, `[9,0,0]` | `[0, 9, 18]` | `[0, 0, 9]` | `min(9, 0) + 0 = 0` | 0 |
+| Greedy-trap grid | `[1,1,50,1]`, `[2,1,50,1]`, `[2,1,1,1]` | `[1, 2, 52, 53]` | `[1, 3, 5]` | `min(54, 5) + 1 = 6` | 6 |
+
+The single-cell grid shows why $DP[0][0] = \text{grid}[0][0]$ rather than $1$: the start cell's own cost is part of every path, so a one-cell grid answers with its own value. The greedy-trap grid shows the same recurrence defeating a myopic choice: marching straight along row 0 costs $1 + 1 + 50 + 1 = 53$, while the detour through the $1$s costs only $6$.
 
 ---
 

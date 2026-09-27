@@ -89,6 +89,19 @@ We trace the calculation from $i = 1$ to $n = 5$:
 
 Goal reached for $n = 5$: $8$ unique paths.
 
+### The Two-Variable Shift, Step by Step
+
+The array is unnecessary because each transition consumes only the two most recent terms. Tracking both variables through the shift shows that the invariant `prev1 = DP[i-1]`, `prev2 = DP[i-2]` is re-established by every iteration:
+
+| Transition | `prev2` before ($DP[i-2]$) | `prev1` before ($DP[i-1]$) | $DP[i] = $ `prev1` $+$ `prev2` | `prev2` after | `prev1` after |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| Initialize ($i = 2$) | 1 ($DP[1]$) | 2 ($DP[2]$) | not computed yet | 1 | 2 |
+| $i = 3$ | 1 | 2 | **3** | 2 | 3 |
+| $i = 4$ | 2 | 3 | **5** | 3 | 5 |
+| $i = 5$ | 3 | 5 | **8** | 5 | 8 |
+
+After the final shift, `prev1` $= 8 = DP[5]$, which is the answer; the discarded `prev2` $= 5 = DP[4]$ is never needed again. Only two scalars are live at any moment, independent of $n$.
+
 ---
 
 ## 4. Complete Execution Trace
@@ -116,6 +129,18 @@ Goal reached for $n = 5$: $8$ unique paths.
 - **Base Cases for Small $n$:** If $n = 1$, the algorithm must return $1$ without attempting to index $DP[2]$ or execute iterations that assume $n \ge 2$.
 - **Linear Space Overhead:** Allocating a full list of length $n + 1$ takes $O(n)$ space. Storing only `prev1` and `prev2` reduces memory to $O(1)$ scalar variables.
 - **Logarithmic Acceleration:** For massive $n$ ($n \approx 10^9$), the transition matrix $\begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}$ raised to the power $n-1$ via binary exponentiation calculates $DP[n]$ in $O(\log n)$ time.
+
+Every $n$ from the case set lands on the same shifted sequence, because the number of ways to reach step $n$ is the Fibonacci number $F_{n+1}$ under $F_1 = F_2 = 1$:
+
+| Instance | $n$ | Ways to climb | Fibonacci identity | Why the value is exact |
+|:---|:---:|:---:|:---|:---|
+| One stair | 1 | 1 | $F_2 = 1$ | The base case returns immediately; only the single $1$-step hop exists. |
+| Two stairs | 2 | 2 | $F_3 = 2$ | Base case: the sequences are $1+1$ and $2$. |
+| Three stairs | 3 | 3 | $F_4 = 3$ | First inductive step: $F_3 + F_2 = 2 + 1$. |
+| Five stairs (main trace) | 5 | 8 | $F_6 = 8$ | $F_5 + F_4 = 5 + 3$; the eight sequences are listed in section 1. |
+| Largest legal staircase | 45 | 1836311903 | $F_{46} = 1836311903$ | Already the largest $n$ whose count fits a signed 32-bit integer, since $F_{47} = 2971215073 > 2^{31} - 1$. |
+
+The final row explains the constraint $1 \le n \le 45$: one more step would push the count past $2^{31} - 1 = 2147483647$, so the recurrence never has to leave signed 32-bit range.
 
 ---
 

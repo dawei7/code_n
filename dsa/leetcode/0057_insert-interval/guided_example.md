@@ -142,9 +142,33 @@ Final result: `[[1, 2], [3, 10], [12, 16]]`.
 - **Empty Intervals Input:** When $\text{intervals} = []$, Stage 1 and 3 are skipped, and Stage 2 simply appends $\text{newInterval}$, correctly returning $[\text{newInterval}]$.
 - **Touching Boundaries ($e == S$ or $s == E$):** In closed intervals, touching endpoints constitute an overlap (e.g. $[8, 10]$ with $E = 8$). Using $\le$ rather than strictly $<$ in Stage 2 ensures contiguous intervals are properly coalesced.
 
+### Where the New Interval Can Land
+
+The three stages behave differently in each placement, and the table is the quickest way to see which stage carries the answer. Every result below is the verified output for the authored case.
+
+| Placement of $[S, E]$ | Instance | How the stages divide the work | Verified result |
+|---|---|---|---|
+| Before every interval | `[[5,7],[9,11]]` with `[1,2]` | Stage 1 stops at index 0 because $5 \ge S = 1$; Stage 2 absorbs nothing since $5 > E = 2$; Stage 3 copies both intervals unchanged. | `[[1,2],[5,7],[9,11]]` |
+| Into an empty list | `[]` with `[5,7]` | Stages 1 and 3 have no input, so Stage 2 absorbs nothing and must still commit $[S, E]$; the output is exactly the new interval. | `[[5,7]]` |
+| Overlapping a single interval | `[[1,3],[6,9]]` with `[2,5]` | Stage 1 never fires ($3 \ge S = 2$); $[1,3]$ is absorbed, giving $S = \min(2,1) = 1$ and $E = \max(5,3) = 5$; Stage 3 copies $[6,9]$. | `[[1,5],[6,9]]` |
+| Swallowing the whole list | `[[2,3],[5,6],[8,9]]` with `[0,12]` | Stage 1 never fires, Stage 2 absorbs all three intervals because every start is at most $E = 12$, and Stage 3 has nothing left to copy; $S$ stays $0$ while $E$ reaches $12$. | `[[0,12]]` |
+| Touching both neighbours | `[[1,2],[4,5]]` with `[2,4]` | $[1,2]$ fails Stage 1 ($2 < S = 2$ is false) and is absorbed, as is $[4,5]$ because $4 \le E = 4$; a strict test in Stage 2 would leave $[2,4]$ glued to $[4,5]$ without merging them. | `[[1,5]]` |
+| After every interval | `[[1,2],[5,7]]` with `[9,11]` | Stage 1 emits both intervals because $2 < 9$ and $7 < 9$; Stage 2 finds nothing to absorb yet must still place $[9,11]$ before Stage 3 runs. | `[[1,2],[5,7],[9,11]]` |
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(N)$, where $N$ is the number of intervals. The index $i$ moves strictly from $0$ to $N$ across the three stages. No sorting is needed.
 - **Auxiliary Space Complexity:** $O(N)$ to hold the emitted output list. The iteration itself uses $O(1)$ scalar pointers.
+
+### Comparison of Candidate Methods
+
+The input is already sorted and disjoint, so the methods below differ mainly in how much of that order they exploit — and each has a distinct way of losing a touching neighbour.
+
+| Method | Time | Auxiliary space | Tradeoff or failure mode |
+|---|---|---|---|
+| Three-stage linear partition (this lesson) | $O(N)$ | $O(N)$ for the output, $O(1)$ working pointers | The consolidated $[S, E]$ must be committed even when Stage 2 absorbed nothing, and Stage 2 must test start $\le E$; a strict test leaves a touching pair unmerged. |
+| Append the new interval, re-sort, then merge | $O(N \log N)$ | $O(N)$ | Ignores the order the contract already guarantees and pays a full sort; correctness then depends on the general merge using a non-strict gap test. |
+| Binary search for the first interval starting after $E$, then fold the covered range | $O(\log N + k)$ for $k$ absorbed intervals | $O(N)$ for the output | The search predicate must agree with the overlap test: looking for start $> E$ while merging on start $\le E$ is consistent, but searching on the end coordinate instead can skip a touching neighbour. |
+| Single filtering pass that folds overlapping intervals with $\min$ and $\max$ | $O(N)$ | $O(N)$ for the output | No explicit stages means the merged interval needs a flag for whether it was already emitted; without it, a placement that overlaps nothing either loses the new interval or emits it twice. |
