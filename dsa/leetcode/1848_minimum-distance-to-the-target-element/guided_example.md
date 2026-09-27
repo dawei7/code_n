@@ -115,13 +115,13 @@ Initialize $d_{\min} = \infty$.
 
 ## 4. Complete Execution Trace
 
-| Index $i$ | Value $\text{nums}[i]$ | Equals Target ($5$)? | Absolute Distance $|i - 3|$ | Running Minimum $d_{\min}$ | Decision Note |
+| Index $i$ | Value $\text{nums}[i]$ | Equals Target ($5$)? | Absolute Distance $\lvert i - 3 \rvert$ | Running Minimum $d_{\min}$ | Decision Note |
 |:---:|:---:|:---:|:---:|:---:|:---|
-| 0 | 1 | No | $|0 - 3| = 3$ | $\infty$ | Mismatch, ignore |
-| 1 | 2 | No | $|1 - 3| = 2$ | $\infty$ | Mismatch, ignore |
-| 2 | 3 | No | $|2 - 3| = 1$ | $\infty$ | Mismatch, ignore |
-| 3 | 4 | No | $|3 - 3| = 0$ | $\infty$ | Start position mismatch |
-| 4 | 5 | **Yes** | $|4 - 3| = 1$ | **1** | First target match found |
+| 0 | 1 | No | $\lvert 0 - 3 \rvert = 3$ | $\infty$ | Mismatch, ignore |
+| 1 | 2 | No | $\lvert 1 - 3 \rvert = 2$ | $\infty$ | Mismatch, ignore |
+| 2 | 3 | No | $\lvert 2 - 3 \rvert = 1$ | $\infty$ | Mismatch, ignore |
+| 3 | 4 | No | $\lvert 3 - 3 \rvert = 0$ | $\infty$ | Start position mismatch |
+| 4 | 5 | **Yes** | $\lvert 4 - 3 \rvert = 1$ | **1** | First target match found |
 
 ---
 

@@ -68,11 +68,11 @@ First, sort both collections in ascending order:
 - Sorted seats: $\text{seats}_{\text{sort}} = [1, 3, 5]$
 - Sorted students: $\text{students}_{\text{sort}} = [2, 4, 7]$
 
-| Matched Rank $i$ | Sorted Seat Position | Sorted Student Position | Coordinate Displacement $(\text{seat} - \text{student})$ | Individual Absolute Moves $|\text{seat} - \text{student}|$ | Student Movement Direction | Cumulative Moves Sum |
+| Matched Rank $i$ | Sorted Seat Position | Sorted Student Position | Coordinate Displacement $(\text{seat} - \text{student})$ | Individual Absolute Moves $\lvert \text{seat} - \text{student} \rvert$ | Student Movement Direction | Cumulative Moves Sum |
 |---|---|---|---|---|---|---|
-| $0$ | $1$ | $2$ | $1 - 2 = -1$ | $|-1| = 1$ | Left by $1$ unit | $0 + 1 = 1$ |
-| $1$ | $3$ | $4$ | $3 - 4 = -1$ | $|-1| = 1$ | Left by $1$ unit | $1 + 1 = 2$ |
-| $2$ | $5$ | $7$ | $5 - 7 = -2$ | $|-2| = 2$ | Left by $2$ units | $2 + 2 = 4$ |
+| $0$ | $1$ | $2$ | $1 - 2 = -1$ | $\lvert -1 \rvert = 1$ | Left by $1$ unit | $0 + 1 = 1$ |
+| $1$ | $3$ | $4$ | $3 - 4 = -1$ | $\lvert -1 \rvert = 1$ | Left by $1$ unit | $1 + 1 = 2$ |
+| $2$ | $5$ | $7$ | $5 - 7 = -2$ | $\lvert -2 \rvert = 2$ | Left by $2$ units | $2 + 2 = 4$ |
 
 Total minimum moves: $4$.
 

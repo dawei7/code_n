@@ -131,11 +131,11 @@ Step 2: p1=1 (val 4), p2=0 (val 3) -> |4 - 3| = 1 -> min_dist = 1
 p2 reaches end -> Stop -> Return 1
 ```
 
-| Query Call | Step | Pointer $p_1$ ($A$) | Pointer $p_2$ ($B$) | Absolute Difference $|A[p_1] - B[p_2]|$ | Running $\text{min\_dist}$ | Pointer Advanced |
+| Query Call | Step | Pointer $p_1$ ($A$) | Pointer $p_2$ ($B$) | Absolute Difference $\lvert A[p_1] - B[p_2] \rvert$ | Running $\text{min\_dist}$ | Pointer Advanced |
 |:---|:---:|:---:|:---:|:---:|:---:|:---:|
-| `shortest("coding", "practice")` | 1 | $p_1 = 0$ ($3$) | $p_2 = 0$ ($0$) | $|3 - 0| = 3$ | **3** | $p_2 \leftarrow 1$ (End) |
-| `shortest("makes", "coding")` | 1 | $p_1 = 0$ ($1$) | $p_2 = 0$ ($3$) | $|1 - 3| = 2$ | 2 | $p_1 \leftarrow 1$ |
-| `shortest("makes", "coding")` | 2 | $p_1 = 1$ ($4$) | $p_2 = 0$ ($3$) | $|4 - 3| = 1$ | **1** | $p_2 \leftarrow 1$ (End) |
+| `shortest("coding", "practice")` | 1 | $p_1 = 0$ ($3$) | $p_2 = 0$ ($0$) | $\lvert 3 - 0 \rvert = 3$ | **3** | $p_2 \leftarrow 1$ (End) |
+| `shortest("makes", "coding")` | 1 | $p_1 = 0$ ($1$) | $p_2 = 0$ ($3$) | $\lvert 1 - 3 \rvert = 2$ | 2 | $p_1 \leftarrow 1$ |
+| `shortest("makes", "coding")` | 2 | $p_1 = 1$ ($4$) | $p_2 = 0$ ($3$) | $\lvert 4 - 3 \rvert = 1$ | **1** | $p_2 \leftarrow 1$ (End) |
 
 ---
 

@@ -137,12 +137,12 @@ Median $x = 2$ achieves the strictly minimal cost of **`2`**.
 
 ## 4. Complete Execution Trace
 
-| Element $nums[i]$ | Sorted Index | Selected Median $k$ | Absolute Distance $|nums[i] - k|$ | Cumulative Moves |
+| Element $nums[i]$ | Sorted Index | Selected Median $k$ | Absolute Distance $\lvert nums[i] - k \rvert$ | Cumulative Moves |
 |:---:|:---:|:---:|:---:|:---:|
-| $1$ | $0$ | $2$ | $|1 - 2| = 1$ | $1$ |
-| $2$ | $1$ (Middle) | $2$ | $|2 - 2| = 0$ | $1$ |
-| $3$ | $2$ | $2$ | $|3 - 2| = 1$ | **$2$** |
-| **Total** | — | — | $\sum |nums[i] - 2|$ | **Result: $2$** |
+| $1$ | $0$ | $2$ | $\lvert 1 - 2 \rvert = 1$ | $1$ |
+| $2$ | $1$ (Middle) | $2$ | $\lvert 2 - 2 \rvert = 0$ | $1$ |
+| $3$ | $2$ | $2$ | $\lvert 3 - 2 \rvert = 1$ | **$2$** |
+| **Total** | — | — | $\sum \lvert nums[i] - 2 \rvert$ | **Result: $2$** |
 
 ---
 

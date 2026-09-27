@@ -170,14 +170,14 @@ The table below summarizes the window calculations, overlap suppression, and cum
 
 ### Index Proximity Verification Table
 
-| Candidate Index $i$ | Closest Key Position $j$ | Distance $|i - j|$ | Radius Constraint $\le 1$? | In Final Output? |
+| Candidate Index $i$ | Closest Key Position $j$ | Distance $\lvert i - j \rvert$ | Radius Constraint $\le 1$? | In Final Output? |
 |---|---|---|---|---|
-| $0$ | $j = 2$ | $|0 - 2| = 2$ | No ($2 > 1$) | Excluded |
-| $1$ | $j = 2$ | $|1 - 2| = 1$ | Yes ($1 \le 1$) | Included |
-| $2$ | $j = 2$ | $|2 - 2| = 0$ | Yes ($0 \le 1$) | Included |
-| $3$ | $j = 3$ | $|3 - 3| = 0$ | Yes ($0 \le 1$) | Included |
-| $4$ | $j = 3$ | $|4 - 3| = 1$ | Yes ($1 \le 1$) | Included |
-| $5$ | $j = 3$ | $|5 - 3| = 2$ | No ($2 > 1$) | Excluded |
+| $0$ | $j = 2$ | $\lvert 0 - 2 \rvert = 2$ | No ($2 > 1$) | Excluded |
+| $1$ | $j = 2$ | $\lvert 1 - 2 \rvert = 1$ | Yes ($1 \le 1$) | Included |
+| $2$ | $j = 2$ | $\lvert 2 - 2 \rvert = 0$ | Yes ($0 \le 1$) | Included |
+| $3$ | $j = 3$ | $\lvert 3 - 3 \rvert = 0$ | Yes ($0 \le 1$) | Included |
+| $4$ | $j = 3$ | $\lvert 4 - 3 \rvert = 1$ | Yes ($1 \le 1$) | Included |
+| $5$ | $j = 3$ | $\lvert 5 - 3 \rvert = 2$ | No ($2 > 1$) | Excluded |
 
 ---
 
