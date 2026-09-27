@@ -1,138 +1,131 @@
 # Guided Example: Number of Subarrays With GCD Equal to K
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. The representative instance
 
-- **Input:** `{"nums": [9, 3, 1, 2, 6, 3], "k": 3}`
-- **Required output:** `4`
+We work the official instance `nums = [9, 3, 1, 2, 6, 3]` with `k = 3`: how many of its subarrays have greatest common divisor exactly $3$?
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+A subarray is a contiguous block, so an array of length six has $6 + 5 + 4 + 3 + 2 + 1 = 21$ subarrays. Grouping them by length shows where the answer comes from.
 
----
+| Subarray length | Subarrays of that length | With gcd exactly $3$ | Which ones |
+|:---:|:---:|:---:|:---|
+| 1 | 6 | 2 | `[3]` at index 1 and `[3]` at index 5 |
+| 2 | 5 | 2 | `[9, 3]` at indices 0-1 and `[6, 3]` at indices 4-5 |
+| 3 | 4 | 0 | the first three contain the value $1$ at index 2; the last is gcd(2, 6, 3) = 1 |
+| 4 | 3 | 0 | every one of them contains index 2 |
+| 5 | 2 | 0 | every one of them contains index 2 |
+| 6 | 1 | 0 | the whole array contains index 2 |
 
-## 1. Instance & Teaching Goal
+Four subarrays qualify, so the answer for this instance is $4$.
 
-Given an integer array `nums` and an integer `k`, return *the number of **subarrays** of *`nums`* where the greatest common divisor of the subarray's elements is *`k`.
+The interesting part is not the enumeration but the fact that the gcd of a growing block changes in a highly constrained way, which is what lets a scan stop early instead of examining all 21 blocks.
 
-The objective is to compute `4` from `{"nums": [9, 3, 1, 2, 6, 3], "k": 3}` while avoiding redundant calculations and unnecessary overhead.
+## 2. The running gcd and its divisor chain
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Enumerate every contiguous start and end
-
-The exact source uses a direct nested-loop strategy. The outer loop chooses each start index `i`. The inner loop iterates through `nums[i:]`, extending the subarray one element at a time toward the right.
-
-The variable `g` stores the GCD of the current subarray. It starts at zero because `gcd(0,x)=x`, so after reading the first value it equals the GCD of the one-element subarray. Each update
-
-`g = gcd(g, x)`
-
-extends the represented subarray by `x` without recomputing its GCD from scratch.
-
-After each extension, `ans += g == k` adds one when the current subarray's GCD is exactly `k`. Python treats the Boolean comparison as integer 1 or 0.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [9, 3, 1, 2, 6, 3], "k": 3}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Map loop iterations to subarrays
-
-For a fixed outer index `i`, the first inner iteration represents `nums[i:i+1]`, the second represents `nums[i:i+2]`, and so on through `nums[i:n]`. Thus it visits every possible end index for that start.
-
-Across all outer iterations, every non-empty contiguous subarray has one unique start and end and is visited exactly once. The running GCD at that visit equals the GCD of all its elements by associativity:
+Fix the left end $i$ and let $G(i, j) = \gcd(\texttt{nums}[i..j])$. Extending the block by one element gives
 
 $$
-\gcd(\gcd(a,b),c)=\gcd(a,b,c).
+G(i, j+1) = \gcd\bigl(G(i, j), \texttt{nums}[j+1]\bigr),
 $$
 
-Therefore the Boolean increments correspond one-to-one with qualifying subarrays.
+and the right-hand side always divides $G(i, j)$. Two consequences drive the whole method.
 
-For `nums = [9,3,1,2,6,3]` and `k=3`, starting at index 0 produces running GCDs 9, 3, 1, 1, 1, 1, so only `[9,3]` contributes. Starting at index 1 begins with 3 and contributes the singleton before dropping to 1. Other starts similarly find the singleton final 3 and `[6,3]`, totaling four.
+**The chain never increases.** Every later value divides the current one, so it can only stay where it is or drop to a proper divisor. A block whose gcd already equals $k$ can therefore keep equal to $k$ — as long as each new element is a multiple of $k$ — but it can also fall below.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+**A value that does not admit $k$ as a divisor is a dead end.** If $k$ does not divide the current running value, then no extension can produce gcd exactly $k$, because every future value divides the current one. That is the early exit: the scan abandons this left end instead of walking to the end of the array.
 
----
+The drop is also fast. Each strict decrease moves to a proper divisor, so the value at least halves, which bounds the number of distinct values in any chain by $\lfloor \log_2 V \rfloor + 1$ where $V$ is the largest array value. With values up to $10^9$ that is at most about thirty distinct values per left end.
 
-### Step 3: How GCD changes during extension
+| Left end $i$ | Running gcd as the right end advances | Distinct values | Why the scan ends here |
+|:---:|:---|:---:|:---|
+| 0 | 9, 3, 1, 1, 1, 1 | 9, 3, 1 | the value $1$ reached at $j = 2$ does not admit $3$ |
+| 1 | 3, 1, 1, 1, 1 | 3, 1 | the value $1$ reached at $j = 2$ does not admit $3$ |
+| 2 | 1, 1, 1, 1 | 1 | the very first value already fails |
+| 3 | 2, 2, 1 | 2, 1 | the value $2$ does not admit $3$ |
+| 4 | 6, 3 | 6, 3 | $6$ admits $3$, so the chain must continue; it lands on the target |
+| 5 | 3 | 3 | a single element, which is the target |
 
-Appending values can only keep the current GCD or reduce it to a divisor. Once it reaches 1, it remains 1. If it becomes smaller than `k` or ceases to be divisible by `k`, no longer extension can return it to `k`.
+## 3. Step-by-step execution of the official instance
 
-The exact implementation does not use these facts to break early. It continues every suffix to the end regardless of the current GCD. That keeps the code simple but does unnecessary work in many cases.
+For each left end the scan carries one accumulator: the gcd of everything from that left end through the current right end. It counts the accumulator whenever it equals $k$, and abandons the left end as soon as the accumulator stops admitting $k$.
 
+| Left end $i$ | Right end $j$ | `nums[j]` | Running gcd after including $j$ | Equals $k$? | Does $k$ divide it? | Action |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| 0 | 0 | 9 | 9 | no | yes | extend |
+| 0 | 1 | 3 | 3 | yes, count 1 | yes | extend |
+| 0 | 2 | 1 | 1 | no | no | abandon this left end |
+| 1 | 1 | 3 | 3 | yes, count 2 | yes | extend |
+| 1 | 2 | 1 | 1 | no | no | abandon this left end |
+| 2 | 2 | 1 | 1 | no | no | abandon immediately |
+| 3 | 3 | 2 | 2 | no | no | abandon immediately |
+| 4 | 4 | 6 | 6 | no | yes | extend |
+| 4 | 5 | 3 | 3 | yes, count 3 | yes | right end reached the end of the array |
+| 5 | 5 | 3 | 3 | yes, count 4 | yes | right end reached the end of the array |
 
-Fix a start `i`. Before the first inner iteration, `g=0`. After processing the value at end `j`, induction on `j` shows
+The count reaches $4$, matching the enumeration in section 1. Two rows deserve attention. At left end $3$ the accumulator is $2$ and the scan stops after a single step, because $2$ cannot grow into a multiple of $3$. At left end $4$ the accumulator is $6$, which is *not* the target, yet the scan must continue: $6$ is a multiple of $3$, and $\gcd(6, 3) = 3$. Confusing those two situations is the most common way to break this method.
+
+The trace performs ten gcd evaluations in place of the $21$ blocks the enumeration would inspect.
+
+## 4. Invariant and correctness of the early exit
+
+**Invariant.** At the top of every inner iteration, the accumulator equals $\gcd(\texttt{nums}[i..j])$ for the current left end $i$ and right end $j$. It is established at $j = i$, where the accumulator is `nums[i]` itself, and preserved by the update rule, which is exactly the defining recurrence of the running gcd.
+
+**Soundness.** A subarray is counted only when the accumulator equals $k$, and the invariant says the accumulator is that subarray's gcd. Every counted block therefore has gcd exactly $k$, so the count never exceeds the truth.
+
+**Completeness.** Suppose some block `nums[i..j*]` has gcd exactly $k$. Consider the inner loop for left end $i$. Moving from a shorter prefix to a longer one can only divide the value further, so for every $j \le j^{*}$ the value $\gcd(\texttt{nums}[i..j])$ is a multiple of $\gcd(\texttt{nums}[i..j^{*}]) = k$. In other words $k$ divides every accumulator this left end sees up to $j^{*}$, so the early exit cannot fire before $j^{*}$. The loop reaches $j^{*}$, finds the accumulator equal to $k$, and counts that block. No qualifying block is skipped.
+
+The pruning test is therefore exactly the right one, and its two outcomes are worth separating:
+
+| Running value $g$ | Target $k = 3$ | Does $k$ divide $g$? | Can a longer block from this left end reach $3$? |
+|:---:|:---:|:---:|:---|
+| 9 | 3 | yes | yes: gcd(9, 3) = 3 |
+| 6 | 3 | yes | yes: gcd(6, 3) = 3, even though $6$ is not the target |
+| 3 | 3 | yes | yes: it is the target already, and multiples of $3$ keep it there |
+| 2 | 3 | no | no: every later value divides $2$, and $2$ is not a multiple of $3$ |
+| 1 | 3 | no | no: the same argument with $1$ |
+
+A useful corollary follows from the same divisibility fact: if a block has gcd exactly $k$, then every element of it is a multiple of $k$, and in particular its first element is. A scan may therefore skip any left end whose first value is not a multiple of $k$ — a free filter, though it changes nothing in the worst case where the whole array consists of multiples of $k$.
+
+## 5. Boundary and degenerate instances
+
+The package's authored cases probe the situations where a naive reading of the rule goes wrong.
+
+| Case | `nums` | `k` | Answer | Why |
+|:---|:---|:---:|:---:|:---|
+| `sample-1` | `[9, 3, 1, 2, 6, 3]` | 3 | 4 | the instance traced in section 3 |
+| `sample-2` | `[4]` | 7 | 0 | the single element is not the target, and there is nothing to extend |
+| `trial-all-ones` | `[1, 1, 1]` | 1 | 6 | every block of ones has gcd $1$, and there are $3 \cdot 4 / 2 = 6$ blocks |
+| `trial-multiples` | `[3, 6, 9]` | 3 | 4 | `[3]`, `[3, 6]`, `[6, 9]` and `[3, 6, 9]` qualify; the singletons `[6]` and `[9]` do not |
+| `trial-reset-by-nonmultiple` | `[6, 3, 10, 15]` | 3 | 2 | `[3]` and `[6, 3]` qualify; appending $10$ drops the gcd to $1$ and ends the left end $0$ scan |
+| `trial-gcd-emerges` | `[8, 12, 18]` | 2 | 1 | only the whole array: gcd(8, 12) = 4 and gcd(12, 18) = 6, but gcd(8, 12, 18) = 2 |
+| `trial-large-values` | `[1000000000, 500000000]` | 500000000 | 2 | the singleton `[500000000]`, and the pair whose gcd is exactly $500000000$ |
+| `trial-no-match` | `[2, 4, 6]` | 5 | 0 | no gcd of these values can be $5$, because the first element is not a multiple of $5$ |
+
+`trial-gcd-emerges` is the case that defeats an "inspect every pair" shortcut: the target appears only at full length. `trial-reset-by-nonmultiple` shows the opposite event, where a single element that is not a multiple of $k$ truncates every block that spans it. And `trial-all-ones` is the quadratic worst case in miniature, since with $k = 1$ the early exit never fires.
+
+## 6. Alternative methods and what they cost
+
+| Method | Time | Auxiliary space | What it costs you |
+|:---|:---|:---|:---|
+| Enumerate all subarrays, compute each gcd from scratch | $\Theta(n^3)$ gcd evaluations | $O(1)$ | correct but cubic; nested prefixes are re-reduced repeatedly |
+| Running gcd per left end, as traced here | $\Theta(n^2)$ gcd evaluations in the worst case | $O(1)$ | one accumulator and a counter; the inner scan can still reach the end of the array |
+| Running gcd per left end, skipping equal-value runs | $\Theta(n \log V)$ gcd evaluations | $O(\log V)$ for the current chain boundaries | needs the positions where the chain changes value, which the plain loop never records |
+| Restrict the left ends to multiples of $k$ | same worst case, usually much less work | $O(1)$ | valid by the corollary in section 4, but useless when every element is a multiple of $k$ |
+| Prefix-gcd table or sparse table | $\Theta(n \log n)$ construction, $O(\log n)$ per query | $O(n \log n)$ | answers arbitrary range-gcd queries, far more machinery than a counting pass needs |
+
+The second and third rows are the same idea at two levels of care. The plain loop is preferred when the array is short, because the chain boundaries cost more to maintain than the gcd evaluations they save; the grouped version is preferred when values are large and the inner scans are long.
+
+## 7. Complexity: time and auxiliary space
+
+For left end $i$ the inner loop performs at most $n - i$ gcd evaluations, so the whole pass performs at most
 
 $$
-g=\gcd(\texttt{nums}[i],\ldots,\texttt{nums}[j]).
+\sum_{i=0}^{n-1} (n - i) = \frac{n(n+1)}{2}
 $$
 
-The base case follows from `gcd(0,nums[i])=nums[i]`. The step follows from applying GCD to the prior subarray GCD and the new final value.
+evaluations, which is $\Theta(n^2)$ gcd operations in the worst case. Each evaluation costs $O(\log V)$ bit operations for the Euclidean algorithm — at most about thirty division steps for values up to $10^9$ — so the bit-level bound is $O(n^2 \log V)$.
 
-The comparison increments `ans` exactly when this value equals `k`. Because nested iteration covers each start-end pair exactly once, every qualifying subarray is counted once and no non-qualifying subarray contributes.
+The quadratic worst case is attained, not merely an upper bound: on `nums = [1, 1, ..., 1]` with $k = 1$ the accumulator equals the target at every step, the early exit never fires, and the pass really does evaluate $n(n+1)/2$ pairs. `trial-all-ones` is that shape at $n = 3$.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `4` |
+Auxiliary space is constant. The scan keeps one accumulator, one counter for the answer, and two loop indices; nothing scales with $n$. That is what distinguishes it from the grouped variant, which keeps the current chain's value-change boundaries and therefore $O(\log V)$ storage — at most about thirty entries, bounded by the divisor-chain argument in section 2 rather than by the array length.
 
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [9, 3, 1, 2, 6, 3], "k": 3}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `4` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Compressed ending-GCD states:** For each new value, transform every prior distinct GCD with `gcd(old,x)`, merge equal results by count, and add the multiplicity at `k`. This matches the manifest and exploits the short divisor chain.
-- **Early termination:** While extending one start, stop once `g < k` or `g % k != 0`, because future GCDs can only divide the current value and cannot become `k`.
-- **Avoid suffix slices:** Iterate end indices directly and read `nums[j]`. This preserves quadratic enumeration but reduces peak auxiliary space to $O(1)$.
-- **Recompute each subarray GCD:** Starting a fresh GCD calculation for every start-end pair adds another linear factor and can reach cubic time.
-- **Single element:** It contributes exactly when that value equals `k`.
-- **Current GCD reaches one:** It can never increase again; if `k>1`, all longer subarrays from that start are invalid.
-- **Values not divisible by `k`:** Any subarray containing one cannot have GCD `k`, although the exact source discovers this through updates rather than preprocessing.
-- **Repeated values equal to `k`:** Every contiguous subarray entirely within such a run has GCD `k`.
-- **`k=1`:** Once a running GCD becomes one, every longer extension from the same start also qualifies.
-- **Manifest mismatch:** The exact file is quadratic enumeration with slices, not distinct-GCD compression, so its true time and space bounds are larger.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n^2\log V)$. There are $n(n+1)/2=O(n^2)$ inner iterations. Each calls Euclid's GCD algorithm on values at most $V$, costing $O(\log V)$ in the worst case. The resulting time bound is $O(n^2\log V)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+The two bounds together explain the design: the early exit is what keeps the common case far below the quadratic ceiling, the divisor-chain bound is what makes a grouping variant worth writing when values are large, and the constant-space property is what makes the plain loop the right default for this problem.
